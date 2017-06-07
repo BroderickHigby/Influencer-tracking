@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sapie Space</title>
+</head>
+<body>
+    <form id="searchform" action="{% url 'sapie_alpha_search_list_view' %}" method="get" accept-charset="utf-8">
+      <button class="searchbutton" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
+      <input class="searchfield" id="searchbox" name="search" type="text" placeholder="Search..">
+    </form>
+</body>
+</html>

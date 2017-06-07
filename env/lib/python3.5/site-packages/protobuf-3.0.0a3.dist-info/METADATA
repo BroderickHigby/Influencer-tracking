@@ -1,0 +1,15 @@
+Metadata-Version: 2.0
+Name: protobuf
+Version: 3.0.0a3
+Summary: Protocol Buffers
+Home-page: https://developers.google.com/protocol-buffers/
+Author: protobuf@googlegroups.com
+Author-email: protobuf@googlegroups.com
+License: New BSD License
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2.7
+Requires-Dist: setuptools
+
+Protocol Buffers are Google's data interchange format
+
+
