@@ -1,0 +1,10 @@
+var AWS = require('aws-sdk');
+var marshalItem = require('dynamodb-marshaler').marshalItem;
+ 
+AWS.config.region = 'us-west-2';
+var dynamoDb = new AWS.DynamoDB();
+ 
+dynamoDb.putItem({
+  TableName: 'users',
+  Item: marshalItem({username: 'nackjicholson'})  // {username: {S: 'nackjicholson'}} 
+});
