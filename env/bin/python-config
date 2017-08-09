@@ -1,4 +1,4 @@
-#!/Users/brody/sapie/env/bin/python
+#!/home/brody/sapie/env/bin/python
 
 import sys
 import getopt

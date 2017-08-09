@@ -1,4 +1,4 @@
-#!/Users/brody/sapie/env/bin/python3
+#!/home/brody/sapie/env/bin/python2
 from django.core import management
 
 if __name__ == "__main__":
