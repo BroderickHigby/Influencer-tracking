@@ -1,1 +1,32 @@
-# sapie
+# Sapie Space
+*Sapie Space helps businesses go viral through connecting them with influenceers in their industry.*
+## How it works
+The interface is a business-facing platform that connects businesses to influencers. To see an investor's pitch that I did, you can go to [this link](https://docs.google.com/presentation/d/1cEplBy7avil1pP7XFVi694qOlSWiG58qNWfQ0KPgLx0/edit?usp=sharing) (and request Google Drive access, if needed).
+
+
+## Resources (currently)
+* Django (python library)
+* DynamoDB
+
+
+## A brief history of Sapie Space
+
+Jack Treseler is my colleague and the co-founder of Sapie Space. Before we met, he had his brother-in-law programming the interface. His brother-in-law became ill and could no longer commit time to Sapie Space.
+Jack and I met up in San Francisco, CA. I was excited about the idea of Sapie Space. I went to start programming. Jack and I started working together on Sapie Space in April 2017. James did a great job with some of the programming on it(can be seen in "socialladder" folder). However, he started running into issues with deploying to Google App Engine (Google Cloud SDK). That's where he left off. When he handed off the code to me, I worked to try to get new iterations of it on GoogleAppEngine as well as expand the database, with no avail. 
+We migrated over to AWS, believing that we would have less of the issues that we experienced with deploying on GoogleAppEngine. There was a learning curve to using DynamoDB (the DDB django project for uploading influencer data can be found in /sapie_dynamodb). 
+
+## Where we stand
+
+Currently, we have influencer data manually uploaded to dynamodb, user authentication is a seperate Django Project (/core). 
+1. Connect the data in dynamoDB with a search_interface (the one that I created in Django, is fine) 
+2. Ensure that the User authentication is a 
+
+## Future Updates
+
+*January 1, 2018 Beta-Version:* A website with a search engine that connects to DynamoDB and allows the user's (businesses) to find targeted industry influencers. 
+
+*Second Iteration:* Integrate IBM Watson to show on an indivdual's page for the search results
+
+## Other Business-Development References
+We use [Asana](https://app.asana.com/0/476028607034259/476028607034259) for task management, and
+We use [Slack](www.slack.com) to communicate.
