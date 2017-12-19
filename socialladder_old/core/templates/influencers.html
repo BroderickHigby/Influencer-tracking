@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block javascript %}
+<script type="text/javascript" src="/scripts/influencers.js"></script>
+{% endblock %}
+
+{% block content_class %}fullpage{% endblock %}
+
+{% block content %}
+<div class="search-bar">
+	<div class="search-container">
+		<input type="search" id="id_search_term" name="search_term" autocomplete="off" {% if request.GET.search_term %}value="{{ request.GET.search_term }}"{% endif %}>
+		<div class="search-container-search-icon"><i class="fa fa-search"></i></div>
+	</div>
+</div>
+
+<div class="influencers-list">
+	<h1>Influencers</h1>
+	<div id="influencer-summaries"></div>
+</div>
+
+<div id="influencers-main-content">
+</div>
+{% endblock %}

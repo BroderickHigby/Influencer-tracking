@@ -1,0 +1,13 @@
+{% extends 'centered.html' %}
+
+{% block content %}
+<h1 class="search-title">Find Influencers</h1>
+
+<form action="{% url 'influencers' %}" method="get">
+<div class="search-container">
+	<input type="search" id="id_search_term" name="search_term" autocomplete="off">
+	<div class="search-container-search-icon"><i class="fa fa-search"></i></div>
+</div>
+<button id="search_btn" type="submit">Search</button>
+</div>
+{% endblock %}

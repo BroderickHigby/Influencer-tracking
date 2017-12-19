@@ -1,0 +1,16 @@
+indexes:
+- kind: Tweet
+  properties:
+  - name: influencer
+  - name: created_at
+    direction: desc
+- kind: Tweet
+  properties:
+  - name: influencer
+  - name: external_id
+    direction: desc
+- kind: Influencer
+  properties:
+  - name: tags
+  - name: social_authority
+    direction: desc

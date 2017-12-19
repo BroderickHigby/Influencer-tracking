@@ -1,0 +1,53 @@
+application: socialladder--dev
+version: 00-00-20
+runtime: python27
+api_version: 1
+threadsafe: true
+instance_class: F2
+
+automatic_scaling:
+  min_idle_instances: 1
+
+env_variables:
+    GAE_USE_SOCKETS_HTTPLIB : 'anyvalue'
+
+libraries:
+- name: ssl
+  version: 'latest'
+
+builtins:
+ - remote_api: on
+ - appstats: on
+
+inbound_services:
+ - warmup
+
+handlers:
+ - url: /style
+   static_dir: static/style
+
+ - url: /scripts
+   static_dir: static/scripts
+
+ - url: /images
+   static_dir: static/images
+
+ - url: /static/debug_toolbar
+   static_dir: static/debug_toolbar
+
+ - url: /favicon.ico
+   static_files: static/images/favicon.ico
+   upload: static/images/favicon.ico
+
+ - url: /mapreduce/pipeline/images
+   static_dir: mapreduce/lib/pipeline/ui/images
+
+ - url: /mapreduce(/.*)?
+   script: djangoappengine.mapreduce.handler.application
+   login: admin
+
+ - url: /remote_api.*
+   script: google.appengine.ext.remote_api.handler.application
+
+ - url: /.*
+   script: lib.djangoappengine.main.application

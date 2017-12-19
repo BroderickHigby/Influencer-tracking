@@ -1,0 +1,87 @@
+<img class="influencer-logo" src="{{ influencer.picture_url }}">
+<h1 class="influencer-name">{{ influencer.name }} (<a href="https://twitter.com/{{ influencer.screen_name }}" style="text-transform: none">@{{ influencer.screen_name }}</a>)</h1><br><br><br>
+<p>{{ influencer.description }}</p>
+<p><a href="{{ influencer.url }}">{{ influencer.url }}</a></p>
+
+<div class="clear"></div>
+
+<div class="half-page left">
+	<h2>Social Media</h2>
+	<table>
+		{% for url in influencer.social_media_urls %}
+		<tr>
+			<td><img class="icon" src="/images/icons/{{ url.0 }}.png"></td>
+			<td><a href="{{ url.1 }}" target="_blank">{{ url.1 }}</a></td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
+
+<div class="half-page right">
+	<h2>Twitter Statistics</h2>
+	<table>
+		<tr>
+			<td>Number of followers:</td>
+			<td>{{ influencer.num_followers }}</td>
+		</tr>
+		<tr>
+			<td>Number of tweets:</td>
+			<td>{{ influencer.num_tweets }}</td>
+		</tr>
+		<tr>
+			<td>Retweet Ratio:</td>
+			<td>{{ retweet_ratio }}%</td>
+		</tr>
+		<tr>
+			<td>Analyzed Tweets:</td>
+			<td>{{ num_tweets }}</td>
+		</tr>
+	</table>
+</div>
+
+<div class="clear"></div>
+
+<div class="half-page left">
+	<h2>E-mail Addresses</h2>
+	<table>
+		{% for email in influencer.emails %}
+		<tr><td>{{ email }}</td></tr>
+		{% endfor %}
+	</table>
+</div>
+
+<div class="clear"></div>
+
+<h2>Shared Domains</h2>
+<table style="width: 100%"><tr>
+	<td style="padding-right: 60px">
+		<table class="chart-legend">
+			<tr>
+				<th>Domain</th>
+				<th class="metric">Negative</th>
+				<th class="metric">Neutral</th>
+				<th class="metric">Positive</th>
+			</tr>
+
+			{% for domain, counts in shared_domains.items %}
+			<tr {% if not forloop.last %}style="border-bottom: 1px solid #dddddd"{% endif %}>
+				<td><a href="http://{{ domain }}" target="_blank">{{ domain }}</a></td>
+				<td class="metric">{{ counts.negative }}</td>
+				<td class="metric">{{ counts.neutral }}</td>
+				<td class="metric">{{ counts.positive }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</td>
+
+	<td>
+		<canvas id="shared_domains_chart" height="300" style="width: 100%; height: 300px;"></canvas>
+	</td>
+</tr></table>
+
+<script>
+var ctx = document.getElementById("shared_domains_chart");
+var chartData = JSON.parse('{{ shared_domains_graph_data|safe }}');
+applyDefaultBarChartOptions(chartData);
+sharedDomainsChart = new Chart(ctx, chartData);
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Social Ladder{% if title %} - {{ title }} {% endif %}</title>
+
+		<link rel="icon" type="image/png" href="/images/favicon.png">
+		<meta charset="utf-8">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link href="/style/perfect-scrollbar.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="/style/main.css" />
+
+		<script type="text/javascript" src="/scripts/jquery-2.2.3.min.js"></script>
+		<script type="text/javascript" src="/scripts/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/scripts/perfect-scrollbar-0.4.10.with-mousewheel.min.js"></script>
+		<script type="text/javascript" src="/scripts/Chart.js"></script>
+		<script type="text/javascript" src="/scripts/main.js"></script>
+
+		{% block javascript %}{% endblock %}
+	</head>
+	<body>
+		<div id="header" class="{% block header_class %}{% endblock %}">
+		{% block header %}
+			<h1>Social<img class="header-logo" src="/images/socialladder_logo.png" alt=''>Ladder</h1>
+		{% endblock %}
+		</div>
+		<div id="header-bottom"></div>
+
+		<div id="content" class="{% block content_class %}{% endblock %}">
+		{% block content %}
+		{% endblock %}
+		</div>
+	</body>
+</html>

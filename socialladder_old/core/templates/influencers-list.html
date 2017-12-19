@@ -1,0 +1,14 @@
+{% for influencer in influencers %}
+<div class="influencer">
+	<div class="influencer-number">{{ forloop.counter }}</div>
+
+	<img src="{{ influencer.picture_url }}">
+
+	<div class="info">
+		<p class="name"><a href="{% url 'influencer' influencer.key.urlsafe %}">{{ influencer.name }}</a></p>
+		<p class="twitter"><a href="http://twitter.com/{{ influencer.screen_name }}">@{{ influencer.screen_name }}</a></p>
+		<p class="description">{{ influencer.description }}</p>
+	</div>
+	<p class="social-authority">Social Authority: {{ influencer.social_authority|floatformat:2 }}</p>
+</div>
+{% endfor %}

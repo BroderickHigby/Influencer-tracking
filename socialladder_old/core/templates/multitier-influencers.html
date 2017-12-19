@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table border="1">
+{% for key, value in follower_counts.items %}
+	<tr><td>{{ key }}</td><td>{{ value }}</td></tr>
+{% endfor %}
+</table>
+{% endblock %}
