@@ -3,11 +3,6 @@ import React, { Component } from 'react';
 import MenuBar from '../layout/MenuBar';
 import Content from '../layout/Content';
 
-const rootStyle = {
-    display: 'flex',
-    flexGrow: '1'
-};
-
 class Home extends Component {
     render() {
         return (
