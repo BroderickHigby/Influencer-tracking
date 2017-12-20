@@ -69,20 +69,20 @@ the top of Web pages. Searching and listing were separated in
 different stories here just to reuse listing among two search types.
 
 
-1. As a *sales team user* I want to *start searching for influencers* so that I have a base to start from
+1. **As a *sales team user* I want to *start searching for influencers* so that I have a base to start from**
     - I should be able to start searching from home page or dashboard
     - I want to search just by providing one or few search terms
 
-2. As a *sales team user* I want to *see influencer detail* so that I can be sure about my choice
+2. **As a *sales team user* I want to *see influencer detail* so that I can be sure about my choice**
     - I should be able to navigate back to previous page
     - I should be able to see influencer general info
     - I want to see influencer social media links
 
-3. As a *sales team user* I want to *quickly ask for influencers search* so that searching is always on hand
+3. **As a *sales team user* I want to *quickly ask for influencers search* so that searching is always on hand**
     - I should be able to search from every pertinent screen
     - If search results are being listed, current term should appear
 
-4. As a *sales team user* I want to *list influencers* so that I can compare available options
+4. **As a *sales team user* I want to *list influencers* so that I can compare available options**
     - Influencers should be listed after some search result
     - At most 500 influencers should be shown
     - Only general info should be shown side-by-side
@@ -109,10 +109,10 @@ is and what he might need. After that, reading short stories like
 these would be a breeze as we don't need even acceptance criteria
 details.
 
-1. Steve starts searching for influencers
-2. Steve opens influencer details
-3. Steve search for other influencers
-4. Steve lists influencers
+1. **Steve starts searching for influencers**
+2. **Steve opens influencer details**
+3. **Steve search for other influencers**
+4. **Steve lists influencers**
 
 And that's it! You might think we don't specify all required details,
 but that's the idea. Product Owners or Managers can always go and add
