@@ -60,6 +60,29 @@ We use [Asana](https://app.asana.com/0/476028607034259/476028607034259) for task
 We use [Slack](www.slack.com) to communicate.
 
 
+# Some Stories
+
+These user stories should help identifying basics of the application.
+
+- As a *sales team user* I want to *start searching for influencers* so that I have a base to start from
+  - I should be able to start searching from home page or dashboard
+  - I want to search just by providing one or few search terms
+
+- As a *sales team user* I want to *see influencer detail* so that I can be sure about my choice
+  - I should be able to navigate back to previous page
+  - I should be able to see influencer general info
+  - I want to see influencer social media links
+
+- As a *sales team user* I want to *quickly ask for influencers search* so that searching is always on hand
+  - I should be able to search from every pertinent screen
+  - If search results are being listed, current term should appear
+
+- As a *sales team user* I want to *list influencers* so that I can compare available options
+  - Influencers should be listed after some search result
+  - At most 500 influencers should be shown
+  - Only general info should be shown side-by-side
+
+
 # Tech Tips
 
 We are organizing the house, but if you are trying to run this, you
