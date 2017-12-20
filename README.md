@@ -62,25 +62,63 @@ We use [Slack](www.slack.com) to communicate.
 
 # Some Stories
 
-These user stories should help identifying basics of the application.
+These user stories should help identifying basics of the
+application. Three Web pages should be enough to implement these
+features. Story number 3 is really just about having a searchbox near
+the top of Web pages. Searching and listing were separated in
+different stories here just to reuse listing among two search types.
 
-- As a *sales team user* I want to *start searching for influencers* so that I have a base to start from
+
+1. As a *sales team user* I want to *start searching for influencers* so that I have a base to start from
   - I should be able to start searching from home page or dashboard
   - I want to search just by providing one or few search terms
 
-- As a *sales team user* I want to *see influencer detail* so that I can be sure about my choice
+2. As a *sales team user* I want to *see influencer detail* so that I can be sure about my choice
   - I should be able to navigate back to previous page
   - I should be able to see influencer general info
   - I want to see influencer social media links
 
-- As a *sales team user* I want to *quickly ask for influencers search* so that searching is always on hand
+3. As a *sales team user* I want to *quickly ask for influencers search* so that searching is always on hand
   - I should be able to search from every pertinent screen
   - If search results are being listed, current term should appear
 
-- As a *sales team user* I want to *list influencers* so that I can compare available options
+4. As a *sales team user* I want to *list influencers* so that I can compare available options
   - Influencers should be listed after some search result
   - At most 500 influencers should be shown
   - Only general info should be shown side-by-side
+
+
+We still don't have defined above, a story for showing charts on
+influencers details, shared domains or showing twitter statistics. To
+avoid an overhead on defining such long user stories with all details
+intrinsic to defining and splitting them properly, we should use
+something lighter like proposed next.
+
+
+## Personas and Stories
+
+Instead of *sales team user*, lets use a name or persona. We can name
+him Steve. Lets imagine he works for a t-shirts company and is
+responsible for managing his company's social media presence. He
+already knows how important influencers are and is familiar with our
+system.
+
+A little bit big, right, but we can define personas in a Wiki or
+separate README file. The idea is that you understand who the persona
+is and what he might need. After that, reading short stories like
+these would be a breeze as we don't need even acceptance criteria
+details.
+
+1. Steve starts searching for influencers
+2. Steve opens influencer details
+3. Steve search for other influencers
+4. Steve lists influencers
+
+And that's it! You might think we don't specify all required details,
+but that's the idea. Product Owners or Managers can always go and add
+more stories as needed. The idea is not to block developers neither
+those defining stories with a lot of details that will just get
+everybody stuck.
 
 
 # Tech Tips
