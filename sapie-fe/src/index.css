@@ -1,5 +1,35 @@
+* {
+    border: 1px solid red;
+    box-sizing: border-box;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --dark-color: #3d3d3d;
+    --white-color: #ffffff;
+    --light-color: #efefef;
+    --primary-color: #5cae5e;
+    --secondary-color: #c2c2c2;
+    --info-color: #e6f8ff;
+    --muted-color: #fbfbfb;
+
+    --button-radius: 3px;
+}
+
+html, body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    color: #3d3d3d;
+    display: flex;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
 }
