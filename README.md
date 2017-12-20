@@ -72,3 +72,10 @@ might try to look into these first.
 - brew install graphicsmagick boost-python
 - pip install -r requirements.txt
 - sudo apt-get install httperf libgraphicsmagick++-dev libboost-python-dev
+
+## Directory Structure
+
+- Legacy application can be found under `socialladder` directory
+- There is a new Django project under `core` root directory, but not really functional yet
+- Directory `sapie_dynamodb` contains DynamoDB data definition used to import CSV data
+- Python requirements.txt should define some requirements for new Django app now
