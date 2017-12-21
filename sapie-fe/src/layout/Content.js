@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 const rootStyle = {
     display: 'flex',
-    flexGrow: '1'
+    flexGrow: '1',
+    marginTop: '10px'
 };
 
 class Content extends Component {

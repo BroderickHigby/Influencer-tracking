@@ -7,26 +7,18 @@ import Sidebar from '../layout/Sidebar';
 import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 
-import BigSearchBox from '../component/BigSearchBox';
-
-const h1Style = {
-    fontWeight: '800',
-    fontSize: '42px',
-    lineHeight: '50px',
-    marginTop: '100px',
-    textAlign: 'center'
-};
-
-class Home extends Component {
+class Search extends Component {
     render() {
         return (
             <React.Fragment>
+              <MenuBar>Search here...</MenuBar>
               <Content>
                 <Filler />
+                <Sidebar hideSm><Lorem /></Sidebar>
                 <MainContent>
-                  <h1 style={h1Style}>Find influencers who<br /> really matter</h1>
-                  <BigSearchBox />
+                  <Lorem />
                 </MainContent>
+                <Sidebar hideMd><Lorem /></Sidebar>
                 <Filler />
               </Content>
             </React.Fragment>
@@ -34,4 +26,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Search;

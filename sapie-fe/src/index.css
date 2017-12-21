@@ -43,3 +43,7 @@ body {
 @media screen and (max-width: 1000px) {
     .hide-flex-md { display: none; }
 }
+
+*::placeholder {
+    font-style: italic;
+}

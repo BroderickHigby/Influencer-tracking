@@ -7,9 +7,8 @@ const rootStyle = {
     flexGrow: '1',
     minHeight: '40px',
     lineHeight: '40px',
-    marginBottom: '10px',
     padding: '0 20px',
-    zIndex: '1'
+    zIndex: '2'
 };
 
 class MenuBar extends Component {
