@@ -9,14 +9,6 @@ import Filler from '../layout/Filler';
 
 import BigSearchBox from '../component/BigSearchBox';
 
-const h1Style = {
-    fontWeight: '800',
-    fontSize: '42px',
-    lineHeight: '50px',
-    marginTop: '100px',
-    textAlign: 'center'
-};
-
 class Home extends Component {
     render() {
         return (
@@ -24,7 +16,6 @@ class Home extends Component {
               <Content>
                 <Filler />
                 <MainContent>
-                  <h1 style={h1Style}>Find influencers who<br /> really matter</h1>
                   <BigSearchBox />
                 </MainContent>
                 <Filler />

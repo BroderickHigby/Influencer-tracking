@@ -8,15 +8,14 @@
 }
 
 :root {
-    --dark-color: #3d3d3d;
-    --white-color: #ffffff;
-    --light-color: #efefef;
-    --primary-color: #204D74;
-    --secondary-color: #c2c2c2;
-    --info-color: #e6f8ff;
-    --muted-color: #fbfbfb;
+    --primary-color: steelblue;
+    --secondary-color: cadetblue;
 
-    --button-radius: 3px;
+    --dark-color: #434343;
+    --light-color: #efefef;
+    --white-color: #ffffff;
+
+    --button-radius: 5px;
 }
 
 html, body {
@@ -26,7 +25,7 @@ html, body {
 }
 
 body {
-    color: #3d3d3d;
+    color: var(--dark-color);
     display: flex;
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
@@ -44,6 +43,4 @@ body {
     .hide-flex-md { display: none; }
 }
 
-*::placeholder {
-    font-style: italic;
-}
+*::placeholder { font-style: italic; }

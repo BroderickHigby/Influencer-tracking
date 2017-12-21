@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
 const rootStyle = {
-    backgroundColor: 'var(--primary-color)',
+    backgroundColor: 'var(--dark-color)',
     boxShadow: '-5px -1px 8px 1px black',
     color: 'var(--white-color)',
     display: 'flex',
+    fontFamily: "'Pattaya', sans-serif",
     fontWeight: '600',
     fontSize: '28px',
     flexGrow: '1',
