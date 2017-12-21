@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-color: steelblue;
+    --secondary-color: cadetblue;
+
+    --dark-color: #434343;
+    --light-color: #efefef;
+    --white-color: #ffffff;
+
+    --button-radius: 5px;
+}
+
+html, body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+body {
+    color: var(--dark-color);
+    display: flex;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.hide-flex-sm { display: flex; }
+.hide-flex-md { display: flex; }
+
+@media screen and (max-width: 800px) {
+    .hide-flex-sm { display: none; }
+}
+
+@media screen and (max-width: 1000px) {
+    .hide-flex-md { display: none; }
+}
+
+*::placeholder { font-style: italic; }

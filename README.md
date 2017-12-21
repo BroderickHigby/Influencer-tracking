@@ -2,6 +2,16 @@
 
 *Sapie Space helps businesses go viral through connecting them with influenceers in their industry.*
 
+## Quick Start
+
+Make sure you have latest NodeJS installed:
+
+```console
+$ cd sapie-fe/
+$ npm install
+$ npm start
+```
+
 
 ## How it works
 
@@ -42,22 +52,37 @@ uploading influencer data can be found in /sapie_dynamodb).
 
 ## Where we stand
 
-Currently, we have influencer data manually uploaded to dynamodb, user authentication is a seperate Django Project (/core). 
-1. Connect the data in dynamoDB with a search_interface (the one that I created in Django, is fine) 
-2. Ensure that the User authentication is a 
+Currently, we have influencer data manually uploaded to dynamodb, user
+authentication is a seperate Django Project (/core).
+
+1. Connect the data in dynamoDB with a search_interface (the one that
+   I created in Django, is fine)
+
+2. Ensure that the User authentication is a
+
+
+### New development line
+
+A decoupled front-end started being developed and can be found under
+`sapie-fe`. The idea is to merge it with a REST API back-end under
+`sapie-be`.
 
 
 ## Future Updates
 
-*January 1, 2018 Beta-Version:* A website with a search engine that connects to DynamoDB and allows the user's (businesses) to find targeted industry influencers. 
+*January 1, 2018 Beta-Version:* A website with a search engine that
+ connects to DynamoDB and allows the user's (businesses) to find
+ targeted industry influencers.
 
-*Second Iteration:* Integrate IBM Watson to show on an indivdual's page for the search results
+*Second Iteration:* Integrate IBM Watson to show on an indivdual's
+ page for the search results
 
 
 ## Other Business-Development References
 
-We use [Asana](https://app.asana.com/0/476028607034259/476028607034259) for task management, and
-We use [Slack](www.slack.com) to communicate.
+We use
+[Asana](https://app.asana.com/0/476028607034259/476028607034259) for
+task management, and We use [Slack](www.slack.com) to communicate.
 
 
 # Tech Tips
