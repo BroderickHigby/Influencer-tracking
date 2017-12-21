@@ -8,7 +8,7 @@ const rootStyle = {
     flexGrow: '1',
     flexDirection: 'column',
     lineHeight: '22px',
-    maxWidth: '500px',
+    width: '400px',
     padding: '5px'
 };
 
