@@ -43,4 +43,5 @@ body {
     .hide-flex-md { display: none; }
 }
 
+a { text-decoration: none; }
 *::placeholder { font-style: italic; }

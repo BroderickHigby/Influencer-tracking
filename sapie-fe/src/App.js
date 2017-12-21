@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom';
 
 import Body from './layout/Body';
 import Header from './layout/Header';
@@ -12,7 +12,9 @@ class App extends Component {
         return (
             <BrowserRouter>
               <Body>
-                <Header>Sapie Space</Header>
+                <Header>
+                  <Link to="/app/home">Sapie Space</Link>
+                </Header>
                 <Switch>
                   <Route path="/app/home" component={Home} />
                   <Route path="/app/search" component={Search} />
