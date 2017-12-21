@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 const rootStyle = {
     display: 'flex',
@@ -30,12 +31,25 @@ const buttonStyle = {
 };
 
 class BigSearchBox extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = { goSearch: false };
+    }
+
+    get searchHandler() {
+        return () => this.setState({ goSearch: true });
+    }
+
     render() {
+        if (this.state.goSearch) {
+            return <Redirect to="/app/search" />;
+        }
         return (
             <div style={rootStyle}>
               <input type="text" placeholder="Search for influencers..." style={inputStyle} />
               <div style={{textAlign: 'center'}}>
-                <input style={buttonStyle} type="button" value="Search" />
+                <input style={buttonStyle} type="button" value="Search" onClick={this.searchHandler} />
               </div>
             </div>
         );
