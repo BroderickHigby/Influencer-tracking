@@ -2,6 +2,16 @@
 
 *Sapie Space helps businesses go viral through connecting them with influenceers in their industry.*
 
+## Quick Start
+
+Make sure you have latest NodeJS installed:
+
+```console
+$ cd sapie-fe/
+$ npm install
+$ npm start
+```
+
 
 ## How it works
 
