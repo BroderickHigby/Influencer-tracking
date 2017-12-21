@@ -8,7 +8,7 @@ const rootStyle = {
     fontSize: '28px',
     flexGrow: '1',
     lineHeight: '55px',
-    miHeight: '55px',
+    minHeight: '55px',
     padding: '0 20px'
 };
 

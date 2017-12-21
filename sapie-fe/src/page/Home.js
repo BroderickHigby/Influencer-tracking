@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import Lorem from 'react-lorem-component';
 
 import MenuBar from '../layout/MenuBar';
 import Content from '../layout/Content';
+import Sidebar from '../layout/Sidebar';
+import MainContent from '../layout/MainContent';
+import Filler from '../layout/Filler';
 
 class Home extends Component {
     render() {
@@ -9,65 +13,13 @@ class Home extends Component {
             <React.Fragment>
               <MenuBar>Search here...</MenuBar>
               <Content>
-                <div style={{}}>
-                  <p>Welcome home, homie!</p>
-                </div>
-                <div>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                  <p>Welcome home, homie!</p>
-                </div>
+                <Filler />
+                <Sidebar hideSm><Lorem /></Sidebar>
+                <MainContent>
+                  <Lorem />
+                </MainContent>
+                <Sidebar hideMd><Lorem /></Sidebar>
+                <Filler />
               </Content>
             </React.Fragment>
         );

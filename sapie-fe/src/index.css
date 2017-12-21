@@ -32,3 +32,14 @@ body {
     font-size: 14px;
     font-weight: 400;
 }
+
+.hide-flex-sm { display: flex; }
+.hide-flex-md { display: flex; }
+
+@media screen and (max-width: 800px) {
+    .hide-flex-sm { display: none; }
+}
+
+@media screen and (max-width: 1000px) {
+    .hide-flex-md { display: none; }
+}
