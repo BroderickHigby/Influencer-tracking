@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import Lorem from 'react-lorem-component';
 
-import MenuBar from '../layout/MenuBar';
 import Content from '../layout/Content';
-import Sidebar from '../layout/Sidebar';
 import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 
