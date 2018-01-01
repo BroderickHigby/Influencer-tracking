@@ -20,7 +20,7 @@ class DecimalEncoder(json.JSONEncoder):
 # class ScanDynamoDB():
 dynamodb = boto3.resource('dynamodb', region_name='us-west-2')
 table = dynamodb.Table('influencers')
-
+# Temporarily hard coded a search term to test the platform
 search_term = "seo"
 concat_search_term = "\'"+search_term+"\'"
 
