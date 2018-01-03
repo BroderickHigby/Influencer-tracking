@@ -16,6 +16,10 @@ $ docker-compose up
 2. Second line you'll run to build images every time dependencies get updated
 3. This is one of many other ways to get Docker Compose running your selected environment.
 
+Then you just have to point your browser to http://localhost:8080/ to
+see it running. You can also access API endpoints directly like
+http://localhost:8080/api/influencer
+
 
 ## How it works
 
