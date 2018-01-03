@@ -20,7 +20,8 @@ class Search extends Component {
                   <MainContent>
                     <Repeater scope="resources.influencer.results">
                       <div style={{margin: '20px 0'}}>
-                        <h5><Text scope="display_name" /></h5>
+                        <p><Text scope="username" /></p>
+                        <p><Text scope="mail" /></p>
                         <p>Social Authority: <Text scope="socialauthority" /></p>
                       </div>
                     </Repeater>
