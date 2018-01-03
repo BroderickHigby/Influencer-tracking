@@ -20,9 +20,23 @@ class Influencer:
         """Creates new influencer document"""
         id_ = uuid.uuid4().hex
         doc['id'] = id_
-        res = es.index(index=cls.index, doc_type=cls.doc_type, body=doc, id=id_)
+        res = es.index(
+            index=cls.index,
+            doc_type=cls.doc_type,
+            body=doc,
+            id=id_,
+        )
         assert res['result'] == 'created'
         return doc
+
+    @classmethod
+    def load(cls, id_):
+        res = es.get(
+            index=cls.index,
+            doc_type=cls.doc_type,
+            id=id_,
+        )
+        return res['_source']
 
     @classmethod
     def list(cls, limit=100):
@@ -56,6 +70,30 @@ class Influencer:
 
 
 class InfluencerResource:
+
+    def on_get(self, req, resp, influencer_id):
+        """Handles listing of influencers"""
+        res = Influencer.load(influencer_id.hex)
+        resp.media = res
+
+    def on_put(self, req, resp, influencer_id):
+        """Handles listing of influencers"""
+        id_ = influencer_id.hex
+        res = Influencer.load(id_)
+        doc = req.media
+        doc['id'] = id_
+        # TODO: implement resource wrapper and bring this to model class
+        res = es.index(
+            index='sapie',
+            doc_type='influencer',
+            id=id_,
+            body=doc,
+        )
+        assert res['result'] == 'updated'
+        resp.media = doc
+
+
+class InfluencerResourceList:
 
     def on_get(self, req, resp):
         """Handles listing of influencers"""
