@@ -7,5 +7,5 @@ from influencer import (
 
 
 api = falcon.API()
-api.add_route('/influencer/{influencer_id:uuid}', InfluencerResource())
-api.add_route('/influencer', InfluencerResourceList())
+api.add_route('/api/influencer/{influencer_id:uuid}', InfluencerResource())
+api.add_route('/api/influencer', InfluencerResourceList())

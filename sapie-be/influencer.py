@@ -2,6 +2,8 @@
 
 import uuid
 from database import es
+from elasticsearch.exceptions import NotFoundError
+from falcon import HTTPNotFound
 
 
 MATCH_ALL = {"query": {"match_all": {}}}
@@ -58,14 +60,18 @@ class Influencer:
             actual_query = MATCH_ALL
         else:
             actual_query = query
-        res = es.search(
-            index=cls.index,
-            doc_type=cls.doc_type,
-            body=dict(actual_query),
-        )
-        results = []
-        for doc in res['hits']['hits']:
-            results.append(doc['_source'])
+        try:
+            res = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query),
+            )
+        except NotFoundError:
+            results = []
+        else:
+            results = []
+            for doc in res['hits']['hits']:
+                results.append(doc['_source'])
         return results
 
 
@@ -73,13 +79,19 @@ class InfluencerResource:
 
     def on_get(self, req, resp, influencer_id):
         """Handles listing of influencers"""
-        res = Influencer.load(influencer_id.hex)
+        try:
+            res = Influencer.load(influencer_id.hex)
+        except NotFoundError:
+            raise HTTPNotFound()
         resp.media = res
 
     def on_put(self, req, resp, influencer_id):
         """Handles listing of influencers"""
         id_ = influencer_id.hex
-        res = Influencer.load(id_)
+        try:
+            res = Influencer.load(id_)
+        except NotFoundError:
+            raise HTTPNotFound()
         doc = req.media
         doc['id'] = id_
         # TODO: implement resource wrapper and bring this to model class
