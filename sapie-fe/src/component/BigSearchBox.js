@@ -36,22 +36,32 @@ class BigSearchBox extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { goSearch: false };
+        this.state = { search: '', goSearch: false };
+    }
+
+    get changeHandler() {
+        return (evt) => this.setState({ search: evt.target.value });
     }
 
     get searchHandler() {
-        return () => this.setState({ goSearch: true });
+        return (evt) => this.setState({ goSearch: true });
     }
 
     render() {
         if (this.state.goSearch) {
-            return <Redirect to="/app/search" />;
+            const url = `/app/search?query=${this.state.search}`;
+            return <Redirect push={true} to={url} />;
         }
         return (
             <div style={rootStyle}>
-              <input type="text" placeholder="Search for influencers..." style={inputStyle} />
+              <input type="text"
+                     placeholder="Search for influencers..."
+                     style={inputStyle}
+                     value={this.state.search}
+                     onChange={this.changeHandler}
+                     />
               <div style={{textAlign: 'center'}}>
-                <Link style={buttonStyle} to="/app/search">Search</Link>
+                <button style={buttonStyle} onClick={this.searchHandler}>Search</button>
               </div>
             </div>
         );
