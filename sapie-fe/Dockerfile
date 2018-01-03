@@ -10,5 +10,5 @@ RUN npm install -g serve --silent
 COPY . ./
 RUN npm run build --silent
 
-EXPOSE 5000
-CMD ["serve", "-s", "build"]
+EXPOSE 3000
+CMD ["serve", "-p", "3000", "-s", "build"]
