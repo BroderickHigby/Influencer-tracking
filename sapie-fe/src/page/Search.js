@@ -9,10 +9,11 @@ import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 
 class Search extends Component {
+
     render() {
         return (
             <React.Fragment>
-              <Fetcher root="/api/" endpoint="influencer">
+              <Fetcher root="/api/" endpoint="influencer" query={this.props.location.search}>
                 <MenuBar>Search here...</MenuBar>
                 <Content>
                   <Filler />
