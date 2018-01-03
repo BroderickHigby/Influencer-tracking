@@ -1,0 +1,39 @@
+version: '3.2'
+
+services:
+
+  backend:
+    image: sapie-backend
+    build: ./sapie-be/
+    environment:
+      - SAPIE_ELASTICSEARCH=elasticsearch
+    depends_on:
+      - elasticsearch
+
+  frontend:
+    image: sapie-frontend
+    build: ./sapie-fe/
+
+  proxy:
+    image: nginx
+    volumes:
+      - type: bind
+        source: ./utils/nginx.conf
+        target: /etc/nginx/nginx.conf
+    ports:
+      - 8080:80
+    depends_on:
+      - backend
+      - frontend
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.1.1
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - type: volume
+        source: elasticdata
+        target: /usr/share/elasticsearch/data
+
+volumes:
+  elasticdata:
