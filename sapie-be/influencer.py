@@ -9,6 +9,7 @@ MATCH_ALL = {"query": {"match_all": {}}}
 
 class Influencer:
 
+    index = 'sapie'
     doc_type = 'influencer'
 
     def __init__(self, doc=None):
@@ -19,17 +20,34 @@ class Influencer:
         """Creates new influencer document"""
         id_ = uuid.uuid4().hex
         doc['id'] = id_
-        res = es.index(index='sapie', doc_type=cls.doc_type, body=doc, id=id_)
+        res = es.index(index=cls.index, doc_type=cls.doc_type, body=doc, id=id_)
         assert res['result'] == 'created'
         return doc
 
     @classmethod
     def list(cls, limit=100):
         """Returns a list of influencers"""
+        return cls.query(MATCH_ALL)
+
+    @classmethod
+    def query(cls, query, limit=100):
+        """Query for a list of influencers"""
+        if isinstance(query, str):
+            actual_query = dict(
+                query=dict(
+                    query_string=dict(
+                        query=query,
+                    ),
+                ),
+            )
+        elif query is None:
+            actual_query = MATCH_ALL
+        else:
+            actual_query = query
         res = es.search(
-            index='sapie',
+            index=cls.index,
             doc_type=cls.doc_type,
-            body=MATCH_ALL,
+            body=dict(actual_query),
         )
         results = []
         for doc in res['hits']['hits']:
@@ -41,7 +59,8 @@ class InfluencerResource:
 
     def on_get(self, req, resp):
         """Handles listing of influencers"""
-        results = Influencer.list()
+        query = req.params.get('query', None)
+        results = Influencer.query(query)
         sample = dict(results=results)
         resp.media = sample
 
