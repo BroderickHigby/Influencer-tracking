@@ -4,13 +4,17 @@
 
 ## Quick Start
 
-Make sure you have latest NodeJS installed:
+Make sure you have latest Docker and Docker Compose installed and run these commands from project root:
 
 ```console
-$ cd sapie-fe/
-$ npm install
-$ npm start
+$ echo COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml > .env
+$ docker-compose build
+$ docker-compose up
 ```
+
+1. First line you will run only once to create local `.env` file indicating you are using dev environment.
+2. Second line you'll run to build images every time dependencies get updated
+3. This is one of many other ways to get Docker Compose running your selected environment.
 
 
 ## How it works
@@ -20,12 +24,6 @@ to influencers. To see an investor's pitch that I did, you can go to
 [this
 link](https://docs.google.com/presentation/d/1cEplBy7avil1pP7XFVi694qOlSWiG58qNWfQ0KPgLx0/edit?usp=sharing)
 (and request Google Drive access, if needed).
-
-
-## Resources (currently)
-
-* Django (python library)
-* DynamoDB
 
 
 ## A brief history of Sapie Space
@@ -65,7 +63,8 @@ authentication is a seperate Django Project (/core).
 
 A decoupled front-end started being developed and can be found under
 `sapie-fe`. The idea is to merge it with a REST API back-end under
-`sapie-be`.
+`sapie-be`. We have also a docker compose environment defined that
+should ease daily development and deployment.
 
 
 ## Future Updates
