@@ -2,6 +2,7 @@
 
 *Sapie Space helps businesses go viral through connecting them with influenceers in their industry.*
 
+
 ## Quick Start
 
 Make sure you have latest Docker and Docker Compose installed and run these commands from project root:
@@ -19,6 +20,15 @@ $ docker-compose up
 Then you just have to point your browser to http://localhost:8080/ to
 see it running. You can also access API endpoints directly like
 http://localhost:8080/api/influencer
+
+
+### Sample Fake Data
+
+If you want to create sample fake data you might look at `sapie-be/sample.py` or run the following from project root:
+
+```console
+docker-compose up sample
+```
 
 
 ## How it works
