@@ -39,12 +39,12 @@ class BigSearchBox extends Component {
         this.state = { search: '', goSearch: false };
     }
 
-    get changeHandler() {
-        return (evt) => this.setState({ search: evt.target.value });
-    }
+    changeHandler = (evt) => this.setState({ search: evt.target.value });
 
-    get searchHandler() {
-        return (evt) => this.setState({ goSearch: true });
+    searchHandler = (evt) => this.setState({ goSearch: true });
+
+    handleKeyPress = (event) => {
+        if (event.key == 'Enter') { this.setState({ goSearch: true }); };
     }
 
     render() {
@@ -59,6 +59,7 @@ class BigSearchBox extends Component {
                      style={inputStyle}
                      value={this.state.search}
                      onChange={this.changeHandler}
+                     onKeyPress={this.handleKeyPress}
                      />
               <div style={{textAlign: 'center'}}>
                 <button style={buttonStyle} onClick={this.searchHandler}>Search</button>
