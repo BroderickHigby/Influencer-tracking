@@ -8,6 +8,12 @@ import Sidebar from '../layout/Sidebar';
 import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 
+const divStyle = {
+    border: 'solid 1px var(--dark-color)',
+    margin: '20px 0',
+    padding: '5px'
+};
+
 class Search extends Component {
 
     render() {
@@ -16,10 +22,10 @@ class Search extends Component {
               <Fetcher root="/api/" endpoint="influencer" query={this.props.location.search}>
                 <Content>
                   <Filler />
-                  <Sidebar hideSm>&gt;&gt;&gt;</Sidebar>
+                  <Sidebar hideSm></Sidebar>
                   <MainContent>
                     <Repeater scope="resources.influencer.results">
-                      <div style={{margin: '20px 0'}}>
+                      <div style={divStyle}>
                         <Property name="src" scope="avatar">
                           <img />
                         </Property>
@@ -29,7 +35,7 @@ class Search extends Component {
                       </div>
                     </Repeater>
                   </MainContent>
-                  <Sidebar hideMd>&lt;&lt;&lt;</Sidebar>
+                  <Sidebar hideMd></Sidebar>
                   <Filler />
                 </Content>
               </Fetcher>

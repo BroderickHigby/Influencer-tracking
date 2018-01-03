@@ -63,7 +63,6 @@ AVATARS = [
     'https://s3.amazonaws.com/uifaces/faces/twitter/marcosmoralez/128.jpg',
     'https://s3.amazonaws.com/uifaces/faces/twitter/arashmil/128.jpg',
     'https://s3.amazonaws.com/uifaces/faces/twitter/shalt0ni/128.jpg',
-    'https://s3.amazonaws.com/uifaces/faces/twitter/cemshid/128.jpg',
     'https://s3.amazonaws.com/uifaces/faces/twitter/tonystubblebine/128.jpg',
     'https://s3.amazonaws.com/uifaces/faces/twitter/whale/128.jpg',
     'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
