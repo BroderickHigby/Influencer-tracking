@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Fetcher, Repeater, Text, Scope } from 'react-rebind';
 import Lorem from 'react-lorem-component';
 
 import MenuBar from '../layout/MenuBar';
@@ -11,16 +12,23 @@ class Search extends Component {
     render() {
         return (
             <React.Fragment>
-              <MenuBar>Search here...</MenuBar>
-              <Content>
-                <Filler />
-                <Sidebar hideSm><Lorem /></Sidebar>
-                <MainContent>
-                  <Lorem />
-                </MainContent>
-                <Sidebar hideMd><Lorem /></Sidebar>
-                <Filler />
-              </Content>
+              <Fetcher root="/api/" endpoint="influencer">
+                <MenuBar>Search here...</MenuBar>
+                <Content>
+                  <Filler />
+                  <Sidebar hideSm>&gt;&gt;&gt;</Sidebar>
+                  <MainContent>
+                    <Repeater scope="resources.influencer.results">
+                      <div style={{margin: '20px 0'}}>
+                        <h5><Text scope="display_name" /></h5>
+                        <p>Social Authority: <Text scope="socialauthority" /></p>
+                      </div>
+                    </Repeater>
+                  </MainContent>
+                  <Sidebar hideMd>&lt;&lt;&lt;</Sidebar>
+                  <Filler />
+                </Content>
+              </Fetcher>
             </React.Fragment>
         );
     }

@@ -15,9 +15,14 @@ class App extends Component {
     get initialStore() {
         return {
             resources: {
-                concept: [],
-                part: [],
-                rule: []
+                influencer: {
+                    results: [
+                        { display_name: 'Rocketeer', socialauthority: 7 },
+                        { display_name: 'Monsteer', socialauthority: 5 },
+                        { display_name: 'Foobarr', socialauthority: 3 },
+                        { display_name: 'Quxbaz', socialauthority: 1 },
+                    ]
+                }
             }
         };
     }

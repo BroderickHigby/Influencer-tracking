@@ -19,7 +19,6 @@ class Sidebar extends Component {
         });
         return (
             <div style={rootStyle} className={rootClass}>
-              <h1>This is a side bar!</h1>
               {this.props.children}
             </div>
         );
