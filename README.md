@@ -27,7 +27,16 @@ http://localhost:8080/api/influencer
 If you want to create sample fake data you might look at `sapie-be/sample.py` or run the following from project root:
 
 ```console
-docker-compose up sample
+$ docker-compose up sample
+```
+
+
+### Known Issues
+
+You might have trouble pulling ElasticSearch official images. You can try it manually just in case:
+
+```console
+$ docker pull docker.elastic.co/elasticsearch/elasticsearch:6.1.1
 ```
 
 
