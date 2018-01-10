@@ -15,16 +15,3 @@ services:
       - type: bind
         source: ./sapie-fe/
         target: /srv/app/
-
-  sample:
-    image: sapie-backend
-    command: python sample.py
-    restart: "no"
-    environment:
-      - SAPIE_ELASTICSEARCH=elasticsearch
-    depends_on:
-      - elasticsearch
-    volumes:
-      - type: bind
-        source: ./sapie-be/
-        target: /srv/app/
