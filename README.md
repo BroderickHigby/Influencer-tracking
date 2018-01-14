@@ -1,6 +1,6 @@
 # Sapie Space
 
-*Sapie Space helps businesses go viral through connecting them with influenceers in their industry.*
+Sapie Space helps businesses go viral using machine learning to connect them with influencers in their industry.*
 
 
 ## Quick Start
@@ -38,11 +38,15 @@ You might have trouble pulling ElasticSearch official images. You can try it man
 ```console
 $ docker pull docker.elastic.co/elasticsearch/elasticsearch:6.1.1
 ```
+If you're on an encrypted network (such as an institution's network), you may have trouble connecting to AWS.
+You'll have to create a VM in AWS. Speak with Brody more about that.
 
+```console
+$ ssh -A -i sapie-dev.pem ubuntu@18.218.86.249
 ## How it works
 
-The interface is a business-facing platform that connects businesses
-to influencers. To see an investor's pitch that I did, you can go to
+The interface is a business-facing platform that allows businesses to connect with
+influencers. To see an investor's pitch that I did, you can go to
 [this
 link](https://docs.google.com/presentation/d/1cEplBy7avil1pP7XFVi694qOlSWiG58qNWfQ0KPgLx0/edit?usp=sharing)
 (and request Google Drive access, if needed).
@@ -51,34 +55,20 @@ link](https://docs.google.com/presentation/d/1cEplBy7avil1pP7XFVi694qOlSWiG58qNW
 ## A brief history of Sapie Space
 
 Jack Treseler is my colleague and the co-founder of Sapie
-Space. Before we met, he had his brother-in-law programming the
-interface. His brother-in-law became ill and could no longer commit
-time to Sapie Space.
-
-Jack and I met up in San Francisco, CA. I was excited about the idea
-of Sapie Space. I went to start programming. Jack and I started
-working together on Sapie Space in April 2017. James did a great job
-with some of the programming on it(can be seen in "socialladder"
-folder). However, he started running into issues with deploying to
-Google App Engine (Google Cloud SDK). That's where he left off. When
-he handed off the code to me, I worked to try to get new iterations of
-it on GoogleAppEngine as well as expand the database, with no avail.
-
-We migrated over to AWS, believing that we would have less of the
-issues that we experienced with deploying on GoogleAppEngine. There
-was a learning curve to using DynamoDB (the DDB django project for
-uploading influencer data can be found in /sapie_dynamodb).
-
+Space. As an employee at Square, he found it difficult to make connections with influencers, see how 
+influential they actually are, as well as if they were a good fit for the company. 
+Jack and Brody have been working to make Sapie Space a reaity since April 2017.
 
 ## Where we stand
 
-Currently, we have influencer data manually uploaded to dynamodb, user
-authentication is a seperate Django Project (/core).
+Currently, we have influencer data manually searched through AWS ElasticSearch.
+Our next big step is to create the web crawler.
 
-1. Connect the data in dynamoDB with a search_interface (the one that
-   I created in Django, is fine)
+1. Connect the front-end to our ElasticSearch interface. 
 
-2. Ensure that the User authentication is a
+2. Connect Stripe. The payment platform
+
+3. Develop the Web Crawler.
 
 
 ### New development line
@@ -91,9 +81,9 @@ should ease daily development and deployment.
 
 ## Future Updates
 
-*January 1, 2018 Beta-Version:* A website with a search engine that
- connects to DynamoDB and allows the user's (businesses) to find
- targeted industry influencers.
+*January 15, 2018 Beta-Version:* A website with a search engine that
+ connects to ElasticSearch and allows the user's (businesses) to find
+ targeted influencers.
 
 *Second Iteration:* Integrate IBM Watson to show on an indivdual's
  page for the search results
