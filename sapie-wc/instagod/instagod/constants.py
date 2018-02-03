@@ -1,0 +1,29 @@
+BASE_URL = 'https://www.instagram.com/'
+LOGIN_URL = BASE_URL + 'accounts/login/ajax/'
+LOGOUT_URL = BASE_URL + 'accounts/logout/'
+CHROME_WIN_UA = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36'
+USER_URL = BASE_URL + '{0}/?__a=1'
+
+TAGS_URL = BASE_URL + 'explore/tags/{0}/?__a=1'
+
+IMAGE_WITH_USERNAME_URL = BASE_URL + 'p/{0}/?__a=1'
+
+MAX_CONCURRENT_DOWNLOADS = 20
+CONNECT_TIMEOUT = 300
+MAX_RETRIES = 10
+RETRY_DELAY = 20
+MAX_RETRY_DELAY = 80
+MAX_PAGES_IN_SEARCH = 1000
+
+LATEST_STAMPS_USER_SECTION = 'users'
+
+MAX_NUMBER_OF_USERS_PICS_TO_CHECK = 4
+
+from enum import Enum
+class QueryType(Enum):
+    FIND_PROFILE_PICS_IN_LOCATION = 1
+    FIND_MACDADDIES_OF_THEME_IN_LOCATION = 2
+    FIND_USERS_WHO_FOLLOW = 3
+    FIND_WHO_USER_FOLLOWS = 4
+    FIND_BY_USERNAME = 5
+    RATE_INFLUENCER = 6
