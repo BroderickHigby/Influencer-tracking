@@ -108,3 +108,11 @@ might try to look into these first.
 - brew install graphicsmagick boost-python
 - pip install -r requirements.txt
 - sudo apt-get install httperf libgraphicsmagick++-dev libboost-python-dev
+
+Make you run also have run the following commands in the correponding directory to install all python and js dependencies:
+
+in root:  pip install -r requirements.txt
+
+in sapie/be: pip install -r requirements.txt
+
+in sapie/fe: npm install
