@@ -4,7 +4,7 @@ services:
 
   backend:
     image: sapie-backend
-    build: ./sapie-be/
+    build: ./backend/
     environment:
       - SAPIE_ELASTICSEARCH=elasticsearch
     depends_on:
@@ -12,7 +12,7 @@ services:
 
   frontend:
     image: sapie-frontend
-    build: ./sapie-fe/
+    build: ./frontend/
 
   proxy:
     image: nginx
