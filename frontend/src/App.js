@@ -7,24 +7,24 @@ import Header from './layout/Header';
 
 import Home from './page/Home';
 import Search from './page/Search';
-
+import Routes from './Routes';
 import actions from './actions';
 
 class App extends Component {
 
     get initialStore() {
-        return {
-            resources: {
-                influencer: {
-                    results: [
-                        { display_name: 'Rocketeer', socialauthority: 7 },
-                        { display_name: 'Monsteer', socialauthority: 5 },
-                        { display_name: 'Foobarr', socialauthority: 3 },
-                        { display_name: 'Quxbaz', socialauthority: 1 },
-                    ]
-                }
-            }
-        };
+      return {
+        resources: {
+          influencer: {
+            results: [
+              { display_name: 'Rocketeer', socialauthority: 7 },
+              { display_name: 'Monsteer', socialauthority: 5 },
+              { display_name: 'Foobarr', socialauthority: 3 },
+              { display_name: 'Quxbaz', socialauthority: 1 },
+            ]
+          }
+        }
+      };
     }
 
     render() {
@@ -33,13 +33,9 @@ class App extends Component {
               <Store actions={actions} initial={this.initialStore}>
                 <Body>
                   <Header>
-                  <Link to="/app/home">Sapie Space</Link>
+                    <Link to="/app/home">Sapie Space</Link>
                   </Header>
-                  <Switch>
-                    <Route path="/app/home" component={Home} />
-                    <Route path="/app/search" component={Search} />
-                    <Redirect to="/app/home" />
-                  </Switch>
+                  <Routes/>
                 </Body>
               </Store>
             </BrowserRouter>
