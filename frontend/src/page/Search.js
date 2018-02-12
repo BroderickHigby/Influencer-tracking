@@ -7,16 +7,37 @@ import Content from '../layout/Content';
 import Sidebar from '../layout/Sidebar';
 import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
+import axios from 'axios';
 
 const divStyle = {
     border: 'solid 1px var(--dark-color)',
     margin: '20px 0',
     padding: '5px'
 };
-
+var influencerList = [];
 class Search extends Component {
+    constructor(props) {
+        super(props);
+        console.log('In CONSTRUCTOR');
+        var postData = {
+            queryString: this.props.location.search
+        };
+        let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                "Access-Control-Allow-Origin": "*"
+            }
+        };
+        console.log('DOING AXIOS');
+        axios.post('http://127.0.0.1:5000/run_query', postData, axiosConfig)
+        .then(function (response) {
+            influencerList = response.data.query_results;
+            console.log(influencerList);
+        });
+    }
 
     render() {
+        const data = [{"name":"test1"}, {"name":"test2"}];
         return (
             <React.Fragment>
               <Fetcher root="/api/" endpoint="influencer" query={this.props.location.search}>
@@ -24,16 +45,11 @@ class Search extends Component {
                   <Filler />
                   <Sidebar hideSm></Sidebar>
                   <MainContent>
-                    <Repeater scope="resources.influencer.results">
-                      <div style={divStyle}>
-                        <Property name="src" scope="avatar">
-                          <img />
-                        </Property>
-                        <p><Text scope="username" /></p>
-                        <p><Text scope="mail" /></p>
-                        <p>Social Authority: <Text scope="socialauthority" /></p>
-                      </div>
-                    </Repeater>
+                    <div>
+                        {influencerList.map(function(d, idx) {
+                            return (<li key={idx}>{d.name}</li>)
+                        })}
+                    </div>
                   </MainContent>
                   <Sidebar hideMd></Sidebar>
                   <Filler />
