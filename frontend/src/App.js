@@ -11,6 +11,26 @@ import Routes from './Routes';
 import actions from './actions';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user: "",
+      isAuthenticated: false,
+      Subscribed: false
+    };
+  }
+
+  userDetails = id => {
+    this.setState({user: id});
+  }
+  userHasAuthenticated = authenticated => {
+    this.setState({ isAuthenticated: authenticated });
+  }
+  handleLogout = event => {
+    this.userHasAuthenticated(false);
+    this.userDetails("");
+  }
 
     get initialStore() {
       return {
@@ -28,18 +48,21 @@ class App extends Component {
     }
 
     render() {
-        return (
-            <BrowserRouter>
-              <Store actions={actions} initial={this.initialStore}>
-                <Body>
-                  <Header>
-                    <Link to="/app/home">Sapie Space</Link>
-                  </Header>
-                  <Routes/>
-                </Body>
-              </Store>
-            </BrowserRouter>
-        );
+      const childProps = {
+        user: this.state.user,
+        userDetails: this.userDetails,
+        isAuthenticated: this.state.isAuthenticated,
+        userHasAuthenticated: this.userHasAuthenticated,
+      }
+
+      return (
+        <Store actions={actions} initial={this.initialStore}>
+          <Body>
+            <Header handleLogout ={this.handleLogout} isAuthenticated={this.state.isAuthenticated} user={this.state.user} />
+            <Routes childProps={childProps}/>
+          </Body>
+        </Store>
+      );
     }
 }
 
