@@ -1,14 +1,15 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
+import AppliedRoute from "./components/AppliedRoute";
 import Home from "./page/Home";
 import Search from "./page/Search";
 import Login from "./page/Login";
 import Signup from "./page/Signup";
-export default () =>
+export default ({ childProps }) =>
   <Switch>
-    <Route path="/app/home" exact component={Home} />
-    <Route path="/app/search" exact component={Search} />
-    <Route path="/app/login" exact component={Login} />
-    <Route path="/app/signup" exact component={Signup} />
+    <AppliedRoute path="/app/home" component={Home}/>
+    <AppliedRoute path="/app/search" component={Search} />
+    <AppliedRoute path="/app/login" exact component={Login} props={childProps}/>
+    <AppliedRoute path="/app/signup" exact component={Signup} props={childProps}/>
     <Redirect to="/app/home" />
   </Switch>;
