@@ -1,0 +1,35 @@
+CAMPAIGN MANAGEMENT PORTAL
+
+The idea of the campaign management portal is to provide businesses and brands with a more interactive, nuanced, and direct way to
+advertise their products and brand to social media influencers. Instead of requiring clients to know and input what kind of
+influencers they want to search for, they can instead provide what they wish to accomplish with a campaign and let Sapie Space
+connect them with the best influencers and put together the most effective campaign.
+
+This portal will manifest itself in a page that lets users input a bunch of information about what they want to accomplish VS
+just showing them a generic search field.
+
+Basic Ideas for the Portal UI:
+
+Core:
+campaign_goal: brand_awareness || sell_products || drive_digital_traffic || drive_physical_traffic
+brand/product_industries: skating || beauty || tennis || ........
+target_url:
+copy_to_use: text/images/clips/words they want used in the promotions.
+target_social_media_platforms: youtube || twitch || instagram || snapchat ....
+budget:
+
+Demographics:
+promotion_location: city/cities || state/states || whole country ||
+promotion_ages: any_range(s) || none
+
+
+When the client hits Submit after filling out the above form:
+
+A series of influencers are displayed to them in a list with key metrics of each influencer like what social media they are active
+on, followers/influencer rating, cost of plug, engagement metrics, as well as match scores for how well their audience matches
+demographics specified by our client.
+
+The client can remove influencers or add influencers to this default list.
+
+Can do final tweaking to campaign before they start - we then contact influencers on their behalf and provide a campaign management
+portal.
