@@ -37,8 +37,9 @@ export default class Login extends Component {
 
     try {
       await this.login(this.state.userId, this.state.password);
-      alert('Logged in');
-      this.props.history.push("/");
+      this.props.userHasAuthenticated(true);
+      this.props.userDetails(this.state.userId);
+      this.props.history.push("/app/home");
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });

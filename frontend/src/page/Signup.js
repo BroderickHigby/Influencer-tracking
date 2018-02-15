@@ -174,7 +174,7 @@ export default class Signup extends Component {
             type="username"
             value={this.state.username}
             onChange={this.handleChange}
-            placeholder="UserName"
+            placeholder="username"
           />
         </FormGroup>
         <FormGroup controlId="email" bsSize="large">

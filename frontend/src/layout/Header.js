@@ -1,28 +1,46 @@
 import React, { Component } from 'react';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
+import RouteNavItem from "../components/RouteNavItem";
 
-const rootStyle = {
-    backgroundColor: 'var(--dark-color)',
-    boxShadow: '-5px -1px 8px 1px black',
-    color: 'var(--white-color)',
-    display: 'flex',
-    fontFamily: "'Pattaya', sans-serif",
-    fontWeight: '600',
-    fontSize: '28px',
-    flexGrow: '1',
-    lineHeight: '55px',
-    minHeight: '55px',
-    padding: '0 20px',
-    zIndex: '1'
-};
 
 class Header extends Component {
+
     render() {
         return (
-            <div style={rootStyle}>
-              {this.props.children}
+            <div className= "container">
+              <Navbar fluid collapseOnSelect >
+                <Navbar.Header>
+                  <Navbar.Brand>
+                    <a href= "/app/home">Sapie Space</a>
+                  </Navbar.Brand>
+                  <Navbar.Toggle />
+                </Navbar.Header>
+                <Navbar.Collapse>
+                  {this.props.isAuthenticated
+                    ? <Navbar.Text>
+                        Signed in as: <Navbar.Link href="app/profile">{this.props.user}</Navbar.Link>
+                      </Navbar.Text>
+                    : [
+                        <Navbar.Text>
+                          Welcome!
+                        </Navbar.Text>
+                      ]}
+                  <Nav pullRight>
+                    {this.props.isAuthenticated
+                      ? <NavItem onClick={this.props.handleLogout}>Logout</NavItem>
+                      : [
+                          <RouteNavItem key={1} href="/app/signup">
+                            Signup
+                          </RouteNavItem>,
+                          <RouteNavItem key={2} href="/app/login">
+                            Login
+                          </RouteNavItem>
+                        ]}
+                  </Nav>
+                </Navbar.Collapse>
+              </Navbar>
             </div>
         );
     }
 }
-
 export default Header;
