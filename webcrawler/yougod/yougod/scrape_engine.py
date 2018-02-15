@@ -111,4 +111,9 @@ def explore_returned_items(returned_items):
             channels_list_by_id(client,
                 part='snippet,contentDetails,statistics,topicDetails,brandingSettings,invideoPromotion,contentOwnerDetails,localizations',
                 id=returned_item['id']['channelId'])
-        #elif returned_type == 'youtube#video':
+        elif returned_type == 'youtube#video':
+            channel_of_video_title = returned_item['snippet']['channelTitle']
+            channel_of_video_id = returned_item['snippet']['channelId']
+            channels_list_by_id(client,
+                part='snippet,contentDetails,statistics,topicDetails,brandingSettings,invideoPromotion,contentOwnerDetails,localizations',
+                id=channel_of_video_id)
