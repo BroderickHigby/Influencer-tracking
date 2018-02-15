@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Store } from 'react-rebind';
-import { BrowserRouter, Route, Redirect, Switch, Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import Body from './layout/Body';
 import Header from './layout/Header';
 
 import Home from './page/Home';
-import Search from './page/Search';
 
 import Routes from './Routes';
 import actions from './actions';
