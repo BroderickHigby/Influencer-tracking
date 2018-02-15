@@ -10,7 +10,7 @@ import Home from './page/Home';
 import Routes from './Routes';
 import actions from './actions';
 
-import { authUser, signOutUser } from "./libs/awsLib";
+import { authUser, signOutUser, getCurrentUser } from "./libs/awsLib";
 
 class App extends Component {
   constructor(props) {
@@ -43,6 +43,7 @@ class App extends Component {
   try {
     if (await authUser()) {
       this.userHasAuthenticated(true);
+      this.userDetails(getCurrentUser().username);
     }
   }
   catch(e) {

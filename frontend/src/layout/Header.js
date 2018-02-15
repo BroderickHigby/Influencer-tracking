@@ -16,11 +16,20 @@ class Header extends Component {
                   <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
+                  {this.props.isAuthenticated
+                    ? <Navbar.Text  key={1}>
+                        Signed in as: <Link to="/app/profile">{this.props.user}</Link>
+                      </Navbar.Text>
+                    : [
+                        <Navbar.Text key={1}>
+                         Welcome!
+                       </Navbar.Text>
+                    ]}
                   <Nav pullRight>
                     {this.props.isAuthenticated
                       ? <NavItem onClick={this.props.handleLogout}>Logout</NavItem>
                       : [
-                            <LinkContainer key={1} to= "/app/signup"
+                            <LinkContainer key={2} to= "/app/signup"
                              activeClassName="activeLink"
                              activeStyle={{
                                fontWeight: 'bold'
@@ -29,7 +38,7 @@ class Header extends Component {
                               Signup
                               </NavItem>
                             </LinkContainer>,
-                            <LinkContainer key={2} to= "/app/login"
+                            <LinkContainer key={3} to= "/app/login"
                              activeClassName="activeLink"
                              activeStyle={{
                                fontWeight: 'bold'

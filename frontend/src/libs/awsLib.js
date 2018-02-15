@@ -25,7 +25,7 @@ function getUserToken(currentUser) {
   });
 }
 
-function getCurrentUser() {
+export function getCurrentUser() {
   const userPool = new CognitoUserPool({
     UserPoolId: config.cognito.USER_POOL_ID,
     ClientId: config.cognito.APP_CLIENT_ID
