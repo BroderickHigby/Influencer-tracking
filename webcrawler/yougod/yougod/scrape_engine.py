@@ -25,7 +25,9 @@ def get_authenticated_service():
   return build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
 
 def print_response(response):
-  print(response)
+    for ii in response:
+        print(ii)
+        print('---------')
 
 # Build a resource based on a list of properties given as key-value pairs.
 # Leave properties with empty values out of the inserted resource.
@@ -85,4 +87,33 @@ def search_list_by_keyword(client, **kwargs):
     **kwargs
   ).execute()
 
-  return print_response(response)
+  #return print_response(response['items'])
+  explore_returned_items(response['items'])
+
+def channels_list_by_id(client, **kwargs):
+  # See full sample for function
+  kwargs = remove_empty_kwargs(**kwargs)
+
+  response = client.channels().list(
+    **kwargs
+  ).execute()
+  print(response)
+
+def explore_returned_items(returned_items):
+    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+    client = get_authenticated_service()
+
+    for returned_item in returned_items:
+        print(returned_item)
+        returned_type = returned_item['id']['kind']
+
+        if returned_type == 'youtube#channel':
+            channels_list_by_id(client,
+                part='snippet,contentDetails,statistics,topicDetails,brandingSettings,invideoPromotion,contentOwnerDetails,localizations',
+                id=returned_item['id']['channelId'])
+        elif returned_type == 'youtube#video':
+            channel_of_video_title = returned_item['snippet']['channelTitle']
+            channel_of_video_id = returned_item['snippet']['channelId']
+            channels_list_by_id(client,
+                part='snippet,contentDetails,statistics,topicDetails,brandingSettings,invideoPromotion,contentOwnerDetails,localizations',
+                id=channel_of_video_id)

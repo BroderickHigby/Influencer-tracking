@@ -21,7 +21,10 @@ class Search extends Component {
         console.log('In CONSTRUCTOR');
         var postData = {
             queryString: this.props.location.search
+            //queryString: this.props.location.search.split("=")[1]
         };
+        console.log("GRGRGRGRGRGR!!!");
+        console.log(postData.queryString);
         let axiosConfig = {
             headers: {
                 'Content-Type': 'application/json;charset=UTF-8',
@@ -47,7 +50,7 @@ class Search extends Component {
                   <MainContent>
                     <div>
                         {influencerList.map(function(d, idx) {
-                            return (<li key={idx}>{d.name}</li>)
+                            return (<li key={idx}><h2>{d.name}</h2> <img src={d.avatar} alt="profile pic"/><h3>Social Authority: {d.socialauthority}<br/>Address: {d.residence}<br/>Job: {d.job}<br/>Company: {d.company}<br/>Birthdate {d.birthdate}<br/>Sex: {d.sex}<br/>Email: {d.mail}</h3></li>)
                         })}
                     </div>
                   </MainContent>
