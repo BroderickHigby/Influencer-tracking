@@ -1,14 +1,18 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import Home from "./page/Home";
 import Search from "./page/Search";
 import Login from "./page/Login";
 import Signup from "./page/Signup";
-export default () =>
+import Subscribe from "./page/Subscribe";
+
+export default ({ childProps }) =>
   <Switch>
-    <Route path="/app/home" exact component={Home} />
-    <Route path="/app/search" exact component={Search} />
-    <Route path="/app/login" exact component={Login} />
-    <Route path="/app/signup" exact component={Signup} />
-    <Redirect to="/app/home" />
+    <AuthenticatedRoute path="/app/home" component={Home} props={childProps}/>
+    <AuthenticatedRoute path="/app/search" component={Search} props={childProps}/>
+    <AuthenticatedRoute path="/app/subscribe" component={Subscribe} props={childProps}/>
+    <UnauthenticatedRoute path="/app/login" component={Login} props={childProps}/>
+    <UnauthenticatedRoute path="/app/signup" component={Signup} props={childProps}/>
   </Switch>;
