@@ -6,12 +6,12 @@ services:
     command: gunicorn --bind 0.0.0.0 --reload app:api
     volumes:
       - type: bind
-        source: ./sapie-be/
+        source: ./backend/
         target: /srv/app/
 
   frontend:
     command: npm start
     volumes:
       - type: bind
-        source: ./sapie-fe/
+        source: ./frontend/
         target: /srv/app/
