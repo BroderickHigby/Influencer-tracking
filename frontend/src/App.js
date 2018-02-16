@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { Store } from 'react-rebind';
-import { BrowserRouter, Route, Redirect, Switch, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import Body from './layout/Body';
 import Header from './layout/Header';
 
 import Home from './page/Home';
-import Search from './page/Search';
+
 import Routes from './Routes';
 import actions from './actions';
+
+import { authUser, signOutUser, getCurrentUser } from "./libs/awsLib";
 
 class App extends Component {
   constructor(props) {
@@ -17,21 +19,39 @@ class App extends Component {
     this.state = {
       user: "",
       isAuthenticated: false,
-      Subscribed: false
+      isAuthenticating: true,
+      subscribed: false
     };
   }
 
   userDetails = id => {
     this.setState({user: id});
   }
+
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
   }
+
   handleLogout = event => {
+    signOutUser();
     this.userHasAuthenticated(false);
     this.userDetails("");
+    this.props.history.push("/app/login");
   }
 
+  async componentDidMount() {
+  try {
+    if (await authUser()) {
+      this.userHasAuthenticated(true);
+      this.userDetails(getCurrentUser().username);
+    }
+  }
+  catch(e) {
+    alert(e);
+  }
+
+  this.setState({ isAuthenticating: false });
+}
     get initialStore() {
       return {
         resources: {
@@ -56,6 +76,7 @@ class App extends Component {
       }
 
       return (
+        !this.state.isAuthenticating &&
         <Store actions={actions} initial={this.initialStore}>
           <Body>
             <Header handleLogout ={this.handleLogout} isAuthenticated={this.state.isAuthenticated} user={this.state.user} />
@@ -66,4 +87,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withRouter(App);

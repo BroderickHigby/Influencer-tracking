@@ -39,7 +39,6 @@ export default class Login extends Component {
       await this.login(this.state.userId, this.state.password);
       this.props.userHasAuthenticated(true);
       this.props.userDetails(this.state.userId);
-      this.props.history.push("/app/home");
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
@@ -67,7 +66,7 @@ export default class Login extends Component {
     return(
       <div className="Login">
         <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId= "userId" bsSize= "Large">
+          <FormGroup controlId= "userId" bsSize= "large">
             <ControlLabel>Username/Email</ControlLabel>
               <FormControl
                 autoFocus
@@ -77,7 +76,7 @@ export default class Login extends Component {
                 onChange={this.handleChange}
                 />
             </FormGroup>
-            <FormGroup controlId= "password" bsSize= "Large">
+            <FormGroup controlId= "password" bsSize= "large">
               <ControlLabel>Password</ControlLabel>
               <FormControl
                 type="password"
