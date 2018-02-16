@@ -86,7 +86,7 @@ export default class Signup extends Component {
       );
 
       this.props.userHasAuthenticated(true);
-      this.props.history.push("/");
+      this.props.history.push("/app/home");
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
@@ -174,7 +174,7 @@ export default class Signup extends Component {
             type="username"
             value={this.state.username}
             onChange={this.handleChange}
-            placeholder="UserName"
+            placeholder="username"
           />
         </FormGroup>
         <FormGroup controlId="email" bsSize="large">

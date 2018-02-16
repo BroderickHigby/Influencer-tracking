@@ -4,7 +4,7 @@ import Content from '../layout/Content';
 import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 
-import BigSearchBox from '../component/BigSearchBox';
+import BigSearchBox from '../components/BigSearchBox';
 
 class Home extends Component {
     render() {
