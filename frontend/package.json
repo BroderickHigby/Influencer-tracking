@@ -24,7 +24,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "react-lorem-component": "^0.12.2"
-  }
+  "devDependencies": {}
 }

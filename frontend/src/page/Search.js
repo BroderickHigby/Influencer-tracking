@@ -1,19 +1,13 @@
 import React, { Component } from 'react';
-import { Fetcher, Repeater, Text, Property, Scope } from 'react-rebind';
-import Lorem from 'react-lorem-component';
+import { Fetcher } from 'react-rebind';
 
-import MenuBar from '../layout/MenuBar';
 import Content from '../layout/Content';
 import Sidebar from '../layout/Sidebar';
 import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 import axios from 'axios';
 
-const divStyle = {
-    border: 'solid 1px var(--dark-color)',
-    margin: '20px 0',
-    padding: '5px'
-};
+
 var influencerList = [];
 class Search extends Component {
     constructor(props) {
@@ -40,7 +34,6 @@ class Search extends Component {
     }
 
     render() {
-        const data = [{"name":"test1"}, {"name":"test2"}];
         return (
             <React.Fragment>
               <Fetcher root="/api/" endpoint="influencer" query={this.props.location.search}>
