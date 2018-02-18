@@ -7,6 +7,11 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from google_auth_oauthlib.flow import InstalledAppFlow
 
+import sys
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend')
+
+import influencer
+
 # The CLIENT_SECRETS_FILE variable specifies the name of a file that contains
 # the OAuth 2.0 information for this application, including its client_id and
 # client_secret.
@@ -98,13 +103,17 @@ def channels_list_by_id(client, **kwargs):
     **kwargs
   ).execute()
   print(response)
+  for item in response['items']:
+      influencer.Influencer.create(item)
+
+#def write_data_to_elasticsearch(data_to_write):
+
 
 def explore_returned_items(returned_items):
     os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
     client = get_authenticated_service()
 
     for returned_item in returned_items:
-        print(returned_item)
         returned_type = returned_item['id']['kind']
 
         if returned_type == 'youtube#channel':
