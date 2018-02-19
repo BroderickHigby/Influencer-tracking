@@ -1,33 +1,14 @@
 import os
-
-import google.oauth2.credentials
-
-import google_auth_oauthlib.flow
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-from google_auth_oauthlib.flow import InstalledAppFlow
-
 import sys
-sys.path.insert(0, '/Users/mark/Desktop/sapie/backend')
-
+sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend')
 import influencer
+import requests
+import json
 
-# The CLIENT_SECRETS_FILE variable specifies the name of a file that contains
-# the OAuth 2.0 information for this application, including its client_id and
-# client_secret.
-CLIENT_SECRETS_FILE = "client_secret.json"
-
-# This OAuth 2.0 access scope allows for full read/write access to the
-# authenticated user's account and requires requests to use an SSL connection.
-SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl']
-API_SERVICE_NAME = 'youtube'
-API_VERSION = 'v3'
+base_url = "https://www.googleapis.com/youtube/v3"
+api_key = "AIzaSyDhbjoj6RQNvYgOulCZSJS6ARk9LxaVJxY"
 
 
-def get_authenticated_service():
-  flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_FILE, SCOPES)
-  credentials = flow.run_console()
-  return build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
 
 def print_response(response):
     for ii in response:
@@ -84,35 +65,27 @@ def remove_empty_kwargs(**kwargs):
         good_kwargs[key] = value
   return good_kwargs
 
-def search_list_by_keyword(client, **kwargs):
-  # See full sample for function
-  kwargs = remove_empty_kwargs(**kwargs)
 
-  response = client.search().list(
-    **kwargs
-  ).execute()
+def search_list_by_keyword(part, maxResults, q):
+  query_url = base_url + "/search?part=snippet&maxResults=25&q=" + q + "&key=" + api_key
+  r = requests.get(query_url)
+  data = json.loads(r.text)
+  print('8888888')
+  explore_returned_items(data['items'])
 
-  #return print_response(response['items'])
-  explore_returned_items(response['items'])
 
-def channels_list_by_id(client, **kwargs):
-  # See full sample for function
-  kwargs = remove_empty_kwargs(**kwargs)
+def channels_list_by_id(part, id):
+    query_url = base_url + "/channels?part=" + part + "&id=" + id + "&type=channel&key=" + api_key
+    r = requests.get(query_url)
+    data = json.loads(r.text)
+    print("99999")
+    print(data)
+    for item in data['items']:
+        influencer.Influencer.create(item)
 
-  response = client.channels().list(
-    **kwargs
-  ).execute()
-  print(response)
-  for item in response['items']:
-      influencer.Influencer.create(item)
-
-#def write_data_to_elasticsearch(data_to_write):
 
 
 def explore_returned_items(returned_items):
-    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-    client = get_authenticated_service()
-
     for returned_item in returned_items:
         returned_type = returned_item['id']['kind']
 
@@ -123,6 +96,4 @@ def explore_returned_items(returned_items):
         elif returned_type == 'youtube#video':
             channel_of_video_title = returned_item['snippet']['channelTitle']
             channel_of_video_id = returned_item['snippet']['channelId']
-            channels_list_by_id(client,
-                part='snippet,contentDetails,statistics,topicDetails,brandingSettings,invideoPromotion,contentOwnerDetails,localizations',
-                id=channel_of_video_id)
+            channels_list_by_id(part='snippet,contentDetails,statistics,topicDetails,brandingSettings,invideoPromotion,contentOwnerDetails,localizations', id=channel_of_video_id)
