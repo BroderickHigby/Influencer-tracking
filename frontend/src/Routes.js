@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch } from "react-router-dom";
+import { Switch, Redirect } from "react-router-dom";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import Home from "./page/Home";
@@ -16,4 +16,5 @@ export default ({ childProps }) =>
     <AuthenticatedRoute path="/app/settings" component={Settings} props={childProps}/>
     <UnauthenticatedRoute path="/app/login" component={Login} props={childProps}/>
     <UnauthenticatedRoute path="/app/signup" component={Signup} props={childProps}/>
+    <Redirect to= "/app/home"/>
   </Switch>;
