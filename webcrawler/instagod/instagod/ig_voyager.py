@@ -5,6 +5,8 @@ from scrape_engine import *
 import os.path
 import threading, time
 import datetime
+import sys
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend')
 
 class IGVoyager:
     def __init__(self):
@@ -134,3 +136,8 @@ class IGVoyager:
             current_datetime = str(datetime.datetime.now())
             igDatabaseWriter = csv.writer(igDatabase)
             igDatabaseWriter.writerows([[user['username'], user['biography'], user['external_url'], user['followed_by']['count'], user['follows']['count'], user['full_name'], user['id'], user['is_private'], user['is_verified'], user['profile_pic_url'], user['connected_fb_page'], contact_phone, contact_email, current_datetime, str(query_type)]])
+            user['contact_phone'] = contact_phone
+            user['contact_email'] = contact_email
+            user['current_datetime'] = current_datetime
+            user['query_type'] = str(query_type)
+            influencer.Influencer.create(user, user['id'])

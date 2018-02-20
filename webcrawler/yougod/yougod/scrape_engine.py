@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend')
 import influencer
 import requests
 import json
@@ -81,7 +81,7 @@ def channels_list_by_id(part, id):
     print("99999")
     print(data)
     for item in data['items']:
-        influencer.Influencer.create(item)
+        influencer.Influencer.create(item, item['id'])
 
 
 
