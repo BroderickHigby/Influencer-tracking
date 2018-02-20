@@ -107,6 +107,8 @@ class IGVoyager:
                         self.scrape_engine.rate_influencer(username, locations[0], themes[0])
                 else:
                     print("INPUT ERROR. Username or location or theme not provided.")
+            elif query_type == QueryType.SEARCH_BY_INDUSTRY:
+                self.scrape_engine.find_influencers_by_industry()
 
     def write_user_to_db(self, user, query_type):
         with open('ig_users.csv', 'a') as igDatabase:
@@ -134,10 +136,9 @@ class IGVoyager:
             #   -location/locations of photos
             #   -themes in photos
             current_datetime = str(datetime.datetime.now())
-            igDatabaseWriter = csv.writer(igDatabase)
-            igDatabaseWriter.writerows([[user['username'], user['biography'], user['external_url'], user['followed_by']['count'], user['follows']['count'], user['full_name'], user['id'], user['is_private'], user['is_verified'], user['profile_pic_url'], user['connected_fb_page'], contact_phone, contact_email, current_datetime, str(query_type)]])
             user['contact_phone'] = contact_phone
             user['contact_email'] = contact_email
             user['current_datetime'] = current_datetime
             user['query_type'] = str(query_type)
+            user['platform'] = 'instagram'
             influencer.Influencer.create(user, user['id'])

@@ -33,7 +33,7 @@ class Influencer:
             body=doc,
             id=id_,
         )
-        assert res['result'] == 'created'
+        assert res['result'] == 'created' or res['result'] == 'updated'
         return doc
 
     @classmethod

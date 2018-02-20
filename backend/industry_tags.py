@@ -1,14 +1,4 @@
-'''industries = [
-    'tennis',
-    'yoga',
-    'comedy',
-    'nba',
-    'watches',
-    'JRE'
-]'''
-
 industries = [
-    'JRE',
     'realestate',
     'recruiting',
     'technology',
@@ -22,10 +12,13 @@ industries = [
 
 
 industry_search_terms = {
-    'sports': ['tennis', 'ball', 'basketball', 'soccer', 'bjj', 'ufc'],
-    'comedy': ['stand-up'],
-    'nba': ['kobe bryant', 'lebron james', 'golden state warriors'],
-    'watches': ['rolex', 'tag heuer'],
+    'realestate': ['realestate'],
+    'recruiting': ['recruiting'],
+    'technology': ['technology', 'apps'],
+    'b2b': ['b2b'],
     'health': ['mindfulness', 'yoga', 'meditation', 'lifting'],
-    'entertainment': ['podcast']
+    'food': ['food', 'cooking', 'recipes'],
+    'entertainment': ['podcast'],
+    'sports': ['tennis', 'ball', 'basketball', 'soccer', 'bjj', 'ufc'],
+    'watches': ['rolex', 'tag heuer']
 }
