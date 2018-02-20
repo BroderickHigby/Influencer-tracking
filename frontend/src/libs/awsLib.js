@@ -1,4 +1,4 @@
-import { CognitoUserPool } from "amazon-cognito-identity-js";
+import { CognitoUserPool, CognitoUserSession } from "amazon-cognito-identity-js";
 import config from "../config";
 
 export async function authUser() {
@@ -23,6 +23,22 @@ function getUserToken(currentUser) {
       resolve(session.getIdToken().getJwtToken());
     });
   });
+}
+
+export function changePassword(user, oldPassword, newPassword) {
+  return new Promise((resolve, reject) => {
+    if(oldPassword == newPassword){
+      reject('Error: New password is same as old password.');
+      return;
+    }
+    user.changePassword(oldPassword, newPassword,function(err, result) {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(console.log('call result: ' + result));
+    });
+  })
 }
 
 export function getCurrentUser() {

@@ -41,7 +41,7 @@ class App extends Component {
   try {
     if (await authUser()) {
       this.userHasAuthenticated(true);
-      this.userDetails(getCurrentUser().username);
+      this.userDetails(getCurrentUser().Username);
     }
   }
   catch(e) {
