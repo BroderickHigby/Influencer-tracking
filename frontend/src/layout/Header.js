@@ -18,7 +18,7 @@ class Header extends Component {
                 <Navbar.Collapse>
                   {this.props.isAuthenticated
                     ? <Navbar.Text  key={1}>
-                        <Link to="/app/subscribe">Subscribe</Link>
+                        <Link to="/app/settings">Settings</Link>
                       </Navbar.Text>
                     : [
                         <Navbar.Text key={1}>
