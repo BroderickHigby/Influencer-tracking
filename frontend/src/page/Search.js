@@ -21,16 +21,23 @@ class Search extends Component {
         console.log(postData.queryString);
         let axiosConfig = {
             headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
+                "Content-Type": "application/json;charset=UTF-8",
                 "Access-Control-Allow-Origin": "*"
             }
         };
         console.log('DOING AXIOS');
-        axios.post('http://127.0.0.1:5000/run_query', postData, axiosConfig)
+	console.log(postData);
+	console.log(axiosConfig);
+        axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig)
         .then(function (response) {
+	    console.log("GREAT SUCCESS (in borat accent)");
+	    console.log(response.data);
             influencerList = response.data.query_results;
             console.log(influencerList);
-        });
+        })
+	.catch(function (error) {
+    		console.log(error);
+  	});
     }
 
     render() {
@@ -43,7 +50,7 @@ class Search extends Component {
                   <MainContent>
                     <div>
                         {influencerList.map(function(d, idx) {
-                            return (<li key={idx}><h2>{d.name}</h2> <img src={d.avatar} alt="profile pic"/><h3>Social Authority: {d.socialauthority}<br/>Address: {d.residence}<br/>Job: {d.job}<br/>Company: {d.company}<br/>Birthdate {d.birthdate}<br/>Sex: {d.sex}<br/>Email: {d.mail}</h3></li>)
+                            return (<li key={idx}><h2>{d.name}</h2> <img src={d.avatar} alt="profile pic"/><h3>Social Authority: {d.socialauthority}Address: {d.residence}Job: {d.job}Company: {d.company}Birthdate {d.birthdate}Sex: {d.sex}Email: {d.mail}</h3></li>)
                         })}
                     </div>
                   </MainContent>

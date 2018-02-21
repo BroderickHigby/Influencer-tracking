@@ -14,11 +14,13 @@ def home():
 @app.route('/run_query', methods=['GET', 'POST'])
 def run_query():
     print("in query")
-    json_input = json.loads(request.data)
+#    json_input = json.loads(request.data)
+    print("GEGEEGE")
     query_result = Influencer.query(None)#Influencer.query(json_input['queryString'])
     print(query_result)
     print(type(query_result))
     print("returning query")
     return jsonify({'query_results': query_result})
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
+    #app.run(host='172.31.26.107', port=5000)

@@ -8,7 +8,7 @@ import re
 import json
 import pprint
 import logging.config
-from PIL import Image
+#from PIL import Image
 from io import BytesIO
 from constants import *
 import time
@@ -16,8 +16,8 @@ from selenium import webdriver as wd
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from google.cloud import vision
-from google.cloud.vision import types
+#from google.cloud import vision
+#from google.cloud.vision import types
 class ScrapeEngine:
     def __init__(self):
         default_attr = dict(username='', usernames=[], filename=None,
@@ -160,7 +160,7 @@ class ScrapeEngine:
 
     def scrape_followers_of_username(self, username):
         options = wd.ChromeOptions()
-        driver = wd.Chrome("/Users/mark/Desktop/instagod/chromedriver")
+        driver = wd.Chrome("/home/ec2-user/sapie/webcrawler/instagod/chromedriver.exe")
 
         ScrapeEngine.selenium_login(driver)
         follower_list = ScrapeEngine.selenium_get_followers_list(driver, username)
@@ -172,7 +172,7 @@ class ScrapeEngine:
 
     def scrape_following_of_username(self, username):
         options = wd.ChromeOptions()
-        driver = wd.Chrome("/Users/mark/Desktop/instagod/chromedriver")
+        driver = wd.Chrome("/home/ec2-user/sapie/webcrawler/instagod/chromedriver.exe")
 
         ScrapeEngine.selenium_login(driver)
         following_list = ScrapeEngine.selenium_get_following_list(driver, username)
@@ -215,7 +215,7 @@ class ScrapeEngine:
 
     def rate_influencer(self, username, location, theme):
         options = wd.ChromeOptions()
-        driver = wd.Chrome("/Users/mark/Desktop/instagod/chromedriver")
+        driver = wd.Chrome("/home/ec2-user/sapie/webcrawler/instagod/chromedriver.exe")
         print("Logging into IG with selenium....")
         ScrapeEngine.selenium_login(driver)
         print("Scraping follower usernames with selenium....")
