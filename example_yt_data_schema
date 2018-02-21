@@ -67,6 +67,7 @@
           }
         ]
       },
+      "industry" : "mindfulness",
       "snippet" : {
         "thumbnails" : {
           "default" : {
@@ -401,6 +402,7 @@
           }
         ]
       },
+      "industry" : "basketball",
       "snippet" : {
         "thumbnails" : {
           "default" : {
