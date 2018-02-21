@@ -1,0 +1,434 @@
+{
+    "_index" : "sapie",
+    "_type" : "influencer",
+    "_id" : "UCfbUujPfGq9_20QyyInwXWA",
+    "_score" : 1.0,
+    "_source" : {
+      "topicDetails" : {
+        "topicIds" : [
+          "/m/02vx4",
+          "/m/02vx4",
+          "/m/06ntj"
+        ],
+        "topicCategories" : [
+          "https://en.wikipedia.org/wiki/Association_football",
+          "https://en.wikipedia.org/wiki/Sport"
+        ]
+      },
+      "kind" : "youtube#channel",
+      "statistics" : {
+        "commentCount" : "0",
+        "viewCount" : "2734978",
+        "videoCount" : "584",
+        "subscriberCount" : "7792",
+        "hiddenSubscriberCount" : false
+      },
+      "contentDetails" : {
+        "relatedPlaylists" : {
+          "watchHistory" : "HL",
+          "uploads" : "UUfbUujPfGq9_20QyyInwXWA",
+          "watchLater" : "WL"
+        }
+      },
+      "brandingSettings" : {
+        "image" : {
+          "bannerTvMediumImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w1280-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w1060-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTvHighImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w1920-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTabletHdImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w2276-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTabletLowImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w1138-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileMediumHdImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w960-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileHdImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w1280-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileExtraHdImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w1440-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTabletImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w1707-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileLowImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w320-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTvImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w2120-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTvLowImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w854-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTabletExtraHdImageUrl" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w2560-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no"
+        },
+        "channel" : {
+          "showRelatedChannels" : true,
+          "profileColor" : "#000000",
+          "title" : "Plymouth Argyle"
+        },
+        "hints" : [
+          {
+            "property" : "channel.banner.mobile.medium.image.url",
+            "value" : "https://yt3.ggpht.com/tgSbduFLtbv-caxPuEOB0k_CYHh5Lfb2vc9a8GF55ekQSeXxYHJ0pHJIjJDYcreA1511RCYkaQ=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no"
+          },
+          {
+            "property" : "channel.featured_tab.template.string",
+            "value" : "Everything"
+          },
+          {
+            "property" : "channel.modules.show_comments.bool",
+            "value" : "True"
+          }
+        ]
+      },
+      "snippet" : {
+        "thumbnails" : {
+          "default" : {
+            "url" : "https://yt3.ggpht.com/-Sti0CNew0Ok/AAAAAAAAAAI/AAAAAAAAAAA/_bij0PY76pw/s88-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 88,
+            "height" : 88
+          },
+          "high" : {
+            "url" : "https://yt3.ggpht.com/-Sti0CNew0Ok/AAAAAAAAAAI/AAAAAAAAAAA/_bij0PY76pw/s800-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 800,
+            "height" : 800
+          },
+          "medium" : {
+            "url" : "https://yt3.ggpht.com/-Sti0CNew0Ok/AAAAAAAAAAI/AAAAAAAAAAA/_bij0PY76pw/s240-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 240,
+            "height" : 240
+          }
+        },
+        "localized" : {
+          "description" : "",
+          "title" : "Plymouth Argyle"
+        },
+        "description" : "",
+        "publishedAt" : "2008-08-07T13:38:25.000Z",
+        "title" : "Plymouth Argyle"
+      },
+      "platform" : "youtube",
+      "etag" : "\"_gJQceDMxJ8gP-8T2HLXUoURK8c/9ZNNV1Is03upuNxPtFQRPhH3BRA\"",
+      "id" : "UCfbUujPfGq9_20QyyInwXWA"
+    }
+  },
+  {
+    "_index" : "sapie",
+    "_type" : "influencer",
+    "_id" : "UCDy2o3JqwLhP8cWWG--Aw9A",
+    "_score" : 1.0,
+    "_source" : {
+      "topicDetails" : {
+        "topicIds" : [
+          "/m/04rlf",
+          "/m/0glt670"
+        ],
+        "topicCategories" : [
+          "https://en.wikipedia.org/wiki/Music",
+          "https://en.wikipedia.org/wiki/Hip_hop_music"
+        ]
+      },
+      "kind" : "youtube#channel",
+      "statistics" : {
+        "commentCount" : "0",
+        "viewCount" : "514327151",
+        "videoCount" : "3335",
+        "subscriberCount" : "479530",
+        "hiddenSubscriberCount" : false
+      },
+      "contentDetails" : {
+        "relatedPlaylists" : {
+          "watchHistory" : "HL",
+          "uploads" : "UUDy2o3JqwLhP8cWWG--Aw9A",
+          "watchLater" : "WL"
+        }
+      },
+      "brandingSettings" : {
+        "image" : {
+          "bannerTvMediumImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w1280-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w1060-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTvHighImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w1920-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTabletHdImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w2276-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTabletLowImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w1138-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileMediumHdImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w960-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileHdImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w1280-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileExtraHdImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w1440-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTabletImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w1707-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileLowImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w320-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTvImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w2120-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTvLowImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w854-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTabletExtraHdImageUrl" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w2560-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no"
+        },
+        "channel" : {
+          "description" : "ALL URBAN CENTRAL \nThe #1 Urban News Channel On Youtube\nDaily compilations of urban entertainment and celebrity news.\nUpload schedule: 10 AM, 2PM, 9PM (Eastern Time) every day. \nWe focused to deliver the most exciting urban content and viral videos on the internet.\n\nBusiness Inquiries info@allurbancentral.com",
+          "title" : "ALL URBAN CENTRAL",
+          "country" : "US",
+          "showBrowseView" : true,
+          "featuredChannelsTitle" : "Featured Channels",
+          "defaultLanguage" : "en",
+          "unsubscribedTrailer" : "tdCWZzgSi70",
+          "featuredChannelsUrls" : [
+            "UCH3X35bYcT5opTh9TsUKX4A",
+            "UCff0Ku_DKtBbIpR-5AMJoTA",
+            "UCi5vBYU-pGLFAGxK7gp0OUw"
+          ],
+          "profileColor" : "#000000",
+          "defaultTab" : "Featured",
+          "keywords" : "\"auc hot spot\" \"all urban central\" auc \"hip hop\" rap Celebrity Snapchat Instagram Facebook Music twitter rnb",
+          "trackingAnalyticsAccountId" : "UA-55799071-2",
+          "showRelatedChannels" : true
+        },
+        "hints" : [
+          {
+            "property" : "channel.featured_tab.template.string",
+            "value" : "Everything"
+          },
+          {
+            "property" : "channel.modules.show_comments.bool",
+            "value" : "True"
+          },
+          {
+            "property" : "channel.banner.mobile.medium.image.url",
+            "value" : "https://yt3.ggpht.com/PVT2O0lVRxUOQvLJxzqLmXoBrwKzdFFx743MzG0rNy_lggT-dxexNkasekkTeYSWiuD95NTYog=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no"
+          }
+        ]
+      },
+      "snippet" : {
+        "thumbnails" : {
+          "default" : {
+            "url" : "https://yt3.ggpht.com/-tj7T8BoK5iE/AAAAAAAAAAI/AAAAAAAAAAA/PSKEHJYOors/s88-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 88,
+            "height" : 88
+          },
+          "high" : {
+            "url" : "https://yt3.ggpht.com/-tj7T8BoK5iE/AAAAAAAAAAI/AAAAAAAAAAA/PSKEHJYOors/s800-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 800,
+            "height" : 800
+          },
+          "medium" : {
+            "url" : "https://yt3.ggpht.com/-tj7T8BoK5iE/AAAAAAAAAAI/AAAAAAAAAAA/PSKEHJYOors/s240-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 240,
+            "height" : 240
+          }
+        },
+        "title" : "ALL URBAN CENTRAL",
+        "country" : "US",
+        "customUrl" : "allurbancentral",
+        "defaultLanguage" : "en",
+        "publishedAt" : "2014-11-05T23:29:07.000Z",
+        "localized" : {
+          "description" : "ALL URBAN CENTRAL \nThe #1 Urban News Channel On Youtube\nDaily compilations of urban entertainment and celebrity news.\nUpload schedule: 10 AM, 2PM, 9PM (Eastern Time) every day. \nWe focused to deliver the most exciting urban content and viral videos on the internet.\n\nBusiness Inquiries info@allurbancentral.com",
+          "title" : "ALL URBAN CENTRAL"
+        },
+        "description" : "ALL URBAN CENTRAL \nThe #1 Urban News Channel On Youtube\nDaily compilations of urban entertainment and celebrity news.\nUpload schedule: 10 AM, 2PM, 9PM (Eastern Time) every day. \nWe focused to deliver the most exciting urban content and viral videos on the internet.\n\nBusiness Inquiries info@allurbancentral.com"
+      },
+      "platform" : "youtube",
+      "etag" : "\"_gJQceDMxJ8gP-8T2HLXUoURK8c/9uvoCDaMQyJo5asGnSQPAVko0aU\"",
+      "id" : "UCDy2o3JqwLhP8cWWG--Aw9A",
+      "localizations" : {
+        "fr" : {
+          "description" : "TOUT CENTRE URBAIN\nThe # 1 Urban News Channel sur Youtube\nAUC Hot Spot compilations quotidiennes de divertissement urbain et des nouvelles.\nHoraire de téléchargement: 10 h, 2 h, 9 h (heure de l'Est) tous les jours.\nNous nous sommes efforcés de diffuser les nouvelles de célébrités urbaines les plus excitantes et les vidéos virales sur Internet.\n\nDemandes d'affaires info@auchotspot.com\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n► Site Web: https://goo.gl/0ETUIR\n► INSTAGRAM: @auchotspot https://goo.gl/rk9NhL\n► TWITTER: @auchotspot https://goo.gl/cCtuv8\n► FACEBOOK: https://goo.gl/1CPTRm6\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬",
+          "title" : "TOUT CENTRE URBAIN"
+        },
+        "en" : {
+          "description" : "ALL URBAN CENTRAL \nThe #1 Urban News Channel On Youtube\nDaily compilations of urban entertainment and celebrity news.\nUpload schedule: 10 AM, 2PM, 9PM (Eastern Time) every day. \nWe focused to deliver the most exciting urban content and viral videos on the internet.\n\nBusiness Inquiries info@allurbancentral.com",
+          "title" : "ALL URBAN CENTRAL"
+        }
+      }
+    }
+  },
+  {
+    "_index" : "sapie",
+    "_type" : "influencer",
+    "_id" : "UCCMXklu2ueDcN2qd8jmPj5A",
+    "_score" : 1.0,
+    "_source" : {
+      "topicDetails" : {
+        "topicIds" : [
+          "/m/07bs0",
+          "/m/06ntj",
+          "/m/04rlf"
+        ],
+        "topicCategories" : [
+          "https://en.wikipedia.org/wiki/Tennis",
+          "https://en.wikipedia.org/wiki/Music",
+          "https://en.wikipedia.org/wiki/Sport"
+        ]
+      },
+      "kind" : "youtube#channel",
+      "statistics" : {
+        "commentCount" : "0",
+        "viewCount" : "217443",
+        "videoCount" : "7",
+        "subscriberCount" : "623",
+        "hiddenSubscriberCount" : false
+      },
+      "contentDetails" : {
+        "relatedPlaylists" : {
+          "watchHistory" : "HL",
+          "uploads" : "UUCMXklu2ueDcN2qd8jmPj5A",
+          "watchLater" : "WL"
+        }
+      },
+      "brandingSettings" : {
+        "image" : {
+          "bannerTvMediumImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w1280-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w1060-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTvHighImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w1920-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTabletHdImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w2276-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTabletLowImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w1138-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileMediumHdImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w960-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileHdImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w1280-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileExtraHdImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w1440-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTabletImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w1707-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileLowImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w320-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTvImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w2120-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTvLowImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w854-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTabletExtraHdImageUrl" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w2560-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no"
+        },
+        "channel" : {
+          "description" : "- Motion Design\n- Sport Video\n- Trailers",
+          "title" : "Irvin Nicollier",
+          "country" : "CH",
+          "showBrowseView" : true,
+          "unsubscribedTrailer" : "0PHtylw51VA",
+          "profileColor" : "#000000",
+          "defaultTab" : "Featured",
+          "showRelatedChannels" : true
+        },
+        "hints" : [
+          {
+            "property" : "channel.banner.mobile.medium.image.url",
+            "value" : "https://yt3.ggpht.com/QJZEigQ00OH8bE40waqUR6nVOTnCuIG9AjmpmDxF_X8vhztZqAg37Z6Vv-kre8kJFj0joKL8Uq4=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no"
+          },
+          {
+            "property" : "channel.featured_tab.template.string",
+            "value" : "Everything"
+          }
+        ]
+      },
+      "snippet" : {
+        "thumbnails" : {
+          "default" : {
+            "url" : "https://yt3.ggpht.com/-uCyFp82CWhY/AAAAAAAAAAI/AAAAAAAAAAA/FsljT1ZpFrU/s88-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 88,
+            "height" : 88
+          },
+          "high" : {
+            "url" : "https://yt3.ggpht.com/-uCyFp82CWhY/AAAAAAAAAAI/AAAAAAAAAAA/FsljT1ZpFrU/s800-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 800,
+            "height" : 800
+          },
+          "medium" : {
+            "url" : "https://yt3.ggpht.com/-uCyFp82CWhY/AAAAAAAAAAI/AAAAAAAAAAA/FsljT1ZpFrU/s240-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 240,
+            "height" : 240
+          }
+        },
+        "title" : "Irvin Nicollier",
+        "country" : "CH",
+        "publishedAt" : "2015-12-22T19:21:09.000Z",
+        "localized" : {
+          "description" : "- Motion Design\n- Sport Video\n- Trailers",
+          "title" : "Irvin Nicollier"
+        },
+        "description" : "- Motion Design\n- Sport Video\n- Trailers"
+      },
+      "platform" : "youtube",
+      "etag" : "\"_gJQceDMxJ8gP-8T2HLXUoURK8c/mbMm-3qjUwSjt41um7R0AcbfZHs\"",
+      "id" : "UCCMXklu2ueDcN2qd8jmPj5A"
+    }
+  },
+  {
+    "_index" : "sapie",
+    "_type" : "influencer",
+    "_id" : "UCq9qcL8EM0lXvV3qMZsThBg",
+    "_score" : 1.0,
+    "_source" : {
+      "topicDetails" : {
+        "topicIds" : [
+          "/m/06bvp",
+          "/m/098wr",
+          "/m/04rlf"
+        ],
+        "topicCategories" : [
+          "https://en.wikipedia.org/wiki/Society",
+          "https://en.wikipedia.org/wiki/Music",
+          "https://en.wikipedia.org/wiki/Religion"
+        ]
+      },
+      "kind" : "youtube#channel",
+      "statistics" : {
+        "commentCount" : "0",
+        "viewCount" : "583680",
+        "videoCount" : "34",
+        "subscriberCount" : "1668",
+        "hiddenSubscriberCount" : false
+      },
+      "contentDetails" : {
+        "relatedPlaylists" : {
+          "watchLater" : "WL",
+          "watchHistory" : "HL",
+          "likes" : "LLq9qcL8EM0lXvV3qMZsThBg",
+          "uploads" : "UUq9qcL8EM0lXvV3qMZsThBg"
+        }
+      },
+      "brandingSettings" : {
+        "image" : {
+          "bannerTvMediumImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w1280-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w1060-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTvHighImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w1920-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTabletHdImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w2276-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTabletLowImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w1138-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileMediumHdImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w960-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileHdImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w1280-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileExtraHdImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w1440-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTabletImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w1707-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no",
+          "bannerMobileLowImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w320-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no",
+          "bannerTvImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w2120-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTvLowImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w854-fcrop64=1,00000000ffffffff-nd-c0xffffffff-rj-k-no",
+          "bannerTabletExtraHdImageUrl" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w2560-fcrop64=1,00005a57ffffa5a8-nd-c0xffffffff-rj-k-no"
+        },
+        "channel" : {
+          "description" : "THATS MY WIFE IN MY PHOTO\nsoundcloud.com/jessemartyr [COPY & PASTE] \ntwitter.com/_tertius_ [COPY & PASTE]\ntwitter.com/jessemartyr [COPY & PASTE]",
+          "title" : "Jesse The YouTube Guy",
+          "showBrowseView" : true,
+          "featuredChannelsTitle" : "Featured Channels",
+          "unsubscribedTrailer" : "Q0x5-pj5SfE",
+          "profileColor" : "#000000",
+          "defaultTab" : "Featured",
+          "featuredChannelsUrls" : [
+            "UCqaQsqxzljGoaRB1DmCY2lA"
+          ]
+        },
+        "hints" : [
+          {
+            "property" : "channel.featured_tab.template.string",
+            "value" : "Everything"
+          },
+          {
+            "property" : "channel.banner.mobile.medium.image.url",
+            "value" : "https://yt3.ggpht.com/xcBHE2oY3vX_Y-V_jLLu_amR9YVjuiPl5IWdWnekJoceHcRShEw6bCD71kVhzIxiuQfSIlHIaOg=w640-fcrop64=1,32b75a57cd48a5a8-nd-c0xffffffff-rj-k-no"
+          }
+        ]
+      },
+      "snippet" : {
+        "thumbnails" : {
+          "default" : {
+            "url" : "https://yt3.ggpht.com/--aI3pGtSQVE/AAAAAAAAAAI/AAAAAAAAAAA/EoA6bpkpAHw/s88-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 88,
+            "height" : 88
+          },
+          "high" : {
+            "url" : "https://yt3.ggpht.com/--aI3pGtSQVE/AAAAAAAAAAI/AAAAAAAAAAA/EoA6bpkpAHw/s800-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 800,
+            "height" : 800
+          },
+          "medium" : {
+            "url" : "https://yt3.ggpht.com/--aI3pGtSQVE/AAAAAAAAAAI/AAAAAAAAAAA/EoA6bpkpAHw/s240-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "width" : 240,
+            "height" : 240
+          }
+        },
+        "localized" : {
+          "description" : "THATS MY WIFE IN MY PHOTO\nsoundcloud.com/jessemartyr [COPY & PASTE] \ntwitter.com/_tertius_ [COPY & PASTE]\ntwitter.com/jessemartyr [COPY & PASTE]",
+          "title" : "Jesse The YouTube Guy"
+        },
+        "description" : "THATS MY WIFE IN MY PHOTO\nsoundcloud.com/jessemartyr [COPY & PASTE] \ntwitter.com/_tertius_ [COPY & PASTE]\ntwitter.com/jessemartyr [COPY & PASTE]",
+        "publishedAt" : "2011-02-10T17:39:23.000Z",
+        "title" : "Jesse The YouTube Guy"
+      },
+      "platform" : "youtube",
+      "etag" : "\"_gJQceDMxJ8gP-8T2HLXUoURK8c/M6yvMlKVqj-y2etW8ftWzvFjmYs\"",
+      "id" : "UCq9qcL8EM0lXvV3qMZsThBg"
+    }
+  }
