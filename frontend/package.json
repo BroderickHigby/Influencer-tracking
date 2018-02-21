@@ -1,6 +1,7 @@
 {
   "name": "sapie-fe",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "amazon-cognito-identity-js": "^1.31.0",
