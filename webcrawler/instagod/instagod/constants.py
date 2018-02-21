@@ -27,3 +27,4 @@ class QueryType(Enum):
     FIND_WHO_USER_FOLLOWS = 4
     FIND_BY_USERNAME = 5
     RATE_INFLUENCER = 6
+    SEARCH_BY_INDUSTRY = 7
