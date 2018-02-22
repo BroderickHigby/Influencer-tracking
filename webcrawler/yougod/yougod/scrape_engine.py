@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend')
+sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 import influencer
 import requests
 import json
@@ -71,29 +71,32 @@ def search_list_by_keyword(part, maxResults, q):
   r = requests.get(query_url)
   data = json.loads(r.text)
   print('8888888')
-  explore_returned_items(data['items'])
+  explore_returned_items(data['items'], q)
 
 
-def channels_list_by_id(part, id):
+def channels_list_by_id(q, part, id):
     query_url = base_url + "/channels?part=" + part + "&id=" + id + "&type=channel&key=" + api_key
     r = requests.get(query_url)
     data = json.loads(r.text)
     print("99999")
-    print(data)
-    for item in data['items']:
-        influencer.Influencer.create(item)
+    try:
+        print(data)
+        for item in data['items']:
+            item['platform'] = "youtube"
+            item['industry'] = q
+            influencer.Influencer.create(item, item['id'])
+    except:
+        print("some error")
 
 
-
-def explore_returned_items(returned_items):
+def explore_returned_items(returned_items, q):
     for returned_item in returned_items:
         returned_type = returned_item['id']['kind']
 
         if returned_type == 'youtube#channel':
-            channels_list_by_id(client,
-                part='snippet,contentDetails,statistics,topicDetails,brandingSettings,invideoPromotion,contentOwnerDetails,localizations',
+            channels_list_by_id(q=q, part='snippet,contentDetails,statistics,topicDetails,brandingSettings,invideoPromotion,contentOwnerDetails,localizations',
                 id=returned_item['id']['channelId'])
         elif returned_type == 'youtube#video':
             channel_of_video_title = returned_item['snippet']['channelTitle']
             channel_of_video_id = returned_item['snippet']['channelId']
-            channels_list_by_id(part='snippet,contentDetails,statistics,topicDetails,brandingSettings,invideoPromotion,contentOwnerDetails,localizations', id=channel_of_video_id)
+            channels_list_by_id(q=q, part='snippet,contentDetails,statistics,topicDetails,brandingSettings,invideoPromotion,contentOwnerDetails,localizations', id=channel_of_video_id)

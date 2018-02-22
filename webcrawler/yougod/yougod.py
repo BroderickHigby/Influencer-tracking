@@ -2,10 +2,11 @@ import sys
 import os
 root_path = os.path.abspath('.')
 sys.path.append(root_path + '/' + 'yougod')
+sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend')
 from scrape_engine import *
-import industries
+import industry_tags
 
-for key, value in industries.industry_search_terms.items():
+for key, value in industry_tags.industry_search_terms.items():
     for search_term in value:
         print(search_term)
         search_list_by_keyword(part='snippet', maxResults=25, q=search_term)

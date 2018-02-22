@@ -18,17 +18,22 @@ class Influencer:
         self.doc = doc
 
     @classmethod
-    def create(cls, doc):
+    def create(cls, doc, _id=None):
         """Creates new influencer document"""
-        id_ = uuid.uuid4().hex
-        doc['id'] = id_
+        if _id == None:
+            id_ = uuid.uuid4().hex
+            doc['id'] = id_
+        else:
+            id_ = _id
+            doc['id'] = _id
+
         res = es.index(
             index=cls.index,
             doc_type=cls.doc_type,
             body=doc,
             id=id_,
         )
-        assert res['result'] == 'created'
+        assert res['result'] == 'created' or res['result'] == 'updated'
         return doc
 
     @classmethod
@@ -48,6 +53,7 @@ class Influencer:
     @classmethod
     def query(cls, query, limit=100):
         """Query for a list of influencers"""
+        print("OINKKK")
         if isinstance(query, str):
             actual_query = dict(
                 query=dict(

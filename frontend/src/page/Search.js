@@ -12,25 +12,36 @@ var influencerList = [];
 class Search extends Component {
     constructor(props) {
         super(props);
+	this.state = {IL: []};
         console.log('In CONSTRUCTOR');
         var postData = {
-            queryString: this.props.location.search
+            queryString: this.props.location.search.split("=")[1]
             //queryString: this.props.location.search.split("=")[1]
         };
         console.log("GRGRGRGRGRGR!!!");
         console.log(postData.queryString);
+	console.log("$$$$$$$$$$$$$$$$");
         let axiosConfig = {
             headers: {
-                'Content-Type': 'application/json;charset=UTF-8',
+                "Content-Type": "application/json;charset=UTF-8",
                 "Access-Control-Allow-Origin": "*"
             }
         };
         console.log('DOING AXIOS');
-        axios.post('http://127.0.0.1:5000/run_query', postData, axiosConfig)
+	console.log(postData);
+	console.log(axiosConfig);
+	let currentComponent = this;
+        axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig)
         .then(function (response) {
+	    console.log("GREAT SUCCESS (in borat accent)");
+	    console.log(response.data);
             influencerList = response.data.query_results;
             console.log(influencerList);
-        });
+	    currentComponent.setState({IL: influencerList});
+        })
+	.catch(function (error) {
+    		console.log(error);
+  	});
     }
 
     render() {
@@ -40,13 +51,11 @@ class Search extends Component {
                 <Content>
                   <Filler />
                   <Sidebar hideSm></Sidebar>
-                  <MainContent>
                     <div>
                         {influencerList.map(function(d, idx) {
-                            return (<li key={idx}><h2>{d.name}</h2> <img src={d.avatar} alt="profile pic"/><h3>Social Authority: {d.socialauthority}<br/>Address: {d.residence}<br/>Job: {d.job}<br/>Company: {d.company}<br/>Birthdate {d.birthdate}<br/>Sex: {d.sex}<br/>Email: {d.mail}</h3></li>)
+                            return (<div key={idx}><h2>{d.snippet.title}</h2> <img src={d.brandingSettings.image.bannerMobileHdImageUrl} alt="profile pic"/><h3>Platform: {d.platform}<br/>Industry: {d.industry}<br/>Channel Description: {d.brandingSettings.channel.description} <br/>Keywords: {d.brandingSettings.channel.keywords} <br/>Language: {d.snippet.defaultLanguage}<br/>Videos: {d.statistics.videoCount}<br/>View Count: {d.statistics.viewCount}<br/>Subscriber Count: {d.statistics.subscriberCount}</h3></div>)
                         })}
                     </div>
-                  </MainContent>
                   <Sidebar hideMd></Sidebar>
                   <Filler />
                 </Content>
