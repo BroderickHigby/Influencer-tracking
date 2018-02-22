@@ -7,18 +7,21 @@ industries = [
     'food',
     'entertainment',
     'sports',
-    'watches'
+    'clothing',
+    'education',
+    'beauty'
 ]
 
 
 industry_search_terms = {
-    'realestate': ['realestate'],
+    'realestate': ['real estate'],
     'recruiting': ['recruiting'],
-    'technology': ['technology', 'apps'],
+    'technology': ['technology', 'apps', 'product reviews'],
     'b2b': ['b2b'],
-    'health': ['mindfulness', 'yoga', 'meditation', 'lifting'],
-    'food': ['food', 'cooking', 'recipes'],
-    'entertainment': ['podcast'],
-    'sports': ['tennis', 'ball', 'basketball', 'soccer', 'bjj', 'ufc'],
-    'watches': ['rolex', 'tag heuer']
+    'health': ['mindfulness', 'yoga', 'meditation'],
+    'food': ['food', 'cooking', 'recipes', 'vegan', 'nutrition'],
+    'entertainment': ['podcast', 'comedy'],
+    'sports': ['tennis', 'baseball', 'basketball', 'soccer', 'bjj', 'ufc', 'weight lifting', 'jogging', 'skateboarding', 'boxing'],
+    'clothing': ['clothing', 'watches', 'style', 'swag', 'streetwear'],
+    'beauty': ['makeup', 'beauty']
 }
