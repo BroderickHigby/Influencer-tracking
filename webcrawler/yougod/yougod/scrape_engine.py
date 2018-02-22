@@ -79,12 +79,14 @@ def channels_list_by_id(q, part, id):
     r = requests.get(query_url)
     data = json.loads(r.text)
     print("99999")
-    print(data)
-    for item in data['items']:
-        item['platform'] = "youtube"
-        item['industry'] = q
-        influencer.Influencer.create(item, item['id'])
-
+    try:
+        print(data)
+        for item in data['items']:
+            item['platform'] = "youtube"
+            item['industry'] = q
+            influencer.Influencer.create(item, item['id'])
+    except:
+        print("some error")
 
 
 def explore_returned_items(returned_items, q):

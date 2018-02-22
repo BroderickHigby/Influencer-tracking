@@ -14,9 +14,10 @@ def home():
 @app.route('/run_query', methods=['GET', 'POST'])
 def run_query():
     print("in query")
-#    json_input = json.loads(request.data)
+    json_input = json.loads(request.data)
     print("GEGEEGE")
-    query_result = Influencer.query(None)#Influencer.query(json_input['queryString'])
+    print(json_input['queryString'])
+    query_result = Influencer.query(str(json_input['queryString']))
     print(query_result)
     print(type(query_result))
     print("returning query")

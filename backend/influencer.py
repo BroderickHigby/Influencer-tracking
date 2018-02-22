@@ -53,6 +53,7 @@ class Influencer:
     @classmethod
     def query(cls, query, limit=100):
         """Query for a list of influencers"""
+	print("OINKKK")
         if isinstance(query, str):
             actual_query = dict(
                 query=dict(
