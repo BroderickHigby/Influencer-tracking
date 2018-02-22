@@ -52,6 +52,8 @@ export default class Settings extends Component{
 
     try {
       await changePassword(this.state.user, this.state.oldPassword,this.state.newPassword);
+      this.setState({ isLoading: false });
+      alert("Password successfully changed!");
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });
