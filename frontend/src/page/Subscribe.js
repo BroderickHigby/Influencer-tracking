@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 
-class Home extends Component {
+class Subscribe extends Component {
   constructor(props) {
     super(props);
     this.onToken = this.onToken.bind(this);
@@ -24,15 +24,9 @@ class Home extends Component {
         }
     };
 
-    console.log("Before AXIOS POST");
-
-    console.log('onToken', token.email);
-    console.log(postData);
-    console.log(postData.stripeToken);
-
     axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge', postData, axiosConfig)
     .then(function (response) {
-      console.log("Charge: " + token.id + " success");
+      console.log("Charge confirmation sent to " + token.email + " ://success");
     }).catch(error => {
       console.log(error)
     });
@@ -59,4 +53,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Subscribe;

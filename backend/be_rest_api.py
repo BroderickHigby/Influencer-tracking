@@ -14,7 +14,7 @@ stripe.api_key = 'sk_test_UUgREeF3vNIfwJoB2UZj0oyB'
 
 plan = stripe.Plan.create(
   product={'name': 'Monthly'},
-  nickname='Basic monthly',
+  nickname='Monthly Subscription',
   interval='month',
   currency='usd',
   amount=29900,
