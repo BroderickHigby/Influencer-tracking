@@ -1,6 +1,7 @@
 {
   "name": "sapie-fe",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "amazon-cognito-identity-js": "^1.31.0",
@@ -24,7 +25,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "react-lorem-component": "^0.12.2"
-  }
+  "devDependencies": {}
 }

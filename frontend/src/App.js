@@ -5,8 +5,6 @@ import { withRouter } from 'react-router-dom';
 import Body from './layout/Body';
 import Header from './layout/Header';
 
-import Home from './page/Home';
-
 import Routes from './Routes';
 import actions from './actions';
 
@@ -43,7 +41,7 @@ class App extends Component {
   try {
     if (await authUser()) {
       this.userHasAuthenticated(true);
-      this.userDetails(getCurrentUser().username);
+      this.userDetails(getCurrentUser().Username);
     }
   }
   catch(e) {

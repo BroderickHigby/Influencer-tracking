@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 
-class Home extends Component {
+class Subscribe extends Component {
   constructor(props) {
     super(props);
     this.onToken = this.onToken.bind(this);
@@ -26,13 +26,10 @@ class Home extends Component {
     return (
       <div>
         <center>
-        <br></br>
-        <br></br>
           <StripeCheckout
             token={this.onToken}
             stripeKey="pk_test_Jjys3Yuxu330uiclk4ViXeHM"
           />
-
         </center>
       </div>
     );
@@ -40,4 +37,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Subscribe;

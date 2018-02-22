@@ -20,6 +20,7 @@ export default class Signup extends Component {
 
     this.state = {
       isLoading: false,
+      isLoading2: false,
       username: "",
       email: "",
       password: "",
@@ -93,6 +94,23 @@ export default class Signup extends Component {
     }
   }
 
+  handleClick = async event => {
+    event.preventDefault();
+
+    this.setState({ isLoading2: true });
+
+    try {
+      await this.resendConfirmCode();
+      this.setState({ isLoading2: false });
+    }
+
+    catch (e) {
+      alert(e);
+      this.setState({ isLoading2: false });
+    }
+  }
+
+
   signup(username, password, attributeList) {
     const userPool = new CognitoUserPool({
       UserPoolId: config.cognito.USER_POOL_ID,
@@ -138,6 +156,18 @@ export default class Signup extends Component {
     );
   }
 
+  resendConfirmCode() {
+    return new Promise((resolve, reject) =>
+      this.state.newUser.resendConfirmationCode(function(err, result) {
+        if (err) {
+          reject(err);
+          return;
+        }
+        resolve(result);
+      })
+    );
+}
+
   renderConfirmationForm() {
     return (
       <form onSubmit={this.handleConfirmationSubmit}>
@@ -159,6 +189,15 @@ export default class Signup extends Component {
           isLoading={this.state.isLoading}
           text="Verify"
           loadingText="Verifying…"
+        />
+        <LoaderButton onClick={this.handleClick}
+          block
+          bsSize="large"
+          disabled={false}
+          type="submit"
+          isLoading={this.state.isLoading2}
+          text="Resend Code"
+          loadingText="Resending..."
         />
       </form>
     );

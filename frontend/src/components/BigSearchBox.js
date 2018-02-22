@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const rootStyle = {
     display: 'flex',
@@ -44,7 +44,7 @@ class BigSearchBox extends Component {
     searchHandler = (evt) => this.setState({ goSearch: true });
 
     handleKeyPress = (event) => {
-        if (event.key == 'Enter') { this.setState({ goSearch: true }); };
+        if (event.key === 'Enter') { this.setState({ goSearch: true }); };
     }
 
     render() {

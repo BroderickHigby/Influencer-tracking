@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
-import {Link, Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
 class Header extends Component {
@@ -18,7 +18,7 @@ class Header extends Component {
                 <Navbar.Collapse>
                   {this.props.isAuthenticated
                     ? <Navbar.Text  key={1}>
-                        <Link to="/app/subscribe">Subscribe</Link>
+                        <Link to="/app/settings">Settings</Link>
                       </Navbar.Text>
                     : [
                         <Navbar.Text key={1}>

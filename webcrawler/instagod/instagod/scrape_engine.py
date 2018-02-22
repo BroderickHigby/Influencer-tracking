@@ -18,6 +18,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from google.cloud import vision
 from google.cloud.vision import types
+import sys
+sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend')
+import industry_tags
+import influencer
+import pprint
 class ScrapeEngine:
     def __init__(self):
         default_attr = dict(username='', usernames=[], filename=None,
@@ -211,7 +216,69 @@ class ScrapeEngine:
                     resp2 = self.get_json(image_url_with_username)
                     print(resp2)
                     print("-----")
+    def find_influencers_by_industry(self):
+        print("IN FIND INFLUENCERS BY INDUSTRY")
+        for key, value in industry_tags.industry_search_terms.items():
+            for search_term in value:
+                is_first_page = True
+                run_again = True
+                run_count = 0
+                end_cursor = ""
+                users_to_return = []
+                while(run_again and run_count < MAX_PAGES_IN_SEARCH):
+                    if is_first_page:
+                        location_url = TAGS_URL.format(search_term)
+                        is_first_page = False
+                    else:
+                        print(end_cursor)
+                        #location_url = TAGS_URL.format(location) + '&' + end_cursor
+                        location_url = TAGS_URL.format(search_term) + '&max_id=' + end_cursor
 
+                    resp = self.get_json(location_url)
+                    if resp['graphql']['hashtag']['edge_hashtag_to_media']['page_info']['has_next_page'] == False:
+                        run_again = False
+                    #print(resp['graphql']['hashtag']['edge_hashtag_to_media']['page_info'])
+                    end_cursor = resp['graphql']['hashtag']['edge_hashtag_to_media']['page_info']['end_cursor']
+
+                    for ig_post in resp['graphql']['hashtag']['edge_hashtag_to_media']['edges']:
+                        image_shortcode = ig_post['node']['shortcode']
+                        image_url_with_username = IMAGE_WITH_USERNAME_URL.format(image_shortcode)
+                        resp2 = self.get_json(image_url_with_username)
+                        (post_count, followers_count, following_count) = self.get_account_metrics(resp2['graphql']['shortcode_media']['owner']['username'])
+                        resp2['number_of_posts'] = post_count.text
+                        resp2['number_of_followers'] = followers_count.text
+                        resp2['number_of_following'] = following_count.text
+                        #print(resp2)
+                        #pprint.pprint(resp2)
+                        user_data = {}
+                        user_data['caption'] = resp2['graphql']['shortcode_media']['edge_media_to_caption']['edges'][0]['node']['text']
+                        user_data['is_ad'] = resp2['graphql']['shortcode_media']['is_ad']
+                        user_data['location'] = resp2['graphql']['shortcode_media']['location']
+                        user_data['is_video'] = resp2['graphql']['shortcode_media']['is_video']
+                        user_data['owner_name'] = resp2['graphql']['shortcode_media']['owner']['full_name']
+                        user_data['owner_id'] = resp2['graphql']['shortcode_media']['owner']['id']
+                        user_data['is_private'] = resp2['graphql']['shortcode_media']['owner']['is_private']
+                        user_data['is_verified'] = resp2['graphql']['shortcode_media']['owner']['is_verified']
+                        user_data['username'] = resp2['graphql']['shortcode_media']['owner']['username']
+                        user_data['taken_at_timestamp'] = resp2['graphql']['shortcode_media']['taken_at_timestamp']
+                        user_data['platform'] = "instagram"
+                        user_data['industry'] = search_term
+                        print("^$^$^$^$^")
+                        print(user_data)
+                        influencer.Influencer.create(user_data, user_data['owner_id'])
+
+
+    def get_account_metrics(self, username):
+        options = wd.ChromeOptions()
+        driver = wd.Chrome("/Users/markkeane/Desktop/sapie/webcrawler/instagod/chromedriver")
+        ScrapeEngine.selenium_login(driver)
+        driver.get("https://www.instagram.com/{0}/".format(username))
+        # Click the 'Follower(s)' link
+        metrics = driver.find_elements_by_class_name("_fd86t")
+        post_count = metrics[0]
+        followers_count = metrics[1]
+        following_count = metrics[2]
+        return post_count,followers_count,following_count
 
     def rate_influencer(self, username, location, theme):
         options = wd.ChromeOptions()
