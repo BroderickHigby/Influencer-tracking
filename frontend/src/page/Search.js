@@ -53,7 +53,7 @@ class Search extends Component {
                   <Sidebar hideSm></Sidebar>
                     <div>
                         {influencerList.map(function(d, idx) {
-                            return (<div key={idx}><h2>{d.snippet.title}</h2> <img src={d.brandingSettings.image.bannerMobileHdImageUrl} alt="profile pic"/><h3>Platform: {d.platform}<br/>Industry: {d.industry}<br/>Channel Description: {d.brandingSettings.channel.description} <br/>Keywords: {d.brandingSettings.channel.keywords} <br/>Language: {d.snippet.defaultLanguage}<br/>Videos: {d.statistics.videoCount}<br/>View Count: {d.statistics.videoCount}<br/>Subscriber Count: {d.statistics.subscriberCount}</h3></div>)
+                            return (<div key={idx}><h2>{d.snippet.title}</h2> <img src={d.brandingSettings.image.bannerMobileHdImageUrl} alt="profile pic"/><h3>Platform: {d.platform}<br/>Industry: {d.industry}<br/>Channel Description: {d.brandingSettings.channel.description} <br/>Keywords: {d.brandingSettings.channel.keywords} <br/>Language: {d.snippet.defaultLanguage}<br/>Videos: {d.statistics.videoCount}<br/>View Count: {d.statistics.viewCount}<br/>Subscriber Count: {d.statistics.subscriberCount}</h3></div>)
                         })}
                     </div>
                   <Sidebar hideMd></Sidebar>
