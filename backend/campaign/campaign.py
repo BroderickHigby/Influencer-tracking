@@ -1,12 +1,12 @@
 import uuid
-import datetime 
+import datetime
 from datetime import timedelta
 from target_demographic import target_demographic
 from company import company
 
 class Campaign:
-		
-	def __init__( self,company_name,start_date=None,campaign_length=30,end_date=None,product_tags=[],budget=0,objective=None,target_url=None,status='Seeking Influencers',platforms=[] ):
+
+	def __init__( self,company_name,start_date=None,campaign_length=30,end_date=None,product_tags=[],budget=0,objective=None,target_url=None,platforms=[], influencer_target_sizes=[], target_demographics=target_demographic.target_demographic, interest_tags =[], ad_copy=None):
 
 		company = company(company_name) #generates company object
 		self.campaignid = uuid.uuid4() #generates a campaignid
@@ -17,10 +17,15 @@ class Campaign:
 		self.platforms  = platforms # YouTube,ig,etc.Should it be our job to figure out the platform??
 		self.objective = objective #prioritize traffic or sales
 		self.target_url = target_url #URL influencer will drive traffic to
+		self.status = 'Seeking Influencers'
+		self.results = []
+		self.influencers_used = []
+		self.contacted_influencers = []
+		self.expected_results = None
 
 		if start_date != None:
 			self.end_date = self.start_date + timedelta(days=self.campaign_length) # a default campain length of thirty days if none is specified
-				
+
 	#updates the campaign start date and end date
 	#once influencers are contacted and have accepted
 	def confirm_campaign_dates(self,start_date,campaign_length=30):
@@ -34,11 +39,12 @@ class Campaign:
 
 	#changes campaign status to Active
 	def start_campaign(self,influencers=[]):
-		self.status = 'Active'
 		self.influencers = influencers # a list of influencers sapie found
+
+		#generate endpoints for conversions.
+		#contact influencers.
+		#set up handling for influencer responses.
 
 	#changes campaign status to Inactive
 	def end_campaign(self):
 		self.status = 'Inactive'
-
-
