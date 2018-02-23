@@ -18,8 +18,12 @@ class Influencer:
         self.doc = doc
 
     @classmethod
-    def create(cls, doc, _id=None):
+    def create(cls, doc, _id=None, index_to_use=None):
         """Creates new influencer document"""
+        if index_to_use == None:
+            index = 'sapie_yt'
+        else:
+            index = index_to_use
         if _id == None:
             id_ = uuid.uuid4().hex
             doc['id'] = id_
@@ -28,7 +32,7 @@ class Influencer:
             doc['id'] = _id
 
         res = es.index(
-            index=cls.index,
+            index=index,
             doc_type=cls.doc_type,
             body=doc,
             id=id_,

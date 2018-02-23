@@ -8,7 +8,7 @@ import re
 import json
 import pprint
 import logging.config
-from PIL import Image
+#from PIL import Image
 from io import BytesIO
 from constants import *
 import time
@@ -16,10 +16,10 @@ from selenium import webdriver as wd
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from google.cloud import vision
-from google.cloud.vision import types
+#from google.cloud import vision
+#from google.cloud.vision import types
 import sys
-sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend')
+sys.path.insert(0, '/home/ec2-user/sapie/backend')
 import industry_tags
 import influencer
 import pprint
@@ -269,7 +269,7 @@ class ScrapeEngine:
                         user_data['following_count'] = following_count
                         print("^$^$^$^$^")
                         print(user_data)
-                        influencer.Influencer.create(user_data, user_data['owner_id'])
+                        influencer.Influencer.create(user_data, user_data['owner_id'], 'sapie_ig')
 
 
     def get_account_metrics(self, username):
