@@ -3,12 +3,23 @@ import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
+
+const styleContainer = {
+  width: '100%',
+  padding: '0'
+}
+
+const styleNav = {
+  backgroundColor: 'white',
+}
+
+
 class Header extends Component {
 
     render() {
         return (
-            <div className= "container">
-              <Navbar fluid collapseOnSelect >
+            <div className= "container" style={styleContainer}>
+              <Navbar fluid collapseOnSelect style={styleNav}>
                 <Navbar.Header>
                   <Navbar.Brand>
                   <Link to= "/app/home">Sapie Space</Link>

@@ -8,6 +8,32 @@ import Filler from '../layout/Filler';
 import axios from 'axios';
 
 
+const styleContent = {
+  width: '90%',
+
+}
+
+const styleBlock = {
+  marginBottom: '100px'
+}
+
+const styleTitle = {
+  fontSize: '2em',
+  fontWeight: '400',
+  color: 'black'
+}
+
+const styleImage = {
+  width: '100%',
+  marginBottom: '20px'
+}
+
+const styleInnerContent = {
+  color: 'black',
+  fontSize: '1em',
+}
+
+
 var influencerList = [];
 class Search extends Component {
     constructor(props) {
@@ -51,9 +77,12 @@ class Search extends Component {
                 <Content>
                   <Filler />
                   <Sidebar hideSm></Sidebar>
-                    <div>
+                    <div style={styleContent}>
                         {influencerList.map(function(d, idx) {
-                            return (<div key={idx}><h2>{d.snippet.title}</h2> <img src={d.brandingSettings.image.bannerMobileHdImageUrl} alt="profile pic"/><h3>Platform: {d.platform}<br/>Industry: {d.industry}<br/>Channel Description: {d.brandingSettings.channel.description} <br/>Keywords: {d.brandingSettings.channel.keywords} <br/>Language: {d.snippet.defaultLanguage}<br/>Videos: {d.statistics.videoCount}<br/>View Count: {d.statistics.viewCount}<br/>Subscriber Count: {d.statistics.subscriberCount}</h3></div>)
+                            return (
+                            <div key={idx} style={styleBlock}>
+                              <h2 style={styleTitle}>{d.snippet.title}</h2> <img src={d.brandingSettings.image.bannerMobileHdImageUrl} alt="profile pic" style={styleImage}/>
+                              <span style={styleInnerContent}><b>Platform</b>: {d.platform}<br/><b>Industry</b>: {d.industry}<br/><b>Channel Description</b>: {d.brandingSettings.channel.description} <br/><b>Keywords</b>: {d.brandingSettings.channel.keywords} <br/><b>Language</b>: {d.snippet.defaultLanguage}<br/><b>Videos</b>: {d.statistics.videoCount}<br/><b>View Count</b>: {d.statistics.viewCount}<br/><b>Subscriber Count</b>: {d.statistics.subscriberCount}</span></div>)
                         })}
                     </div>
                   <Sidebar hideMd></Sidebar>
