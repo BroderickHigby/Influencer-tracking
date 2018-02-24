@@ -31,7 +31,7 @@ class Subscribe extends Component {
     console.log("Plan " + strUser);
 
     if (strUser === "Monthly") {
-      axios.post('http://127.0.0.1:5000/charge_monthly', postData, axiosConfig)
+      axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly', postData, axiosConfig)
       .then(function (response) {
         console.log("Charge confirmation sent to " + token.email + " //success");
         window.location = "./confirmation"
@@ -42,7 +42,7 @@ class Subscribe extends Component {
     }
 
     else if (strUser === "Yearly") {
-      axios.post('http://127.0.0.1:5000/charge_yearly', postData, axiosConfig)
+      axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_yearly', postData, axiosConfig)
       .then(function (response) {
         console.log("Charge confirmation sent to " + token.email + " //success");
         window.location = "./confirmation"

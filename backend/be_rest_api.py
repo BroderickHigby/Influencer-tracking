@@ -94,6 +94,6 @@ def charge_monthly():
 
 
 if __name__ == "__main__":
-    #app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
+    app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
     #app.run(host='172.31.26.107', port=5000)
-    app.run(debug=True)
+    #app.run(debug=True)
