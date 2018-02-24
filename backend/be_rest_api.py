@@ -14,11 +14,20 @@ stripe.api_key = 'sk_test_UUgREeF3vNIfwJoB2UZj0oyB'
 
 plan = stripe.Plan.create(
   product={'name': 'Monthly'},
-  nickname='Monthly Subscription',
+  nickname='monthly',
   interval='month',
   currency='usd',
   amount=29900,
 )
+
+plan = stripe.Plan.create(
+  product={'name': 'Yearly'},
+  nickname='yearly',
+  interval='year',
+  currency='usd',
+  amount=322920,
+)
+
 
 @app.route("/")
 def home():
@@ -36,43 +45,55 @@ def run_query():
     print("returning query")
     return jsonify({'query_results': query_result})
 
-@app.route('/charge', methods=['POST'])
-def charge():
+
+
+@app.route('/charge_yearly', methods=['POST'])
+def charge_yearly():
     print("in charge be_rest_api")
 
-    #SUBSCRIPTIONS
+    #YEARLY SUBSCRIPTIONS
     json_input = json.loads(request.data)
     token = json_input['stripeToken']
-    email_input = json_input['email']
+    email_input = json_input['stripeEmail']
 
     customer = stripe.Customer.create(
         email = email_input,
+        source=token,
+
     )
 
     subscription = stripe.Subscription.create(
         customer=customer.id,
-        items=[{'plan': 'plan_CNCEG6DoqmaTDo'}],
-        source=token,
+        items=[{'plan': 'yearly'}],
     )
+    return "Successful yearly payment!"
 
-    #ONE TIME PAYMENT
-    '''
-    amount = 29900
+
+
+@app.route('/charge_monthly', methods=['POST'])
+def charge_monthly():
+    print("in charge be_rest_api")
+
+    #MONTHLY SUBSCRIPTIONS
     json_input = json.loads(request.data)
     token = json_input['stripeToken']
+    email_input = json_input['stripeEmail']
 
-    #token = request.form['stripeToken']
-
-    charge = stripe.Charge.create(
-        amount=amount,
-        currency='usd',
-        description='Flask Charge',
+    customer = stripe.Customer.create(
+        email = email_input,
         source=token,
     )
-    '''
 
-    return "Charge completed"
+    subscription = stripe.Subscription.create(
+        customer=customer.id,
+        items=[{'plan': 'plan_CNWPWkyubRaFN5'}],
+    )
+    return "Successful monthly payment!"
+
+
+
 
 if __name__ == "__main__":
-    app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
+    #app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
     #app.run(host='172.31.26.107', port=5000)
+    app.run(debug=True)
