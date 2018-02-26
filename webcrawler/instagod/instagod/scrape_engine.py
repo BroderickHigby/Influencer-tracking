@@ -23,6 +23,7 @@ sys.path.insert(0, '/home/ec2-user/sapie/backend')
 import industry_tags
 import influencer
 import pprint
+
 class ScrapeEngine:
     def __init__(self):
         default_attr = dict(username='', usernames=[], filename=None,
@@ -162,6 +163,25 @@ class ScrapeEngine:
                     print("error reading or comparing profile pics.")
             run_count = run_count + 1
         return users_to_return
+
+
+	def scrape_email_of_user (self,username):	 
+		r = requests.get(USER_URL.format(username))		
+		info = json.loads(r.text)
+		words_info  = info['user']['biography'].split() 
+		external_url_info = info['user']['external_url']
+
+		for word in words_info:
+			if re.match('[^@]+@[^@]+\.[^@]+',word):
+				return word
+
+		if external_url_info != None:
+			external_url = external_url_info.split()
+	
+			for word in external_url:
+				if re.math('[^@]+@[^@]+\.[^@]+',word):
+					return word
+	
 
     def scrape_followers_of_username(self, username):
         options = wd.ChromeOptions()
