@@ -1,12 +1,13 @@
 import os
 import sys
-sys.path.insert(0, '/home/ec2-user/sapie/backend/')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/')
 import influencer
 import requests
 import json
 base_url = "https://www.googleapis.com/youtube/v3"
 api_key = "AIzaSyDhbjoj6RQNvYgOulCZSJS6ARk9LxaVJxY"
 import re
+from bs4 import BeautifulSoup
 
 def print_response(response):
     for ii in response:
@@ -81,6 +82,7 @@ def channels_list_by_id(q, part, id):
     if 'items' in data:
         for item in data['items']:
             print("&&&&&&&&&&&&&&")
+            print(item)
             try:
                 desc = str(item['snippet']['description'])
                 match = re.search(r'[\w\.-]+@[\w\.-]+', desc)
@@ -92,12 +94,49 @@ def channels_list_by_id(q, part, id):
                 found_email = ''
             print(found_email)
             print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
+            print(item['snippet']['title'])
+            facebook_url, twitter_url, instagram_url, google_plus_url = pull_social_media_links(item['snippet']['title'])
             item['platform'] = "youtube"
             item['industry'] = q
             item['email'] = found_email
+            item['facebook'] = facebook_url
+            item['twitter_url'] = twitter_url
+            item['instagram_url'] = instagram_url
+            item['google_plus_url'] = google_plus_url
+            print('696969')
+            print(item)
             influencer.Influencer.create(item, item['id'])
     #except:
         #print("some error")
+
+def pull_social_media_links(username):
+    url = 'https://www.youtube.com/user/' + username + '/about'
+    html = requests.get(url)
+    soup = BeautifulSoup(html.text, 'lxml')
+    facebook_url = ''
+    twitter_url = ''
+    instagram_url = ''
+    google_plus_url = ''
+    for a in soup.find_all('a', href=True):
+        #print ("Found the URL:", a['href'])
+        if 'facebook' in a['href'] and '/redirect?' not in a['href']:
+            facebook_url = a['href']
+        elif 'twitter' in a['href'] and '/redirect?' not in a['href']:
+            twitter_url = a['href']
+        elif 'instagram' in a['href'] and '/redirect?' not in a['href']:
+            instagram_url = a['href']
+        elif 'plus.google.com' in a['href'] and 'youtube' not in a['href']:
+            google_plus_url = a['href']
+    for link in soup.find_all('link', href=True):
+        #print ("Found the URL:", link['href'])
+        if 'plus.google.com' in a['href'] and 'youtube' not in a['href']:
+            google_plus_url = a['href']
+            break
+    print(facebook_url)
+    print(twitter_url)
+    print(instagram_url)
+    print(google_plus_url)
+    return facebook_url, twitter_url, instagram_url, google_plus_url
 
 
 def explore_returned_items(returned_items, q):
