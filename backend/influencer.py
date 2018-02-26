@@ -57,9 +57,9 @@ class Influencer:
     @classmethod
     def query(cls, query, limit=100):
         """Query for a list of influencers"""
-        print("OINKKK")
         if isinstance(query, str):
             actual_query = dict(
+                size=10000,
                 query=dict(
                     query_string=dict(
                         query=query,
@@ -69,6 +69,7 @@ class Influencer:
         elif query is None:
             actual_query = MATCH_ALL
         else:
+            query['size'] = 10000
             actual_query = query
         try:
             res = es.search(

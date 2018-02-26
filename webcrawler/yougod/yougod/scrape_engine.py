@@ -4,11 +4,9 @@ sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 import influencer
 import requests
 import json
-
 base_url = "https://www.googleapis.com/youtube/v3"
 api_key = "AIzaSyDhbjoj6RQNvYgOulCZSJS6ARk9LxaVJxY"
-
-
+import re
 
 def print_response(response):
     for ii in response:
@@ -79,14 +77,27 @@ def channels_list_by_id(q, part, id):
     r = requests.get(query_url)
     data = json.loads(r.text)
     print("99999")
-    try:
-        print(data)
+    #try:
+    if 'items' in data:
         for item in data['items']:
+            print("&&&&&&&&&&&&&&")
+            try:
+                desc = str(item['snippet']['description'])
+                match = re.search(r'[\w\.-]+@[\w\.-]+', desc)
+                if match != None:
+                    found_email = match.group(0)
+                else:
+                    found_email = ''
+            except:
+                found_email = ''
+            print(found_email)
+            print('^^^^^^^^^^^^^^^^^^^^^^^^^^^^')
             item['platform'] = "youtube"
             item['industry'] = q
+            item['email'] = found_email
             influencer.Influencer.create(item, item['id'])
-    except:
-        print("some error")
+    #except:
+        #print("some error")
 
 
 def explore_returned_items(returned_items, q):
