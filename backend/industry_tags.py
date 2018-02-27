@@ -14,7 +14,7 @@ industries = [
 
 
 industry_search_terms = {
-    'realestate': ['real estate', 'home improvement'],
+    'realestate': ['real estate', 'home improvement', 'gardening'],
     'recruiting': ['recruiting'],
     'technology': ['technology', 'apps', 'product reviews', 'hardware', 'software'],
     'b2b': ['b2b'],
