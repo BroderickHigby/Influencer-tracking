@@ -60,6 +60,7 @@ class Influencer:
         if isinstance(query, str):
             actual_query = dict(
                 size=10000,
+                sort=["influencer_score"],
                 query=dict(
                     query_string=dict(
                         query=query,
