@@ -2,13 +2,13 @@ import sys
 from bs4 import BeautifulSoup
 import requests
 import requests.exceptions
-from urllib.parse import urlsplit
+#from urllib.parse import urlsplit
 from collections import deque
 import re
 import json
 import pprint
 import logging.config
-from PIL import Image
+#from PIL import Image
 from io import BytesIO
 from constants import *
 import time
@@ -16,13 +16,14 @@ from selenium import webdriver as wd
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from google.cloud import vision
-from google.cloud.vision import types
+#from google.cloud import vision
+#from google.cloud.vision import types
 import sys
-sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend')
+sys.path.insert(0, '/home/ec2-user/sapie/backend')
 import industry_tags
 import influencer
 import pprint
+
 class ScrapeEngine:
     def __init__(self):
         default_attr = dict(username='', usernames=[], filename=None,
@@ -163,6 +164,25 @@ class ScrapeEngine:
             run_count = run_count + 1
         return users_to_return
 
+
+    def scrape_email_of_user (self,username):
+        r = requests.get(USER_URL.format(username))
+        info = json.loads(r.text)
+        words_info  = info['user']['biography'].split()
+        external_url_info = info['user']['external_url']
+
+        for word in words_info:
+            if re.match('[^@]+@[^@]+\.[^@]+',word):
+                return word
+
+        if external_url_info != None:
+            external_url = external_url_info.split()
+
+            for word in external_url:
+                if re.math('[^@]+@[^@]+\.[^@]+',word):
+                    return word
+
+
     def scrape_followers_of_username(self, username):
         options = wd.ChromeOptions()
         driver = wd.Chrome("/Users/mark/Desktop/instagod/chromedriver")
@@ -225,6 +245,8 @@ class ScrapeEngine:
                 run_count = 0
                 end_cursor = ""
                 users_to_return = []
+                print(search_term)
+                search_term = search_term.replace(" ", "")
                 while(run_again and run_count < MAX_PAGES_IN_SEARCH):
                     if is_first_page:
                         location_url = TAGS_URL.format(search_term)
@@ -245,13 +267,12 @@ class ScrapeEngine:
                         image_url_with_username = IMAGE_WITH_USERNAME_URL.format(image_shortcode)
                         resp2 = self.get_json(image_url_with_username)
                         (post_count, followers_count, following_count) = self.get_account_metrics(resp2['graphql']['shortcode_media']['owner']['username'])
-                        resp2['number_of_posts'] = post_count.text
-                        resp2['number_of_followers'] = followers_count.text
-                        resp2['number_of_following'] = following_count.text
-                        #print(resp2)
-                        #pprint.pprint(resp2)
+
                         user_data = {}
-                        user_data['caption'] = resp2['graphql']['shortcode_media']['edge_media_to_caption']['edges'][0]['node']['text']
+                        try:
+                            user_data['caption'] = resp2['graphql']['shortcode_media']['edge_media_to_caption']['edges'][0]['node']['text']
+                        except:
+                            user_data['caption'] = ""
                         user_data['is_ad'] = resp2['graphql']['shortcode_media']['is_ad']
                         user_data['location'] = resp2['graphql']['shortcode_media']['location']
                         user_data['is_video'] = resp2['graphql']['shortcode_media']['is_video']
@@ -263,22 +284,37 @@ class ScrapeEngine:
                         user_data['taken_at_timestamp'] = resp2['graphql']['shortcode_media']['taken_at_timestamp']
                         user_data['platform'] = "instagram"
                         user_data['industry'] = search_term
+                        user_data['post_count'] = post_count
+                        user_data['followers_count'] = followers_count
+                        user_data['following_count'] = following_count
                         print("^$^$^$^$^")
                         print(user_data)
-                        influencer.Influencer.create(user_data, user_data['owner_id'])
+                        influencer.Influencer.create(user_data, user_data['owner_id'], 'sapie_ig')
 
 
     def get_account_metrics(self, username):
-        options = wd.ChromeOptions()
-        driver = wd.Chrome("/Users/markkeane/Desktop/sapie/webcrawler/instagod/chromedriver")
-        ScrapeEngine.selenium_login(driver)
-        driver.get("https://www.instagram.com/{0}/".format(username))
-        # Click the 'Follower(s)' link
-        metrics = driver.find_elements_by_class_name("_fd86t")
-        post_count = metrics[0]
-        followers_count = metrics[1]
-        following_count = metrics[2]
-        return post_count,followers_count,following_count
+
+        html = requests.get("https://www.instagram.com/{0}/".format(username)) # input URL here
+        soup = BeautifulSoup(html.text, 'lxml')
+
+        data = soup.find_all('meta', attrs={'property':'og:description'})
+        try:
+            text = data[0].get('content').split()
+
+            user = '%s %s %s' % (text[-3], text[-2], text[-1])
+            followers_count = text[0]
+            following_count = text[2]
+            posts_count = text[4]
+
+            print('User:', user)
+            print('Followers:', followers_count)
+            print('Following:', following_count)
+            print('Posts:', posts_count)
+
+            return posts_count,followers_count,following_count
+        except:
+            print("get_account_metrics failed")
+            return "","",""
 
     def rate_influencer(self, username, location, theme):
         options = wd.ChromeOptions()

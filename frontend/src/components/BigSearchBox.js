@@ -6,30 +6,43 @@ const rootStyle = {
     fontSize: '20px',
     flexDirection: 'column',
     flexGrow: '1',
-    marginTop: '100px'
+    marginTop: '100px',
+    textDecoration: 'none',
+    position: 'relative'
 };
 
 const inputStyle = {
     border: '1px solid var(--secondary-color)',
-    borderRadius: '5px',
+    borderRadius: '3em',
     flexGrow: '1',
-    height: '50px',
+    height: '40px',
     lineHeight: '50px',
     marginBottom: '20px',
-    padding: '5px 18px'
+    padding: '5px 18px',
+    fontSize: '.75em',
+    fontWeight: '300',
+    
 };
+
+
+const styleButton  = {
+  position: 'absolute',
+  textAlign: 'center',
+  right: '0'
+}
 
 const buttonStyle = {
     backgroundColor: 'var(--primary-color)',
     border: '0',
-    borderRadius: 'var(--button-radius)',
+    borderRadius: '3em',
     color: 'var(--light-color)',
     display: 'inline-block',
     lineHeight: '40px',
     width: '100px',
     height: '40px',
-    marginRight: '20px',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    fontWeight: '300',
+    fontSize: '.75em',
 };
 
 class BigSearchBox extends Component {
@@ -61,7 +74,7 @@ class BigSearchBox extends Component {
                      onChange={this.changeHandler}
                      onKeyPress={this.handleKeyPress}
                      />
-              <div style={{textAlign: 'center'}}>
+              <div style={styleButton}>
                 <button style={buttonStyle} onClick={this.searchHandler}>Search</button>
               </div>
             </div>
