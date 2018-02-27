@@ -88,9 +88,20 @@ def charge_monthly():
         customer=customer.id,
         items=[{'plan': 'plan_CNWPWkyubRaFN5'}],
     )
-    return "Successful monthly payment!"
+    print(subscription.id)
+    return jsonify({'subscription': subscription})
 
 
+@app.route('/cancel_subscription', methods=['POST'])
+def cancel_subscription():
+
+    json_input = json.loads(request.data)
+    sub_id = json_input['subscription_id']
+
+    subscription = stripe.Subscription.retrieve(sub_id)
+    subscription.delete(at_period_end = False)
+
+    return jsonify({'date': subscription.ended_at})
 
 
 if __name__ == "__main__":

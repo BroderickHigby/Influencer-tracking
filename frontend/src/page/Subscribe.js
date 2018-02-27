@@ -10,7 +10,18 @@ class Subscribe extends Component {
   }
 
   onToken(token) {
-    //Search userpool database for valid user Email
+    //Check to see if current user email is the same as inputed email
+    /*
+    if (user email !equal to token.email) {
+      window.location = "./emailerror"
+    }
+    else {
+      CODE BELOW
+    }
+
+    */
+
+    ///****************** GOES INTO ELSE STATEMENT ABOVE *****************
     var postData = {
         stripeToken: token.id,
         stripeEmail: token.email,
@@ -30,10 +41,27 @@ class Subscribe extends Component {
     var strUser = e.options[e.selectedIndex].value;
     console.log("Plan " + strUser);
 
+    //If user email entered is the same as currently logged in
+    //Else throw error and redo page
+
     if (strUser === "Monthly") {
       axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly', postData, axiosConfig)
       .then(function (response) {
         console.log("Charge confirmation sent to " + token.email + " //success");
+
+        var subs = response.data.subscription;
+        var subscription_id = subs.id;
+        var user_email = token.email;
+
+        /*
+          Save the subscription_id to the the user in cognito with the
+          email user_email. The subscription_id is used to cancel the subscription
+          later on.
+
+          Allow access to payed authenticated routes and now display
+          Unsubscribe page instead of subscribe page.
+        */
+
         window.location = "./confirmation"
 
       }).catch(error => {
@@ -45,6 +73,20 @@ class Subscribe extends Component {
       axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_yearly', postData, axiosConfig)
       .then(function (response) {
         console.log("Charge confirmation sent to " + token.email + " //success");
+
+        var subs = response.data.subscription;
+        var subscription_id = subs.id;
+        var user_email = token.email;
+
+        /*
+          Save the subscription_id to the the user in cognito with the
+          email user_email. The subscription_id is used to cancel the subscription
+          later on.
+
+          Allow access to payed authenticated routes and now display
+          Unsubscribe page instead of subscribe page.
+        */
+
         window.location = "./confirmation"
 
 
@@ -56,6 +98,8 @@ class Subscribe extends Component {
     else {
         console.log("No plan selected");
     }
+    // ******************** END ELSE STATEMENT FROM ABOVE ****************
+
   }
 
 
@@ -65,6 +109,8 @@ class Subscribe extends Component {
         <center>
         <br></br>
           <div>
+            <h5>Please use the same email you signed up wtih</h5>
+            <br></br>
             <h3><b>$299.00</b> for a monthly subscription</h3>
             <h3><strike>$3588.00</strike> <b>$3229.20 </b>for a yearly subscription</h3>
             <h4>10% for a yearly subscription!</h4>
