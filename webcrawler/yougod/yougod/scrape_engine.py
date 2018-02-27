@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, '/home/ec2-user/sapie/backend/')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/')
 import influencer
 import requests
 import json
@@ -8,9 +8,9 @@ base_url = "https://www.googleapis.com/youtube/v3"
 api_key = "AIzaSyDhbjoj6RQNvYgOulCZSJS6ARk9LxaVJxY"
 import re
 from bs4 import BeautifulSoup
-sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/instagod/instagod')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler/instagod/instagod')
 from ig_scrape_engine import *
-sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/twittergod/twittergod')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler/twittergod/twittergod')
 from twitter_scraper import *
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
@@ -144,6 +144,26 @@ def channels_list_by_id(q, part, id):
             print('696969')
             #print(item)
             pp.pprint(item)
+
+            base_influencer_score = 75
+            youtube_component = float(item['youtube']['statistics']['subscriberCount']) / 10000000.0
+            if youtube_component > 1.00:
+                youtube_component = 1.00
+            youtube_component = youtube_component * 5.0
+            score = float(base_influencer_score) + youtube_component
+            if item['email'] != '':
+                score += 5.00
+            if item['google_plus_url'] != '':
+                score += 5.00
+            if item["facebook"]["url"] != '':
+                score += 5.00
+            if item['instagram']['url'] != '':
+                score += 5.00
+            if item['twitter']['url'] != '':
+                score += 5.00
+            item['influencer_score'] = score
+            print("OMG")
+            print(score)
             influencer.Influencer.create(item, item['youtube']['id'])
     #except:
         #print("some error")
