@@ -84,7 +84,8 @@ class Influencer:
             results = []
             for doc in res['hits']['hits']:
                 results.append(doc['_source'])
-        return results
+        newlist = sorted(results, key=lambda k: k['influencer_score'], reverse=True)
+        return newlist
 
 
 class InfluencerResource:
