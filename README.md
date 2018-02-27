@@ -43,6 +43,7 @@ You'll have to create a VM in AWS. Speak with Brody more about that.
 
 ```console
 $ ssh -A -i sapie-dev.pem ubuntu@18.218.86.249
+```
 ## How it works
 
 The interface is a business-facing platform that allows businesses to connect with
