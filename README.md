@@ -5,32 +5,39 @@ Sapie Space helps businesses go viral using machine learning to connect them wit
 
 ## Quick Start
 
-Make sure you have latest Docker and Docker Compose installed and run these commands from project root:
+Make sure you have latest Docker and Docker Compose installed. Download elasticsearch and run these commands from project root:
 
 ```console
-$ echo COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml > .env
-$ docker-compose build
-$ docker-compose up
-```
+# create a virtualenv in your parent directory if you need one to install requirements (Windows/MacOSx)
 
-1. First line you will run only once to create local `.env` file indicating you are using dev environment.
-2. Second line you'll run to build images every time dependencies get updated
-3. This is one of many other ways to get Docker Compose running your selected environment.
+# you will run echo only once to create local `.env` file indicating you are using dev environment.
+$ echo COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml > .env
+
+# run to build images every time dependencies get updated
+$ docker-compose build
+
+# This is one of many other ways to get Docker Compose running your selected environment.
+$ docker-compose up
+
+# Starting ES: elasticsearch is likely stored in your parent directory, go back to that, enter ./elasticsearch and then type:
+$ ./bin/elasticsearch
+# in root:  
+$ pip install -r requirements.txt
+
+# in sapie/be: 
+$ pip install -r requirements.txt
+
+# in sapie/fe:
+$ npm install
+$ npm start
+```
 
 Then you just have to point your browser to http://localhost:8080/ to
 see it running. You can also access API endpoints directly like
 http://localhost:8080/api/influencer
 
 
-### Sample Fake Data
-
-If you want to create sample fake data you might look at `sapie-be/sample.py` or run the following from project root:
-
 ```
-$ docker-compose run --rm backend python sample.py
-```
-
-
 ### Known Issues
 
 You might have trouble pulling ElasticSearch official images. You can try it manually just in case:
@@ -55,39 +62,24 @@ link](https://docs.google.com/presentation/d/1cEplBy7avil1pP7XFVi694qOlSWiG58qNW
 
 ## A brief history of Sapie Space
 
-Jack Treseler is my colleague and the co-founder of Sapie
-Space. As an employee at Square, he found it difficult to make connections with influencers, see how 
+Jack Treseler and Brody are the co-founders of Sapie Space. Brody was working at Google and Jack was
+an employee at Square. Jack came up with the idea when  he found it difficult to make connections with influencers, see how 
 influential they actually are, as well as if they were a good fit for the company. 
 Jack and Brody have been working to make Sapie Space a reaity since April 2017.
-
-## Where we stand
-
-Currently, we have influencer data manually searched through AWS ElasticSearch.
-Our next big step is to create the web crawler.
-
-1. Connect the front-end to our ElasticSearch interface. 
-
-2. Connect Stripe. The payment platform
-
-3. Develop the Web Crawler.
 
 
 ### New development line
 
 A decoupled front-end started being developed and can be found under
-`sapie-fe`. The idea is to merge it with a REST API back-end under
-`sapie-be`. We have also a docker compose environment defined that
+`frontend`. The idea is to merge it with a REST API back-end under
+`backend`. We have also a docker compose environment defined that
 should ease daily development and deployment.
 
 
 ## Future Updates
 
-*January 15, 2018 Beta-Version:* A website with a search engine that
- connects to ElasticSearch and allows the user's (businesses) to find
- targeted influencers.
-
-*Second Iteration:* Integrate IBM Watson to show on an indivdual's
- page for the search results
+- Integrate each social media platform and use Youtube as an anchorpoint
+- Create a stepladder of social influencer
 
 
 ## Other Business-Development References
@@ -112,8 +104,4 @@ might try to look into these first.
 
 Make you run also have run the following commands in the correponding directory to install all python and js dependencies:
 
-in root:  pip install -r requirements.txt
 
-in sapie/be: pip install -r requirements.txt
-
-in sapie/fe: npm install
