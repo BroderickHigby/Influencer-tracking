@@ -11,7 +11,7 @@ MATCH_ALL = {"query": {"match_all": {}}}
 
 class Influencer:
 
-    index = 'sapie'
+    index = 'sapie_yt'
     doc_type = 'influencer'
 
     def __init__(self, doc=None):

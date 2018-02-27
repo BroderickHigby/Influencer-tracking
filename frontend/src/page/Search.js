@@ -81,8 +81,8 @@ class Search extends Component {
                         {influencerList.map(function(d, idx) {
                             return (
                             <div key={idx} style={styleBlock}>
-                              <h2 style={styleTitle}>{d.snippet.title}</h2> <img src={d.brandingSettings.image.bannerMobileHdImageUrl} alt="profile pic" style={styleImage}/>
-                              <span style={styleInnerContent}><b>Platform</b>: {d.platform}<br/><b>Industry</b>: {d.industry}<br/><b>Channel Description</b>: {d.brandingSettings.channel.description} <br/><b>Keywords</b>: {d.brandingSettings.channel.keywords} <br/><b>Language</b>: {d.snippet.defaultLanguage}<br/><b>Videos</b>: {d.statistics.videoCount}<br/><b>View Count</b>: {d.statistics.viewCount}<br/><b>Subscriber Count</b>: {d.statistics.subscriberCount}</span></div>)
+                              <h2 style={styleTitle}>{d.youtube.snippet.title}</h2> <img src={d.youtube.brandingSettings.image.bannerMobileHdImageUrl} alt="profile pic" style={styleImage}/>
+                              <span style={styleInnerContent}><b>Platform Base</b>: {d.platform_base}<br/><b>Industry</b>: {d.industry}<br/><b>Keywords</b>: {d.youtube.brandingSettings.channel.keywords} <br/><b>Email</b>: {d.email}<br/><b>Facebook</b>: {d.facebook.url}<br/><b>Google+</b>: {d.google_plus_url}<br/><b>Youtube:</b><br/>Subscribers: {d.youtube.statistics.subscriberCount}<br/>Views: {d.youtube.statistics.viewCount}<br/>Videos: {d.youtube.statistics.videoCount}<br/>Comment Count: {d.youtube.statistics.commentCount}<br/>Country: {d.youtube.snippet.country}<br/>Description: {d.youtube.snippet.description}<br/><b>Instagram:</b><br/>Followers: {d.instagram.followers_count}<br/>Posts: {d.instagram.posts_count}<br/>Url: {d.instagram.url}<br/><b>Twitter:</b><br/>Followers: {d.twitter.followers_count}<br/>Favorites: {d.twitter.favourites_count}<br/>Url: {d.twitter.url}</span></div>)
                         })}
                     </div>
                   <Sidebar hideMd></Sidebar>
