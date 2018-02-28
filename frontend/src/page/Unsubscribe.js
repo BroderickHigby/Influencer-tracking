@@ -10,6 +10,7 @@ class Unsubscribe extends Component {
 
   onClick() {
 
+
     /*
       Pull subscription_id from the cognito user pool to pass into postData
     */
@@ -46,7 +47,7 @@ class Unsubscribe extends Component {
         later on.
       */
 
-      window.location = "./"
+      window.location = "./cancelconfirm"
 
     }).catch(error => {
       console.log(error)
