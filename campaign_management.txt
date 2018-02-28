@@ -33,3 +33,5 @@ The client can remove influencers or add influencers to this default list.
 
 Can do final tweaking to campaign before they start - we then contact influencers on their behalf and provide a campaign management
 portal.
+
+Set up urls that link to client target url that use google analytics and cookies to track interests, demographics, social media, etc.
