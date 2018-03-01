@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/backend/')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/')
 import influencer
 import requests
 import json
@@ -8,9 +8,9 @@ base_url = "https://www.googleapis.com/youtube/v3"
 api_key = "AIzaSyDhbjoj6RQNvYgOulCZSJS6ARk9LxaVJxY"
 import re
 from bs4 import BeautifulSoup
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/webcrawler/instagod/instagod')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler/instagod/instagod')
 from ig_scrape_engine import *
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/webcrawler/twittergod/twittergod')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler/twittergod/twittergod')
 from twitter_scraper import *
 import urllib
 import webbrowser
@@ -184,9 +184,22 @@ def channels_list_by_id(q, part, id):
                 current_sm = ''
                 sms = {}
                 for entity in entity_json['Entities']:
-                    if current_sm != '' and entity['Text'].lower() != 'instagram' and entity['Text'].lower() != 'ig' and entity['Text'].lower() != 'facebook' and entity['Text'].lower() != 'fb' and entity['Text'].lower() != 'snapchat' and entity['Text'].lower() != 'sc' and entity['Text'].lower() != 'email':
+                    if current_sm != '' and entity['Text'].lower() != 'instagram' and entity['Text'].lower() != 'ig' and entity['Text'].lower() != 'facebook' and entity['Text'].lower() != 'fb' and entity['Text'].lower() != 'snapchat' and entity['Text'].lower() != 'sc' and entity['Text'].lower() != 'email' and entity['Text'].lower() != 'twitter':
                         sms[current_sm] = entity['Text']
-                        current_sm = ''
+                        ee = current_sm.split(" ")
+                        if len(ee) > 1:
+                            ee.pop(0)
+                            current_sm = ''
+                            iii = 0
+                            for e in ee:
+                                if iii == 0:
+                                    current_sm == e
+                                else:
+                                    current_sm += (' ' + e)
+                                iii += 1
+                        else:
+                            current_sm = ''
+
                     else:
                         if entity['Text'].lower() == 'instagram' or entity['Text'].lower() == 'ig':
                             if current_sm == '':
@@ -203,11 +216,19 @@ def channels_list_by_id(q, part, id):
                                 current_sm = 'sc'
                             else:
                                 current_sm += ' sc'
-                        elif entity['Text'].lower() == 'email':
+                        elif entity['Text'].lower() == 'twitter':
                             if current_sm == '':
-                                current_sm = 'email'
+                                current_sm = 'twitter'
                             else:
-                                current_sm += ' email'
+                                current_sm += ' twitter'
+                        elif entity['Type'] == 'OTHER' and '@' in entity['Text']:
+                            sms['email'] = entity['Text']
+                        elif entity['Type'] == 'OTHER' and 'facebook.com' in entity['Text']:
+                            sms['fb'] = entity['Text']
+                        elif entity['Type'] == 'OTHER' and 'instagram.com' in entity['Text']:
+                            sms['ig'] = entity['Text']
+                        elif entity['Type'] == 'OTHER' and 'twitter.com' in entity['Text']:
+                            sms['twitter'] = entity['Text']
                 print(json.dumps(sms, sort_keys=True, indent=4))
                 print('oink')
                 print(json.dumps(comprehend.detect_entities(Text=desc, LanguageCode='en'), sort_keys=True, indent=4))
