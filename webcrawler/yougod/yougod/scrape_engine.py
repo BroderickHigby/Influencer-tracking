@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, '/home/ec2-user/sapie/backend/')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/')
 import influencer
 import requests
 import json
@@ -8,9 +8,9 @@ base_url = "https://www.googleapis.com/youtube/v3"
 api_key = "AIzaSyDhbjoj6RQNvYgOulCZSJS6ARk9LxaVJxY"
 import re
 from bs4 import BeautifulSoup
-sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/instagod/instagod')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler/instagod/instagod')
 from ig_scrape_engine import *
-sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/twittergod/twittergod')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler/twittergod/twittergod')
 from twitter_scraper import *
 import urllib
 import webbrowser
@@ -175,8 +175,26 @@ def channels_list_by_id(q, part, id):
             pp.pprint(item)
 
             #Parse description for links.
-            desc = str(item['youtube']['snippet']['description'])
+            desc = str(item['youtube']['snippet']['description']).lower()
+            if 'snapchat' in desc:
+                splits = desc.split('snapchat')
+                sc_handle = splits[1].split(' ')[0]
+            if 'instagram' in desc:
+                splits = desc.split('instagram')
+                ig_handle = splits[1].split(' ')[0]
+            if 'email' in desc:
+                splits = desc.split('email')
+                email_handle = splits[1].split(' ')[0]
+            if 'twitter' in desc:
+                splits = desc.split('twitter')
+                twitter_handle = splits[1].split(' ')[0]
+
+
+            print("MEOOFFFF")
+            print(desc)
+            print('############')
             #look up IGs if no ig.
+            find_ig_account(item['youtube']['brandingSettings']['channel']['title'], item['youtube']['snippet']['thumbnails']['medium']['url'])
 
             influencer.Influencer.create(item, item['youtube']['id'])
     #except:
@@ -206,6 +224,10 @@ def find_ig_account(text, photo_url):
                 if ii == 'www.instagram.com':
                     use_next = True
             ig_link = 'https://www.instagram.com/' + ig_name
+            html = requests.get(ig_link) # input URL here
+            soup = BeautifulSoup(html.text, 'lxml')
+            data = soup.find_all("img", {"class": "_rewi8"})
+            print(data)
             print(ig_link)
             print('---------')
 
