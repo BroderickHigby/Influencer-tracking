@@ -112,6 +112,9 @@ const expand =  (()=>{
 
 })
 
+const numberWithCommas = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 
 var influencerList = [];
@@ -204,9 +207,9 @@ class Search extends Component {
                                   {String(d.influencer_score).substr(0,2)} &#37; influence
                                   </div>
                                   <div style={restStyle}>
-                                  {d.youtube.statistics.subscriberCount} subscribers <br/>
-                                  {d.youtube.statistics.viewCount} views <br/>
-                                  {d.youtube.statistics.videoCount} videos <br/>
+                                  {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers <br/>
+                                  {numberWithCommas(d.youtube.statistics.viewCount)} views <br/>
+                                  {numberWithCommas(d.youtube.statistics.videoCount)} videos <br/>
                                   </div>
                                 </div>
                               </div>
