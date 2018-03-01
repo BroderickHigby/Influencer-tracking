@@ -11,7 +11,7 @@ MATCH_ALL = {"query": {"match_all": {}}}
 
 class Influencer:
 
-    index = 'sapie'
+    index = 'sapie_yt'
     doc_type = 'influencer'
 
     def __init__(self, doc=None):
@@ -60,6 +60,7 @@ class Influencer:
         if isinstance(query, str):
             actual_query = dict(
                 size=10000,
+                sort=["influencer_score"],
                 query=dict(
                     query_string=dict(
                         query=query,
@@ -83,7 +84,8 @@ class Influencer:
             results = []
             for doc in res['hits']['hits']:
                 results.append(doc['_source'])
-        return results
+        newlist = sorted(results, key=lambda k: k['influencer_score'], reverse=True)
+        return newlist
 
 
 class InfluencerResource:

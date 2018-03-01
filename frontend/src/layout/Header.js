@@ -33,7 +33,7 @@ class Header extends Component {
                       </Navbar.Text>
                     : [
                         <Navbar.Text key={1}>
-                         Welcome!
+
                        </Navbar.Text>
                     ]}
                   <Nav pullRight>

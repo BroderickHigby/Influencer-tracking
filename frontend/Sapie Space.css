@@ -17,7 +17,7 @@ body {margin:0;}
   padding: 12px 10px;
   text-decoration: none;
   font-size: 12px;
-  font-family: 'Encode Sans Expanded', sans-serif; 
+  font-family: 'Encode Sans Expanded', sans-serif;
 }
 
 .navbar a:hover {
@@ -334,11 +334,11 @@ hr{
 .tablink:hover {
   font-weight: bold;
     }
-    
+
 .tablink:focus {
     font-weight:bold;
     border-bottom: solid #555 5px;
-    
+
 }
 
 
@@ -372,7 +372,7 @@ input[type=submit] {padding:5px 10px; background:#e2e2e2; border:0 none;
 }
 input[type=text]:focus {border-color:#ffffff; }
 
-input[type=text] {padding:4px; border:1px solid #ccc; 
+input[type=text] {padding:4px; border:1px solid #ccc;
 -webkit-border-radius: 5px;
     border-radius: 3px;
 }
@@ -391,4 +391,3 @@ input[type=text] {padding:4px; border:1px solid #ccc;
     .topnav input[type=text] {
         border: 1px solid #ccc;
     }
-

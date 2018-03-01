@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/')
+sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 import influencer
 import requests
 import json
@@ -8,10 +8,17 @@ base_url = "https://www.googleapis.com/youtube/v3"
 api_key = "AIzaSyDhbjoj6RQNvYgOulCZSJS6ARk9LxaVJxY"
 import re
 from bs4 import BeautifulSoup
-sys.path.insert(0, '/Users/markkeane/Desktop/sapie/webcrawler/instagod/instagod')
+sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/instagod/instagod')
 from ig_scrape_engine import *
-sys.path.insert(0, '/Users/markkeane/Desktop/sapie/webcrawler/twittergod/twittergod')
+sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/twittergod/twittergod')
 from twitter_scraper import *
+import urllib
+import webbrowser
+from skimage.measure import compare_ssim
+import argparse
+import imutils
+import cv2
+import numpy as np
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 def print_response(response):
@@ -143,10 +150,80 @@ def channels_list_by_id(q, part, id):
             item['google_plus_url'] = google_plus_url
             print('696969')
             #print(item)
+            #pp.pprint(item)
+
+            base_influencer_score = 75
+            youtube_component = float(item['youtube']['statistics']['subscriberCount']) / 10000000.0
+            if youtube_component > 1.00:
+                youtube_component = 1.00
+            youtube_component = youtube_component * 5.0
+            score = float(base_influencer_score) + youtube_component
+            if item['email'] != '':
+                score += 5.00
+            if item['google_plus_url'] != '':
+                score += 5.00
+            if item["facebook"]["url"] != '':
+                score += 5.00
+            if item['instagram']['url'] != '':
+                score += 5.00
+            if item['twitter']['url'] != '':
+                score += 5.00
+            item['influencer_score'] = score
+            print("OMG")
+            print(score)
+            print(item['influencer_score'])
             pp.pprint(item)
+
+            #Parse description for links.
+            desc = str(item['youtube']['snippet']['description'])
+            #look up IGs if no ig.
+
             influencer.Influencer.create(item, item['youtube']['id'])
     #except:
         #print("some error")
+
+def find_ig_account(text, photo_url):
+    text = urllib.parse.quote_plus(text)
+    url = 'https://google.com/search?q=' + text
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'lxml')
+    #for link in soup.findAll('a', attrs={'href': re.compile("^http://")}):
+    #    print (link.get('href'))
+
+    #print(soup)
+    #for g in soup.find_all(class_='g'):
+    for g in soup.find_all('a', href=True):
+        link_text = g.get('href')
+        if 'https://www.instagram.com/' in link_text and 'https://www.instagram.com/explore/tags/' not in link_text:
+            #print(link_text)
+            #print('---------')
+            link_list = link_text.split('/')
+            use_next = False
+            for ii in link_list:
+                if use_next == True:
+                    ig_name = ii
+                    break
+                if ii == 'www.instagram.com':
+                    use_next = True
+            ig_link = 'https://www.instagram.com/' + ig_name
+            print(ig_link)
+            print('---------')
+
+def compare_images_for_similarity(im1, im2):
+    # load the two input images
+    imageA = cv2.imread(im1)
+    imageB = cv2.imread(im2)
+    imageA = cv2.resize(imageA, (32,32))
+    imageB = cv2.resize(imageB, (32,32))
+    imageA = cv2.cvtColor(imageA, cv2.COLOR_BGR2GRAY)
+    imageB = cv2.cvtColor(imageB, cv2.COLOR_BGR2GRAY)
+
+    picture1_norm = imageA/np.sqrt(np.sum(imageA**2))
+    picture2_norm = imageB/np.sqrt(np.sum(imageB**2))
+
+    sim_score = np.sum(picture2_norm*picture1_norm)
+    print(sim_score)
+    return sim_score
 
 def pull_social_media_links(username):
     url = 'https://www.youtube.com/user/' + username + '/about'

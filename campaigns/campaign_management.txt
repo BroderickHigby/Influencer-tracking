@@ -33,3 +33,17 @@ The client can remove influencers or add influencers to this default list.
 
 Can do final tweaking to campaign before they start - we then contact influencers on their behalf and provide a campaign management
 portal.
+
+Set up urls that link to client target url that use google analytics and cookies to track interests, demographics, social media, etc.
+
+
+
+
+clients fill out the create campaign form. this gets written to the db as a campaign object
+
+then on the backend we rate/match a ton of influencers first with a fake model then with a real model as we gather data from doing this and reach out automatically to a large group of influencers are models say match the inputs they gave in the create campaign form.
+once a few influencers respond and agree to run the plugs the campaign status goes active, all of this is show in the campaign management portal.
+whenever a conversion on the campaign happens from the influencer plug (link click, or product purchased) this gets written to the campaign object variable called results, a datetime list that just shows how many conversion it has had and when they took place
+once the campaign ends (by budget or time) we automatically send the client a full report of the campaign (and make it available in the history section of the campaign management portal), and we then retrain our models using this new campaign as an input and switch the status of the campaign to ended.
+^ that is the summary, i think it could all be done automatically, even the reaching out to influencers tbh without too much work
+and this is what i was thinking for a campaign object: (basically the info we would need them to give us in the form):
