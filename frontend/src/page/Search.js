@@ -9,6 +9,8 @@ import axios from 'axios';
 import face from '../facebook.svg';
 import insta from '../instagram.svg';
 import twitter from '../twitter.svg';
+import googlePlus from '../google-plus.svg';
+import email from '../email.svg';
 
 
 const styleContent = {
@@ -42,7 +44,16 @@ const industryStyle =  {
 
 const styleImage = {
   height: '200px',
-  borderRadius: '20px 0 0 20px'
+  borderRadius: '20px 0 0 20px',
+
+  position: 'absolute',
+  top: '0',
+  left: '50%',
+  transform: 'translate(-50%,0)',
+  minWidth: '100%',
+  maxWidth: 'none',
+  textAlign: 'center',
+  margin: '0 auto'
 }
 
 const rowStyle = {
@@ -50,9 +61,11 @@ const rowStyle = {
 }
 
 const leftStyle = {
-  height: '225px',
+  height: '200px',
   overflow: 'hidden',
   padding: '0',
+  borderRadius: '20px 0 0 20px',
+  backgroundColor: 'red'
 }
 
 const rightStyle = {
@@ -112,6 +125,9 @@ const expand =  (()=>{
 
 })
 
+const numberWithCommas = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 
 var influencerList = [];
@@ -197,6 +213,18 @@ class Search extends Component {
                                         ""
                                       )
                                     }
+
+                                    {
+                                      d.google_plus_url ? (
+                                        <a href={d.google_plus_url} target="_blank"><img src={googlePlus} style={iconStyle} />
+                                        </a>
+                                      ) : (
+                                        ""
+                                      )
+                                    }
+
+                                    <a href={"mailto:" + d.email} target="_top"><img src={email} style={iconStyle} />
+                                    </a>
                                   </div>
 
                                 <div style={bottomRightStyle}>
@@ -204,9 +232,9 @@ class Search extends Component {
                                   {String(d.influencer_score).substr(0,2)} &#37; influence
                                   </div>
                                   <div style={restStyle}>
-                                  {d.youtube.statistics.subscriberCount} subscribers <br/>
-                                  {d.youtube.statistics.viewCount} views <br/>
-                                  {d.youtube.statistics.videoCount} videos <br/>
+                                  {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers <br/>
+                                  {numberWithCommas(d.youtube.statistics.viewCount)} views <br/>
+                                  {numberWithCommas(d.youtube.statistics.videoCount)} videos <br/>
                                   </div>
                                 </div>
                               </div>
