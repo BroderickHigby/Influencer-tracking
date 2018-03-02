@@ -130,8 +130,15 @@ const numberWithCommas = (num) => {
 }
 
 
+
 var influencerList = [];
 class Search extends Component {
+
+    handleClick() {
+      console.log("CLICKED");
+      window.location = "./home";
+    }
+
     constructor(props) {
         super(props);
 	this.state = {IL: []};
@@ -243,6 +250,17 @@ class Search extends Component {
 
                               </div>)
                         })}
+                        {
+                            influencerList.length ? (
+                              ""
+                            ) : (
+                              <div><
+                                center><h3>No results found</h3>
+                                <button onClick={this.handleClick}>Back to Search</button>
+                                </center>
+                              </div>
+                            )
+                        }
                     </div>
                   <Sidebar hideMd></Sidebar>
                   <Filler />

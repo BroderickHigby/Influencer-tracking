@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 
 
@@ -8,7 +7,7 @@ class Unsubscribe extends Component {
     super(props);
   }
 
-  onClick() {
+  handleClick() {
 
 
     /*
