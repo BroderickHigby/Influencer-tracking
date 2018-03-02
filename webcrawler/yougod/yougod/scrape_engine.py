@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, '/home/ec2-user/sapie/backend/')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/')
 import influencer
 import requests
 import json
@@ -8,9 +8,9 @@ base_url = "https://www.googleapis.com/youtube/v3"
 api_key = "AIzaSyDhbjoj6RQNvYgOulCZSJS6ARk9LxaVJxY"
 import re
 from bs4 import BeautifulSoup
-sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/instagod/instagod')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler/instagod/instagod')
 from ig_scrape_engine import *
-sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/twittergod/twittergod')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler/twittergod/twittergod')
 from twitter_scraper import *
 import urllib
 import webbrowser
@@ -20,6 +20,7 @@ import imutils
 import cv2
 import numpy as np
 import pprint
+import boto3
 pp = pprint.PrettyPrinter(indent=4)
 def print_response(response):
     for ii in response:
@@ -169,14 +170,74 @@ def channels_list_by_id(q, part, id):
             if item['twitter']['url'] != '':
                 score += 5.00
             item['influencer_score'] = score
-            print("OMG")
-            print(score)
-            print(item['influencer_score'])
-            pp.pprint(item)
+            #print(score)
+            #print(item['influencer_score'])
+            #pp.pprint(item)
 
             #Parse description for links.
-            desc = str(item['youtube']['snippet']['description'])
+            desc = str(item['youtube']['snippet']['description']).lower()
+            comprehend = boto3.client(service_name='comprehend', region_name='us-west-2')
+            print("MEOOFFFF")
+            if len(desc) > 0:
+                print('Calling DetectEntities')
+                entity_json = comprehend.detect_entities(Text=desc, LanguageCode='en')
+                current_sm = ''
+                sms = {}
+                for entity in entity_json['Entities']:
+                    if current_sm != '' and entity['Text'].lower() != 'instagram' and entity['Text'].lower() != 'ig' and entity['Text'].lower() != 'facebook' and entity['Text'].lower() != 'fb' and entity['Text'].lower() != 'snapchat' and entity['Text'].lower() != 'sc' and entity['Text'].lower() != 'email' and entity['Text'].lower() != 'twitter':
+                        sms[current_sm] = entity['Text']
+                        ee = current_sm.split(" ")
+                        if len(ee) > 1:
+                            ee.pop(0)
+                            current_sm = ''
+                            iii = 0
+                            for e in ee:
+                                if iii == 0:
+                                    current_sm == e
+                                else:
+                                    current_sm += (' ' + e)
+                                iii += 1
+                        else:
+                            current_sm = ''
+
+                    else:
+                        if entity['Text'].lower() == 'instagram' or entity['Text'].lower() == 'ig':
+                            if current_sm == '':
+                                current_sm = 'ig'
+                            else:
+                                current_sm += ' ig'
+                        elif entity['Text'].lower() == 'facebook' or entity['Text'].lower() == 'fb':
+                            if current_sm == '':
+                                current_sm = 'fb'
+                            else:
+                                current_sm += ' fb'
+                        elif entity['Text'].lower() == 'snapchat' or entity['Text'].lower() == 'sc':
+                            if current_sm == '':
+                                current_sm = 'sc'
+                            else:
+                                current_sm += ' sc'
+                        elif entity['Text'].lower() == 'twitter':
+                            if current_sm == '':
+                                current_sm = 'twitter'
+                            else:
+                                current_sm += ' twitter'
+                        elif entity['Type'] == 'OTHER' and '@' in entity['Text']:
+                            sms['email'] = entity['Text']
+                        elif entity['Type'] == 'OTHER' and 'facebook.com' in entity['Text']:
+                            sms['fb'] = entity['Text']
+                        elif entity['Type'] == 'OTHER' and 'instagram.com' in entity['Text']:
+                            sms['ig'] = entity['Text']
+                        elif entity['Type'] == 'OTHER' and 'twitter.com' in entity['Text']:
+                            sms['twitter'] = entity['Text']
+                print(json.dumps(sms, sort_keys=True, indent=4))
+                print('oink')
+                print(json.dumps(comprehend.detect_entities(Text=desc, LanguageCode='en'), sort_keys=True, indent=4))
+                print('End of DetectEntities\n')
+                print("")
+                print(desc)
+                print('############')
             #look up IGs if no ig.
+            find_ig_account(item['youtube']['brandingSettings']['channel']['title'], item['youtube']['snippet']['thumbnails']['medium']['url'])
 
             influencer.Influencer.create(item, item['youtube']['id'])
     #except:
@@ -206,6 +267,10 @@ def find_ig_account(text, photo_url):
                 if ii == 'www.instagram.com':
                     use_next = True
             ig_link = 'https://www.instagram.com/' + ig_name
+            html = requests.get(ig_link) # input URL here
+            soup = BeautifulSoup(html.text, 'lxml')
+            data = soup.find_all("img", {"class": "_rewi8"})
+            print(data)
             print(ig_link)
             print('---------')
 

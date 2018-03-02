@@ -6,6 +6,9 @@ import Sidebar from '../layout/Sidebar';
 import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 import axios from 'axios';
+import face from '../facebook.svg';
+import insta from '../instagram.svg';
+import twitter from '../twitter.svg';
 
 
 const styleContent = {
@@ -13,24 +16,104 @@ const styleContent = {
 
 }
 
+const iconStyle = {
+
+  height: '20px',
+  margin: '0 10px'
+
+}
+
 const styleBlock = {
-  marginBottom: '100px'
+  marginBottom: '50px'
 }
 
 const styleTitle = {
-  fontSize: '2em',
+  fontSize: '1.5em',
   fontWeight: '400',
-  color: 'black'
+  color: 'white',
+  display: 'inline',
+}
+
+const industryStyle =  {
+  display: 'inline',
+  fontSize: '1.3em',
+  marginRight: '50px'
 }
 
 const styleImage = {
-  width: '100%',
-  marginBottom: '20px'
+  height: '200px',
+  borderRadius: '20px 0 0 20px'
+}
+
+const rowStyle = {
+  padding: '0',
+}
+
+const leftStyle = {
+  height: '225px',
+  overflow: 'hidden',
+  padding: '0',
+}
+
+const rightStyle = {
+  height: '200px',
+  padding: '0 0 0 0',
+  margin: '0',
 }
 
 const styleInnerContent = {
   color: 'black',
   fontSize: '1em',
+}
+
+const topRightStyle =  {
+  backgroundColor: '#711AAC',
+  height: '50px',
+  padding: '10px 20px',
+  margin: '0',
+  color: 'white',
+  display: 'inline-block',
+  width: '100%',
+  borderRadius: '0 20px 0 0'
+}
+
+const bottomRightStyle = {
+  height: '150px',
+  width: '100%',
+  padding: '0 20px',
+  backgroundColor: '#f9f9fa',
+  display: 'inline-block',
+  borderRadius: '0 0 20px 0'
+
+}
+
+const influenceStyle = {
+  color: '#711AAC',
+  fontSize: '1.5em',
+  margin: '15px 0 0 0',
+  fontWeight: '400'
+}
+
+const restStyle = {
+  color: 'rgba(0,0,0, .5)'
+}
+
+const descriptionStyle = {
+  position: 'absolute',
+  color: 'rgba(0,0,0,0.5)',
+  top: '0',
+  left: '50%',
+  display: 'inline',
+  fontSize: '.7em',
+
+}
+
+const expand =  (()=>{
+
+})
+
+const numberWithCommas = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 
@@ -81,8 +164,59 @@ class Search extends Component {
                         {influencerList.map(function(d, idx) {
                             return (
                             <div key={idx} style={styleBlock}>
-                              <h2 style={styleTitle}>{d.youtube.snippet.title}</h2> <img src={d.youtube.brandingSettings.image.bannerMobileHdImageUrl} alt="profile pic" style={styleImage}/>
-                              <span style={styleInnerContent}><b>Platform Base</b>: {d.platform_base}<br/><b>Industry</b>: {d.industry}<br/><b>Influencer Score</b>: {d.influencer_score}<br/><b>Keywords</b>: {d.youtube.brandingSettings.channel.keywords} <br/><b>Email</b>: {d.email}<br/><b>Facebook</b>: {d.facebook.url}<br/><b>Google+</b>: {d.google_plus_url}<br/><b>Youtube:</b><br/>Subscribers: {d.youtube.statistics.subscriberCount}<br/>Views: {d.youtube.statistics.viewCount}<br/>Videos: {d.youtube.statistics.videoCount}<br/>Comment Count: {d.youtube.statistics.commentCount}<br/>Country: {d.youtube.snippet.country}<br/>Description: {d.youtube.snippet.description}<br/><b>Instagram:</b><br/>Followers: {d.instagram.followers_count}<br/>Posts: {d.instagram.posts_count}<br/>Url: {d.instagram.url}<br/><b>Twitter:</b><br/>Followers: {d.twitter.followers_count}<br/>Favorites: {d.twitter.favourites_count}<br/>Url: {d.twitter.url}</span></div>)
+                            <div class="row" style={rowStyle}>
+                            {d.keywords}
+                                <div class="col-sm-2" style={leftStyle}>
+                                  <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
+                                </div>
+                                <div class="col-sm-10" style={rightStyle}>
+                                  <div style={topRightStyle}>
+                                    <div style={styleTitle}>{d.youtube.snippet.title} </div>
+                                    <div style={industryStyle}>- {d.industry}</div>
+                                    {
+                                      d.facebook.url ? (
+                                        <a href={d.facebook.url} target="_blank"><img src={face} style={iconStyle} />
+                                        </a>
+
+                                      ) : (
+                                        ""
+                                      )
+                                    }
+
+                                    {
+                                      d.instagram.url ? (
+                                        <a href={d.instagram.url} target="_blank"><img src={insta} style={iconStyle} />
+                                        </a>
+                                      ) : (
+                                        ""
+                                      )
+                                    }
+
+                                    {
+                                      d.twitter.url ? (
+                                        <a href={d.twitter.url} target="_blank"><img src={twitter} style={iconStyle} />
+                                        </a>
+                                      ) : (
+                                        ""
+                                      )
+                                    }
+                                  </div>
+
+                                <div style={bottomRightStyle}>
+                                  <div style={influenceStyle}>
+                                  {String(d.influencer_score).substr(0,2)} &#37; influence
+                                  </div>
+                                  <div style={restStyle}>
+                                  {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers <br/>
+                                  {numberWithCommas(d.youtube.statistics.viewCount)} views <br/>
+                                  {numberWithCommas(d.youtube.statistics.videoCount)} videos <br/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+                              </div>)
                         })}
                     </div>
                   <Sidebar hideMd></Sidebar>
