@@ -229,16 +229,28 @@ def channels_list_by_id(q, part, id):
                             sms['ig'] = entity['Text']
                         elif entity['Type'] == 'OTHER' and 'twitter.com' in entity['Text']:
                             sms['twitter'] = entity['Text']
-                print(json.dumps(sms, sort_keys=True, indent=4))
-                print('oink')
-                print(json.dumps(comprehend.detect_entities(Text=desc, LanguageCode='en'), sort_keys=True, indent=4))
-                print('End of DetectEntities\n')
-                print("")
-                print(desc)
-                print('############')
-            #look up IGs if no ig.
-            find_ig_account(item['youtube']['brandingSettings']['channel']['title'], item['youtube']['snippet']['thumbnails']['medium']['url'])
+                #print(json.dumps(sms, sort_keys=True, indent=4))
+                #print('oink')
+                #print(json.dumps(comprehend.detect_entities(Text=desc, LanguageCode='en'), sort_keys=True, indent=4))
+                #print('End of DetectEntities\n')
+                #print("")
+                #print(desc)
+                #print('############')
 
+                if item['email'] == '' and 'email' in sms.keys():
+                    item['email'] = sms['email']
+                if item['instagram']['url'] == '' and 'ig' in sms.keys():
+                    item['instagram_address'] = sms['ig']
+                if item['facebook']['url'] == '' and 'fb' in sms.keys():
+                    item['facebook_address'] = sms['fb']
+                if item['twitter']['url'] == '' and 'twitter' in sms.keys():
+                    item['twitter_address'] = sms['twitter']
+
+            #look up IGs if no ig.
+            #find_ig_account(item['youtube']['brandingSettings']['channel']['title'], item['youtube']['snippet']['thumbnails']['medium']['url'])
+            print('*******')
+            print(json.dumps(item, sort_keys=True, indent=4))
+            print('$$$$$$$$$$')
             influencer.Influencer.create(item, item['youtube']['id'])
     #except:
         #print("some error")
