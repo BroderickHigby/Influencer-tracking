@@ -9,10 +9,12 @@ import axios from 'axios';
 import face from '../facebook.svg';
 import insta from '../instagram.svg';
 import twitter from '../twitter.svg';
+import googlePlus from '../google-plus.svg';
+import email from '../email.svg';
 
 
 const styleContent = {
-  width: '90%',
+  width: '60%',
 
 }
 
@@ -42,7 +44,16 @@ const industryStyle =  {
 
 const styleImage = {
   height: '200px',
-  borderRadius: '20px 0 0 20px'
+  borderRadius: '20px 0 0 20px',
+
+  position: 'absolute',
+  top: '0',
+  left: '50%',
+  transform: 'translate(-50%,0)',
+  minWidth: '100%',
+  maxWidth: 'none',
+  textAlign: 'center',
+  margin: '0 auto'
 }
 
 const rowStyle = {
@@ -50,9 +61,11 @@ const rowStyle = {
 }
 
 const leftStyle = {
-  height: '225px',
+  height: '200px',
   overflow: 'hidden',
   padding: '0',
+  borderRadius: '20px 0 0 20px',
+  backgroundColor: 'red'
 }
 
 const rightStyle = {
@@ -112,13 +125,29 @@ const expand =  (()=>{
 
 })
 
+const backButtonStyle = {
+  backgroundColor: '#711AAC',
+  borderRadius: '20px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em'
+}
+
 const numberWithCommas = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 
+
 var influencerList = [];
 class Search extends Component {
+
+    handleClick() {
+      console.log("CLICKED");
+      window.location = "./home";
+    }
+
     constructor(props) {
         super(props);
 	this.state = {IL: []};
@@ -200,6 +229,18 @@ class Search extends Component {
                                         ""
                                       )
                                     }
+
+                                    {
+                                      d.google_plus_url ? (
+                                        <a href={d.google_plus_url} target="_blank"><img src={googlePlus} style={iconStyle} />
+                                        </a>
+                                      ) : (
+                                        ""
+                                      )
+                                    }
+
+                                    <a href={"mailto:" + d.email} target="_top"><img src={email} style={iconStyle} />
+                                    </a>
                                   </div>
 
                                 <div style={bottomRightStyle}>
@@ -218,6 +259,17 @@ class Search extends Component {
 
                               </div>)
                         })}
+                        {
+                            influencerList.length ? (
+                              ""
+                            ) : (
+                              <div><
+                                center><h3>No results found</h3>
+                                <button onClick={this.handleClick} style={backButtonStyle}>Back to Search</button>
+                                </center>
+                              </div>
+                            )
+                        }
                     </div>
                   <Sidebar hideMd></Sidebar>
                   <Filler />

@@ -9,6 +9,9 @@ body {margin:0;}
   width: 100%;
 }
 
+.navbar-text {
+  color: #711AAC;
+}
 .navbar a {
   float: right;
   display: block;

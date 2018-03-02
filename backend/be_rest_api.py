@@ -66,7 +66,8 @@ def charge_yearly():
         customer=customer.id,
         items=[{'plan': 'yearly'}],
     )
-    return "Successful yearly payment!"
+    
+    return jsonify({'subscription': subscription})
 
 
 
