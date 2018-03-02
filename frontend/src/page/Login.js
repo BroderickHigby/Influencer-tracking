@@ -44,7 +44,7 @@ export default class Login extends Component {
     try {
       await this.login(this.state.userId, this.state.password);
       this.props.userHasAuthenticated(true);
-      this.props.userDetails(this.state.userId);
+      this.props.userUpdate(this.state.cognitoUser);
       this.props.history.push("/app/home");
     } catch (e) {
       alert(e);
@@ -84,12 +84,12 @@ export default class Login extends Component {
       UserPoolId: config.cognito.USER_POOL_ID,
       ClientId: config.cognito.APP_CLIENT_ID
     });
-    const user = new CognitoUser({ Username: userId, Pool: userPool });
+    this.state.cognitoUser = new CognitoUser({ Username: userId, Pool: userPool });
     const authenticationData = { Username: userId, Password: password };
     const authenticationDetails = new AuthenticationDetails(authenticationData);
 
     return new Promise((resolve, reject) =>
-    user.authenticateUser(authenticationDetails, {
+    this.state.cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: result => resolve(),
       onFailure: err => reject(err)
     })
@@ -177,7 +177,7 @@ renderForgot(){
             autoFocus
             type="text"
             value={this.state.newPassword}
-            placeholder="input verification code"
+            placeholder="input desired password"
             onChange={this.handleChange}
           />
         </FormGroup>

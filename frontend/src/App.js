@@ -7,33 +7,52 @@ import Header from './layout/Header';
 
 import Routes from './Routes';
 import actions from './actions';
-
-import { authUser, signOutUser, getCurrentUser } from "./libs/awsLib";
+import {CognitoUser} from 'amazon-cognito-identity-js';
+import { authUser, signOutUser, getCurrentUser, getAuthCurrentUser, getAttributes } from "./libs/awsLib";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      user: "",
+      user: null,
       isAuthenticated: false,
       isAuthenticating: true,
-      subscribed: false
+      subscribed: false,
+      justLoggedIn: true
     };
   }
 
-  userDetails = id => {
-    this.setState({user: id});
+  userUpdate = loggedIn => {
+    this.setState({user: loggedIn});
   }
 
   userHasAuthenticated = authenticated => {
     this.setState({ isAuthenticated: authenticated });
   }
 
+  userHasSubscribed = boolean => {
+    this.setState({subscribed: boolean});
+  }
+
+  async userJustLoggedIn(){
+    var i = 0;
+    var attributes = await getAttributes();
+    for( i = 0; i< attributes.length; i++){
+      if(attributes[i].Name === "custom:subs_active"){
+        if(attributes[i].Value === "true"){
+          this.userHasSubscribed(true);
+        }
+        break;
+      }
+    }
+    this.setState({justLoggedIn: false});
+  }
+
   handleLogout = event => {
     signOutUser();
     this.userHasAuthenticated(false);
-    this.userDetails("");
+    this.userUpdate(null);
     this.props.history.push("/app/login");
   }
 
@@ -41,7 +60,10 @@ class App extends Component {
   try {
     if (await authUser()) {
       this.userHasAuthenticated(true);
-      this.userDetails(getCurrentUser().Username);
+      this.userUpdate(getAuthCurrentUser());
+      if(this.state.justLoggedIn == true){
+        await this.userJustLoggedIn();
+      }
     }
   }
   catch(e) {
@@ -68,9 +90,11 @@ class App extends Component {
     render() {
       const childProps = {
         user: this.state.user,
-        userDetails: this.userDetails,
+        userUpdate: this.userUpdate,
         isAuthenticated: this.state.isAuthenticated,
         userHasAuthenticated: this.userHasAuthenticated,
+        subscribed: this.state.subscribed,
+        userHasSubscribed: this.userHasSubscribed
       }
 
       return (

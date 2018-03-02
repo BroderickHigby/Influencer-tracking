@@ -60,7 +60,7 @@ export default class Signup extends Component {
           Name: 'email',
           Value: this.state.email
         })
-    ]
+      ]
 
       const newUser = await this.signup(this.state.username, this.state.password, attributeList);
       this.setState({
@@ -85,7 +85,7 @@ export default class Signup extends Component {
         this.state.username,
         this.state.password
       );
-
+      this.props.userUpdate(this.state.newUser);
       this.props.userHasAuthenticated(true);
       this.props.history.push("/app/home");
     } catch (e) {

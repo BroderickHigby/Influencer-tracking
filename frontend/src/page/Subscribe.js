@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
+import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
+import {  CognitoUserAttribute } from "amazon-cognito-identity-js";
 
 
 class Subscribe extends Component {
@@ -9,97 +11,132 @@ class Subscribe extends Component {
     this.onToken = this.onToken.bind(this);
   }
 
-  onToken(token) {
+  async onToken(token) {
+    var i =0;
+    var attributes = await getAttributes();
+    for( i = 0; i< attributes.length; i++){
+      if(attributes[i].Name === "email"){
+        break;
+      }
+    }
     //Check to see if current user email is the same as inputed email
-    /*
-    if (user email !equal to token.email) {
+    console.log(attributes);
+    if (attributes[i].Value !== token.email) {
       window.location = "./emailerror"
     }
     else {
-      CODE BELOW
-    }
 
-    */
+      var postData = {
+          stripeToken: token.id,
+          stripeEmail: token.email,
+      };
 
-    ///****************** GOES INTO ELSE STATEMENT ABOVE *****************
-    var postData = {
-        stripeToken: token.id,
-        stripeEmail: token.email,
-    };
+      let axiosConfig = {
+          headers: {
+              'Content-Type': 'application/json;charset=UTF-8',
+              "Access-Control-Allow-Origin": "*"
+          }
+      };
 
-    let axiosConfig = {
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8',
-            "Access-Control-Allow-Origin": "*"
-        }
-    };
+      //http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000
+      //http://127.0.0.1:5000
 
-    //http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000
-    //http://127.0.0.1:5000
-
-    var e = document.getElementById("plans");
-    var strUser = e.options[e.selectedIndex].value;
-    console.log("Plan " + strUser);
-
-    //If user email entered is the same as currently logged in
-    //Else throw error and redo page
-
-    if (strUser === "Monthly") {
-      axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly', postData, axiosConfig)
-      .then(function (response) {
-        console.log("Charge confirmation sent to " + token.email + " //success");
-
-        var subs = response.data.subscription;
-        var subscription_id = subs.id;
-        var user_email = token.email;
-
-        /*
-          Save the subscription_id to the the user in cognito with the
-          email user_email. The subscription_id is used to cancel the subscription
-          later on.
-
-          Allow access to payed authenticated routes and now display
-          Unsubscribe page instead of subscribe page.
-        */
-
-        window.location = "./confirmation"
-
-      }).catch(error => {
-        console.log(error)
-      });
-    }
-
-    else if (strUser === "Yearly") {
-      axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_yearly', postData, axiosConfig)
-      .then(function (response) {
-        console.log("Charge confirmation sent to " + token.email + " //success");
-
-        var subs = response.data.subscription;
-        var subscription_id = subs.id;
-        var user_email = token.email;
-
-        /*
-          Save the subscription_id to the the user in cognito with the
-          email user_email. The subscription_id is used to cancel the subscription
-          later on.
-
-          Allow access to payed authenticated routes and now display
-          Unsubscribe page instead of subscribe page.
-        */
-
-        window.location = "./confirmation"
+      var e = document.getElementById("plans");
+      var strUser = e.options[e.selectedIndex].value;
+      console.log("Plan " + strUser);
 
 
-      }).catch(error => {
-        console.log(error)
-      });
-    }
+      //If user email entered is the same as currently logged in
+      //Else throw error and redo page
 
-    else {
-        console.log("No plan selected");
-    }
-    // ******************** END ELSE STATEMENT FROM ABOVE ****************
+      if (strUser === "Monthly") {
+        axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly', postData, axiosConfig)
+        .then(async function (response) {
+          console.log("Charge confirmation sent to " + token.email + " //success");
 
+          var subs = response.data.subscription;
+          var subscription_id = subs.id;
+          var user_email = token.email;
+
+          const attributeList= [
+            new CognitoUserAttribute({
+              Name: 'custom:subs_id',
+              Value: subs.id
+            }),
+            new CognitoUserAttribute({
+              Name: 'custom:subs_type',
+              Value: strUser
+            }),
+            new CognitoUserAttribute({
+              Name: 'custom:subs_active',
+              Value: "true"
+            })
+          ]
+          await updateCustomAttributes(attributeList);
+          this.props.userHasSubscribed(true);
+          /*
+            Save the subscription_id to the the user in cognito with the
+            email user_email. The subscription_id is used to cancel the subscription
+            later on.
+
+            Allow access to payed authenticated routes and now display
+            Unsubscribe page instead of subscribe page.
+          */
+
+          window.location = "./confirmation"
+
+        }).catch(error => {
+          console.log(error)
+        });
+      }
+
+      else if (strUser === "Yearly") {
+        axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_yearly', postData, axiosConfig)
+        .then(async function (response) {
+          console.log("Charge confirmation sent to " + token.email + " //success");
+
+          var subs = response.data.subscription;
+          var subscription_id = subs.id;
+          var user_email = token.email;
+
+          const attributeList= [
+            new CognitoUserAttribute({
+              Name: 'custom:subs_id',
+              Value: subs.id
+            }),
+            new CognitoUserAttribute({
+              Name: 'custom:subs_type',
+              Value: strUser
+            }),
+            new CognitoUserAttribute({
+              Name: 'custom:subs_active',
+              Value: "true"
+            })
+          ]
+          await updateCustomAttributes(attributeList);
+          this.props.userHasSubscribed(true);
+
+          /*
+            Save the subscription_id to the the user in cognito with the
+            email user_email. The subscription_id is used to cancel the subscription
+            later on.
+
+            Allow access to payed authenticated routes and now display
+            Unsubscribe page instead of subscribe page.
+          */
+
+          window.location = "./confirmation"
+
+
+        }).catch(error => {
+          console.log(error)
+        });
+      }
+
+      else {
+          console.log("No plan selected");
+      }
+  }
   }
 
 
@@ -116,7 +153,7 @@ class Subscribe extends Component {
             <h4>10% for a yearly subscription!</h4>
 
             <select id="plans">
-              <option value="" disabled selected>Select your option</option>
+              <option value="" disabled selected hidden >Select your option</option>
               <option value="Yearly">Yearly</option>
               <option value="Monthly">Monthly</option>
             </select>

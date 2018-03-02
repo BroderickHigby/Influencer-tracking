@@ -1,4 +1,4 @@
-import { CognitoUser, CognitoUserPool, CognitoUserSession } from "amazon-cognito-identity-js";
+import { CognitoUser, CognitoUserPool} from "amazon-cognito-identity-js";
 import config from "../config";
 
 export async function authUser() {
@@ -28,7 +28,7 @@ function getUserToken(currentUser) {
 
 export function changePassword(user, oldPassword, newPassword) {
   return new Promise((resolve, reject) => {
-    if(oldPassword == newPassword){
+    if(oldPassword === newPassword){
       reject('Error: New password is same as old password.');
       return;
     }
@@ -41,6 +41,28 @@ export function changePassword(user, oldPassword, newPassword) {
     });
   })
 }
+
+export function updateCustomAttributes(attributeList){
+
+  return new Promise((resolve,reject) => {
+    var cognitoUser = getCurrentUser();
+    cognitoUser.getSession(function(err, session) {
+      if (err) {
+          reject(err);
+          return;
+      }
+      console.log('session validity: ' + session.isValid());
+    });
+      cognitoUser.updateAttributes(attributeList,function(err,result){
+        if(err){
+          reject(err);
+          return;
+        }
+        resolve(console.log('call result: ' + result));
+      })
+  })
+}
+
 
 export function forgotPassword(username){
   const userPool = new CognitoUserPool({
@@ -83,6 +105,27 @@ export function confirmPassword(username, verificationCode, newPassword) {
         });
     });
 }
+export function getAttributes() {
+  // cognitoUser = USER_POOL.getCurrentUser();
+  return new Promise((resolve,reject) => {
+  var cognitoUser = getCurrentUser();
+  cognitoUser.getSession(function(err, session) {
+    if (err) {
+        reject(err);
+        return;
+    }
+    console.log('session validity: ' + session.isValid());
+  });
+  cognitoUser.getUserAttributes(function (err, result) {
+    if (err) {
+      reject(console.log('getUserAttributes() ERROR: ' + err));
+      return;
+    } else {
+      resolve(result);
+    }
+  });
+})
+}
 
 export function getCurrentUser() {
   const userPool = new CognitoUserPool({
@@ -90,6 +133,12 @@ export function getCurrentUser() {
     ClientId: config.cognito.APP_CLIENT_ID
   });
     return userPool.getCurrentUser();
+}
+
+export async function getAuthCurrentUser(){
+  var currentUser = getCurrentUser();
+  await getUserToken(currentUser);
+  return currentUser;
 }
 
 export function signOutUser() {

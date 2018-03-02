@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {CognitoUser} from "amazon-cognito-identity-js";
 import { FormGroup, FormControl, ControlLabel, Button } from "react-bootstrap";
+import {Link} from 'react-router-dom';
 
 import { getCurrentUser, changePassword } from '../libs/awsLib.js';
 
 import LoaderButton from "./components/LoaderButton";
-import Subscribe from "./Subscribe"
 const rootStyle = {
     textAlign: 'center'
 };
@@ -19,15 +19,8 @@ export default class Settings extends Component{
   constructor(props){
     super(props);
 
-    var currentUser = getCurrentUser();
-    currentUser.getSession(function (err, session) {
-        if (err) {
-            alert(err);
-            return;
-        }
-    });
+
     this.state = {
-      user: currentUser,
       isLoading: false,
       oldPassword: '',
       newPassword: '',
@@ -51,7 +44,7 @@ export default class Settings extends Component{
     this.setState({ isLoading: true });
 
     try {
-      await changePassword(this.state.user, this.state.oldPassword,this.state.newPassword);
+      await changePassword(this.props.user, this.state.oldPassword,this.state.newPassword);
       this.setState({ isLoading: false });
       alert("Password successfully changed!");
     } catch (e) {
@@ -63,8 +56,13 @@ export default class Settings extends Component{
   render(){
     return(
       <div className= "Settings" style = {rootStyle}>
-        <p>Username: {this.state.user.username}</p>
-        <Subscribe/>
+        <p>Username: {this.props.user.username}</p>
+        <p>Subscribed:{this.props.subscribed
+          ? <p>true</p>
+          :[
+          <Link to= "/app/subscribe">false, Click to subscribe </Link>
+          ]
+      }</p>
         {!this.state.change
           ?<Button onClick = {()=> this.setState({change: true})}>Change Password</Button>
           :[<form key={1} onSubmit={this.handleSubmit} style= {formStyle}>
