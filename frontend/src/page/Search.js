@@ -14,7 +14,7 @@ import email from '../email.svg';
 
 
 const styleContent = {
-  width: '90%',
+  width: '60%',
 
 }
 
