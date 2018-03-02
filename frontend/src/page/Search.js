@@ -125,6 +125,15 @@ const expand =  (()=>{
 
 })
 
+const backButtonStyle = {
+  backgroundColor: '#711AAC',
+  borderRadius: '20px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em'
+}
+
 const numberWithCommas = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -256,7 +265,7 @@ class Search extends Component {
                             ) : (
                               <div><
                                 center><h3>No results found</h3>
-                                <button onClick={this.handleClick}>Back to Search</button>
+                                <button onClick={this.handleClick} style={backButtonStyle}>Back to Search</button>
                                 </center>
                               </div>
                             )
