@@ -171,11 +171,11 @@ class Search extends Component {
 	let currentComponent = this;
         axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig)
         .then(function (response) {
-	    console.log("GREAT SUCCESS (in borat accent)");
-	    console.log(response.data);
+      	    console.log("GREAT SUCCESS (in borat accent)");
+      	    console.log(response.data);
             influencerList = response.data.query_results;
             console.log(influencerList);
-	    currentComponent.setState({IL: influencerList});
+      	    currentComponent.setState({IL: influencerList});
         })
 	.catch(function (error) {
     		console.log(error);

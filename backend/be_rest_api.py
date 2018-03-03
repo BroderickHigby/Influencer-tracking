@@ -6,6 +6,8 @@ from flask_cors import CORS
 import json
 import stripe
 import os
+sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/webcrawler/yougod/yougod')
+from scrape_engine import *
 
 app = Flask(__name__)
 CORS(app)
@@ -42,6 +44,9 @@ def run_query():
     query_result = Influencer.query(str(json_input['queryString']))
     print(query_result)
     print(type(query_result))
+    if len(query_result) == 0:
+        search_list_by_keyword(part='snippet', maxResults=25, q=str(json_input['queryString']))
+        query_result = Influencer.query(str(json_input['queryString']))
     print("returning query")
     return jsonify({'query_results': query_result})
 
