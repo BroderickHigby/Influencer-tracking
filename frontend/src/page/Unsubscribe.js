@@ -13,7 +13,7 @@ class Unsubscribe extends Component {
     var i =0;
     var attributes = await getAttributes();
     for( i = 0; i< attributes.length; i++){
-      if(attributes[i].Name === "subs_id"){
+      if(attributes[i].Name === "custom:subs_id"){
         break;
       }
     }
@@ -46,12 +46,30 @@ class Unsubscribe extends Component {
       console.log("Cancelation:" +  lastDay);
       //window.location = "./cancelconfirm"
 
-
       /*
         Save the subscription_id to the the user in cognito with the
         email user_email. The subscription_id is used to cancel the subscription
         later on.
       */
+
+      const attributeList= [
+           new CognitoUserAttribute({
+             Name: ‘custom:subs_id’,
+             Value: ""
+           }),
+           new CognitoUserAttribute({
+             Name: ‘custom:subs_type’,
+             Value: "none"
+           }),
+           new CognitoUserAttribute({
+             Name: ‘custom:subs_active’,
+             Value: "false"
+           })
+         ]
+
+
+      await updateCustomAttributes(attributeList);
+      this.props.userHasSubscribed(false);
 
       window.location = "./cancelconfirm"
 
