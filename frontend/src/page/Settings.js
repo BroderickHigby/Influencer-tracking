@@ -58,7 +58,11 @@ export default class Settings extends Component{
       <div className= "Settings" style = {rootStyle}>
         <p>Username: {this.props.user.username}</p>
         <p>Subscribed:{this.props.subscribed
-          ? <p>true</p>
+          ?
+          <div><p>true</p>
+          <br></br>
+          <Link to= "/app/unsubscribe">Click to unsubscribe </Link></div>
+
           :[
           <Link to= "/app/subscribe">false, Click to subscribe </Link>
           ]

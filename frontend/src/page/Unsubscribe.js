@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
+import {  CognitoUserAttribute } from "amazon-cognito-identity-js";
 
 class Unsubscribe extends Component {
   constructor(props) {
     super(props);
   }
 
-  handleClick() {
+  async handleClick() {
 
-
+    var i =0;
+    var attributes = await getAttributes();
+    for( i = 0; i< attributes.length; i++){
+      if(attributes[i].Name === "subs_id"){
+        break;
+      }
+    }
     /*
       Pull subscription_id from the cognito user pool to pass into postData
     */
 
     //Get the user's sub_id from the cognito user pool
     var postData = {
-        //subscription_id: cognito field that holds subscription,
+        subscription_id: attributes[i].Value,
     };
 
     let axiosConfig = {

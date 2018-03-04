@@ -161,7 +161,7 @@ class Subscribe extends Component {
             <br></br>
             <StripeCheckout
               token={this.onToken}
-              stripeKey="pk_test_Jjys3Yuxu330uiclk4ViXeHM"
+              stripeKey="pk_live_AEuriPJROzqDhDu5Y73oTUR4"
             />
           </div>
         </center>
