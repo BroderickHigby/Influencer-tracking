@@ -15,6 +15,7 @@ class DescriptionParser:
     def parse_entities_for_sm(self, entity_json):
         current_sm = ''
         sms = {}
+        sms['associated_websites'] = []
         if 'Entities' in entity_json:
             for entity in entity_json['Entities']:
                 if current_sm != '' and entity['Text'].lower() != 'instagram' and entity['Text'].lower() != 'ig' and entity['Text'].lower() != 'facebook' and entity['Text'].lower() != 'fb' and entity['Text'].lower() != 'snapchat' and entity['Text'].lower() != 'sc' and entity['Text'].lower() != 'email' and entity['Text'].lower() != 'twitter':
@@ -62,4 +63,6 @@ class DescriptionParser:
                         sms['ig'] = entity['Text']
                     elif entity['Type'] == 'OTHER' and 'twitter.com' in entity['Text']:
                         sms['twitter'] = entity['Text']
+                    elif 'https' in entity['Text'] or 'www.' in entity['Text'] or '.com' in entity['Text']:
+                        sms['associated_websites'].append(entity['Text'])
         return sms
