@@ -6,7 +6,8 @@ from flask_cors import CORS
 import json
 import stripe
 import os
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/webcrawler/yougod/yougod')
+import sys
+sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod')
 from scrape_engine import *
 
 app = Flask(__name__)
@@ -71,7 +72,7 @@ def charge_yearly():
         customer=customer.id,
         items=[{'plan': 'yearly'}],
     )
-    return jsonify({‘subscription’: subscription})
+    return jsonify({'subscription': subscription})
 
 
 

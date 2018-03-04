@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/backend/')
+sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 import influencer
 import requests
 import json
@@ -8,9 +8,9 @@ base_url = "https://www.googleapis.com/youtube/v3"
 api_key = "AIzaSyDhbjoj6RQNvYgOulCZSJS6ARk9LxaVJxY"
 import re
 from bs4 import BeautifulSoup
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/webcrawler/instagod/instagod')
+sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/instagod/instagod')
 from ig_scrape_engine import *
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/webcrawler/twittergod/twittergod')
+sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/twittergod/twittergod')
 from twitter_scraper import *
 import urllib
 import webbrowser
@@ -181,22 +181,22 @@ def channels_list_by_id(q, part, id):
 
             #Parse description for links.
             desc = str(item['youtube']['snippet']['description'].encode('utf-8')).lower()
-            print("MEOOFFFF")
-            dp = description_parser.DescriptionParser(desc)
-            entity_json = dp.comprehend_entities()
-            sm = dp.parse_entities_for_sm(entity_json)
-            if item['email'] == '' and 'email' in sm.keys():
-                item['email'] = sm['email']
-            if item['instagram']['url'] == '' and 'ig' in sm.keys():
-                item['instagram_address'] = sm['ig']
-            if item['facebook']['url'] == '' and 'fb' in sm.keys():
-                item['facebook_address'] = sm['fb']
-            if item['twitter']['url'] == '' and 'twitter' in sm.keys():
-                item['twitter_address'] = sm['twitter']
-            print(json.dumps(sm, sort_keys=True, indent=4))
+           # print("MEOOFFFF")
+           # dp = description_parser.DescriptionParser(desc)
+           # entity_json = dp.comprehend_entities()
+           # sm = dp.parse_entities_for_sm(entity_json)
+           # if item['email'] == '' and 'email' in sm.keys():
+           #     item['email'] = sm['email']
+           # if item['instagram']['url'] == '' and 'ig' in sm.keys():
+           #     item['instagram_address'] = sm['ig']
+           # if item['facebook']['url'] == '' and 'fb' in sm.keys():
+           #     item['facebook_address'] = sm['fb']
+           # if item['twitter']['url'] == '' and 'twitter' in sm.keys():
+           #     item['twitter_address'] = sm['twitter']
+           # print(json.dumps(sm, sort_keys=True, indent=4))
             #look up IGs if no ig.
             #find_ig_account(item['youtube']['brandingSettings']['channel']['title'], item['youtube']['snippet']['thumbnails']['medium']['url'])
-            print('*******')
+           # print('*******')
             #print(json.dumps(item, sort_keys=True, indent=4))
             #print('$$$$$$$$$$')
             influencer.Influencer.create(item, item['youtube']['id'])
