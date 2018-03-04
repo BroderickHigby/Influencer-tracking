@@ -104,7 +104,9 @@ def channels_list_by_id(q, part, id):
             except:
                 found_email = ''
 
-            facebook_url, twitter_url, instagram_url, google_plus_url, twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name, ig_posts_count, ig_followers_count, ig_following_count = pull_social_media_links(item['snippet']['title'])
+            print('BARK')
+            print(item)
+            facebook_url, twitter_url, instagram_url, google_plus_url, twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name, ig_posts_count, ig_followers_count, ig_following_count, twitch_url = pull_social_media_links(item['id'])
             item['platform_base'] = "youtube"
             item['industry'] = q
             item['email'] = found_email
@@ -114,6 +116,9 @@ def channels_list_by_id(q, part, id):
 
             item["facebook"] = {}
             item["facebook"]["url"] = facebook_url
+
+            item["twitch"] = {}
+            item["twitch"]["url"] = twitch_url
             #item["facebook"] = json.dumps({"url" : facebook_url})
             #item["facebook"]["url"] = facebook_url
 
@@ -245,14 +250,15 @@ def compare_images_for_similarity(im1, im2):
     print(sim_score)
     return sim_score
 
-def pull_social_media_links(username):
-    url = 'https://www.youtube.com/user/' + username + '/about'
+def pull_social_media_links(channel_id):
+    url = 'https://www.youtube.com/channel/' + channel_id + '/about'
     html = requests.get(url)
     soup = BeautifulSoup(html.text, 'lxml')
     facebook_url = ''
     twitter_url = ''
     instagram_url = ''
     google_plus_url = ''
+    twitch_url = ''
     for a in soup.find_all('a', href=True):
         #print ("Found the URL:", a['href'])
         if 'facebook' in a['href'] and '/redirect?' not in a['href']:
@@ -263,15 +269,24 @@ def pull_social_media_links(username):
             instagram_url = a['href']
         elif 'plus.google.com' in a['href'] and 'youtube' not in a['href']:
             google_plus_url = a['href']
+        elif 'twitch.tv' in a['href']:
+            if '/redirect?' in a['href']:
+                twitch_url = a['href'].split('%2F%2F')[1]
+            else:
+                twitch_url = a['href']
+
     for link in soup.find_all('link', href=True):
         #print ("Found the URL:", link['href'])
         if 'plus.google.com' in a['href'] and 'youtube' not in a['href']:
             google_plus_url = a['href']
             break
+    print(url)
     print(facebook_url)
     print(twitter_url)
     print(instagram_url)
     print(google_plus_url)
+    print(twitch_url)
+
     twitter_username = twitter_url.split('/')
     twitter_username = twitter_username[len(twitter_username) - 1]
 
@@ -294,7 +309,7 @@ def pull_social_media_links(username):
     ig_following_count = ''
     if ig_username != '':
         ig_posts_count, ig_followers_count, ig_following_count = explore_ig(ig_username)
-    return facebook_url, twitter_url, instagram_url, google_plus_url, twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name, ig_posts_count, ig_followers_count, ig_following_count
+    return facebook_url, twitter_url, instagram_url, google_plus_url, twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name, ig_posts_count, ig_followers_count, ig_following_count, twitch_url
 
 def explore_ig(username):
     ig_scraper = ScrapeEngine()

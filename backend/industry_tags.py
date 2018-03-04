@@ -21,7 +21,7 @@ industry_search_terms = {
     'health': ['health', 'mindfulness', 'yoga', 'meditation'],
     'food': ['food', 'cooking', 'recipes', 'vegan', 'nutrition'],
     'entertainment': ['podcast', 'comedy', 'vlog', 'prank'],
-    'sports': ['tennis', 'baseball', 'basketball', 'soccer', 'bjj', 'ufc', 'weight lifting', 'jogging', 'skateboarding', 'boxing'],
+    'sports': ['tennis', 'baseball', 'basketball', 'soccer', 'bjj', 'ufc', 'weight lifting', 'jogging', 'skateboarding', 'boxing', 'gaming', 'egaming'],
     'clothing': ['clothing', 'watches', 'style', 'swag', 'streetwear'],
     'beauty': ['makeup', 'beauty', 'hair']
 }
