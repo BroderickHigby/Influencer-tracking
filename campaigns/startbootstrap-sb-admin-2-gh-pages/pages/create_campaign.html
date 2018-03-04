@@ -29,7 +29,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -378,7 +378,7 @@
                         <div class="panel-body">
                           <div class="form-group">
                               <label>Campaign Objective</label>
-                              <select class="form-control">
+                              <select class="form-control" id="campaignObjective">
                                   <option>Brand Awareness</option>
                                   <option>Sell Products</option>
                                   <option>Drive Digital Traffic</option>
@@ -387,7 +387,7 @@
                               </select>
                               <br/>
                               <label>Influencer Target Size</label>
-                              <select class="form-control">
+                              <select class="form-control" id="influencerTargetSize">
                                   <option>Micro</option>
                                   <option>Medium</option>
                                   <option>Large</option>
@@ -396,10 +396,10 @@
                           </div>
                           <div class="form-group">
                             <label>Budget</label>
-                            <input class="form-control">
+                            <input class="form-control" id="campaignBudget">
                             <p class="help-block">Dollar amount you want to spend on campaign.</p>
                             <label>Campaign Duration</label>
-                            <select class="form-control">
+                            <select class="form-control" id="campaignDuration">
                                 <option>1 Week</option>
                                 <option>2 Weeks</option>
                                 <option>3 Weeks</option>
@@ -408,75 +408,47 @@
                           </div>
                           <div class="form-group">
                               <label>Target URL</label>
-                              <input class="form-control">
+                              <input class="form-control" id="campaignTargetUrl">
                               <p class="help-block">URL you want to direct traffic towards.</p>
                               <label>Ad Copy</label>
-                              <input class="form-control">
+                              <input class="form-control" id="adCopy">
                               <p class="help-block">Text/phrases you want used to promote.</p>
                           </div>
                           <div class="form-group">
-                              <label>Target Platforms</label>
+                              <label>Your Industries</label>
                               <div class="checkbox">
                                   <label>
-                                      <input type="checkbox" value="">Youtube
+                                      <input type="checkbox" name="brandIndusties" name="beauty">Beauty
                                   </label>
                               </div>
                               <div class="checkbox">
                                   <label>
-                                      <input type="checkbox" value="">Instagram
+                                      <input type="checkbox" name="brandIndusties" value="skating">Skating
                                   </label>
                               </div>
                               <div class="checkbox">
                                   <label>
-                                      <input type="checkbox" value="">Twitter
+                                      <input type="checkbox" name="brandIndusties" value="basketball">Basketball
                                   </label>
                               </div>
                               <div class="checkbox">
                                   <label>
-                                      <input type="checkbox" value="">Snapchat
+                                      <input type="checkbox" name="brandIndusties" value="soccer">Soccer
                                   </label>
                               </div>
                               <div class="checkbox">
                                   <label>
-                                      <input type="checkbox" value="">Twitch
-                                  </label>
-                              </div>
-                          </div>
-                          <div class="form-group">
-                              <label>Interests to Target</label>
-                              <div class="checkbox">
-                                  <label>
-                                      <input type="checkbox" value="">Beauty
+                                      <input type="checkbox" name="brandIndusties" value="food">Food
                                   </label>
                               </div>
                               <div class="checkbox">
                                   <label>
-                                      <input type="checkbox" value="">Skating
-                                  </label>
-                              </div>
-                              <div class="checkbox">
-                                  <label>
-                                      <input type="checkbox" value="">Basketball
-                                  </label>
-                              </div>
-                              <div class="checkbox">
-                                  <label>
-                                      <input type="checkbox" value="">Soccer
-                                  </label>
-                              </div>
-                              <div class="checkbox">
-                                  <label>
-                                      <input type="checkbox" value="">Food
-                                  </label>
-                              </div>
-                              <div class="checkbox">
-                                  <label>
-                                      <input type="checkbox" value="">Technology
+                                      <input type="checkbox" name="brandIndusties" value="technology">Technology
                                   </label>
                               </div>
                           </div>
                           <div style="text-align:center;">
-                            <button type="button" class="btn btn-success">Create Campaign</button>
+                            <button id="createCampaignButton" class="btn btn-success" onclick="doFunction();">Create Campaign</button>
                           </div>
                         </div>
                         <!-- /.panel-body -->
@@ -503,6 +475,77 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script>
+
+        function doFunction(e) {
+          console.log("GRRRRRR");
+          // Pass the checkbox name to the function
+          function getCheckedBoxes(chkboxName) {
+            var checkboxes = document.getElementsByName(chkboxName);
+            var checkboxesChecked = [];
+            // loop over them all
+            for (var i=0; i<checkboxes.length; i++) {
+               // And stick the checked ones onto an array...
+               if (checkboxes[i].checked) {
+                  checkboxesChecked.push(checkboxes[i].value);
+               }
+            }
+            // Return the array if it is non-empty, or null
+            return checkboxesChecked.length > 0 ? checkboxesChecked : null;
+          }
+          //var resultElement = document.getElementById('postResult');
+          //var todoTitle = document.getElementById('todoTitle').value;
+          //resultElement.innerHTML = '';
+
+          var e = document.getElementById("campaignObjective");
+          var campaign_objective = e.options[e.selectedIndex].value;
+          var e = document.getElementById("influencerTargetSize");
+          var influencer_target_size = e.options[e.selectedIndex].value;
+          var e = document.getElementById("campaignDuration");
+          var campaign_duration = e.options[e.selectedIndex].value;
+          var campaign_budget = document.getElementById("campaignBudget").value;
+          var campaign_target_url = document.getElementById("campaignTargetUrl").value;
+          var ad_copy = document.getElementById("adCopy").value;
+          var checked_boxes = getCheckedBoxes("brandIndusties");
+          var company_name = "Sapie Space"
+          var company_id = "1234567890"
+
+          console.log(campaign_objective);
+          console.log(influencer_target_size);
+          console.log(campaign_duration);
+          console.log(campaign_budget);
+          console.log(campaign_target_url);
+          console.log(ad_copy);
+          console.log(checked_boxes);
+          console.log(company_name);
+          console.log(company_id);
+
+
+          axios.post('http://jsonplaceholder.typicode.com/todos', {
+            userId: '1',
+            title: todoTitle,
+            completed: false,
+            campaign_objective: campaign_objective,
+            influencer_target_size: influencer_target_size,
+            campaign_duration: campaign_duration,
+            campaign_budget: campaign_budget,
+            campaign_target_url: campaign_target_url,
+            ad_copy: ad_copy,
+            checked_boxes: checked_boxes,
+            company_name: company_name,
+            company_id: company_id
+          })
+          .then(function (response) {
+            resultElement.innerHTML = generateSuccessHTMLOutput(response);
+          })
+          .catch(function (error) {
+            resultElement.innerHTML = generateErrorHTMLOutput(error);
+          });
+
+          e.preventDefault();
+        }
+    </script>
 
 </body>
 

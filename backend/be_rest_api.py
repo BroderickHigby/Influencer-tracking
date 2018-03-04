@@ -9,6 +9,8 @@ import os
 import sys
 sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod')
 from scrape_engine import *
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')
+from campaign import *
 
 app = Flask(__name__)
 CORS(app)
@@ -51,7 +53,10 @@ def run_query():
     print("returning query")
     return jsonify({'query_results': query_result})
 
-
+@app.route('/create_campaign', methods=['GET', 'POST'])
+def create_campaign():
+    json_input = json.loads(request.data)
+    campaign = Campaign(json_input['company_name'])
 
 @app.route('/charge_yearly', methods=['POST'])
 def charge_yearly():

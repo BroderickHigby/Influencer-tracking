@@ -18,7 +18,7 @@ class Campaign:
 	index = 'campaigns'
 	doc_type = 'campaign'
 
-	def __init__( self,company_name,start_date=None,duration=30,end_date=None,product_tags=[],budget=0,objective=None,target_url=None,platforms=[], influencer_target_size, target_demographics=target_demographic.target_demographic, interest_tags =[], ad_copy=None):
+	def __init__(self,company_name,start_date=None,duration=30,end_date=None,product_tags=[],budget=0,objective=None,target_url=None,platforms=[], influencer_target_size, target_demographics=target_demographic.target_demographic, interest_tags =[], ad_copy=None):
 		#creates a campaign and gets the ball rollin..
 		company = company(company_name) #generates company object
 		campaignid = uuid.uuid4() #generates a campaignid
