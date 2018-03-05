@@ -102,7 +102,7 @@ export default class Signup extends Component {
       );
       this.props.userUpdate(this.state.newUser);
       this.props.userHasAuthenticated(true);
-      this.props.history.push("/app/home");
+      this.props.history.push("/app/subscribe");
     } catch (e) {
       alert(e);
       this.setState({ isLoading: false });

@@ -4,6 +4,14 @@ import axios from 'axios';
 import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
 import {  CognitoUserAttribute } from "amazon-cognito-identity-js";
 
+const dropdownStyle = {
+  backgroundColor: '#787878',
+  borderRadius: '4px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em'
+}
 
 class Subscribe extends Component {
   constructor(props) {
@@ -48,95 +56,61 @@ class Subscribe extends Component {
 
       //If user email entered is the same as currently logged in
       //Else throw error and redo page
-
+      var route = "";
       if (strUser === "Monthly") {
-        axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly', postData, axiosConfig)
-        .then(async function (response) {
-          console.log("Charge confirmation sent to " + token.email + " //success");
-
-          var subs = response.data.subscription;
-          var subscription_id = subs.id;
-          var user_email = token.email;
-
-          const attributeList= [
-            new CognitoUserAttribute({
-              Name: 'custom:subs_id',
-              Value: subs.id
-            }),
-            new CognitoUserAttribute({
-              Name: 'custom:subs_type',
-              Value: strUser
-            }),
-            new CognitoUserAttribute({
-              Name: 'custom:subs_active',
-              Value: "true"
-            })
-          ]
-          await updateCustomAttributes(attributeList);
-          this.props.userHasSubscribed(true);
-          /*
-            Save the subscription_id to the the user in cognito with the
-            email user_email. The subscription_id is used to cancel the subscription
-            later on.
-
-            Allow access to payed authenticated routes and now display
-            Unsubscribe page instead of subscribe page.
-          */
-
-          window.location = "./confirmation"
-
-        }).catch(error => {
-          console.log(error)
-        });
+        route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly';
       }
-
       else if (strUser === "Yearly") {
-        axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_yearly', postData, axiosConfig)
-        .then(async function (response) {
-          console.log("Charge confirmation sent to " + token.email + " //success");
-
-          var subs = response.data.subscription;
-          var subscription_id = subs.id;
-          var user_email = token.email;
-
-          const attributeList= [
-            new CognitoUserAttribute({
-              Name: 'custom:subs_id',
-              Value: subs.id
-            }),
-            new CognitoUserAttribute({
-              Name: 'custom:subs_type',
-              Value: strUser
-            }),
-            new CognitoUserAttribute({
-              Name: 'custom:subs_active',
-              Value: "true"
-            })
-          ]
-          await updateCustomAttributes(attributeList);
-          this.props.userHasSubscribed(true);
-
-          /*
-            Save the subscription_id to the the user in cognito with the
-            email user_email. The subscription_id is used to cancel the subscription
-            later on.
-
-            Allow access to payed authenticated routes and now display
-            Unsubscribe page instead of subscribe page.
-          */
-
-          window.location = "./confirmation"
-
-
-        }).catch(error => {
-          console.log(error)
-        });
+        route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_yearly';
       }
-
+      else if (strUser === "Early") {
+        route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_early';
+      }
       else {
-          console.log("No plan selected");
+        console.log("No plan selected");
+        window.location = "./subscribe"
       }
-  }
+
+      axios.post(route, postData, axiosConfig)
+      .then(async function (response) {
+        console.log("Charge confirmation sent to " + token.email + " //success");
+
+        var subs = response.data.subscription;
+        var subscription_id = subs.id;
+        var user_email = token.email;
+
+        const attributeList= [
+          new CognitoUserAttribute({
+            Name: 'custom:subs_id',
+            Value: subs.id
+          }),
+          new CognitoUserAttribute({
+            Name: 'custom:subs_type',
+            Value: strUser
+          }),
+          new CognitoUserAttribute({
+            Name: 'custom:subs_active',
+            Value: "true"
+          })
+        ]
+        await updateCustomAttributes(attributeList);
+        this.props.userHasSubscribed(true);
+        /*
+          Save the subscription_id to the the user in cognito with the
+          email user_email. The subscription_id is used to cancel the subscription
+          later on.
+
+          Allow access to payed authenticated routes and now display
+          Unsubscribe page instead of subscribe page.
+        */
+
+        window.location = "./confirmation"
+
+      }).catch(error => {
+        console.log(error)
+      });
+
+    }
   }
 
 
@@ -145,15 +119,37 @@ class Subscribe extends Component {
       <div>
         <center>
         <br></br>
-          <div>
-            <h5>Please use the same email you signed up wtih</h5>
+            <div>
+            <h5>Please use the same email you signed up with</h5>
             <br></br>
-            <h3><b>$299.00</b> for a monthly subscription</h3>
-            <h3><strike>$3588.00</strike> <b>$3229.20 </b>for a yearly subscription</h3>
-            <h4>10% for a yearly subscription!</h4>
 
-            <select id="plans">
-              <option value="" disabled selected hidden >Select your option</option>
+            <div id='webpage' style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0px'}}>
+
+              <div id='monthly' style={{display : 'inline-block', width: '30%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
+                  <h3>Monthly Subscription</h3>
+                  <h2><b>$299.00</b> per month</h2>
+                  <h4>The Basic Plan</h4>
+
+              </div>
+
+              <div id='early' style={{display : 'inline-block', width: '40%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px'}}>
+                  <h3> <i>Special</i> <br></br> Early Access Plan</h3>
+                  <h2><strike>$299.00</strike><b> $149.00</b> per month</h2>
+                  <h4> Limited Time Only!</h4>
+
+              </div>
+
+              <div id='yearly' style={{display : 'inline-block', width: '30%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginRight: '40px'}}>
+                <h3>Yearly Subscription</h3>
+                <h2><strike>$3588.00</strike> <b>$3229.20 </b> </h2>
+                <h4>10% for a yearly subscription!</h4>
+              </div>
+            </div>
+
+
+            <select id="plans" style={dropdownStyle}>
+              <option value="" disabled selected hidden >Select your Plan</option>
+              <option value="Early">Early Access</option>
               <option value="Yearly">Yearly</option>
               <option value="Monthly">Monthly</option>
             </select>

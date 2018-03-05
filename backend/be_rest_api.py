@@ -33,6 +33,13 @@ plan = stripe.Plan.create(
   amount=322920,
 )
 
+plan = stripe.Plan.create(
+  product={'early': 'Early'},
+  nickname='early',
+  interval='month',
+  currency='usd',
+  amount=14900,
+)
 
 @app.route("/")
 def home():
@@ -80,6 +87,27 @@ def charge_yearly():
     return jsonify({'subscription': subscription})
 
 
+@app.route('/charge_early', methods=['POST'])
+def charge_early():
+    print("in charge be_rest_api")
+
+    #YEARLY SUBSCRIPTIONS
+    json_input = json.loads(request.data)
+    token = json_input['stripeToken']
+    email_input = json_input['stripeEmail']
+
+    customer = stripe.Customer.create(
+        email = email_input,
+        source=token,
+
+    )
+
+    subscription = stripe.Subscription.create(
+        customer=customer.id,
+        items=[{'plan': 'early'}],
+    )
+    return jsonify({'subscription': subscription})
+
 
 @app.route('/charge_monthly', methods=['POST'])
 def charge_monthly():
@@ -101,7 +129,6 @@ def charge_monthly():
     )
     print(subscription.id)
     return jsonify({'subscription': subscription})
-
 
 @app.route('/cancel_subscription', methods=['POST'])
 def cancel_subscription():
