@@ -201,7 +201,6 @@ class Search extends Component {
                                 <div class="col-sm-10" style={rightStyle}>
                                   <div style={topRightStyle}>
                                     <div style={styleTitle}>{d.youtube.snippet.title} </div>
-                                    <div style={industryStyle}>- {d.industry}</div>
                                     {
                                       d.facebook.url ? (
                                         <a href={d.facebook.url} target="_blank"><img src={face} style={iconStyle} />
@@ -238,9 +237,15 @@ class Search extends Component {
                                         ""
                                       )
                                     }
-
-                                    <a href={"mailto:" + d.email} target="_top"><img src={email} style={iconStyle} />
-                                    </a>
+				    {
+				      d.email ?  (
+					 <a href={"mailto:" + d.email} target="_top"><img src={email} style={iconStyle} />
+					 </a>
+				      ) : (
+					""
+				      )
+	
+				    }
                                   </div>
 
                                 <div style={bottomRightStyle}>
@@ -251,6 +256,7 @@ class Search extends Component {
                                   {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers <br/>
                                   {numberWithCommas(d.youtube.statistics.viewCount)} views <br/>
                                   {numberWithCommas(d.youtube.statistics.videoCount)} videos <br/>
+				  {d.youtube.brandingSettings.channel.description}
                                   </div>
                                 </div>
                               </div>
