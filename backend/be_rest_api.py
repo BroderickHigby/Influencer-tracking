@@ -18,11 +18,11 @@ CORS(app)
 stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 
 plan = stripe.Plan.create(
-  product={'name': 'Monthly'},
-  nickname='monthly',
+  product={'name': 'MonthlyFree'},
+  nickname='monthlyfree',
   interval='month',
   currency='usd',
-  amount=29900,
+  amount=0,
 )
 
 plan = stripe.Plan.create(
@@ -125,7 +125,7 @@ def charge_monthly():
 
     subscription = stripe.Subscription.create(
         customer=customer.id,
-        items=[{'plan': 'monthly'}],
+        items=[{'plan': 'monthlyfree'}],
     )
     print(subscription.id)
     return jsonify({'subscription': subscription})
