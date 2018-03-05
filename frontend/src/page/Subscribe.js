@@ -64,7 +64,7 @@ class Subscribe extends Component {
       //Else throw error and redo page
       var route = "";
       if (strUser === "Monthly") {
-        route = 'http://127.0.0.1:5000/charge_monthly';
+        route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly';
       }
       else if (strUser === "Yearly") {
         route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_yearly';

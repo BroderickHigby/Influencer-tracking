@@ -7,10 +7,10 @@ import json
 import stripe
 import os
 import sys
-#sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod')
-#from scrape_engine import *
-#sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')
-#from campaign import *
+sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod')
+from scrape_engine import *
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')
+from campaign import *
 
 app = Flask(__name__)
 CORS(app)
@@ -143,6 +143,6 @@ def cancel_subscription():
 
 
 if __name__ == "__main__":
-    #app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
+    app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
     #app.run(host='172.31.26.107', port=5000)
-    app.run(debug=True)
+    #app.run(debug=True)
