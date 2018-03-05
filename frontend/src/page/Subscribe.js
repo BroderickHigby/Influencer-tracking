@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
-import {  CognitoUserAttribute } from "amazon-cognito-identity-js";
+import {
+  AuthenticationDetails,
+  CognitoUserPool,
+  CognitoUserAttribute
+} from "amazon-cognito-identity-js";
 
 const dropdownStyle = {
   backgroundColor: '#787878',
@@ -60,7 +64,7 @@ class Subscribe extends Component {
       //Else throw error and redo page
       var route = "";
       if (strUser === "Monthly") {
-        route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly';
+        route = 'http://127.0.0.1:5000/charge_monthly';
       }
       else if (strUser === "Yearly") {
         route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_yearly';
@@ -95,8 +99,6 @@ class Subscribe extends Component {
             Value: "true"
           })
         ]
-        await updateCustomAttributes(attributeList);
-        this.props.userHasSubscribed(true);
         /*
           Save the subscription_id to the the user in cognito with the
           email user_email. The subscription_id is used to cancel the subscription
@@ -105,6 +107,9 @@ class Subscribe extends Component {
           Allow access to payed authenticated routes and now display
           Unsubscribe page instead of subscribe page.
         */
+
+        await updateCustomAttributes(attributeList);
+        this.props.userHasSubscribed(true);
 
         window.location = "./confirmation"
 
