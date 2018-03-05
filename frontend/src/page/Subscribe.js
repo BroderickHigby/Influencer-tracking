@@ -29,10 +29,12 @@ class Subscribe extends Component {
     }
     //Check to see if current user email is the same as inputed email
     console.log(attributes);
+    /*
     if (attributes[i].Value !== token.email) {
       window.location = "./emailerror"
     }
-    else {
+    */
+    //else {
 
       var postData = {
           stripeToken: token.id,
@@ -110,7 +112,7 @@ class Subscribe extends Component {
         console.log(error)
       });
 
-    }
+    //}
   }
 
 

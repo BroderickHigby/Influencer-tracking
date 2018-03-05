@@ -18,11 +18,11 @@ CORS(app)
 stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 
 plan = stripe.Plan.create(
-  product={'name': 'MonthlyFree'},
-  nickname='monthlyfree',
+  product={'name': 'monthly'},
+  nickname='monthly',
   interval='month',
   currency='usd',
-  amount=0,
+  amount=29900,
 )
 
 plan = stripe.Plan.create(
@@ -30,11 +30,11 @@ plan = stripe.Plan.create(
   nickname='yearly',
   interval='year',
   currency='usd',
-  amount=322920,
+  amount=329900,
 )
 
 plan = stripe.Plan.create(
-  product={'early': 'Early'},
+  product={'name': 'Early'},
   nickname='early',
   interval='month',
   currency='usd',
@@ -82,7 +82,7 @@ def charge_yearly():
 
     subscription = stripe.Subscription.create(
         customer=customer.id,
-        items=[{'plan': 'yearly'}],
+        items=[{'plan': 'plan_CRLOE39msGhBfc'}],
     )
     return jsonify({'subscription': subscription})
 
@@ -104,7 +104,7 @@ def charge_early():
 
     subscription = stripe.Subscription.create(
         customer=customer.id,
-        items=[{'plan': 'early'}],
+        items=[{'plan': 'plan_CRLOxGBhLxSduz'}],
     )
     return jsonify({'subscription': subscription})
 
@@ -125,7 +125,7 @@ def charge_monthly():
 
     subscription = stripe.Subscription.create(
         customer=customer.id,
-        items=[{'plan': 'monthlyfree'}],
+        items=[{'plan': 'plan_CRLHbycdmSkDvd'}],
     )
     print(subscription.id)
     return jsonify({'subscription': subscription})
