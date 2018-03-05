@@ -102,6 +102,8 @@ export default class Signup extends Component {
       );
       this.props.userUpdate(this.state.newUser);
       this.props.userHasAuthenticated(true);
+      this.props.userHasSubscribed(false);
+
       this.props.history.push("/app/subscribe");
     } catch (e) {
       alert(e);

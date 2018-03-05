@@ -55,6 +55,7 @@ export default class Login extends Component {
     try {
       await this.login(this.state.userId, this.state.password);
       this.props.userHasAuthenticated(true);
+
       this.props.userUpdate(this.state.cognitoUser);
       this.props.history.push("/app/home");
     } catch (e) {
