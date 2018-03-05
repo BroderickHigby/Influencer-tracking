@@ -13,6 +13,6 @@ export default ({ component: C, props: cProps, ...rest }) =>
               to={'/app/subscribe'}
             />)
         : <Redirect
-            to={'/app/login'}
+            to={'/app/signup'}
           />}
   />;
