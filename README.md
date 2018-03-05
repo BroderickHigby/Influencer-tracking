@@ -1,4 +1,4 @@
-# Sapie Space
+#Sapie Space
 
 Sapie Space helps businesses go viral using machine learning to connect them with influencers in their industry.*
 
@@ -78,9 +78,8 @@ should ease daily development and deployment.
 
 ## Future Updates
 
-- Integrate each social media platform and use Youtube as an anchorpoint
 - Create a stepladder of social influencer
-
+- The ad campaign
 
 ## Other Business-Development References
 
