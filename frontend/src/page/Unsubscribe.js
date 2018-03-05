@@ -46,11 +46,13 @@ class Unsubscribe extends Component {
       console.log("Cancelation:" +  lastDay);
       //window.location = "./cancelconfirm"
 
+
       /*
         Save the subscription_id to the the user in cognito with the
         email user_email. The subscription_id is used to cancel the subscription
         later on.
       */
+
 
       const attributeList= [
            new CognitoUserAttribute({

@@ -8,6 +8,17 @@ import {
   CognitoUser
 } from "amazon-cognito-identity-js";
 import {confirmPassword, forgotPassword} from "../libs/awsLib";
+import logo from "../halfLogo.png";
+
+
+const submitButtonStyle = {
+  backgroundColor: '#711AAC',
+  borderRadius: '20px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em'
+}
 
 export default class Login extends Component {
   constructor(props) {
@@ -98,40 +109,61 @@ export default class Login extends Component {
 
 renderLogin(){
   return(
-    <div className="text-center">
-      <form onSubmit={this.handleSubmit}>
-        <FormGroup controlId= "userId" bsSize= "large">
-          <ControlLabel>Username/Email</ControlLabel>
-          <FormControl
-            autoFocus
-            type="userId"
-            value={this.state.userId}
-            placeholder="user"
-            onChange={this.handleChange}
-          />
-        </FormGroup>
-        <FormGroup controlId= "password" bsSize= "large">
-          <ControlLabel>Password</ControlLabel>
-          <FormControl
-            type="password"
-            value={this.state.password}
-            placeholder="password"
-            onChange={this.handleChange}
-          />
-        </FormGroup>
-        <LoaderButton
-          block
-          bsSize="large"
-          disabled={!this.validateForm()}
-          type="submit"
-          isLoading={this.state.isLoading}
-          text="Login"
-          loadingText="Logging in…"
-        />
-      </form>
-      <br/>
-      <Button onClick = {()=> this.setState({knowsPassword: false})}>Forgot Password?</Button>
-    </div>
+    <div id='webpage' style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0px'}}>
+
+      <div id='logoSide' style={{display : 'inline-block', width: '50%', backgroundColor: "#711AAC80", float: 'top', padding: '0px'}}>
+        <br></br><br></br>
+        <br></br><br></br>
+
+        <img src={logo} width="80%" height="80%" />
+
+        <br></br><br></br>
+        <br></br><br></br>
+
+
+      </div>
+
+      <div id="form" style={{display : 'inline-block', width: '50%', float: 'middle', height: '50%', padding: '0px'}}>
+      <center><h3><b>Login</b></h3></center>
+      <br></br>
+
+        <div className="text-center">
+          <form onSubmit={this.handleSubmit}>
+            <FormGroup controlId= "userId" bsSize= "large">
+              <ControlLabel>Username/Email</ControlLabel>
+              <FormControl
+                autoFocus
+                type="userId"
+                value={this.state.userId}
+                placeholder="user"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <FormGroup controlId= "password" bsSize= "large">
+              <ControlLabel>Password</ControlLabel>
+              <FormControl
+                type="password"
+                value={this.state.password}
+                placeholder="password"
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <LoaderButton
+              block
+              bsSize="large"
+              disabled={!this.validateForm()}
+              type="submit"
+              isLoading={this.state.isLoading}
+              style={submitButtonStyle}
+              text="Login"
+              loadingText="Logging in…"
+            />
+          </form>
+          <br/>
+          <Button onClick = {()=> this.setState({knowsPassword: false})}>Forgot Password?</Button>
+        </div>
+        </div>
+        </div>
   )
 }
 

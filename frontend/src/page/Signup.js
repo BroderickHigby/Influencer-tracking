@@ -13,6 +13,21 @@ import {
   CognitoUserAttribute
 } from "amazon-cognito-identity-js";
 import config from "../config";
+import Flexbox from 'flexbox-react';
+
+import logo from "../halfLogo.png";
+import Login from "./Login.js";
+
+
+const submitButtonStyle = {
+  backgroundColor: '#711AAC',
+  borderRadius: '20px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em'
+}
+
 
 export default class Signup extends Component {
   constructor(props) {
@@ -205,55 +220,82 @@ export default class Signup extends Component {
 
   renderForm() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <FormGroup controlId="username" bsSize="large">
-          <ControlLabel>Username</ControlLabel>
-          <FormControl
-            autoFocus
-            type="username"
-            value={this.state.username}
-            onChange={this.handleChange}
-            placeholder="username"
-          />
-        </FormGroup>
-        <FormGroup controlId="email" bsSize="large">
-          <ControlLabel>Email</ControlLabel>
-          <FormControl
-            autoFocus
-            type="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            placeholder="test@example.com"
-          />
-        </FormGroup>
-        <FormGroup controlId="password" bsSize="large">
-          <ControlLabel>Password</ControlLabel>
-          <FormControl
-            value={this.state.password}
-            onChange={this.handleChange}
-            type="password"
-            placeholder="A-Z + a-z + 0-9 + !@#$%^"
-          />
-        </FormGroup>
-        <FormGroup controlId="confirmPassword" bsSize="large">
-          <ControlLabel>Confirm Password</ControlLabel>
-          <FormControl
-            value={this.state.confirmPassword}
-            onChange={this.handleChange}
-            type="password"
-            placeholder= "confirm password"
-          />
-        </FormGroup>
-        <LoaderButton
-          block
-          bsSize="large"
-          disabled={!this.validateForm()}
-          type="submit"
-          isLoading={this.state.isLoading}
-          text="Signup"
-          loadingText="Signing up…"
-        />
-      </form>
+      <div id='webpage' style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0px'}}>
+
+        <div id='logoSide' style={{display : 'inline-block', width: '50%', backgroundColor: "#711AAC80", float: 'top', padding: '0px'}}>
+          <br></br><br></br>
+          <br></br><br></br>
+
+          <img src={logo} width="80%" height="80%" />
+
+          <br></br><br></br>
+          <br></br><br></br>
+
+
+        </div>
+
+        <div id="form" style={{display : 'inline-block', width: '50%', float: 'middle', height: '50%', padding: '0px'}}>
+          <center><h2><b> Join Sapie Today!</b></h2></center>
+
+          <br></br> <br></br>
+          <form onSubmit={this.handleSubmit} style={{}}>
+            <FormGroup controlId="username" bsSize="large">
+              <ControlLabel>Username</ControlLabel>
+              <FormControl
+                autoFocus
+                type="username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                placeholder="username"
+              />
+            </FormGroup>
+            <FormGroup controlId="email" bsSize="large">
+              <ControlLabel>Email</ControlLabel>
+              <FormControl
+                autoFocus
+                type="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+                placeholder="test@example.com"
+              />
+            </FormGroup>
+            <FormGroup controlId="password" bsSize="large">
+              <ControlLabel>Password</ControlLabel>
+              <FormControl
+                value={this.state.password}
+                onChange={this.handleChange}
+                type="password"
+                placeholder="A-Z + a-z + 0-9 + !@#$%^"
+              />
+            </FormGroup>
+            <FormGroup controlId="confirmPassword" bsSize="large">
+              <ControlLabel>Confirm Password</ControlLabel>
+              <FormControl
+                value={this.state.confirmPassword}
+                onChange={this.handleChange}
+                type="password"
+                placeholder= "confirm password"
+              />
+            </FormGroup>
+            <LoaderButton
+              block
+              bsSize="large"
+              style={submitButtonStyle}
+              disabled={!this.validateForm()}
+              type="submit"
+              isLoading={this.state.isLoading}
+              text="Get Started"
+              loadingText="Signing up…"
+            />
+          </form>
+          <br></br><br></br>
+          <center><h3><b> Already a Member?</b></h3>
+          <a href={'/app/login'} target="_blank">Sign in</a>
+          </center>
+
+        </div>
+
+      </div>
     );
   }
 
