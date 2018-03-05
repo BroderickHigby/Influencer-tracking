@@ -124,13 +124,13 @@ renderLogin(){
 
       </div>
 
-      <div id="form" style={{display : 'inline-block', width: '50%', float: 'middle', height: '50%', padding: '0px'}}>
+      <div id="form" style={{display : 'inline-block', width: '50%', float: 'left', height: '50%', padding: '0px', textAlign: 'left'}}>
       <center><h3><b>Login</b></h3></center>
       <br></br>
 
         <div className="text-center">
           <form onSubmit={this.handleSubmit}>
-            <FormGroup controlId= "userId" bsSize= "large">
+            <FormGroup controlId= "userId" bsSize= "large" style={{textAlign: 'left'}}>
               <ControlLabel>Username/Email</ControlLabel>
               <FormControl
                 autoFocus
@@ -140,8 +140,9 @@ renderLogin(){
                 onChange={this.handleChange}
               />
             </FormGroup>
-            <FormGroup controlId= "password" bsSize= "large">
+            <FormGroup controlId= "password" bsSize= "large" style={{textAlign: 'left'}}>
               <ControlLabel>Password</ControlLabel>
+              <p style={{color: 'rgba(0,0,0,.5)', fontSize: '.9em'}}>Password must be 8 characters long, with one special character, and one number *</p>
               <FormControl
                 type="password"
                 value={this.state.password}
@@ -231,7 +232,7 @@ renderForgot(){
 
 render() {
   return (
-    <div className="Signup">
+    <div className="Signup" style={{padding: '0px 0px'}}>
     {this.state.knowsPassword
       ? this.renderLogin()
       : this.renderForgot()}

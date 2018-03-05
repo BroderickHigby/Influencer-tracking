@@ -6,7 +6,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 const styleContainer = {
   width: '100%',
-  padding: '0'
+  padding: '0',
+  height: '52px',
 }
 
 const styleNav = {
