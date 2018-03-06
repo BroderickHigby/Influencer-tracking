@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
-import {  CognitoUserAttribute } from "amazon-cognito-identity-js";
+import {
+  AuthenticationDetails,
+  CognitoUserPool,
+  CognitoUserAttribute
+} from "amazon-cognito-identity-js";
 
 class Unsubscribe extends Component {
   constructor(props) {
