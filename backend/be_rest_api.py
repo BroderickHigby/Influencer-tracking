@@ -7,10 +7,10 @@ import json
 import stripe
 import os
 import sys
-sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod')
+sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod/')
 from scrape_engine import *
-sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')
-from campaign import *
+#sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')
+#from campaign import *
 
 app = Flask(__name__)
 CORS(app)
