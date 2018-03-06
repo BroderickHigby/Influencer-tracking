@@ -78,7 +78,7 @@ export default class Signup extends Component {
         })
       ]
 
-      const newUser = await this.signup(this.state.email, this.state.password, attributeList);
+      const newUser = await this.signup(this.state.username, this.state.password, attributeList);
       this.setState({
         newUser: newUser
       });
