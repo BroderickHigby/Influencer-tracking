@@ -11,6 +11,9 @@ import insta from '../instagram.svg';
 import twitter from '../twitter.svg';
 import googlePlus from '../google-plus.svg';
 import email from '../email.svg';
+import ReactLoading from 'react-loading';
+
+var Loader = require('react-loader');
 
 
 const styleContent = {
@@ -131,7 +134,8 @@ const backButtonStyle = {
   color: 'white',
   padding: '10px 10px',
   border: '0',
-  fontSize: '1em'
+  fontSize: '1em',
+  display: 'none'
 }
 
 const numberWithCommas = (num) => {
@@ -143,147 +147,164 @@ const numberWithCommas = (num) => {
 var influencerList = [];
 class Search extends Component {
 
-    handleClick() {
-      console.log("CLICKED");
-      window.location = "./home";
-    }
+  handleClick() {
+    console.log("CLICKED");
+    window.location = "./home";
+  }
 
-    constructor(props) {
-        super(props);
-	this.state = {IL: []};
-        console.log('In CONSTRUCTOR');
-        var postData = {
-            queryString: this.props.location.search.split("=")[1]
-            //queryString: this.props.location.search.split("=")[1]
-        };
-        console.log("GRGRGRGRGRGR!!!");
-        console.log(postData.queryString);
-	console.log("$$$$$$$$$$$$$$$$");
-        let axiosConfig = {
-            headers: {
-                "Content-Type": "application/json;charset=UTF-8",
-                "Access-Control-Allow-Origin": "*"
-            }
-        };
-        console.log('DOING AXIOS');
-	console.log(postData);
-	console.log(axiosConfig);
-	let currentComponent = this;
-        axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig)
-        .then(function (response) {
-      	    console.log("GREAT SUCCESS (in borat accent)");
-      	    console.log(response.data);
-            influencerList = response.data.query_results;
-            console.log(influencerList);
-      	    currentComponent.setState({IL: influencerList});
-        })
-	.catch(function (error) {
-    		console.log(error);
-  	});
-    }
+  constructor(props) {
+    super(props);
+    this.state = {IL: [], loading: true};
+    console.log('In CONSTRUCTOR');
+    var postData = {
+      queryString: this.props.location.search.split("=")[1]
+      //queryString: this.props.location.search.split("=")[1]
+    };
+    console.log("GRGRGRGRGRGR!!!");
+    console.log(postData.queryString);
+    console.log("$$$$$$$$$$$$$$$$");
+    let axiosConfig = {
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*"
+      }
+    };
+    console.log('DOING AXIOS');
+    console.log(postData);
+    console.log(axiosConfig);
+    let currentComponent = this;
+    axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig)
+    .then(function (response) {
+      console.log("GREAT SUCCESS (in borat accent)");
+      console.log(response.data);
+      influencerList = response.data.query_results;
+      console.log(influencerList);
+      currentComponent.setState({IL: influencerList});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 
-    render() {
+  state = {
+    loading: true
+  };
+
+
+  componentWillMount(){
+    console.log("Will mount");
+    influencerList = [];
+    this.setState({loading: true}); //optional
+  }
+
+  componentDidMount(){
+    console.log("Did mount")
+    this.setState({loading: false})
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+      <Fetcher root="/api/" endpoint="influencer" query={this.props.location.search}>
+      <Content>
+      <Filler />
+      <Sidebar hideSm></Sidebar>
+      <div style={styleContent}>
+      {influencerList.map(function(d, idx) {
         return (
-            <React.Fragment>
-              <Fetcher root="/api/" endpoint="influencer" query={this.props.location.search}>
-                <Content>
-                  <Filler />
-                  <Sidebar hideSm></Sidebar>
-                    <div style={styleContent}>
-                        {influencerList.map(function(d, idx) {
-                            return (
-                            <div key={idx} style={styleBlock}>
-                            <div class="row" style={rowStyle}>
-                            {d.keywords}
-                                <div class="col-sm-2" style={leftStyle}>
-                                  <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
-                                </div>
-                                <div class="col-sm-10" style={rightStyle}>
-                                  <div style={topRightStyle}>
-                                    <div style={styleTitle}>{d.youtube.snippet.title} </div>
-                                    {
-                                      d.facebook.url ? (
-                                        <a href={d.facebook.url} target="_blank"><img src={face} style={iconStyle} />
-                                        </a>
+          <div key={idx} style={styleBlock}>
+          <div class="row" style={rowStyle}>
+          {d.keywords}
+          <div class="col-sm-2" style={leftStyle}>
+          <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
+          </div>
+          <div class="col-sm-10" style={rightStyle}>
+          <div style={topRightStyle}>
+          <div style={styleTitle}>{d.youtube.snippet.title} </div>
+          {
+            d.facebook.url ? (
+              <a href={d.facebook.url} target="_blank"><img src={face} style={iconStyle} />
+              </a>
 
-                                      ) : (
-                                        ""
-                                      )
-                                    }
+            ) : (
+              ""
+            )
+          }
 
-                                    {
-                                      d.instagram.url ? (
-                                        <a href={d.instagram.url} target="_blank"><img src={insta} style={iconStyle} />
-                                        </a>
-                                      ) : (
-                                        ""
-                                      )
-                                    }
+          {
+            d.instagram.url ? (
+              <a href={d.instagram.url} target="_blank"><img src={insta} style={iconStyle} />
+              </a>
+            ) : (
+              ""
+            )
+          }
 
-                                    {
-                                      d.twitter.url ? (
-                                        <a href={d.twitter.url} target="_blank"><img src={twitter} style={iconStyle} />
-                                        </a>
-                                      ) : (
-                                        ""
-                                      )
-                                    }
+          {
+            d.twitter.url ? (
+              <a href={d.twitter.url} target="_blank"><img src={twitter} style={iconStyle} />
+              </a>
+            ) : (
+              ""
+            )
+          }
 
-                                    {
-                                      d.google_plus_url ? (
-                                        <a href={d.google_plus_url} target="_blank"><img src={googlePlus} style={iconStyle} />
-                                        </a>
-                                      ) : (
-                                        ""
-                                      )
-                                    }
-				    {
-				      d.email ?  (
-					 <a href={"mailto:" + d.email} target="_top"><img src={email} style={iconStyle} />
-					 </a>
-				      ) : (
-					""
-				      )
-	
-				    }
-                                  </div>
+          {
+            d.google_plus_url ? (
+              <a href={d.google_plus_url} target="_blank"><img src={googlePlus} style={iconStyle} />
+              </a>
+            ) : (
+              ""
+            )
+          }
+          {
+            d.email ?  (
+              <a href={"mailto:" + d.email} target="_top"><img src={email} style={iconStyle} />
+              </a>
+            ) : (
+              ""
+            )
 
-                                <div style={bottomRightStyle}>
-                                  <div style={influenceStyle}>
-                                  {String(d.influencer_score).substr(0,2)} &#37; influence
-                                  </div>
-                                  <div style={restStyle}>
-                                  {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers <br/>
-                                  {numberWithCommas(d.youtube.statistics.viewCount)} views <br/>
-                                  {numberWithCommas(d.youtube.statistics.videoCount)} videos <br/>
-				  {d.youtube.brandingSettings.channel.description}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+          }
+          </div>
+
+          <div style={bottomRightStyle}>
+          <div style={influenceStyle}>
+          {String(d.influencer_score).substr(0,2)} &#37; influence
+          </div>
+          <div style={restStyle}>
+          {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers <br/>
+          {numberWithCommas(d.youtube.statistics.viewCount)} views <br/>
+          {numberWithCommas(d.youtube.statistics.videoCount)} videos <br/>
+          {d.youtube.brandingSettings.channel.description}
+          </div>
+          </div>
+          </div>
+          </div>
 
 
-                              </div>)
-                        })}
-                        {
-                            influencerList.length ? (
-                              ""
-                            ) : (
-                              <div><
-                                center><h3>No results found</h3>
-                                <button onClick={this.handleClick} style={backButtonStyle}>Back to Search</button>
-                                </center>
-                              </div>
-                            )
-                        }
-                    </div>
-                  <Sidebar hideMd></Sidebar>
-                  <Filler />
-                </Content>
-              </Fetcher>
-            </React.Fragment>
-        );
+          </div>)
+        })}
+        {
+          influencerList.length ? (
+            ""
+          ) : (
+            <div style={{marginTop: '100px'}}><
+            center>
+            <ReactLoading type={"bars"} color={"black"} height='200px' width='200px' />
+            <button onClick={this.handleClick} style={backButtonStyle}>Back to Search</button>
+            </center>
+            </div>
+          )
+        }
+        </div>
+        <Sidebar hideMd></Sidebar>
+        <Filler />
+        </Content>
+        </Fetcher>
+        </React.Fragment>
+      );
     }
-}
+  }
 
-export default Search;
+  export default Search;
