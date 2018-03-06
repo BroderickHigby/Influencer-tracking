@@ -5,6 +5,7 @@ import {
   FormControl,
   ControlLabel
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import LoaderButton from "./components/LoaderButton";
 import "./Signup.css";
 import {
@@ -77,7 +78,7 @@ export default class Signup extends Component {
         })
       ]
 
-      const newUser = await this.signup(this.state.username, this.state.password, attributeList);
+      const newUser = await this.signup(this.state.email, this.state.password, attributeList);
       this.setState({
         newUser: newUser
       });
@@ -292,7 +293,7 @@ export default class Signup extends Component {
           </form>
           <br></br><br></br>
           <center><h3><b> Already a Member?</b></h3>
-          <a href={'/app/login'} target="_blank">Sign in</a>
+          <Link to ={'/app/login'}>Sign in</Link>
           </center>
 
         </div>
