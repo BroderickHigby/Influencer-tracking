@@ -270,7 +270,7 @@ class Search extends Component {
 
           <div style={bottomRightStyle}>
           <div style={influenceStyle}>
-          {String(d.influencer_score).substr(0,2)} &#37; influence
+          {String(d.influencer_score).substr(0,4)} &#37; influence
           </div>
           <div style={restStyle}>
           {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers <br/>
