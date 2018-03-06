@@ -94,7 +94,8 @@ class App extends Component {
         isAuthenticated: this.state.isAuthenticated,
         userHasAuthenticated: this.userHasAuthenticated,
         subscribed: this.state.subscribed,
-        userHasSubscribed: this.userHasSubscribed
+        userHasSubscribed: this.userHasSubscribed,
+        userJustLoggedIn: this.userJustLoggedIn
       }
 
       return (
