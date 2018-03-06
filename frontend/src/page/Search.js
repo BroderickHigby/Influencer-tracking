@@ -142,7 +142,16 @@ const numberWithCommas = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+const truncation = (strD) => {
+  var ending = "...";
+    if((typeof strD) == 'string') {
+      if (strD.length > 110) {
+        return strD.substring(0, 110 - ending.length) + ending;
+      }
+    }
 
+    return strD;
+  }
 
 var influencerList = [];
 class Search extends Component {
@@ -154,6 +163,8 @@ class Search extends Component {
 
   constructor(props) {
     super(props);
+    var strD = " ";
+
     this.state = {IL: [], loading: true};
     console.log('In CONSTRUCTOR');
     var postData = {
@@ -276,7 +287,7 @@ class Search extends Component {
           {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers <br/>
           {numberWithCommas(d.youtube.statistics.viewCount)} views <br/>
           {numberWithCommas(d.youtube.statistics.videoCount)} videos <br/>
-          {d.youtube.brandingSettings.channel.description}
+          {truncation(d.youtube.brandingSettings.channel.description)}
           </div>
           </div>
           </div>
