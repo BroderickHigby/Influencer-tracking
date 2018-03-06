@@ -134,22 +134,22 @@ class Subscribe extends Component {
 
               <div id='monthly' style={{display : 'inline-block', width: '30%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
                   <h3>Monthly Subscription</h3>
-                  <h2><b>$299.00</b> per month</h2>
+                  <h2><b>$299.00</b><br></br> per month</h2>
                   <h4>The Basic Plan</h4>
 
               </div>
 
               <div id='early' style={{display : 'inline-block', width: '40%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px'}}>
                   <h3> <i>Special</i> <br></br> Early Access Plan</h3>
-                  <h2><strike>$299.00</strike><b> $149.00</b> per month</h2>
+                  <h2><strike>$299.00</strike><b> $149.00</b><br></br> per month</h2>
                   <h4> Limited Time Only!</h4>
 
               </div>
 
               <div id='yearly' style={{display : 'inline-block', width: '30%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginRight: '40px'}}>
                 <h3>Yearly Subscription</h3>
-                <h2><strike>$3588.00</strike> <b>$3229.20 </b> </h2>
-                <h4>10% for a yearly subscription!</h4>
+                <h2><strike>$3588.00</strike> <b>$3229.20 </b><br></br> per year</h2>
+                <h4>10% off for a yearly subscription!</h4>
               </div>
             </div>
 
