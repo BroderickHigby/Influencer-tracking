@@ -35,6 +35,10 @@ class App extends Component {
     this.setState({subscribed: boolean});
   }
 
+  userHasLoggedIn = boolean => {
+    this.setState({justLoggedIn: boolean});
+  }
+
   async userJustLoggedIn(){
     var i = 0;
     var attributes = await getAttributes();
@@ -46,7 +50,7 @@ class App extends Component {
         break;
       }
     }
-    this.setState({justLoggedIn: false});
+    this.userHasLoggedIn(false);
   }
 
   handleLogout = event => {
@@ -69,9 +73,9 @@ class App extends Component {
   catch(e) {
     alert(e);
   }
-
   this.setState({ isAuthenticating: false });
 }
+
     get initialStore() {
       return {
         resources: {
@@ -92,10 +96,12 @@ class App extends Component {
         user: this.state.user,
         userUpdate: this.userUpdate,
         isAuthenticated: this.state.isAuthenticated,
+        justLoggedIn: this.state.justLoggedIn,
         userHasAuthenticated: this.userHasAuthenticated,
         subscribed: this.state.subscribed,
         userHasSubscribed: this.userHasSubscribed,
-        userJustLoggedIn: this.userJustLoggedIn
+        userJustLoggedIn: this.userJustLoggedIn,
+        userHasLoggedIn: this.userHasLoggedIn
       }
 
       return (
