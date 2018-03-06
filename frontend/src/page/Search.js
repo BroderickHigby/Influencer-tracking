@@ -18,7 +18,7 @@ var Loader = require('react-loader');
 
 const styleContent = {
   width: '60%',
-
+  alignItems: 'right',
 }
 
 const iconStyle = {
@@ -110,8 +110,19 @@ const influenceStyle = {
   fontWeight: '400'
 }
 
-const restStyle = {
-  color: 'rgba(0,0,0, .5)'
+const restStyleLeft = {
+  color: 'rgba(0,0,0, .5)',
+  display : 'inline-block',
+  width: '35%'
+}
+const restStyleRight = {
+  color: 'rgba(0,0,0, .5)',
+  display : 'inline-block',
+  width: '65%'
+}
+
+const restStyleBottom = {
+  color: 'rgba(0,0,0, .5)',
 }
 
 const descriptionStyle = {
@@ -142,16 +153,20 @@ const numberWithCommas = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const truncation = (strD) => {
+const truncation = (strD, length) => {
   var ending = "...";
     if((typeof strD) == 'string') {
-      if (strD.length > 110) {
-        return strD.substring(0, 110 - ending.length) + ending;
+      if (strD.length > length) {
+        return strD.substring(0, length - ending.length) + ending;
       }
     }
 
     return strD;
   }
+
+var assoc = "";
+var twitt = "";
+var instag = "";
 
 var influencerList = [];
 class Search extends Component {
@@ -212,6 +227,7 @@ class Search extends Component {
     console.log("Did mount")
     this.setState({loading: false})
   }
+
 
   render() {
     return (
@@ -283,11 +299,49 @@ class Search extends Component {
           <div style={influenceStyle}>
           {String(d.influencer_score).substr(0,4)} &#37; influence
           </div>
-          <div style={restStyle}>
-          {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers <br/>
-          {numberWithCommas(d.youtube.statistics.viewCount)} views <br/>
-          {numberWithCommas(d.youtube.statistics.videoCount)} videos <br/>
-          {truncation(d.youtube.brandingSettings.channel.description)}
+          <div style={restStyleLeft}>
+
+            {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers<br></br>
+            {numberWithCommas(d.youtube.statistics.viewCount)} views<br></br>
+            {numberWithCommas(d.youtube.statistics.videoCount)} videos
+
+
+          </div>
+          <div style={restStyleRight}>
+          {
+            d.twitter.followers_count ? (
+              twitt = ("Twitter Followers: " + numberWithCommas(d.twitter.followers_count))
+            ) : (
+              ""
+            )
+          }
+          <br></br>
+          {
+            d.instagram.followers_count ? (
+              instag = ("Instagram Followers: " + numberWithCommas(d.instagram.followers_count))
+            ) : (
+              ""
+            )
+          }
+          <br></br>
+
+            {
+            d.associated_websites ? (
+               (typeof d.associated_websites.constructor === Array) ? (
+                 assoc = ("Associated Websites: " + truncation(d.associated_websites, 50))
+              ) : (
+                ""
+              )
+            ) : (
+              ""
+            )
+          }
+          <br></br>
+
+
+          </div>
+          <div style={restStyleBottom}>
+            {truncation(d.youtube.brandingSettings.channel.description, 100)}
           </div>
           </div>
           </div>
