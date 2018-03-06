@@ -87,6 +87,40 @@ class Influencer:
         newlist = sorted(results, key=lambda k: k['influencer_score'], reverse=True)
         return newlist
 
+    @classmethod
+    def campaign_query(cls, industry_tag, target_size, platform):
+        if platform == 'instagram':
+            print('was ig')
+            actual_query = dict(
+                query=dict(
+                    bool=dict(
+                        must=dict(
+                            match=dict(
+                                {"industry": industry_tag}
+                            ),
+                        ),
+                        must_not=dict(
+                            match=dict(
+                                {"email": ""}
+                            ),
+                        ),
+                    ),
+                ),
+            )
+            res = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query),
+            )
+            results = []
+            for doc in res['hits']['hits']:
+                results.append(doc['_source'])
+            #print(results)
+            print(len(results))
+            for r in results:
+                print(r)
+                print('------')
+            return results
 
 class InfluencerResource:
 

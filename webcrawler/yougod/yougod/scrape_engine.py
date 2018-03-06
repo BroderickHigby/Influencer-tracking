@@ -115,27 +115,27 @@ def channels_list_by_id(q, part, id):
                 item.pop('localizations', None)
 
             item["facebook"] = {}
-            item["facebook"]["url"] = facebook_url
+            item["facebook"]["fb_url"] = facebook_url
 
             item["twitch"] = {}
-            item["twitch"]["url"] = twitch_url
+            item["twitch"]["twitch_url"] = twitch_url
             #item["facebook"] = json.dumps({"url" : facebook_url})
             #item["facebook"]["url"] = facebook_url
 
             item['twitter'] = {}
-            item['twitter']['url'] = twitter_url
-            item['twitter']['description'] = twitter_description
-            item['twitter']['favourites_count'] = twitter_favourites_count
-            item['twitter']['followers_count'] = twitter_followers_count
-            item['twitter']['friends_count'] = twitter_friends_count
-            item['twitter']['id_str'] = twitter_id_str
-            item['twitter']['screen_name'] = twitter_screen_name
+            item['twitter']['twitter_url'] = twitter_url
+            item['twitter']['twitter_description'] = twitter_description
+            item['twitter']['twitter_favourites_count'] = twitter_favourites_count
+            item['twitter']['twitter_followers_count'] = twitter_followers_count
+            item['twitter']['twitter_friends_count'] = twitter_friends_count
+            item['twitter']['twitter_id_str'] = twitter_id_str
+            item['twitter']['twitter_screen_name'] = twitter_screen_name
 
             item['instagram'] = {}
-            item['instagram']['url'] = instagram_url
-            item['instagram']['posts_count'] = ig_posts_count
-            item['instagram']['followers_count'] = ig_followers_count
-            item['instagram']['following_count'] = ig_following_count
+            item['instagram']['ig_url'] = instagram_url
+            item['instagram']['ig_posts_count'] = ig_posts_count
+            item['instagram']['ig_followers_count'] = ig_followers_count
+            item['instagram']['ig_following_count'] = ig_following_count
 
             item['youtube'] = {}
             item['youtube']['kind'] = item['kind']
@@ -168,11 +168,11 @@ def channels_list_by_id(q, part, id):
                 score += 5.00
             if item['google_plus_url'] != '':
                 score += 5.00
-            if item["facebook"]["url"] != '':
+            if item["facebook"]["fb_url"] != '':
                 score += 5.00
-            if item['instagram']['url'] != '':
+            if item['instagram']['ig_url'] != '':
                 score += 5.00
-            if item['twitter']['url'] != '':
+            if item['twitter']['twitter_url'] != '':
                 score += 5.00
             item['influencer_score'] = score
             #print(score)
@@ -188,12 +188,12 @@ def channels_list_by_id(q, part, id):
             print(json.dumps(sm, sort_keys=True, indent=4))
             if item['email'] == '' and 'email' in sm.keys():
                 item['email'] = sm['email']
-            if item['instagram']['url'] == '' and 'ig' in sm.keys():
-                item['instagram']['url'] = sm['ig']
-            if item['facebook']['url'] == '' and 'fb' in sm.keys():
-                item['facebook']['url'] = sm['fb']
-            if item['twitter']['url'] == '' and 'twitter' in sm.keys():
-                item['twitter']['url'] = sm['twitter']
+            if item['instagram']['ig_url'] == '' and 'ig' in sm.keys():
+                item['instagram']['ig_url'] = sm['ig']
+            if item['facebook']['fb_url'] == '' and 'fb' in sm.keys():
+                item['facebook']['fb_url'] = sm['fb']
+            if item['twitter']['twitter_url'] == '' and 'twitter' in sm.keys():
+                item['twitter']['twitter_url'] = sm['twitter']
             item['associated_websites'] = sm['associated_websites']
             #print(json.dumps(sm, sort_keys=True, indent=4))
             #look up IGs if no ig.

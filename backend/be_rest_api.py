@@ -56,7 +56,7 @@ def run_query():
 @app.route('/create_campaign', methods=['GET', 'POST'])
 def create_campaign():
     json_input = json.loads(request.data)
-    campaign = Campaign(json_input['company_name'])
+    campaign = Campaign(json_input['company_name'], json_input['company_id'], json_input['duration'], json_input['brands_industries'], json_input['campaign_budget'], json_input['campaign_objective'], json_input['campaign_target_url'], json_input['influencer_target_size'], json_input['ad_copy'])
 
 @app.route('/charge_yearly', methods=['POST'])
 def charge_yearly():

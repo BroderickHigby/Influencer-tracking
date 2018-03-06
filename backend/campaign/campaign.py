@@ -5,6 +5,10 @@ from target_demographic import target_demographic
 from company import company
 from database import es
 from elasticsearch.exceptions import NotFoundError
+import os
+import sys
+sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/backend')
+from influencer import *
 
 class Campaign:
 	costs_per_post_by_influencer_size = {
@@ -18,7 +22,8 @@ class Campaign:
 	index = 'campaigns'
 	doc_type = 'campaign'
 
-	def __init__(self,company_name,start_date=None,duration=30,end_date=None,product_tags=[],budget=0,objective=None,target_url=None,platforms=[], influencer_target_size, target_demographics=target_demographic.target_demographic, interest_tags =[], ad_copy=None):
+
+	def __init__(self, company_name, company_id, duration, brands_industries, campaign_budget, campaign_objective, campaign_target_url, influencer_target_size, ad_copy, hard_coded=True):
 		#creates a campaign and gets the ball rollin..
 		company = company(company_name) #generates company object
 		campaignid = uuid.uuid4() #generates a campaignid
@@ -28,6 +33,9 @@ class Campaign:
 		if are_too_poor:
 			print("SORRY YOU ARE TOO POOR FOR THIS. INCREASE BUDGET OR DECREASE INFLUENCER TARGET SIZE.")
 		else:
+			if hard_coded == True:
+				
+			Influencer.campaign_query(str(json_input['queryString']))
 			doc = {
 					"company" : company,
 					"product_tags": product_tags
