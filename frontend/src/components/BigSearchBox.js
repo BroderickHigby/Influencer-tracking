@@ -16,12 +16,12 @@ const inputStyle = {
     borderRadius: '3em',
     flexGrow: '1',
     height: '40px',
-    lineHeight: '50px',
+    lineHeight: '1em',
     marginBottom: '20px',
-    padding: '5px 18px',
-    fontSize: '.75em',
+    padding: '15px 18px',
+    fontSize: '1em',
     fontWeight: '300',
-    
+
 };
 
 
