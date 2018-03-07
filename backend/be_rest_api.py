@@ -125,11 +125,11 @@ def charge_monthly():
 
     subscription = stripe.Subscription.create(
         customer=customer.id,
-        items=[{'plan': 'plan_CRLvLgbfuJ0Em3'}],
+        items=[{'plan': 'plan_CRlMXL8BNJ87SN'}],
     )
     print(subscription.id)
     return jsonify({'subscription': subscription})
-    
+
 
 @app.route('/cancel_subscription', methods=['POST'])
 def cancel_subscription():

@@ -17,7 +17,7 @@ var Loader = require('react-loader');
 
 
 const styleContent = {
-  width: '60%',
+  width: '80%',
   alignItems: 'right',
 }
 
@@ -113,12 +113,19 @@ const influenceStyle = {
 const restStyleLeft = {
   color: 'rgba(0,0,0, .5)',
   display : 'inline-block',
-  width: '35%'
+  width: '30%'
 }
 const restStyleRight = {
   color: 'rgba(0,0,0, .5)',
   display : 'inline-block',
-  width: '65%'
+  width: '35%',
+  float: 'top'
+}
+
+const restStyleEnd = {
+  color: 'rgba(0,0,0, .5)',
+  display : 'inline-block',
+  width: '35%'
 }
 
 const restStyleBottom = {
@@ -155,18 +162,27 @@ const numberWithCommas = (num) => {
 
 const truncation = (strD, length) => {
   var ending = "...";
-    if((typeof strD) == 'string') {
-      if (strD.length > length) {
-        return strD.substring(0, length - ending.length) + ending;
-      }
+  if((typeof strD) == 'string') {
+    if (strD.length > length) {
+      return strD.substring(0, length - ending.length) + ending;
     }
-
-    return strD;
   }
+    return strD;
+}
+
+const overHundred = (num) => {
+    if (num > 99.9) {
+      return 100;
+    }
+    return num;
+}
 
 var assoc = "";
 var twitt = "";
 var instag = "";
+var locate = "";
+var events = "";
+var brands = "";
 
 var influencerList = [];
 class Search extends Component {
@@ -237,8 +253,10 @@ class Search extends Component {
       <Filler />
       <Sidebar hideSm></Sidebar>
       <div style={styleContent}>
+
       {influencerList.map(function(d, idx) {
         return (
+
           <div key={idx} style={styleBlock}>
           <div class="row" style={rowStyle}>
           {d.keywords}
@@ -297,7 +315,7 @@ class Search extends Component {
 
           <div style={bottomRightStyle}>
           <div style={influenceStyle}>
-          {String(d.influencer_score).substr(0,4)} &#37; influence
+          {String(overHundred(d.influencer_score)).substr(0,4)} &#37; influence
           </div>
           <div style={restStyleLeft}>
 
@@ -310,38 +328,70 @@ class Search extends Component {
           <div style={restStyleRight}>
           {
             d.twitter.followers_count ? (
-              twitt = ("Twitter Followers: " + numberWithCommas(d.twitter.followers_count))
+              twitt = ("Twitter Followers: " + numberWithCommas(d.twitter.followers_count) + "\n")
             ) : (
               ""
             )
           }
-          <br></br>
           {
             d.instagram.followers_count ? (
-              instag = ("Instagram Followers: " + numberWithCommas(d.instagram.followers_count))
+              instag = ("Instagram Followers: " + numberWithCommas(d.instagram.followers_count) + "\n")
             ) : (
               ""
             )
           }
+          {
+            d.locations ? (
+              d.locations.toString() ? (
+                locate = ("Locations: " + truncation(d.locations.toString(), 15) + "\n")
+              ) : (
+                <br></br>
+              )
+            ) : (
+                <br></br>
+            )
+          }
           <br></br>
+          </div>
 
-            {
+          <div style={restStyleEnd}>
+          {
             d.associated_websites ? (
-               (typeof d.associated_websites.constructor === Array) ? (
-                 assoc = ("Associated Websites: " + truncation(d.associated_websites, 50))
+              d.associated_websites.toString() ? (
+                assoc = (truncation(d.associated_websites.toString(), 25)  + "\n")
               ) : (
                 ""
               )
+
             ) : (
-              ""
+                ""
             )
           }
-          <br></br>
-
-
+          {
+            d.branded_products ? (
+              d.branded_products.toString() ? (
+                brands = ("Brands: " + truncation(d.branded_products.toString(), 35) + "\n")
+              ) : (
+                <br></br>
+              )
+            ) : (
+              <br></br>
+            )
+          }
+          {
+            d.events ? (
+              d.events.toString() ? (
+                events = ("Events: " + truncation(d.events.toString(), 35) + "\n")
+              ) : (
+                <br></br>
+              )
+            ) : (
+              <br></br>
+            )
+          }
           </div>
           <div style={restStyleBottom}>
-            {truncation(d.youtube.brandingSettings.channel.description, 100)}
+            {truncation(d.youtube.brandingSettings.channel.description, 150)}
           </div>
           </div>
           </div>
