@@ -104,8 +104,6 @@ def channels_list_by_id(q, part, id):
             except:
                 found_email = ''
 
-            print('BARK')
-            print(item)
             facebook_url, twitter_url, instagram_url, google_plus_url, twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name, ig_posts_count, ig_followers_count, ig_following_count, twitch_url = pull_social_media_links(item['id'])
             item['platform_base'] = "youtube"
             item['industry'] = q
@@ -195,11 +193,16 @@ def channels_list_by_id(q, part, id):
             if item['twitter']['url'] == '' and 'twitter' in sm.keys():
                 item['twitter']['url'] = sm['twitter']
             item['associated_websites'] = sm['associated_websites']
+            item['locations'] = sm['locations']
+            item['branded_products'] = sm['branded_products']
+            item['events'] = sm['events']
+            item['organizations'] = sm['organizations']
+
             #print(json.dumps(sm, sort_keys=True, indent=4))
             #look up IGs if no ig.
             #find_ig_account(item['youtube']['brandingSettings']['channel']['title'], item['youtube']['snippet']['thumbnails']['medium']['url'])
             print('*******')
-            #print(json.dumps(item, sort_keys=True, indent=4))
+            print(json.dumps(item, sort_keys=True, indent=4))
             #print('$$$$$$$$$$')
             influencer.Influencer.create(item, item['youtube']['id'])
     #except:
