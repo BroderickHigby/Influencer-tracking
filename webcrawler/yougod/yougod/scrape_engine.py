@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/backend/')
+sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 import influencer
 import requests
 import json
