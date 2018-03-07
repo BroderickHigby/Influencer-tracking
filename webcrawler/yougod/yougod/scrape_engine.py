@@ -160,59 +160,59 @@ def channels_list_by_id(q, part, id):
             print('696969')
             #print(item)
             #pp.pprint(item)
+            if int(item['youtube']['statistics']['subscriberCount']) < 100000:
+                base_influencer_score = 75
+                youtube_component = float(item['youtube']['statistics']['subscriberCount']) / 10000000.0
+                if youtube_component > 1.00:
+                    youtube_component = 1.00
+                youtube_component = youtube_component * 5.0
+                score = float(base_influencer_score) + youtube_component
+                if item['email'] != '':
+                    score += 5.00
+                if item['google_plus_url'] != '':
+                    score += 5.00
+                if item["facebook"]["url"] != '':
+                    score += 5.00
+                if item['instagram']['url'] != '':
+                    score += 5.00
+                if item['twitter']['url'] != '':
+                    score += 5.00
+                item['influencer_score'] = score
+                #print(score)
+                #print(item['influencer_score'])
+                #pp.pprint(item)
 
-            base_influencer_score = 75
-            youtube_component = float(item['youtube']['statistics']['subscriberCount']) / 10000000.0
-            if youtube_component > 1.00:
-                youtube_component = 1.00
-            youtube_component = youtube_component * 5.0
-            score = float(base_influencer_score) + youtube_component
-            if item['email'] != '':
-                score += 5.00
-            if item['google_plus_url'] != '':
-                score += 5.00
-            if item["facebook"]["url"] != '':
-                score += 5.00
-            if item['instagram']['url'] != '':
-                score += 5.00
-            if item['twitter']['url'] != '':
-                score += 5.00
-            item['influencer_score'] = score
-            #print(score)
-            #print(item['influencer_score'])
-            #pp.pprint(item)
-
-            #Parse description for links.
-            desc = str(item['youtube']['snippet']['description'].encode('utf-8')).lower()
-            print("MEOOFFFF")
-            dp = description_parser.DescriptionParser(desc)
-            entity_json = dp.comprehend_entities()
-            sm = dp.parse_entities_for_sm(entity_json)
-            print(json.dumps(sm, sort_keys=True, indent=4))
-            if item['email'] == '' and 'email' in sm.keys():
-                item['email'] = sm['email']
-            if item['instagram']['url'] == '' and 'ig' in sm.keys():
-                item['instagram']['url'] = sm['ig']
-            if item['facebook']['url'] == '' and 'fb' in sm.keys():
-                item['facebook']['url'] = sm['fb']
-            if item['twitter']['url'] == '' and 'twitter' in sm.keys():
-                item['twitter']['url'] = sm['twitter']
-            item['associated_websites'] = sm['associated_websites']
-            item['locations'] = sm['locations']
-            item['branded_products'] = sm['branded_products']
-            item['events'] = sm['events']
-            item['organizations'] = sm['organizations']
-            item['ig_growth'] = []
-            item['yt_growth'] = []
+                #Parse description for links.
+                desc = str(item['youtube']['snippet']['description'].encode('utf-8')).lower()
+                print("MEOOFFFF")
+                dp = description_parser.DescriptionParser(desc)
+                entity_json = dp.comprehend_entities()
+                sm = dp.parse_entities_for_sm(entity_json)
+                print(json.dumps(sm, sort_keys=True, indent=4))
+                if item['email'] == '' and 'email' in sm.keys():
+                    item['email'] = sm['email']
+                if item['instagram']['url'] == '' and 'ig' in sm.keys():
+                    item['instagram']['url'] = sm['ig']
+                if item['facebook']['url'] == '' and 'fb' in sm.keys():
+                    item['facebook']['url'] = sm['fb']
+                if item['twitter']['url'] == '' and 'twitter' in sm.keys():
+                    item['twitter']['url'] = sm['twitter']
+                item['associated_websites'] = sm['associated_websites']
+                item['locations'] = sm['locations']
+                item['branded_products'] = sm['branded_products']
+                item['events'] = sm['events']
+                item['organizations'] = sm['organizations']
+                item['ig_growth'] = []
+                item['yt_growth'] = []
 
 
-            #print(json.dumps(sm, sort_keys=True, indent=4))
-            #look up IGs if no ig.
-            #find_ig_account(item['youtube']['brandingSettings']['channel']['title'], item['youtube']['snippet']['thumbnails']['medium']['url'])
-            print('*******')
-            print(json.dumps(item, sort_keys=True, indent=4))
-            #print('$$$$$$$$$$')
-            influencer.Influencer.create(item, item['youtube']['id'])
+                #print(json.dumps(sm, sort_keys=True, indent=4))
+                #look up IGs if no ig.
+                #find_ig_account(item['youtube']['brandingSettings']['channel']['title'], item['youtube']['snippet']['thumbnails']['medium']['url'])
+                print('*******')
+                print(json.dumps(item, sort_keys=True, indent=4))
+                #print('$$$$$$$$$$')
+                influencer.Influencer.create(item, item['youtube']['id'])
     #except:
         #print("some error")
 
