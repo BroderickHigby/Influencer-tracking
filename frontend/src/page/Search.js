@@ -67,8 +67,7 @@ const leftStyle = {
   height: '200px',
   overflow: 'hidden',
   padding: '0',
-  borderRadius: '20px 0 0 20px',
-  backgroundColor: 'red'
+  borderRadius: '20px 0 0 20px'
 }
 
 const rightStyle = {
@@ -113,20 +112,22 @@ const influenceStyle = {
 
 const restStyleLeft = {
   color: 'rgba(0,0,0, .5)',
-  display : 'inline-block',
-  width: '30%'
+  display : 'table-cell',
+  width: '30%',
 }
 const restStyleRight = {
   color: 'rgba(0,0,0, .5)',
-  display : 'inline-block',
+  display : 'table-cell',
   width: '35%',
+  height: '100%',
   float: 'top'
 }
 
 const restStyleEnd = {
   color: 'rgba(0,0,0, .5)',
-  display : 'inline-block',
-  width: '35%'
+  display : 'table-cell',
+  width: '35%',
+  height: '100%'
 }
 
 const restStyleBottom = {
@@ -319,6 +320,7 @@ class Search extends Component {
           <div style={influenceStyle}>
           {String(overHundred(d.influencer_score)).substr(0,4)} &#37; influence
           </div>
+          <div style={{position: 'relative', height: '60px', marginTop: '20px'}}>
           <div style={restStyleLeft}>
 
             {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers<br></br>
@@ -331,14 +333,14 @@ class Search extends Component {
           {
             d.twitter.followers_count ? (
               /*twitt = ("Twitter Followers: " + numberWithCommas(d.twitter.followers_count))*/
-              <p style={{display:'block'}}>Twitter Followers:  {numberWithCommas(d.twitter.followers_count)}</p>
+              <p style={{margin: '0'}}>Twitter Followers:  {numberWithCommas(d.twitter.followers_count)}</p>
             ) : (
               ""
             )
           }
           {
             d.instagram.followers_count ? (
-              <p style={{display:'block'}}>Instagram Followers: {numberWithCommas(d.instagram.followers_count)} </p>
+              <p style={{margin: '0'}}>Instagram Followers: {numberWithCommas(d.instagram.followers_count)} </p>
 
             ) : (
               ""
@@ -377,25 +379,25 @@ class Search extends Component {
               d.branded_products.toString() ? (
                 brands = ("Brands: " + truncation(d.branded_products.toString(), 35))
               ) : (
-                <br></br>
+                ""
               )
             ) : (
-              <br></br>
+              ""
             )
           }
-          <br></br>
 
           {
             d.events ? (
               d.events.toString() ? (
                 events = ("Events: " + truncation(d.events.toString(), 35))
               ) : (
-                <br></br>
+                ""
               )
             ) : (
-              <br></br>
+              ""
             )
           }
+          </div>
           </div>
           <div style={restStyleBottom}>
             {truncation(d.youtube.brandingSettings.channel.description, 150)}
