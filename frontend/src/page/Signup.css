@@ -14,3 +14,11 @@
   padding-bottom: 10px;
   color: #999;
 }
+input::-moz-placeholder{
+  font-style: normal;
+  font-size: .75em;
+}
+
+input {
+  font-size: .7em;
+}
