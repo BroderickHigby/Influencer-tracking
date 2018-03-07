@@ -107,7 +107,8 @@ const influenceStyle = {
   color: '#711AAC',
   fontSize: '1.5em',
   margin: '15px 0 0 0',
-  fontWeight: '400'
+  fontWeight: '400',
+  marginBottom: '-20px'
 }
 
 const restStyleLeft = {
@@ -311,6 +312,7 @@ class Search extends Component {
             )
 
           }
+
           </div>
 
           <div style={bottomRightStyle}>
@@ -328,14 +330,16 @@ class Search extends Component {
           <div style={restStyleRight}>
           {
             d.twitter.followers_count ? (
-              twitt = ("Twitter Followers: " + numberWithCommas(d.twitter.followers_count) + "\n")
+              /*twitt = ("Twitter Followers: " + numberWithCommas(d.twitter.followers_count))*/
+              <p style={{display:'block'}}>Twitter Followers:  {numberWithCommas(d.twitter.followers_count)}</p>
             ) : (
               ""
             )
           }
           {
             d.instagram.followers_count ? (
-              instag = ("Instagram Followers: " + numberWithCommas(d.instagram.followers_count) + "\n")
+              <p style={{display:'block'}}>Instagram Followers: {numberWithCommas(d.instagram.followers_count)} </p>
+
             ) : (
               ""
             )
@@ -343,22 +347,22 @@ class Search extends Component {
           {
             d.locations ? (
               d.locations.toString() ? (
-                locate = ("Locations: " + truncation(d.locations.toString(), 15) + "\n")
+                locate = ("Locations: " + truncation(d.locations.toString(), 15))
               ) : (
-                <br></br>
+                ""
               )
             ) : (
-                <br></br>
+              ""
             )
           }
-          <br></br>
           </div>
 
           <div style={restStyleEnd}>
           {
             d.associated_websites ? (
               d.associated_websites.toString() ? (
-                assoc = (truncation(d.associated_websites.toString(), 25)  + "\n")
+                assoc = (truncation(d.associated_websites.toString(), 25))
+
               ) : (
                 ""
               )
@@ -367,10 +371,11 @@ class Search extends Component {
                 ""
             )
           }
+          <br/>
           {
             d.branded_products ? (
               d.branded_products.toString() ? (
-                brands = ("Brands: " + truncation(d.branded_products.toString(), 35) + "\n")
+                brands = ("Brands: " + truncation(d.branded_products.toString(), 35))
               ) : (
                 <br></br>
               )
@@ -378,10 +383,12 @@ class Search extends Component {
               <br></br>
             )
           }
+          <br></br>
+
           {
             d.events ? (
               d.events.toString() ? (
-                events = ("Events: " + truncation(d.events.toString(), 35) + "\n")
+                events = ("Events: " + truncation(d.events.toString(), 35))
               ) : (
                 <br></br>
               )
