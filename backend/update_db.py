@@ -32,10 +32,12 @@ for entry in res['hits']['hits']:
         entry_source['yt_growth'] = []
     if 'twitter_growth' not in entry_source:
         entry_source['twitter_growth'] = []
-
-    yt_statistics = channels_list_by_id_return('statistics', entry['_id'])
-    new_yt_subs_count = yt_statistics['items'][0]['statistics']['subscriberCount']
-    entry_source['yt_growth'].append(current_date + " " + str(new_yt_subs_count))
+    try:
+        yt_statistics = channels_list_by_id_return('statistics', entry['_id'])
+        new_yt_subs_count = yt_statistics['items'][0]['statistics']['subscriberCount']
+        entry_source['yt_growth'].append(current_date + " " + str(new_yt_subs_count))
+    except:
+        entry_source['yt_growth'].append(current_date + " " + str(0))
 
     if 'instagram' in entry_source and 'url' in entry_source['instagram']:
         ig_url = entry_source['instagram']['url']
