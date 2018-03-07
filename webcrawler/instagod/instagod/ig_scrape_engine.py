@@ -293,12 +293,11 @@ class ScrapeEngine:
 
 
     def get_account_metrics(self, username):
-
-        html = requests.get("https://www.instagram.com/{0}/".format(username)) # input URL here
-        soup = BeautifulSoup(html.text, 'lxml')
-
-        data = soup.find_all('meta', attrs={'property':'og:description'})
         try:
+            html = requests.get("https://www.instagram.com/{0}/".format(username)) # input URL here
+            soup = BeautifulSoup(html.text, 'lxml')
+
+            data = soup.find_all('meta', attrs={'property':'og:description'})
             text = data[0].get('content').split()
 
             user = '%s %s %s' % (text[-3], text[-2], text[-1])
@@ -312,8 +311,10 @@ class ScrapeEngine:
             print('Posts:', posts_count)
 
             return posts_count,followers_count,following_count
-        except:
+        except Exception as e:
             print("get_account_metrics failed")
+            print(e)
+            time.sleep(2)
             return "","",""
 
     def rate_influencer(self, username, location, theme):

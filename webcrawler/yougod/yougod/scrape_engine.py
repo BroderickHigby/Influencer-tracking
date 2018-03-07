@@ -85,6 +85,11 @@ def search_list_by_keyword(part, maxResults, q):
   print('8888888')
   explore_returned_items(data['items'], q)
 
+def channels_list_by_id_return(part, id):
+    query_url = base_url + "/channels?part=" + part + "&id=" + id + "&type=channel&key=" + api_key
+    r = requests.get(query_url)
+    data = json.loads(r.text)
+    return data
 
 def channels_list_by_id(q, part, id):
     query_url = base_url + "/channels?part=" + part + "&id=" + id + "&type=channel&key=" + api_key
@@ -197,6 +202,9 @@ def channels_list_by_id(q, part, id):
             item['branded_products'] = sm['branded_products']
             item['events'] = sm['events']
             item['organizations'] = sm['organizations']
+            item['ig_growth'] = []
+            item['yt_growth'] = []
+
 
             #print(json.dumps(sm, sort_keys=True, indent=4))
             #look up IGs if no ig.
