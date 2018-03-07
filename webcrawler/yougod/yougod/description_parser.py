@@ -16,8 +16,21 @@ class DescriptionParser:
         current_sm = ''
         sms = {}
         sms['associated_websites'] = []
+        sms['locations'] = []
+        sms['branded_products'] = []
+        sms['events'] = []
+        sms['organizations'] = []
         if 'Entities' in entity_json:
             for entity in entity_json['Entities']:
+                if entity['Type'] == 'LOCATION':
+                    sms['locations'].append(entity['Text'])
+                elif entity['Type'] == 'COMMERCIAL_ITEM':
+                    sms['branded_products'].append(entity['Text'])
+                elif entity['Type'] == 'EVENT':
+                    sms['events'].append(entity['Text'])
+                elif entity['Type'] == 'ORGANIZATION':
+                    sms['organizations'].append(entity['Text'])
+
                 if current_sm != '' and entity['Text'].lower() != 'instagram' and entity['Text'].lower() != 'ig' and entity['Text'].lower() != 'facebook' and entity['Text'].lower() != 'fb' and entity['Text'].lower() != 'snapchat' and entity['Text'].lower() != 'sc' and entity['Text'].lower() != 'email' and entity['Text'].lower() != 'twitter':
                     sms[current_sm] = entity['Text']
                     ee = current_sm.split(" ")
