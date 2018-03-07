@@ -37,6 +37,19 @@ see it running. You can also access API endpoints directly like
 http://localhost:8080/api/influencer
 
 
+To connect to the SapieSpace EC2 Instance on AWS:
+change directories into the Sapie space project on your local machine 
+```$cd /sapie-space```
+Your key must not be publicly viewable for SSH to work. Use this command if needed:
+```chmod 400 sapiekeypair.pem```
+Connect to your instance using its Public DNS
+Here's our specific instance name: ec2-34-209-86-220.us-west-2.compute.amazonaws.com
+Here's how we'll connect to the EC2 instance:
+```ssh -i "sapiekeypair.pem" ec2-user@ec2-34-209-86-220.us-west-2.compute.amazonaws.com```
+
+Please note that in most cases the username above will be correct, check AWS EC2 or ask Brody to see if the default AMI username changed. 
+
+
 ```
 ### Known Issues
 
