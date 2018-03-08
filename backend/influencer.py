@@ -91,30 +91,6 @@ class Influencer:
     def campaign_query(cls, industry_tag, target_size, platform):
         if platform == 'instagram':
             print('was ig')
-            '''actual_query = dict(
-                query=dict(
-                    bool=dict(
-                        #must=dict(
-                        #    match=dict(
-                        #        {"industry": industry_tag}
-                        #    ),
-                        #),
-                        must_not=dict(
-                            term=dict(
-                                {"email": ""}
-                            ),
-                        ),
-                    ),
-                ),
-            )'''
-
-            '''actual_query = {
-                "query" : {
-                    "regexp":{
-                        "email": ".+"
-                    }
-                }
-            }'''
 
             actual_query = {
                 "query" : {
