@@ -75,7 +75,6 @@ class Unsubscribe extends Component {
 
 
       await updateCustomAttributes(attributeList);
-      this.props.userHasSubscribed(false);
 
       window.location = "http://app.sapie.space/app/cancelconfirm"
 

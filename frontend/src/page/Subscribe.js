@@ -17,6 +17,9 @@ const dropdownStyle = {
   fontSize: '1em'
 }
 
+//pk_test_Jjys3Yuxu330uiclk4ViXeHM
+//pk_live_AEuriPJROzqDhDu5Y73oTUR4
+
 class Subscribe extends Component {
   constructor(props) {
     super(props);
@@ -109,7 +112,6 @@ class Subscribe extends Component {
         */
 
         await updateCustomAttributes(attributeList);
-        this.props.userHasSubscribed(true);
 
         window.location = "http://app.sapie.space/app/confirmation"
 

@@ -8,13 +8,15 @@ import stripe
 import os
 import sys
 sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod/')
-from scrape_engine import *
+#from scrape_engine import *
 #sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')
 #from campaign import *
 
 app = Flask(__name__)
 CORS(app)
 
+#sk_test_UUgREeF3vNIfwJoB2UZj0oyB
+#sk_live_QXvUGMApgvJE8W7PSkVSs8xo
 stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 
 plan = stripe.Plan.create(
@@ -122,10 +124,11 @@ def charge_monthly():
         email = email_input,
         source=token,
     )
-
+    #plan_CSVM2aXa9UW6NF
+    #plan_CRlMXL8BNJ87SN
     subscription = stripe.Subscription.create(
         customer=customer.id,
-        items=[{'plan': 'plan_CRlMXL8BNJ87SN'}],
+        items=[{'plan': 'plan_CSVM2aXa9UW6NF'}],
     )
     print(subscription.id)
     return jsonify({'subscription': subscription})
