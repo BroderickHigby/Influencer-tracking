@@ -55,6 +55,10 @@ class Influencer:
         return cls.query(MATCH_ALL)
 
     @classmethod
+    def remove(cls, id_to_delete):
+        es.delete(index=cls.index, doc_type=cls.doc_type, id=id_to_delete)
+
+    @classmethod
     def query(cls, query, limit=100):
         """Query for a list of influencers"""
         if isinstance(query, str):
