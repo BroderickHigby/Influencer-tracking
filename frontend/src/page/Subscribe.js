@@ -111,7 +111,7 @@ class Subscribe extends Component {
         await updateCustomAttributes(attributeList);
         this.props.userHasSubscribed(true);
 
-        window.location = "/app/confirmation"
+        window.location = "http://app.sapie.space/app/confirmation"
 
       }).catch(error => {
         console.log(error)
