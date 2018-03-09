@@ -77,7 +77,7 @@ class Unsubscribe extends Component {
       await updateCustomAttributes(attributeList);
       this.props.userHasSubscribed(false);
 
-      window.location = "./cancelconfirm"
+      window.location = "/app/cancelconfirm"
 
     }).catch(error => {
       console.log(error)

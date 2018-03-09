@@ -74,7 +74,7 @@ class Subscribe extends Component {
       }
       else {
         console.log("No plan selected");
-        window.location = "./subscribe"
+        window.location = "/app/subscribe"
       }
 
       axios.post(route, postData, axiosConfig)
@@ -111,7 +111,7 @@ class Subscribe extends Component {
         await updateCustomAttributes(attributeList);
         this.props.userHasSubscribed(true);
 
-        window.location = "./confirmation"
+        window.location = "/app/confirmation"
 
       }).catch(error => {
         console.log(error)
