@@ -128,7 +128,7 @@ def charge_monthly():
     #plan_CRlMXL8BNJ87SN
     subscription = stripe.Subscription.create(
         customer=customer.id,
-        items=[{'plan': 'plan_CSVM2aXa9UW6NF'}],
+        items=[{'plan': 'plan_CRlMXL8BNJ87SN'}],
     )
     print(subscription.id)
     return jsonify({'subscription': subscription})
