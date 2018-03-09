@@ -1,0 +1,414 @@
+16 Industry:health Subscribers:1x10000000 VideoCount:5x1000 ViewCount:1x10000000000 HasFacebook:1 HasTwitter:1 TwitterFavorites:9x1000 TwitterFollowers:1x100000
+16 Industry:health VideoCount:1x100 ViewCount:3x10000000
+16 Industry:health Subscribers:2x100000 VideoCount:8x10000 ViewCount:1x100000000 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:5x10 TwitterFollowers:9x100000
+16 Industry:health Subscribers:8x1000000 VideoCount:9x100 ViewCount:1x1000000000 HasInstagram:1 HasFacebook:1 InstaPosts:3,959 InstaFollowers:600.4k InstaFollowing:0x10
+16 Industry:health Subscribers:2x1000 VideoCount:8x100 ViewCount:4x100000
+16 Industry:health Subscribers:2x100000 VideoCount:2x100 ViewCount:3x10000000
+16 Industry:health Subscribers:2x1000000 VideoCount:5x100 ViewCount:5x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 InstaPosts:1x10 InstaFollowers:7x100 InstaFollowing:3,171
+16 Industry:health Subscribers:5x10000 VideoCount:3x100 ViewCount:3x1000000 HasFacebook:1
+16 Industry:health Subscribers:2x1000000 VideoCount:1x10000 ViewCount:9x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1
+16 Industry:health Subscribers:6x100000 VideoCount:3x100 ViewCount:4x10000000 HasInstagram:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:3x10000 TwitterFollowers:3x10000 InstaPosts:1,758 InstaFollowers:109k InstaFollowing:4x100
+16 Industry:health Subscribers:1x10000000 VideoCount:1x1000 ViewCount:4x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFollowers:2x10 InstaPosts:2,400 InstaFollowers:13.3m InstaFollowing:0x10
+16 Industry:health Subscribers:1x10000000 VideoCount:1x100000 ViewCount:2x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:7x1000 TwitterFollowers:4x100000 InstaPosts:2x10 InstaFollowers:1,321 InstaFollowing:4x10
+16 Industry:health Subscribers:2x100 VideoCount:5x10 ViewCount:1x100000 HasWebsite:1
+16 Industry:health Subscribers:5x100000 VideoCount:2x100 ViewCount:5x10000000 HasInstagram:1 HasFacebook:1 HasGooglePlus:1 InstaPosts:1,221 InstaFollowers:391.2k InstaFollowing:1,611
+16 Industry:health Subscribers:5x10000 VideoCount:3x100 ViewCount:5x1000000 HasEmail:1 HasFacebook:1 HasWebsite:1
+16 Industry:health Subscribers:2x100000 VideoCount:4x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:2x100 TwitterFollowers:3x100 InstaPosts:1,375 InstaFollowers:38.5k InstaFollowing:6x100
+16 Industry:health Subscribers:2x100000 VideoCount:2x100 ViewCount:1x10000000 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:5x10 TwitterFollowers:8x100000 InstaPosts:2,254 InstaFollowers:537.4k InstaFollowing:1x100
+16 Industry:health VideoCount:7x10 ViewCount:6x10000
+16 Industry:health Subscribers:2x100000 VideoCount:1x1000 ViewCount:1x100000000
+16 Industry:health Subscribers:8x10000 VideoCount:1x1000 ViewCount:3x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFollowers:6x10 InstaPosts:1x10 InstaFollowers:2x100 InstaFollowing:2,632
+16 Industry:mindfulness Subscribers:1x1000000 VideoCount:1x100 ViewCount:4x100000000 HasFacebook:1 HasWebsite:1 HasGooglePlus:1
+16 Industry:mindfulness Subscribers:7x100000 VideoCount:3x100 ViewCount:5x10000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFollowers:3x1000
+16 Industry:mindfulness Subscribers:3x10000 VideoCount:2x10 ViewCount:2x1000000 HasGooglePlus:1
+16 Industry:mindfulness Subscribers:7x100000 VideoCount:3x100 ViewCount:2x100000000 HasFacebook:1
+16 Industry:mindfulness Subscribers:6x100000 VideoCount:3x1000 ViewCount:1x100000000 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:6x10 TwitterFollowers:3x100000
+16 Industry:mindfulness Subscribers:1x1000 VideoCount:0x10 ViewCount:1x100000
+16 Industry:mindfulness Subscribers:5x1000000 VideoCount:2x1000 ViewCount:1x1000000000 HasTwitter:1 TwitterFavorites:9x100 TwitterFollowers:2x10000000
+16 Industry:mindfulness Subscribers:1x10000 VideoCount:3x100 ViewCount:2x1000000 HasGooglePlus:1
+16 Industry:mindfulness Subscribers:9x1000000 VideoCount:2x1000 ViewCount:1x1000000000 HasEmail:1 HasWebsite:1
+16 Industry:mindfulness Subscribers:4x10000 VideoCount:6x10 ViewCount:4x1000000 HasInstagram:1 HasFacebook:1 HasWebsite:1 InstaPosts:9x10 InstaFollowers:1,889 InstaFollowing:6,735
+16 Industry:mindfulness Subscribers:7x100000 VideoCount:7x100 ViewCount:1x100000000 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:5x1000 TwitterFollowers:4x1000
+16 Industry:mindfulness Subscribers:1x1000 VideoCount:0x10 ViewCount:1x100000 HasGooglePlus:1
+16 Industry:mindfulness Subscribers:2x1000000 VideoCount:1x10000 ViewCount:2x100000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x10000 TwitterFollowers:1x100000
+16 Industry:mindfulness Subscribers:8x10000 VideoCount:4x100 ViewCount:1x10000000 HasFacebook:1 HasGooglePlus:1
+16 Industry:mindfulness Subscribers:1x10000 VideoCount:1x1000 ViewCount:7x1000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:7x1000 TwitterFollowers:5x10000 InstaPosts:9x100 InstaFollowers:41.6k InstaFollowing:1,876
+16 Industry:yoga Subscribers:3x1000000 VideoCount:3x100 ViewCount:2x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:5x10000 TwitterFollowers:6x10000 InstaPosts:1x100 InstaFollowers:35.7k InstaFollowing:7x10
+16 Industry:yoga Subscribers:7x100000 VideoCount:1x100 ViewCount:7x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 InstaPosts:4x100 InstaFollowers:121.4k InstaFollowing:1x100
+16 Industry:yoga Subscribers:1x100000 VideoCount:1x100 ViewCount:1x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasGooglePlus:1 InstaPosts:1,757 InstaFollowers:90.6k InstaFollowing:5x100
+16 Industry:yoga Subscribers:1x10000 VideoCount:1x100 ViewCount:6x100000 HasInstagram:1 HasTwitter:1 HasTwitch:1 InstaPosts:4x10 InstaFollowers:12k InstaFollowing:2x100
+16 Industry:yoga Subscribers:1x10000 VideoCount:2x1000 ViewCount:8x1000000 HasGooglePlus:1
+16 Industry:yoga Subscribers:4x100000 VideoCount:1x1000 ViewCount:2x100000000 HasInstagram:1 HasFacebook:1 HasWebsite:1 HasGooglePlus:1 InstaPosts:7x100 InstaFollowers:288.4k InstaFollowing:5x100
+16 Industry:yoga Subscribers:3x100000 VideoCount:4x100 ViewCount:2x10000000 HasGooglePlus:1
+16 Industry:yoga Subscribers:3x10000 VideoCount:8x10 ViewCount:5x1000000 HasWebsite:1 HasGooglePlus:1
+16 Industry:meditation Subscribers:2x1000000 VideoCount:2x1000 ViewCount:8x100000000 HasFacebook:1 HasGooglePlus:1
+16 Industry:meditation Subscribers:8x100000 VideoCount:3x100 ViewCount:2x100000000 HasInstagram:1 HasFacebook:1 InstaPosts:5x10 InstaFollowers:7x100 InstaFollowing:1x100
+16 Industry:meditation Subscribers:5x100000 VideoCount:1x100 ViewCount:1x100000000 HasGooglePlus:1
+16 Industry:makeup Subscribers:1x100000 VideoCount:8x10 ViewCount:3x10000000
+16 Industry:makeup Subscribers:4x1000000 VideoCount:4x100 ViewCount:3x100000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:2x10000 TwitterFollowers:3x100000 InstaPosts:2,210 InstaFollowers:2.1m InstaFollowing:3x100
+16 Industry:makeup Subscribers:9x1000000 VideoCount:6x100 ViewCount:7x100000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:5x100 TwitterFollowers:1x1000000 InstaPosts:2,976 InstaFollowers:9.6m InstaFollowing:5x100
+16 Industry:makeup Subscribers:2x1000000 VideoCount:3x10 ViewCount:5x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:3x10000 TwitterFollowers:7x100000 InstaPosts:8x100 InstaFollowers:9.3m InstaFollowing:2x100
+16 Industry:makeup VideoCount:2x100 ViewCount:3x10000000
+16 Industry:makeup Subscribers:3x1000000 VideoCount:1x100 ViewCount:1x100000000 HasEmail:1 HasInstagram:1 HasTwitter:1 TwitterFavorites:6x10000 TwitterFollowers:6x100000 InstaPosts:5x100 InstaFollowers:3.4m InstaFollowing:2x100
+16 Industry:makeup Subscribers:7x10000 VideoCount:1x1000 ViewCount:1x10000000 HasInstagram:1 HasGooglePlus:1
+16 Industry:makeup Subscribers:1x1000000 VideoCount:1x100 ViewCount:7x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:2x10 TwitterFollowers:3x1000 InstaPosts:4x100 InstaFollowers:782.1k InstaFollowing:6x100
+16 Industry:makeup Subscribers:3x100000 VideoCount:7x10 ViewCount:5x10000000 HasInstagram:1 InstaPosts:1x10 InstaFollowers:5x100 InstaFollowing:1x100
+16 Industry:makeup Subscribers:6x100000 VideoCount:2x100 ViewCount:5x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:3x10 TwitterFollowers:1x10000 InstaPosts:3,510 InstaFollowers:1.5m InstaFollowing:3x100
+16 Industry:makeup Subscribers:1x1000000 VideoCount:2x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:2x1000 TwitterFollowers:1x100000 InstaPosts:4x100 InstaFollowers:608.3k InstaFollowing:7x100
+16 Industry:makeup Subscribers:4x1000000 VideoCount:9x10 ViewCount:3x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 InstaPosts:5x100 InstaFollowers:989.5k InstaFollowing:5x100
+16 Industry:makeup Subscribers:3x1000000 VideoCount:1x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x1000 TwitterFollowers:3x1000000
+16 Industry:makeup Subscribers:5x1000000 VideoCount:2x100 ViewCount:1x1000000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:1x10000 TwitterFollowers:7x10000 InstaPosts:8x100 InstaFollowers:1.1m InstaFollowing:5x100
+16 Industry:makeup Subscribers:4x10000 VideoCount:1x100 ViewCount:6x100000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 InstaPosts:4x100 InstaFollowers:5,884 InstaFollowing:5x100
+16 Industry:beauty Subscribers:2x1000000 VideoCount:1x1000 ViewCount:4x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:5x1000 TwitterFollowers:1x10000000 InstaPosts:4,421 InstaFollowers:17.6m InstaFollowing:4x100
+16 Industry:beauty Subscribers:1x1000000 VideoCount:1x100 ViewCount:8x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:6x1000 TwitterFollowers:1x100000 InstaPosts:1,132 InstaFollowers:469.1k InstaFollowing:8x100
+16 Industry:beauty Subscribers:2x100000 VideoCount:2x100 ViewCount:3x10000000 HasInstagram:1 HasFacebook:1 HasWebsite:1 InstaPosts:1,505 InstaFollowers:28.6k InstaFollowing:1x100
+16 Industry:beauty Subscribers:1x100000 VideoCount:5x100 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasGooglePlus:1 InstaPosts:3x100 InstaFollowers:64.3k InstaFollowing:4x100
+16 Industry:beauty Subscribers:9x100000 VideoCount:2x1000 ViewCount:1x100000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:7x1000 TwitterFollowers:2x1000000
+16 Industry:beauty Subscribers:2x100 VideoCount:1 ViewCount:5x10000 HasGooglePlus:1
+16 Industry:beauty Subscribers:9x10000 VideoCount:3x100 ViewCount:9x1000000 HasEmail:1 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x1000 TwitterFollowers:1x1000 InstaPosts:2,800 InstaFollowers:60k InstaFollowing:1x100
+16 Industry:beauty Subscribers:2x1000000 VideoCount:3x100 ViewCount:1x100000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x10000 TwitterFollowers:1x100000 InstaPosts:1,498 InstaFollowers:386.5k InstaFollowing:6x100
+16 Industry:beauty Subscribers:2x10000 VideoCount:9x10 ViewCount:1x1000000
+16 Industry:beauty Subscribers:4x1000000 VideoCount:3x100 ViewCount:3x100000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x100000 TwitterFollowers:1x1000000 InstaPosts:2,026 InstaFollowers:4.4m InstaFollowing:3x100
+16 Industry:beauty Subscribers:5x1000000 VideoCount:4x100 ViewCount:5x100000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x10000 TwitterFollowers:5x100000 InstaPosts:3x100 InstaFollowers:2.3m InstaFollowing:0x10
+16 Industry:beauty Subscribers:2x100000 VideoCount:1x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:8x10 TwitterFollowers:3x100 InstaPosts:2x100 InstaFollowers:44.8k InstaFollowing:1x100
+16 Industry:beauty Subscribers:6x100000
+16 Industry:beauty Subscribers:1x100000 VideoCount:1x1000 ViewCount:1x10000000 HasEmail:1 HasInstagram:1 InstaPosts:1,100 InstaFollowers:14.4k InstaFollowing:1,019
+16 Industry:beauty Subscribers:3x1000000 VideoCount:1x1000 ViewCount:7x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x10000 TwitterFollowers:5x100000 InstaPosts:1,190 InstaFollowers:1.2m InstaFollowing:4x100
+16 Industry:beauty Subscribers:1x1000000 VideoCount:6x10 ViewCount:2x100000000 HasFacebook:1
+16 Industry:beauty Subscribers:3x100000 VideoCount:1x1000 ViewCount:8x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:8x1000 TwitterFollowers:3x10000 InstaPosts:2,219 InstaFollowers:120k InstaFollowing:1,190
+16 Industry:beauty Subscribers:3x100000 VideoCount:1x100 ViewCount:5x10000000
+16 Industry:beauty Subscribers:1x10000 VideoCount:0x10 ViewCount:1x10000000
+16 Industry:beauty Subscribers:3x100000 VideoCount:1x100 ViewCount:5x10000000 HasInstagram:1 InstaPosts:1x10 InstaFollowers:61.6k
+16 Industry:hair Subscribers:8x1000000 VideoCount:1x100 ViewCount:3x1000000000 HasTwitter:1 TwitterFavorites:5x1000 TwitterFollowers:1x10000000
+16 Industry:hair Subscribers:1x1000000 VideoCount:7x100 ViewCount:4x100000000
+16 Industry:hair Subscribers:9x1000000 VideoCount:3x1000 ViewCount:8x1000000000 HasFacebook:1 HasTwitter:1 TwitterFavorites:9x1000 TwitterFollowers:1x100000
+16 Industry:hair Subscribers:8x100000 VideoCount:3x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasGooglePlus:1 InstaPosts:11.7k InstaFollowers:493.3k InstaFollowing:2,101
+16 Industry:hair Subscribers:5x100000 VideoCount:2x100 ViewCount:3x10000000 HasInstagram:1 HasGooglePlus:1
+16 Industry:hair Subscribers:2x100000 VideoCount:2x100 ViewCount:6x10000000 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:7x10 TwitterFollowers:2x10
+16 Industry:hair Subscribers:1x10000000 VideoCount:5x100 ViewCount:3x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:1x10000 TwitterFollowers:4x1000000 InstaPosts:8x100 InstaFollowers:16.1m InstaFollowing:1x100
+16 Industry:hair Subscribers:1x10000 VideoCount:1x10 ViewCount:3x10000000
+16 Industry:hair Subscribers:1x100000 VideoCount:1x100 ViewCount:1x10000000
+16 Industry:hair Subscribers:2x1000000 VideoCount:3x100 ViewCount:3x100000000 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:4x10 TwitterFollowers:8x100 InstaPosts:5x100 InstaFollowers:33.1k InstaFollowing:1x10
+16 Industry:hair Subscribers:1x1000000 VideoCount:2x100 ViewCount:1x100000000 HasEmail:1 HasInstagram:1 HasTwitter:1 TwitterFavorites:4x1000 TwitterFollowers:4x10000 InstaPosts:2,223 InstaFollowers:879.3k InstaFollowing:5x100
+16 Industry:hair Subscribers:1x100000 VideoCount:2x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:3x1000 TwitterFollowers:1x1000 InstaPosts:5x100 InstaFollowers:15k InstaFollowing:1x100
+16 Industry:hair Subscribers:1x100000 VideoCount:1x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x1000 TwitterFollowers:2x1000 InstaPosts:2x100 InstaFollowers:71.1k InstaFollowing:5x100
+16 Industry:hair Subscribers:1x100000 VideoCount:3x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:6x1000 TwitterFollowers:9x10000 InstaPosts:3,263 InstaFollowers:274.3k InstaFollowing:8x100
+16 Industry:hair Subscribers:2x1000000 VideoCount:6x100 ViewCount:3x100000000 HasGooglePlus:1
+16 Industry:hair Subscribers:2x100000 VideoCount:9x10 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasTwitter:1 TwitterFavorites:9x1000 TwitterFollowers:2x1000 InstaPosts:1x100 InstaFollowers:30.4k InstaFollowing:3x100
+16 Industry:hair Subscribers:9x10000 VideoCount:2x100 ViewCount:8x1000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasGooglePlus:1 InstaPosts:2,266 InstaFollowers:111.9k InstaFollowing:2,762
+16 Industry:hair Subscribers:3x100000 VideoCount:2x100 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:0x10 TwitterFollowers:4x100 InstaPosts:3,401 InstaFollowers:20.4k InstaFollowing:1x100
+16 Industry:hair VideoCount:1x100 ViewCount:8x10000000
+16 Industry:hair Subscribers:4x10000 VideoCount:1x100 ViewCount:4x1000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasWebsite:1 HasGooglePlus:1 InstaPosts:1,606 InstaFollowers:25.8k InstaFollowing:1,098
+16 Industry:hair Subscribers:8x100000 VideoCount:1x100 ViewCount:7x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:2x10000 TwitterFollowers:1x10000000 InstaPosts:2x100 InstaFollowers:69.6k InstaFollowing:4x10
+16 Industry:podcast Subscribers:1x1000000 VideoCount:5x10 ViewCount:8x10000000 HasInstagram:1 HasTwitter:1 TwitterFavorites:1x10000 TwitterFollowers:1x1000000 InstaPosts:6x100 InstaFollowers:1.5m InstaFollowing:1x100
+16 Industry:podcast Subscribers:5x100000 VideoCount:1x100 ViewCount:4x10000000 HasInstagram:1 HasTwitter:1 HasWebsite:1
+16 Industry:podcast Subscribers:1x10000 VideoCount:5x10 ViewCount:1x1000000 HasGooglePlus:1
+16 Industry:podcast Subscribers:9x1000000 VideoCount:7x1000 ViewCount:5x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x10000 TwitterFollowers:1x1000000 InstaPosts:5x100 InstaFollowers:305.1k InstaFollowing:5x10
+16 Industry:podcast Subscribers:4x100000 VideoCount:1x100 ViewCount:6x10000000
+16 Industry:podcast Subscribers:1x1000000 VideoCount:1x1000 ViewCount:7x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:4x1000 TwitterFollowers:2x100000 InstaPosts:7x10 InstaFollowers:106.3k InstaFollowing:0x10
+16 Industry:podcast Subscribers:2x1000000 VideoCount:1x1000 ViewCount:6x100000000 HasEmail:1 HasInstagram:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFollowers:1x100000 InstaPosts:3x10 InstaFollowers:66.3k
+16 Industry:podcast Subscribers:1x1000000 VideoCount:1x1000 ViewCount:9x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:5x10000 TwitterFollowers:1x1000000 InstaPosts:3,219 InstaFollowers:3m InstaFollowing:2,473
+16 Industry:podcast Subscribers:2x10000 VideoCount:3x100 ViewCount:1x10000000 HasTwitter:1 TwitterFavorites:3x10000 TwitterFollowers:1x10000000
+16 Industry:podcast Subscribers:6x1000 VideoCount:2x10 ViewCount:3x100000
+16 Industry:comedy Subscribers:8x100000 VideoCount:8x100 ViewCount:5x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:2x100 TwitterFollowers:1x10000 InstaPosts:3x100 InstaFollowers:22k InstaFollowing:3x10
+16 Industry:comedy Subscribers:1x10000 VideoCount:9x10 ViewCount:2x10000000 HasGooglePlus:1
+16 Industry:comedy Subscribers:6x10000 VideoCount:6x100 ViewCount:1x10000000 HasFacebook:1
+16 Industry:comedy VideoCount:1x1000 ViewCount:2x1000000000 HasGooglePlus:1
+16 Industry:comedy VideoCount:0x10 ViewCount:6x100000
+16 Industry:comedy Subscribers:4x1000 VideoCount:2x10 ViewCount:5x100000
+16 Industry:comedy Subscribers:1x1000000 VideoCount:2x10000 ViewCount:1x1000000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:8x10 TwitterFollowers:4x1000
+16 Industry:comedy Subscribers:8x100 VideoCount:0x10 ViewCount:1x10000 HasFacebook:1
+16 Industry:comedy Subscribers:6x1000000 VideoCount:4x1000 ViewCount:3x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:4x10000 TwitterFollowers:1x1000000 InstaPosts:4,321 InstaFollowers:796.6k InstaFollowing:1x100
+16 Industry:comedy Subscribers:9x10000 VideoCount:1x100 ViewCount:1x10000000 HasGooglePlus:1
+16 Industry:comedy Subscribers:9x100000 VideoCount:1x1000 ViewCount:7x100000000 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:8x10 TwitterFollowers:2x1000
+16 Industry:comedy Subscribers:9x10000 VideoCount:4x10 ViewCount:4x1000000 HasTwitter:1 HasWebsite:1
+16 Industry:comedy Subscribers:8x100 VideoCount:0x10 ViewCount:7x100000
+16 Industry:comedy Subscribers:3x10000 VideoCount:1x1000 ViewCount:6x1000000
+16 Industry:comedy VideoCount:3x100 ViewCount:9x10000000 HasFacebook:1
+16 Industry:comedy Subscribers:2x100000 VideoCount:7x100 ViewCount:1x100000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:4x100 TwitterFollowers:1x1000
+16 Industry:comedy Subscribers:1x10000 VideoCount:2x10 ViewCount:4x1000000 HasGooglePlus:1
+16 Industry:comedy Subscribers:1x1000000 VideoCount:1x100 ViewCount:3x100000000 HasWebsite:1 HasGooglePlus:1
+16 Industry:comedy VideoCount:1x100 ViewCount:4x1000000 HasGooglePlus:1
+16 Industry:comedy VideoCount:5x100 ViewCount:1x10000000 HasEmail:1
+16 Industry:comedy Subscribers:1x10000 VideoCount:3x10 ViewCount:1x1000000 HasEmail:1
+16 Industry:comedy Subscribers:5x100000 VideoCount:1x1000 ViewCount:3x100000000 HasGooglePlus:1
+16 Industry:comedy Subscribers:9x1000 VideoCount:2x10 ViewCount:8x1000000
+16 Industry:comedy Subscribers:8x10000 VideoCount:9x10 ViewCount:3x10000000 HasGooglePlus:1
+16 Industry:vlog Subscribers:3x1000000 VideoCount:3x10 ViewCount:1x100000000
+16 Industry:vlog Subscribers:9x1000000 VideoCount:8x100 ViewCount:2x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:2x10000 TwitterFollowers:1x1000000 InstaPosts:1,851 InstaFollowers:3m InstaFollowing:1,444
+16 Industry:vlog Subscribers:2x1000000 VideoCount:3x10 ViewCount:3x100000000
+16 Industry:vlog Subscribers:3x100000 VideoCount:4x10 ViewCount:8x1000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:2x10000 TwitterFollowers:3x100000 InstaPosts:2,210 InstaFollowers:2.1m InstaFollowing:3x100
+16 Industry:vlog Subscribers:1x1000000 VideoCount:1x100 ViewCount:8x10000000 HasEmail:1 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 InstaPosts:5x100 InstaFollowers:742.8k InstaFollowing:2x100
+16 Industry:vlog Subscribers:1x1000000 VideoCount:1x100 ViewCount:8x10000000 HasInstagram:1 HasTwitter:1 TwitterFavorites:3x1000 TwitterFollowers:1x100000 InstaPosts:5x100 InstaFollowers:718.4k InstaFollowing:1x100
+16 Industry:vlog Subscribers:4x100000 VideoCount:1x10 ViewCount:1x10000000
+16 Industry:vlog Subscribers:1x1000000 VideoCount:2x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 InstaPosts:7x100 InstaFollowers:1.8m InstaFollowing:5x10
+16 Industry:vlog Subscribers:1x1000000 VideoCount:7x100 ViewCount:2x100000000 HasInstagram:1 HasFacebook:1 InstaPosts:2,118 InstaFollowers:924.7k InstaFollowing:3x100
+16 Industry:vlog Subscribers:1x1000000 VideoCount:2x10 ViewCount:5x1000000 HasEmail:1 HasInstagram:1 InstaPosts:1,819 InstaFollowers:503.7k InstaFollowing:6x100
+16 Industry:vlog Subscribers:2x100000 VideoCount:1x100 ViewCount:2x10000000 HasInstagram:1 InstaPosts:7x100 InstaFollowers:502.4k InstaFollowing:5x100
+16 Industry:vlog Subscribers:3x100000 VideoCount:6x100 ViewCount:2x100000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:0x10 TwitterFollowers:1x100
+16 Industry:vlog Subscribers:2x100000 VideoCount:2x100 ViewCount:5x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:7x10 TwitterFollowers:6x1000 InstaPosts:2x100 InstaFollowers:62.2k InstaFollowing:2x100
+16 Industry:vlog Subscribers:3x10000 VideoCount:1x100 ViewCount:2x1000000 HasEmail:1 HasFacebook:1 HasGooglePlus:1
+16 Industry:vlog Subscribers:1x100000 VideoCount:2x100 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x1000 TwitterFollowers:7x10000 InstaPosts:5x100 InstaFollowers:333.2k InstaFollowing:5x100
+16 Industry:vlog Subscribers:1x1000000 VideoCount:1x1000 ViewCount:4x100000000 HasInstagram:1 HasTwitch:1 InstaPosts:1x100 InstaFollowers:353.9k InstaFollowing:6x10
+16 Industry:vlog Subscribers:3x100000 VideoCount:1x100 ViewCount:4x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 InstaPosts:2x100 InstaFollowers:24.8k InstaFollowing:7x10
+16 Industry:vlog Subscribers:6x100000 VideoCount:1x100 ViewCount:8x10000000 HasEmail:1
+16 Industry:vlog Subscribers:8x100000 VideoCount:1x10 ViewCount:7x1000000 HasInstagram:1 HasFacebook:1 InstaPosts:8x10 InstaFollowers:11.3m InstaFollowing:7x10
+16 Industry:vlog Subscribers:2x100000 VideoCount:3x100 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:3x1000 TwitterFollowers:5x1000 InstaPosts:1,233 InstaFollowers:82.8k InstaFollowing:2x100
+16 Industry:vlog Subscribers:3x100000 VideoCount:4x10 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasTwitter:1
+16 Industry:prank Subscribers:6x100000 VideoCount:7x10 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x10 TwitterFollowers:1x100 InstaPosts:2x10 InstaFollowers:2,700 InstaFollowing:5x10
+16 Industry:prank Subscribers:1x100000 VideoCount:3x10 ViewCount:2x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:3x10 TwitterFollowers:1x100 InstaPosts:0x10 InstaFollowers:7x100 InstaFollowing:1x10
+16 Industry:prank Subscribers:5x100000 VideoCount:4x100 ViewCount:2x100000000 HasInstagram:1 HasFacebook:1 InstaPosts:8x100 InstaFollowers:14.6k InstaFollowing:1x100
+16 Industry:prank Subscribers:3x100000 VideoCount:1x100 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasTwitter:1 TwitterFavorites:3x10000 TwitterFollowers:4x10000 InstaPosts:2x100 InstaFollowers:128.8k InstaFollowing:6x10
+16 Industry:prank Subscribers:9x1000000 VideoCount:2x100 ViewCount:1x1000000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:2x1000 TwitterFollowers:6x100000 InstaPosts:4x100 InstaFollowers:1.6m InstaFollowing:6x100
+16 Industry:prank Subscribers:3x1000000 VideoCount:1x100 ViewCount:5x100000000 HasInstagram:1 HasFacebook:1 InstaPosts:6x100 InstaFollowers:306k InstaFollowing:3x100
+16 Industry:prank Subscribers:5x100000 VideoCount:2x100 ViewCount:7x10000000 HasInstagram:1 HasFacebook:1 HasWebsite:1 InstaPosts:5x100 InstaFollowers:33k InstaFollowing:6x100
+16 Industry:prank Subscribers:2x1000000 VideoCount:8x10 ViewCount:5x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:7x100 TwitterFollowers:2x10000 InstaPosts:3x10 InstaFollowers:456.5k InstaFollowing:8x10
+16 Industry:prank Subscribers:5x100000 VideoCount:1x100 ViewCount:8x10000000 HasInstagram:1 HasFacebook:1 InstaPosts:9x100 InstaFollowers:779k
+16 Industry:prank Subscribers:1x1000000 VideoCount:2x100 ViewCount:3x100000000 HasFacebook:1 HasTwitter:1 TwitterFavorites:4x1000 TwitterFollowers:1x10000
+16 Industry:prank Subscribers:1x1000000 VideoCount:6x10 ViewCount:2x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:2x100 TwitterFollowers:6x1000 InstaPosts:2x100 InstaFollowers:507.5k InstaFollowing:1x100
+16 Industry:prank Subscribers:3x100000 VideoCount:2x100 ViewCount:5x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x10 TwitterFollowers:1x100 InstaPosts:5x100 InstaFollowers:2,120 InstaFollowing:0x10
+16 Industry:prank Subscribers:3x100000 VideoCount:7x100 ViewCount:8x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 InstaPosts:1,155 InstaFollowers:117.3k InstaFollowing:2,751
+16 Industry:prank Subscribers:3x1000000 VideoCount:8x10 ViewCount:6x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:2x1000 TwitterFollowers:2x10000 InstaPosts:5x10 InstaFollowers:222.5k InstaFollowing:5x100
+16 Industry:prank Subscribers:8x10000 VideoCount:6x10 ViewCount:3x1000000 HasInstagram:1 InstaPosts:1x100 InstaFollowers:233.2k InstaFollowing:1x100
+16 Industry:prank Subscribers:1x100000 VideoCount:9x10 ViewCount:1x10000000
+16 Industry:food Subscribers:6x1000000 VideoCount:1x1000 ViewCount:1x1000000000 HasFacebook:1
+16 Industry:food Subscribers:1x1000000 VideoCount:2x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 InstaPosts:1,012 InstaFollowers:79.7k InstaFollowing:3x100
+16 Industry:food Subscribers:1x1000000 VideoCount:1x100 ViewCount:1x100000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasGooglePlus:1 InstaPosts:3x100 InstaFollowers:172.7k InstaFollowing:6x100
+16 Industry:food Subscribers:1x1000000 VideoCount:8x100 ViewCount:3x100000000 HasGooglePlus:1
+16 Industry:food Subscribers:4x100000 VideoCount:1x100 ViewCount:3x10000000 HasFacebook:1
+16 Industry:food Subscribers:9x100000 VideoCount:6x10 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:4x10 TwitterFollowers:2x1000 InstaPosts:2,563 InstaFollowers:1.1m InstaFollowing:1x100
+16 Industry:food Subscribers:8x100000 VideoCount:1x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasWebsite:1 HasGooglePlus:1 InstaPosts:8x100 InstaFollowers:131.4k InstaFollowing:1x100
+16 Industry:food Subscribers:1x10000 VideoCount:1x10 ViewCount:4x1000000
+16 Industry:food Subscribers:1x100000 VideoCount:9x10 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasWebsite:1 HasGooglePlus:1 InstaPosts:3x100 InstaFollowers:8,062 InstaFollowing:4x100
+16 Industry:food Subscribers:1x1000000 VideoCount:7x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:5x1000 TwitterFollowers:3x1000000 InstaPosts:6,068 InstaFollowers:2.1m InstaFollowing:8x10
+16 Industry:food Subscribers:2x10000 VideoCount:3x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasWebsite:1 InstaPosts:2x100 InstaFollowers:8x100 InstaFollowing:6x100
+16 Industry:food Subscribers:8x1000000 VideoCount:1x1000 ViewCount:2x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 InstaPosts:2,532 InstaFollowers:965.4k InstaFollowing:4x100
+16 Industry:food VideoCount:1x100 ViewCount:1x10000000
+16 Industry:food Subscribers:1x100000 VideoCount:1x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasWebsite:1 InstaPosts:1,041 InstaFollowers:167.3k InstaFollowing:6x100
+16 Industry:food Subscribers:4x100000 VideoCount:2x1000 ViewCount:6x10000000 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:2x10000 TwitterFollowers:4x1000000
+16 Industry:food Subscribers:1x10000000 VideoCount:9x100 ViewCount:1x10000000000 HasInstagram:1 HasWebsite:1 InstaPosts:4x10 InstaFollowers:10.7k InstaFollowing:0x10
+16 Industry:food Subscribers:1x100000 VideoCount:1x100 ViewCount:3x10000000 HasGooglePlus:1
+16 Industry:cooking Subscribers:5x1000000 VideoCount:6x100 ViewCount:8x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:2x100 TwitterFollowers:6x1000000 InstaPosts:2,857 InstaFollowers:3.9m InstaFollowing:4,311
+16 Industry:cooking Subscribers:5x10000 VideoCount:3x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:8x100 TwitterFollowers:1x10000 InstaPosts:1,642 InstaFollowers:34.1k InstaFollowing:7x10
+16 Industry:cooking Subscribers:1x1000 VideoCount:0x10 ViewCount:7x100000
+16 Industry:cooking Subscribers:5x10000 VideoCount:2x10 ViewCount:3x1000000 HasEmail:1
+16 Industry:cooking Subscribers:1x10000 VideoCount:6x10 ViewCount:2x1000000 HasGooglePlus:1
+16 Industry:cooking Subscribers:7x100000 VideoCount:9x10 ViewCount:1x100000000 HasFacebook:1 HasWebsite:1
+16 Industry:cooking Subscribers:1x1000000 VideoCount:6x10 ViewCount:1x100000000 HasFacebook:1
+16 Industry:cooking Subscribers:1x1000000 VideoCount:7x10 ViewCount:9x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:4x1000 TwitterFollowers:2x10000 InstaPosts:1x100 InstaFollowers:20.9k InstaFollowing:4x100
+16 Industry:cooking Subscribers:9x1000000 VideoCount:5x100 ViewCount:2x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:3x10000 TwitterFollowers:9x100000 InstaPosts:2,272 InstaFollowers:3.4m InstaFollowing:1x100
+16 Industry:cooking Subscribers:1x10000 VideoCount:9x10 ViewCount:2x1000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:0x10 TwitterFollowers:1x10
+16 Industry:cooking Subscribers:3x10000 VideoCount:6x10 ViewCount:4x100000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:4x10 TwitterFollowers:1x100 InstaPosts:5x10 InstaFollowers:1,078 InstaFollowing:6x100
+16 Industry:cooking Subscribers:2x100000 VideoCount:5x100 ViewCount:3x10000000 HasTwitter:1 TwitterFavorites:5x1000 TwitterFollowers:3x10000
+16 Industry:cooking Subscribers:6x10000 VideoCount:8x10 ViewCount:1x10000000 HasFacebook:1
+16 Industry:cooking Subscribers:5x100000 VideoCount:2x1000 ViewCount:1x100000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x10 TwitterFollowers:1x10000
+16 Industry:cooking Subscribers:3x1000 VideoCount:7x10 ViewCount:3x100000
+16 Industry:cooking Subscribers:1x1000000 VideoCount:4x100 ViewCount:8x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:9x1000 TwitterFollowers:7x1000 InstaPosts:1,365 InstaFollowers:39.1k InstaFollowing:1x100
+16 Industry:cooking Subscribers:3x100000
+16 Industry:recipes Subscribers:9x10000 VideoCount:2x100 ViewCount:1x10000000 HasInstagram:1 HasGooglePlus:1 InstaPosts:1,165 InstaFollowers:16.9m InstaFollowing:2x100
+16 Industry:recipes Subscribers:1x100000 VideoCount:2x100 ViewCount:2x10000000
+16 Industry:recipes Subscribers:7x100000 VideoCount:2x100 ViewCount:7x10000000 HasTwitter:1 TwitterFavorites:6x100 TwitterFollowers:1x1000
+16 Industry:recipes Subscribers:3x100000 VideoCount:3x100 ViewCount:6x10000000 HasInstagram:1 HasFacebook:1 HasWebsite:1 HasGooglePlus:1 InstaPosts:9x100 InstaFollowers:39.8k InstaFollowing:2x100
+16 Industry:recipes Subscribers:4x10000 VideoCount:2x100 ViewCount:4x1000000 HasInstagram:1 HasFacebook:1 HasWebsite:1 HasGooglePlus:1 InstaPosts:2,196 InstaFollowers:38.4k InstaFollowing:9x100
+16 Industry:recipes Subscribers:4x10000 VideoCount:1x100 ViewCount:5x1000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFollowers:0x10
+16 Industry:recipes Subscribers:5x100000 VideoCount:6x100 ViewCount:1x100000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1
+16 Industry:recipes Subscribers:3x10000 VideoCount:6x100 ViewCount:7x1000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x100 TwitterFollowers:1x100 InstaPosts:4x100 InstaFollowers:2,720 InstaFollowing:2x10
+16 Industry:recipes Subscribers:2x1000000 VideoCount:1x1000 ViewCount:4x100000000 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:1x10000 TwitterFollowers:3x10000
+16 Industry:recipes Subscribers:9x10000 VideoCount:1x100 ViewCount:1x10000000 HasEmail:1 HasFacebook:1
+16 Industry:vegan Subscribers:1x100000 VideoCount:2x100 ViewCount:9x1000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 InstaPosts:4x100 InstaFollowers:108.3k InstaFollowing:1,825
+16 Industry:vegan Subscribers:1x100000 VideoCount:2x100 ViewCount:1x10000000 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x10000 TwitterFollowers:3x1000 InstaPosts:3x100 InstaFollowers:7,079 InstaFollowing:6x100
+16 Industry:vegan Subscribers:3x100000 VideoCount:6x10 ViewCount:8x1000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:3x1000 TwitterFollowers:5x1000 InstaPosts:2x100 InstaFollowers:203.9k InstaFollowing:1,378
+16 Industry:vegan Subscribers:3x10000 VideoCount:1x100 ViewCount:3x1000000 HasFacebook:1
+16 Industry:vegan Subscribers:5x10000 VideoCount:3x100 ViewCount:3x1000000 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:2x10000 TwitterFollowers:2x10000 InstaPosts:2,443 InstaFollowers:215.1k InstaFollowing:2x100
+16 Industry:vegan Subscribers:2x100000 VideoCount:1x100 ViewCount:1x10000000 HasFacebook:1 HasWebsite:1
+16 Industry:vegan Subscribers:5x10000 VideoCount:2x10 ViewCount:7x100000 HasInstagram:1 HasWebsite:1 InstaPosts:1x100 InstaFollowers:5,612 InstaFollowing:4x100
+16 Industry:vegan Subscribers:3x100000 VideoCount:1x100 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasWebsite:1 InstaPosts:2x100 InstaFollowers:23.1k InstaFollowing:4x100
+16 Industry:vegan Subscribers:6x100000 VideoCount:2x100 ViewCount:3x10000000 HasInstagram:1 InstaPosts:9x100 InstaFollowers:93.3k InstaFollowing:1x100
+16 Industry:vegan Subscribers:4x10000 VideoCount:1x100 ViewCount:1x1000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:4x1000 TwitterFollowers:2x1000 InstaPosts:1,337 InstaFollowers:23.6k InstaFollowing:6x100
+16 Industry:vegan Subscribers:4x100000 VideoCount:3x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:2x1000 TwitterFollowers:4x1000 InstaPosts:1,918 InstaFollowers:61.5k InstaFollowing:1,161
+16 Industry:vegan Subscribers:3x100000 VideoCount:3x100 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasWebsite:1 InstaPosts:2,103 InstaFollowers:268.3k InstaFollowing:2x100
+16 Industry:vegan Subscribers:1x100000 VideoCount:6x100 ViewCount:1x10000000 HasWebsite:1 HasGooglePlus:1
+16 Industry:vegan Subscribers:4x1000 VideoCount:7x10 ViewCount:2x100000 HasInstagram:1 HasTwitter:1 TwitterFavorites:6x10 TwitterFollowers:1x100 InstaPosts:9x100 InstaFollowers:2,712 InstaFollowing:8x100
+16 Industry:vegan Subscribers:3x10000 VideoCount:1x100 ViewCount:3x1000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 InstaPosts:6x100 InstaFollowers:2,051 InstaFollowing:2x100
+16 Industry:vegan Subscribers:1x100000 VideoCount:2x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:4x1000 TwitterFollowers:3x1000 InstaPosts:2x100 InstaFollowers:11.5k InstaFollowing:4x100
+16 Industry:vegan Subscribers:1x100000 VideoCount:1x100 ViewCount:9x1000000 HasEmail:1 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:7x100 TwitterFollowers:6x1000 InstaPosts:1,463 InstaFollowers:99k InstaFollowing:1,850
+16 Industry:vegan Subscribers:1x100000 VideoCount:1x100 ViewCount:7x1000000 HasInstagram:1
+16 Industry:vegan Subscribers:8x1000 VideoCount:4x10 ViewCount:3x100000 HasInstagram:1 HasFacebook:1 InstaPosts:2x100 InstaFollowers:8,568 InstaFollowing:3x100
+16 Industry:vegan Subscribers:1x1000000 VideoCount:6x1000 ViewCount:1x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:6x100 TwitterFollowers:1x1000000 InstaPosts:1,921 InstaFollowers:309.5k InstaFollowing:1x10
+16 Industry:vegan Subscribers:1x100000 VideoCount:2x100 ViewCount:7x1000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:8x1000 TwitterFollowers:3x10000 InstaPosts:2,219 InstaFollowers:120k InstaFollowing:1,190
+16 Industry:vegan Subscribers:2x100000 VideoCount:2x100 ViewCount:2x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:7x100 TwitterFollowers:3x1000 InstaPosts:1,082 InstaFollowers:68.5k InstaFollowing:1x100
+16 Industry:vegan Subscribers:1x100000 VideoCount:4x100 ViewCount:1x10000000 HasEmail:1 HasWebsite:1 HasGooglePlus:1
+16 Industry:nutrition Subscribers:3x100000 VideoCount:7x100 ViewCount:4x10000000 HasGooglePlus:1
+16 Industry:nutrition Subscribers:7x1000000 VideoCount:8x100 ViewCount:7x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:6x100 TwitterFollowers:1x100000 InstaPosts:3x10 InstaFollowers:4,269 InstaFollowing:1x10
+16 Industry:nutrition Subscribers:3x10000 VideoCount:2x100 ViewCount:6x1000000 HasFacebook:1 HasGooglePlus:1
+16 Industry:nutrition Subscribers:5x1000 VideoCount:6x10 ViewCount:1x1000000
+16 Industry:nutrition Subscribers:2x1000000 VideoCount:1x1000 ViewCount:3x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:2x10000 TwitterFollowers:7x100000 InstaPosts:3,078 InstaFollowers:2.5m InstaFollowing:5x100
+16 Industry:nutrition Subscribers:5x10000 VideoCount:5x10 ViewCount:2x1000000 HasInstagram:1 HasFacebook:1 HasWebsite:1
+16 Industry:nutrition Subscribers:2x10000 VideoCount:2x100 ViewCount:4x1000000 HasFacebook:1 HasTwitter:1 TwitterFavorites:2x1000 TwitterFollowers:1x1000
+16 Industry:nutrition Subscribers:9x100000 VideoCount:2x100 ViewCount:6x10000000 HasInstagram:1 HasFacebook:1 InstaPosts:4x100 InstaFollowers:381.5k InstaFollowing:1x10
+16 Industry:nutrition Subscribers:3x1000 VideoCount:4x10 ViewCount:9x10000 HasInstagram:1 HasFacebook:1 InstaPosts:6x100 InstaFollowers:36.2k InstaFollowing:8x10
+16 Industry:nutrition Subscribers:2x1000 VideoCount:1x10 ViewCount:1x10000
+16 Industry:nutrition Subscribers:2x100 VideoCount:2x10 ViewCount:1x10000
+16 Industry:nutrition Subscribers:1x1000 VideoCount:7x10 ViewCount:4x100000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 InstaPosts:6x10 InstaFollowers:2x100 InstaFollowing:7x10
+16 Industry:nutrition Subscribers:4x1000000 VideoCount:7x100 ViewCount:8x100000000 HasInstagram:1 HasFacebook:1 InstaPosts:3,561 InstaFollowers:493.8k InstaFollowing:3x100
+16 Industry:nutrition Subscribers:2x100000 VideoCount:2x1000 ViewCount:4x10000000 HasGooglePlus:1
+16 Industry:nutrition Subscribers:4x1000 VideoCount:4x10 ViewCount:1x100000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x100 TwitterFollowers:3x100 InstaPosts:1,145 InstaFollowers:11.8k InstaFollowing:2,250
+16 Industry:nutrition Subscribers:2x1000000 VideoCount:2x1000 ViewCount:6x100000000 HasEmail:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:2x100 TwitterFollowers:4x1000
+16 Industry:nutrition Subscribers:7x100000 VideoCount:6x10 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasWebsite:1 InstaPosts:4x100 InstaFollowers:117.5k InstaFollowing:2x100
+16 Industry:nutrition Subscribers:9x10000 VideoCount:3x100 ViewCount:3x1000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 InstaPosts:2,264 InstaFollowers:27k InstaFollowing:8x100
+16 Industry:nutrition Subscribers:1x1000000 VideoCount:4x100 ViewCount:2x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:3x1000 TwitterFollowers:1x10000 InstaPosts:8x100 InstaFollowers:97.9k InstaFollowing:2x100
+16 Industry:nutrition Subscribers:1x100000 VideoCount:2x100 ViewCount:6x1000000 HasInstagram:1 HasFacebook:1 HasTwitter:1
+16 Industry:nutrition Subscribers:5x100000 VideoCount:1x1000 ViewCount:1x100000000 HasFacebook:1 HasTwitter:1 TwitterFavorites:2x100 TwitterFollowers:9x1000
+16 Industry:technology Subscribers:7x1000000 VideoCount:3x10 ViewCount:5x100000000 HasFacebook:1 HasWebsite:1 HasGooglePlus:1
+16 Industry:technology Subscribers:4x10000 VideoCount:2x100 ViewCount:9x1000000 HasTwitter:1 TwitterFollowers:1x10
+16 Industry:technology Subscribers:1x1000000 VideoCount:3x100 ViewCount:3x100000000 HasFacebook:1 HasTwitter:1 TwitterFollowers:1x100
+16 Industry:technology Subscribers:9x10000 VideoCount:3x10 ViewCount:1x10000000
+16 Industry:technology Subscribers:1x10000 VideoCount:3x100 ViewCount:2x1000000 HasFacebook:1 HasWebsite:1
+16 Industry:technology Subscribers:2x100000 VideoCount:1x1000 ViewCount:4x10000000 HasWebsite:1 HasGooglePlus:1
+16 Industry:technology Subscribers:4x1000 VideoCount:8x10 ViewCount:1x1000000 HasFacebook:1
+16 Industry:technology Subscribers:5x100000
+16 Industry:technology VideoCount:4x10 ViewCount:5x10000000 HasGooglePlus:1
+16 Industry:technology Subscribers:9x10000 VideoCount:9x10 ViewCount:1x10000000 HasWebsite:1
+16 Industry:technology VideoCount:2x10 ViewCount:4x1000000
+16 Industry:technology Subscribers:1x100000 VideoCount:1x10 ViewCount:2x10000000
+16 Industry:technology Subscribers:2x100000 VideoCount:5x10 ViewCount:4x10000000 HasGooglePlus:1
+16 Industry:technology Subscribers:7x10000 VideoCount:2x10 ViewCount:1x10000000
+16 Industry:technology Subscribers:4x10000 VideoCount:4x100 ViewCount:2x10000000 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1 TwitterFollowers:6x100
+16 Industry:technology Subscribers:3x100000 VideoCount:7x100 ViewCount:8x10000000 HasEmail:1 HasFacebook:1 HasGooglePlus:1
+16 Industry:technology Subscribers:1x100000 VideoCount:3x10 ViewCount:3x10000000
+16 Industry:technology Subscribers:4x100000 VideoCount:2x100 ViewCount:2x100000000
+16 Industry:technology Subscribers:2x1000000 VideoCount:2x100 ViewCount:2x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:3x1000 TwitterFollowers:4x10000 InstaPosts:1x100 InstaFollowers:44k InstaFollowing:3x10
+16 Industry:technology Subscribers:1x100000 VideoCount:2x100 ViewCount:2x10000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:7x10 TwitterFollowers:1x100
+16 Industry:technology Subscribers:5x100000 VideoCount:3x100 ViewCount:2x100000000
+16 Industry:apps Subscribers:8x100000 VideoCount:1x100 ViewCount:7x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 InstaPosts:6x10 InstaFollowers:44.6k InstaFollowing:1x10
+16 Industry:apps Subscribers:6x1000000 VideoCount:3x1000 ViewCount:2x1000000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:6x1000 TwitterFollowers:8x100000 InstaPosts:1,698 InstaFollowers:1.1m InstaFollowing:9x100
+16 Industry:apps Subscribers:4x100000 VideoCount:5x10 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 InstaFollowers:1x10 InstaFollowing:0x10
+16 Industry:apps Subscribers:5x10000 VideoCount:1x100 ViewCount:5x1000000 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:7x100 TwitterFollowers:9x100 InstaPosts:1x100 InstaFollowers:9x100 InstaFollowing:3x100
+16 Industry:apps Subscribers:3x1000000 VideoCount:7x100 ViewCount:4x100000000 HasInstagram:1 InstaPosts:0x10 InstaFollowers:52.2k InstaFollowing:3x10
+16 Industry:apps Subscribers:2x100000 VideoCount:1x100 ViewCount:1x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:2x10 TwitterFollowers:7x100
+16 Industry:apps Subscribers:6x100000 VideoCount:3x1000 ViewCount:2x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:2x100 TwitterFollowers:5x10000 InstaPosts:4x100 InstaFollowers:64.4k InstaFollowing:6,468
+16 Industry:apps Subscribers:1x100000 VideoCount:2x100 ViewCount:2x10000000 HasFacebook:1 HasTwitter:1 TwitterFavorites:5x100 TwitterFollowers:5x100
+16 Industry:apps Subscribers:1x100000 VideoCount:3x100 ViewCount:4x10000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:4x100 TwitterFollowers:8x100000
+16 Industry:apps Subscribers:4x1000000 VideoCount:8x100 ViewCount:1x1000000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1 TwitterFollowers:1x10000 InstaFollowers:6x100
+16 Industry:apps Subscribers:1x10000000 VideoCount:3x100 ViewCount:2x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:2x10000 TwitterFollowers:4x1000000 InstaPosts:1,068 InstaFollowers:4.6m InstaFollowing:6x100
+16 Industry:apps Subscribers:3x100000 VideoCount:4x100 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:3x1000 TwitterFollowers:4x1000 InstaPosts:5x10 InstaFollowers:9x100 InstaFollowing:0x10
+16 Industry:apps Subscribers:4x100000 VideoCount:6x100 ViewCount:9x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:4x1000 TwitterFollowers:2x10000 InstaPosts:5x100 InstaFollowers:10.6k InstaFollowing:1x100
+16 Industry:apps Subscribers:3x1000000 VideoCount:1x100 ViewCount:3x100000000 HasInstagram:1 HasTwitter:1 TwitterFavorites:6x1000 TwitterFollowers:1x100000 InstaPosts:8x100 InstaFollowers:121.8k InstaFollowing:9x10
+16 Industry:apps Subscribers:3x1000000 VideoCount:1x1000 ViewCount:9x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:5x1000 TwitterFollowers:1x10000 InstaPosts:4x10 InstaFollowers:19.8k InstaFollowing:0x10
+16 Industry:apps Subscribers:2x1000000 VideoCount:5x1000 ViewCount:5x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x10 TwitterFollowers:6x100000 InstaPosts:8x100 InstaFollowers:443k InstaFollowing:0x10
+16 Industry:apps Subscribers:5x100000 VideoCount:4x100 ViewCount:3x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:2x1000 TwitterFollowers:4x100000 InstaPosts:2,316 InstaFollowers:274k InstaFollowing:8x10
+16 Industry:apps Subscribers:2x10000000 VideoCount:9x100 ViewCount:7x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:1x10000 TwitterFollowers:3x1000000 InstaPosts:1,595 InstaFollowers:2.8m InstaFollowing:9x10
+16 Industry:apps Subscribers:1x100000 VideoCount:1x100 ViewCount:6x1000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:2x10 TwitterFollowers:1x100 InstaPosts:5x10 InstaFollowers:2,289 InstaFollowing:2x100
+16 Industry:makeup Subscribers:1x100000 VideoCount:8x10 ViewCount:3x10000000
+16 Industry:makeup Subscribers:4x1000000 VideoCount:4x100 ViewCount:3x100000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:2x10000 TwitterFollowers:3x100000 InstaPosts:2,210 InstaFollowers:2.1m InstaFollowing:3x100
+16 Industry:makeup Subscribers:9x1000000 VideoCount:6x100 ViewCount:7x100000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:5x100 TwitterFollowers:1x1000000 InstaPosts:2,976 InstaFollowers:9.6m InstaFollowing:5x100
+16 Industry:makeup Subscribers:2x1000000 VideoCount:3x10 ViewCount:6x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:3x10000 TwitterFollowers:7x100000 InstaPosts:8x100 InstaFollowers:9.3m InstaFollowing:2x100
+16 Industry:makeup VideoCount:2x100 ViewCount:3x10000000
+16 Industry:makeup Subscribers:3x1000000 VideoCount:1x100 ViewCount:1x100000000 HasEmail:1 HasInstagram:1 HasTwitter:1 TwitterFavorites:6x10000 TwitterFollowers:6x100000 InstaPosts:5x100 InstaFollowers:3.4m InstaFollowing:2x100
+16 Industry:makeup Subscribers:1x10000000 VideoCount:1x1000 ViewCount:4x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFollowers:2x10 InstaPosts:2,400 InstaFollowers:13.3m InstaFollowing:0x10
+16 Industry:makeup Subscribers:7x10000 VideoCount:1x1000 ViewCount:1x10000000 HasInstagram:1 HasGooglePlus:1
+16 Industry:makeup Subscribers:1x1000000 VideoCount:1x100 ViewCount:7x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:2x10 TwitterFollowers:3x1000 InstaPosts:4x100 InstaFollowers:782.1k InstaFollowing:6x100
+16 Industry:makeup Subscribers:3x100000 VideoCount:7x10 ViewCount:5x10000000 HasInstagram:1 InstaPosts:1x10 InstaFollowers:5x100 InstaFollowing:1x100
+16 Industry:makeup Subscribers:6x100000 VideoCount:2x100 ViewCount:5x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:3x10 TwitterFollowers:1x10000 InstaPosts:3,510 InstaFollowers:1.5m InstaFollowing:3x100
+16 Industry:makeup Subscribers:1x1000000 VideoCount:2x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:2x1000 TwitterFollowers:1x100000 InstaPosts:4x100 InstaFollowers:608.3k InstaFollowing:7x100
+16 Industry:makeup Subscribers:4x1000000 VideoCount:9x10 ViewCount:3x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 InstaPosts:5x100 InstaFollowers:989.6k InstaFollowing:5x100
+16 Industry:makeup Subscribers:3x1000000 VideoCount:1x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x1000 TwitterFollowers:3x1000000
+16 Industry:makeup Subscribers:4x10000 VideoCount:1x100 ViewCount:6x100000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 InstaPosts:4x100 InstaFollowers:5,884 InstaFollowing:5x100
+16 Industry:makeup Subscribers:5x1000000 VideoCount:2x100 ViewCount:1x1000000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:1x10000 TwitterFollowers:7x10000 InstaPosts:8x100 InstaFollowers:1.1m InstaFollowing:5x100
+16 Industry:beauty Subscribers:2x1000000 VideoCount:1x1000 ViewCount:4x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:5x1000 TwitterFollowers:1x10000000 InstaPosts:4,421 InstaFollowers:17.6m InstaFollowing:4x100
+16 Industry:beauty Subscribers:1x1000000 VideoCount:1x100 ViewCount:8x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:6x1000 TwitterFollowers:1x100000 InstaPosts:1,132 InstaFollowers:469.1k InstaFollowing:8x100
+16 Industry:beauty Subscribers:2x100 VideoCount:1 ViewCount:5x10000 HasGooglePlus:1
+16 Industry:beauty Subscribers:2x10000 VideoCount:9x10 ViewCount:1x1000000
+16 Industry:beauty Subscribers:4x1000000 VideoCount:3x100 ViewCount:3x100000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x100000 TwitterFollowers:1x1000000 InstaPosts:2,026 InstaFollowers:4.4m InstaFollowing:3x100
+16 Industry:beauty Subscribers:6x100000
+16 Industry:beauty Subscribers:5x1000000 VideoCount:4x100 ViewCount:5x100000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x10000 TwitterFollowers:5x100000 InstaPosts:3x100 InstaFollowers:2.3m InstaFollowing:0x10
+16 Industry:beauty Subscribers:3x1000000 VideoCount:1x1000 ViewCount:7x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x10000 TwitterFollowers:5x100000 InstaPosts:1,190 InstaFollowers:1.2m InstaFollowing:4x100
+16 Industry:beauty Subscribers:2x100000 VideoCount:1x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:8x10 TwitterFollowers:3x100 InstaPosts:2x100 InstaFollowers:44.8k InstaFollowing:1x100
+16 Industry:beauty VideoCount:1x100 ViewCount:3x10000000
+16 Industry:beauty Subscribers:1x1000000 VideoCount:6x10 ViewCount:2x100000000 HasFacebook:1
+16 Industry:beauty Subscribers:3x100000 VideoCount:1x100 ViewCount:5x10000000
+16 Industry:beauty Subscribers:1x10000 VideoCount:0x10 ViewCount:1x10000000
+16 Industry:beauty Subscribers:1x100000 VideoCount:4x100 ViewCount:2x10000000 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:5x1000 TwitterFollowers:1x10000 InstaPosts:3,059 InstaFollowers:9,973 InstaFollowing:5x100
+16 Industry:beauty VideoCount:1x100 ViewCount:1x1000000 HasEmail:1 HasWebsite:1 HasGooglePlus:1
+16 Industry:beauty Subscribers:3x100000 VideoCount:1x100 ViewCount:5x10000000 HasInstagram:1 InstaPosts:1x10 InstaFollowers:61.6k
+16 Industry:beauty Subscribers:5x100000 VideoCount:1x100 ViewCount:6x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFollowers:2x10 InstaPosts:2,400 InstaFollowers:13.3m InstaFollowing:0x10
+16 Industry:beauty Subscribers:9x1000000 VideoCount:6x100 ViewCount:5x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x1000 TwitterFollowers:4x100000 InstaPosts:2,642 InstaFollowers:621.6k InstaFollowing:6x10
+16 Industry:beauty Subscribers:6x100000 VideoCount:1x100 ViewCount:4x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:6x10000 TwitterFollowers:1x100000 InstaPosts:7x100 InstaFollowers:363.4k InstaFollowing:1,003
+16 Industry:beauty Subscribers:8x100000 VideoCount:3x1000 ViewCount:2x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:5x1000 TwitterFollowers:1x1000000 InstaPosts:5,638 InstaFollowers:1.1m InstaFollowing:7x100
+16 Industry:beauty Subscribers:1x100000 VideoCount:6x100 ViewCount:1x10000000 HasEmail:1 HasInstagram:1 HasTwitter:1 TwitterFavorites:3x1000 TwitterFollowers:9x1000 InstaPosts:7x100 InstaFollowers:25.8k InstaFollowing:5x100
+16 Industry:hair Subscribers:8x1000000 VideoCount:1x100 ViewCount:3x1000000000 HasTwitter:1 TwitterFavorites:5x1000 TwitterFollowers:1x10000000
+16 Industry:hair Subscribers:1x1000000 VideoCount:7x100 ViewCount:4x100000000
+16 Industry:hair Subscribers:9x1000000 VideoCount:3x1000 ViewCount:8x1000000000 HasFacebook:1 HasTwitter:1 TwitterFavorites:9x1000 TwitterFollowers:1x100000
+16 Industry:hair Subscribers:8x100000 VideoCount:3x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasGooglePlus:1 InstaPosts:11.7k InstaFollowers:493.3k InstaFollowing:2,101
+16 Industry:hair Subscribers:2x100000 VideoCount:2x100 ViewCount:6x10000000 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:7x10 TwitterFollowers:2x10
+16 Industry:hair Subscribers:1x10000000 VideoCount:5x100 ViewCount:3x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:1x10000 TwitterFollowers:4x1000000 InstaPosts:8x100 InstaFollowers:16.1m InstaFollowing:1x100
+16 Industry:hair Subscribers:1x10000 VideoCount:1x10 ViewCount:3x10000000
+16 Industry:hair Subscribers:1x1000000 VideoCount:2x100 ViewCount:1x100000000 HasEmail:1 HasInstagram:1 HasTwitter:1 TwitterFavorites:4x1000 TwitterFollowers:4x10000 InstaPosts:2,223 InstaFollowers:879.5k InstaFollowing:5x100
+16 Industry:hair Subscribers:2x1000000 VideoCount:3x100 ViewCount:3x100000000 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:4x10 TwitterFollowers:8x100 InstaPosts:5x100 InstaFollowers:33.1k InstaFollowing:1x10
+16 Industry:hair Subscribers:1x100000 VideoCount:1x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x1000 TwitterFollowers:2x1000 InstaPosts:2x100 InstaFollowers:71.1k InstaFollowing:5x100
+16 Industry:hair Subscribers:1x100000 VideoCount:3x100 ViewCount:1x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:6x1000 TwitterFollowers:9x10000 InstaPosts:3,263 InstaFollowers:274.3k InstaFollowing:8x100
+16 Industry:hair Subscribers:2x1000000 VideoCount:6x100 ViewCount:3x100000000 HasGooglePlus:1
+16 Industry:hair Subscribers:2x100000 VideoCount:9x10 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasTwitter:1 TwitterFavorites:9x1000 TwitterFollowers:2x1000 InstaPosts:1x100 InstaFollowers:30.4k InstaFollowing:3x100
+16 Industry:hair Subscribers:3x100000 VideoCount:2x100 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:0x10 TwitterFollowers:4x100 InstaPosts:3,401 InstaFollowers:20.4k InstaFollowing:1x100
+16 Industry:hair VideoCount:1x100 ViewCount:8x10000000
+16 Industry:hair Subscribers:8x100000 VideoCount:1x100 ViewCount:7x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:2x10000 TwitterFollowers:1x10000000 InstaPosts:2x100 InstaFollowers:69.6k InstaFollowing:4x10
+16 Industry:hair Subscribers:1x10000000 VideoCount:6x100 ViewCount:2x1000000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:8x1000 TwitterFollowers:5x1000000 InstaPosts:3,872 InstaFollowers:7.2m InstaFollowing:9x100
+16 Industry:hair Subscribers:4x10000 VideoCount:1x100 ViewCount:4x1000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasWebsite:1 HasGooglePlus:1 InstaPosts:1,606 InstaFollowers:25.8k InstaFollowing:1,098
+16 Industry:hair Subscribers:1x1000000 VideoCount:5x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 TwitterFavorites:3x100 TwitterFollowers:1x10000 InstaPosts:7x100 InstaFollowers:108.8k InstaFollowing:9x100
+16 Industry:hair Subscribers:4x100000 VideoCount:6x10 ViewCount:2x10000000
+16 Industry:podcast Subscribers:1x1000000 VideoCount:5x10 ViewCount:8x10000000 HasInstagram:1 HasTwitter:1 TwitterFavorites:1x10000 TwitterFollowers:1x1000000 InstaPosts:6x100 InstaFollowers:1.5m InstaFollowing:1x100
+16 Industry:podcast Subscribers:5x100000 VideoCount:1x100 ViewCount:4x10000000 HasInstagram:1 HasTwitter:1 HasWebsite:1
+16 Industry:podcast Subscribers:9x1000000 VideoCount:7x1000 ViewCount:5x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x10000 TwitterFollowers:1x1000000 InstaPosts:5x100 InstaFollowers:305.1k InstaFollowing:5x10
+16 Industry:podcast Subscribers:2x1000000 VideoCount:1x1000 ViewCount:6x100000000 HasEmail:1 HasInstagram:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFollowers:1x100000 InstaPosts:3x10 InstaFollowers:66.3k
+16 Industry:podcast Subscribers:1x10000 VideoCount:5x10 ViewCount:1x1000000 HasGooglePlus:1
+16 Industry:podcast Subscribers:4x100000 VideoCount:1x100 ViewCount:6x10000000
+16 Industry:podcast Subscribers:1x1000000 VideoCount:1x1000 ViewCount:9x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:5x10000 TwitterFollowers:1x1000000 InstaPosts:3,219 InstaFollowers:3m InstaFollowing:2,473
+16 Industry:podcast Subscribers:5x1000000 VideoCount:2x100 ViewCount:9x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasTwitch:1 TwitterFavorites:1x10000 TwitterFollowers:1x1000000 InstaPosts:6x100 InstaFollowers:1.5m InstaFollowing:1x100
+16 Industry:podcast Subscribers:5x10000 VideoCount:1x100 ViewCount:1x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x10 TwitterFollowers:1x1000 InstaPosts:4x100 InstaFollowers:13.2k InstaFollowing:8x100
+16 Industry:comedy Subscribers:8x100000 VideoCount:8x100 ViewCount:5x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:2x100 TwitterFollowers:1x10000 InstaPosts:3x100 InstaFollowers:22k InstaFollowing:3x10
+16 Industry:comedy Subscribers:6x10000 VideoCount:6x100 ViewCount:1x10000000 HasFacebook:1
+16 Industry:comedy Subscribers:1x10000 VideoCount:9x10 ViewCount:2x10000000 HasGooglePlus:1
+16 Industry:comedy VideoCount:1x1000 ViewCount:2x1000000000 HasGooglePlus:1
+16 Industry:comedy VideoCount:0x10 ViewCount:6x100000
+16 Industry:comedy Subscribers:4x1000 VideoCount:2x10 ViewCount:5x100000
+16 Industry:comedy Subscribers:1x1000000 VideoCount:2x10000 ViewCount:1x1000000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:8x10 TwitterFollowers:4x1000
+16 Industry:comedy Subscribers:8x100 VideoCount:0x10 ViewCount:1x10000 HasFacebook:1
+16 Industry:comedy Subscribers:9x100000 VideoCount:1x1000 ViewCount:7x100000000 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:8x10 TwitterFollowers:2x1000
+16 Industry:comedy Subscribers:6x1000000 VideoCount:4x1000 ViewCount:3x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:4x10000 TwitterFollowers:1x1000000 InstaPosts:4,321 InstaFollowers:796.6k InstaFollowing:1x100
+16 Industry:comedy Subscribers:9x10000 VideoCount:4x10 ViewCount:4x1000000 HasTwitter:1 HasWebsite:1
+16 Industry:comedy Subscribers:8x100 VideoCount:0x10 ViewCount:7x100000
+16 Industry:comedy Subscribers:3x10000 VideoCount:1x1000 ViewCount:6x1000000
+16 Industry:comedy VideoCount:3x100 ViewCount:9x10000000 HasFacebook:1
+16 Industry:comedy Subscribers:2x100000 VideoCount:7x100 ViewCount:1x100000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:4x100 TwitterFollowers:1x1000
+16 Industry:comedy Subscribers:1x10000 VideoCount:2x10 ViewCount:4x1000000 HasGooglePlus:1
+16 Industry:comedy Subscribers:1x1000000 VideoCount:1x100 ViewCount:3x100000000 HasWebsite:1 HasGooglePlus:1
+16 Industry:comedy VideoCount:1x100 ViewCount:4x1000000 HasGooglePlus:1
+16 Industry:comedy VideoCount:5x100 ViewCount:1x10000000 HasEmail:1
+16 Industry:comedy Subscribers:1x10000 VideoCount:3x10 ViewCount:1x1000000 HasEmail:1
+16 Industry:comedy Subscribers:9x1000 VideoCount:2x10 ViewCount:8x1000000
+16 Industry:comedy Subscribers:8x10000 VideoCount:9x10 ViewCount:3x10000000 HasGooglePlus:1
+16 Industry:comedy Subscribers:5x100000 VideoCount:1x1000 ViewCount:3x100000000 HasGooglePlus:1
+16 Industry:vlog Subscribers:3x1000000 VideoCount:3x10 ViewCount:1x100000000
+16 Industry:vlog Subscribers:9x1000000 VideoCount:8x100 ViewCount:2x1000000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:2x10000 TwitterFollowers:1x1000000 InstaPosts:1,851 InstaFollowers:3m InstaFollowing:1,444
+16 Industry:vlog Subscribers:2x1000000 VideoCount:3x10 ViewCount:3x100000000
+16 Industry:vlog Subscribers:3x100000 VideoCount:4x10 ViewCount:8x1000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 HasGooglePlus:1 TwitterFavorites:2x10000 TwitterFollowers:3x100000 InstaPosts:2,210 InstaFollowers:2.1m InstaFollowing:3x100
+16 Industry:vlog Subscribers:1x1000000 VideoCount:1x100 ViewCount:8x10000000 HasEmail:1 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 InstaPosts:5x100 InstaFollowers:742.8k InstaFollowing:2x100
+16 Industry:vlog Subscribers:1x1000000 VideoCount:1x100 ViewCount:8x10000000 HasInstagram:1 HasTwitter:1 TwitterFavorites:3x1000 TwitterFollowers:1x100000 InstaPosts:5x100 InstaFollowers:718.5k InstaFollowing:1x100
+16 Industry:vlog Subscribers:4x100000 VideoCount:1x10 ViewCount:1x10000000
+16 Industry:vlog Subscribers:1x1000000 VideoCount:2x100 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 InstaPosts:7x100 InstaFollowers:1.8m InstaFollowing:5x10
+16 Industry:vlog Subscribers:1x1000000 VideoCount:7x100 ViewCount:2x100000000 HasInstagram:1 HasFacebook:1 InstaPosts:2,118 InstaFollowers:924.7k InstaFollowing:3x100
+16 Industry:vlog Subscribers:1x1000000 VideoCount:2x10 ViewCount:5x1000000 HasEmail:1 HasInstagram:1 InstaPosts:1,819 InstaFollowers:503.7k InstaFollowing:6x100
+16 Industry:vlog Subscribers:2x100000 VideoCount:1x100 ViewCount:2x10000000 HasInstagram:1 InstaPosts:7x100 InstaFollowers:502.5k InstaFollowing:5x100
+16 Industry:vlog Subscribers:3x100000 VideoCount:6x100 ViewCount:2x100000000 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:0x10 TwitterFollowers:1x100
+16 Industry:vlog Subscribers:3x10000 VideoCount:1x100 ViewCount:2x1000000 HasEmail:1 HasFacebook:1 HasGooglePlus:1
+16 Industry:vlog Subscribers:1x1000000 VideoCount:1x1000 ViewCount:4x100000000 HasInstagram:1 HasTwitch:1 InstaPosts:1x100 InstaFollowers:353.9k InstaFollowing:6x10
+16 Industry:vlog Subscribers:1x100000 VideoCount:2x100 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:1x1000 TwitterFollowers:7x10000 InstaPosts:5x100 InstaFollowers:333.2k InstaFollowing:5x100
+16 Industry:vlog Subscribers:3x100000 VideoCount:1x100 ViewCount:4x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasWebsite:1 InstaPosts:2x100 InstaFollowers:24.8k InstaFollowing:7x10
+16 Industry:vlog Subscribers:6x100000 VideoCount:1x100 ViewCount:8x10000000 HasEmail:1
+16 Industry:vlog Subscribers:8x100000 VideoCount:1x10 ViewCount:7x1000000 HasInstagram:1 HasFacebook:1 InstaPosts:8x10 InstaFollowers:11.3m InstaFollowing:7x10
+16 Industry:vlog Subscribers:2x100000 VideoCount:2x100 ViewCount:5x10000000 HasEmail:1 HasInstagram:1 HasFacebook:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:7x10 TwitterFollowers:6x1000 InstaPosts:2x100 InstaFollowers:62.2k InstaFollowing:2x100
+16 Industry:vlog Subscribers:2x100000 VideoCount:3x100 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasTwitter:1 HasGooglePlus:1 TwitterFavorites:3x1000 TwitterFollowers:5x1000 InstaPosts:1,233 InstaFollowers:82.8k InstaFollowing:2x100
+16 Industry:vlog Subscribers:3x100000 VideoCount:4x10 ViewCount:2x10000000 HasEmail:1 HasInstagram:1 HasTwitter:1
+16 Industry:vlog Subscribers:2x100000 VideoCount:2x10 ViewCount:6x1000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:5x1000 TwitterFollowers:3x10000
+16 Industry:prank Subscribers:6x100000 VideoCount:7x10 ViewCount:1x100000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:1x10 TwitterFollowers:1x100 InstaPosts:2x10 InstaFollowers:2,700 InstaFollowing:5x10
+16 Industry:prank Subscribers:1x100000 VideoCount:3x10 ViewCount:2x10000000 HasInstagram:1 HasFacebook:1 HasTwitter:1 TwitterFavorites:3x10 TwitterFollowers:1x100 InstaPosts:0x10 InstaFollowers:7x100 InstaFollowing:1x10
