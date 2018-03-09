@@ -379,11 +379,29 @@ class Search extends Component {
               <div clas="col-sm-10">
               <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', height: '100%', display: 'table-cell', padding: '10px 20px'}}>
               Description: {d.youtube.brandingSettings.channel.description}
+              <br/>
+              Keywords: {d.youtube.brandingSettings.channel.keywords}
 
               <br/> <br/>
               {
                 d.associated_websites ? (
-                  "Website: " + d.associated_websites
+                  "Websites: " + d.associated_websites
+                ) : (
+                  ""
+                )
+              }
+              <br/>
+              {
+                d.locations ? (
+                  "Locations: " + d.locations
+                ) : (
+                  ""
+                )
+              }
+              <br/>
+              {
+                d.branded_products ? (
+                  "Branded Products: " + d.branded_products
                 ) : (
                   ""
                 )
