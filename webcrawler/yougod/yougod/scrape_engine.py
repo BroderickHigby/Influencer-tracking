@@ -79,11 +79,29 @@ def remove_empty_kwargs(**kwargs):
 
 
 def search_list_by_keyword(part, maxResults, q):
-  query_url = base_url + "/search?part=snippet&maxResults=25&q=" + q + "&key=" + api_key
-  r = requests.get(query_url)
-  data = json.loads(r.text)
-  print('8888888')
-  explore_returned_items(data['items'], q)
+    is_first = True
+    for gg in range(1,7):
+        if is_first == True:
+            query_url = base_url + "/search?part=snippet&maxResults=50&q=" + q + "&key=" + api_key
+            r = requests.get(query_url)
+            data = json.loads(r.text)
+            print('8888888')
+            explore_returned_items(data['items'], q)
+            if 'nextPageToken' in data:
+                next_page_token = data['nextPageToken']
+                is_first = False
+            else:
+                break
+        else:
+            query_url = base_url + "/search?pageToken=" + next_page_token + "&part=snippet&maxResults=50&q=" + q + "&key=" + api_key
+            r = requests.get(query_url)
+            data = json.loads(r.text)
+            print('8888888')
+            explore_returned_items(data['items'], q)
+            if 'nextPageToken' in data:
+                next_page_token = data['nextPageToken']
+            else:
+                break
 
 def channels_list_by_id_return(part, id):
     query_url = base_url + "/channels?part=" + part + "&id=" + id + "&type=channel&key=" + api_key
