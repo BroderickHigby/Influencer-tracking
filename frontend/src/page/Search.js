@@ -18,7 +18,6 @@ var Loader = require('react-loader');
 
 const styleContent = {
   width: '80%',
-  alignItems: 'right',
 }
 
 const iconStyle = {
@@ -47,7 +46,6 @@ const industryStyle =  {
 
 const styleImage = {
   height: '200px',
-  borderRadius: '20px 0 0 20px',
 
   position: 'absolute',
   top: '0',
@@ -60,14 +58,16 @@ const styleImage = {
 }
 
 const rowStyle = {
-  padding: '0',
+  padding: '0px',
+  width: '100%',
+  left: '0',
+  margin: '0'
 }
 
 const leftStyle = {
   height: '200px',
   overflow: 'hidden',
   padding: '0',
-  borderRadius: '20px 0 0 20px'
 }
 
 const rightStyle = {
@@ -89,7 +89,6 @@ const topRightStyle =  {
   color: 'white',
   display: 'inline-block',
   width: '100%',
-  borderRadius: '0 20px 0 0'
 }
 
 const bottomRightStyle = {
@@ -98,7 +97,6 @@ const bottomRightStyle = {
   padding: '0 20px',
   backgroundColor: '#f9f9fa',
   display: 'inline-block',
-  borderRadius: '0 0 20px 0'
 
 }
 
@@ -113,12 +111,12 @@ const influenceStyle = {
 const restStyleLeft = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '30%',
+  width: '50%',
 }
 const restStyleRight = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '35%',
+  width: '50%',
   height: '100%',
   float: 'top'
 }
@@ -256,10 +254,13 @@ class Search extends Component {
       <Sidebar hideSm></Sidebar>
       <div style={styleContent}>
 
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       {influencerList.map(function(d, idx) {
         return (
 
           <div key={idx} style={styleBlock}>
+
+          <div class="panel panel-default">
           <div class="row" style={rowStyle}>
           {d.keywords}
           <div class="col-sm-2" style={leftStyle}>
@@ -267,7 +268,7 @@ class Search extends Component {
           </div>
           <div class="col-sm-10" style={rightStyle}>
           <div style={topRightStyle}>
-          <div style={styleTitle}>{d.youtube.snippet.title} </div>
+          <div style={styleTitle}>{truncation(d.youtube.snippet.title, 30)} </div>
           {
             d.facebook.url ? (
               <a href={d.facebook.url} target="_blank"><img src={face} style={iconStyle} />
@@ -358,57 +359,47 @@ class Search extends Component {
             )
           }
           </div>
-
-          <div style={restStyleEnd}>
-          {
-            d.associated_websites ? (
-              d.associated_websites.toString() ? (
-                assoc = (truncation(d.associated_websites.toString(), 25))
-
-              ) : (
-                ""
-              )
-
-            ) : (
-                ""
-            )
-          }
-          <br/>
-          {
-            d.branded_products ? (
-              d.branded_products.toString() ? (
-                brands = ("Brands: " + truncation(d.branded_products.toString(), 35))
-              ) : (
-                ""
-              )
-            ) : (
-              ""
-            )
-          }
-
-          {
-            d.events ? (
-              d.events.toString() ? (
-                events = ("Events: " + truncation(d.events.toString(), 35))
-              ) : (
-                ""
-              )
-            ) : (
-              ""
-            )
-          }
-          </div>
           </div>
           <div style={restStyleBottom}>
-            {truncation(d.youtube.brandingSettings.channel.description, 150)}
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded="false" aria-controls={"collapse"+idx} style={{color: '#711aac'}}>
+          view more
+          </a>
+
           </div>
           </div>
           </div>
           </div>
 
+            <div id={"collapse"+idx} class="panel-collapse collapse" role="tabpanel" aria-labelledby={"heading"+idx} style={{backgroundColor: '#f9f9fa'}}>
+              <div class="panel-body">
+              <div class="row">
+              <div class="col-sm-2" style={{height: '100%', display: 'table-cell'}}>
+              <br/>
+              </div>
+              <div clas="col-sm-10">
+              <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', height: '100%', display: 'table-cell', padding: '10px 20px'}}>
+              Description: {d.youtube.brandingSettings.channel.description}
+
+              <br/> <br/>
+              {
+                d.associated_websites ? (
+                  "Website: " + d.associated_websites
+                ) : (
+                  ""
+                )
+              }
+              </div>
+              </div>
+              </div>
+              </div>
+            </div>
+
+          </div>
 
           </div>)
         })}
+
+              </div>
         {
           influencerList.length ? (
             ""
