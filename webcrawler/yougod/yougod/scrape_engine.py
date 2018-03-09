@@ -127,7 +127,7 @@ def channels_list_by_id(q, part, id):
             except:
                 found_email = ''
 
-            facebook_url, twitter_url, instagram_url, google_plus_url, twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name, ig_posts_count, ig_followers_count, ig_following_count, twitch_url = pull_social_media_links(item['id'])
+            facebook_url, twitter_url, instagram_url, google_plus_url, twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name, ig_posts_count, ig_followers_count, ig_following_count, twitch_url, twitter_location = pull_social_media_links(item['id'])
             item['platform_base'] = "youtube"
             item['industry'] = q
             item['email'] = found_email
@@ -222,7 +222,7 @@ def channels_list_by_id(q, part, id):
                 item['organizations'] = sm['organizations']
                 item['ig_growth'] = []
                 item['yt_growth'] = []
-
+                item['locations'].append(twitter_location)
 
                 #print(json.dumps(sm, sort_keys=True, indent=4))
                 #look up IGs if no ig.
@@ -327,8 +327,9 @@ def pull_social_media_links(channel_id):
     twitter_friends_count = ''
     twitter_id_str = ''
     twitter_screen_name = ''
+    twitter_location = ''
     if twitter_username != '':
-        twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name = explore_twitter(twitter_username)
+        twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name, twitter_location = explore_twitter(twitter_username)
 
     ig_username = instagram_url.split('/')
     if len(ig_username) > 2:
@@ -340,7 +341,7 @@ def pull_social_media_links(channel_id):
     ig_following_count = ''
     if ig_username != '':
         ig_posts_count, ig_followers_count, ig_following_count = explore_ig(ig_username)
-    return facebook_url, twitter_url, instagram_url, google_plus_url, twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name, ig_posts_count, ig_followers_count, ig_following_count, twitch_url
+    return facebook_url, twitter_url, instagram_url, google_plus_url, twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name, ig_posts_count, ig_followers_count, ig_following_count, twitch_url, twitter_location
 
 def explore_ig(username):
     ig_scraper = ScrapeEngine()
@@ -349,8 +350,8 @@ def explore_ig(username):
     return posts_count,followers_count,following_count
 def explore_twitter(username):
     twitter_scraper = TwitterScraper()
-    description, favourites_count, followers_count, friends_count, id_str, screen_name = twitter_scraper.get_user_info(username)
-    return description, favourites_count, followers_count, friends_count, id_str, screen_name
+    description, favourites_count, followers_count, friends_count, id_str, screen_name, location = twitter_scraper.get_user_info(username)
+    return description, favourites_count, followers_count, friends_count, id_str, screen_name, location
 
 def explore_returned_items(returned_items, q):
     for returned_item in returned_items:
