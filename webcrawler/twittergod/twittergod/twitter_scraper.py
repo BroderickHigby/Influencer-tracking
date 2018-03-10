@@ -36,7 +36,10 @@ class TwitterScraper:
     def get_user_info(self, username):
         try:
             user = self.api.get_user(username)
-            return user.description, user.favourites_count, user.followers_count, user.friends_count, user.id_str, user.screen_name, user.location
+            user_loc = ''
+            if user.location != None:
+                user_loc = user.location
+            return user.description, user.favourites_count, user.followers_count, user.friends_count, user.id_str, user.screen_name, user_loc
         except:
             return '', '', '', '', '', ''
     def analyze_demographics_of_followers(self, username):
