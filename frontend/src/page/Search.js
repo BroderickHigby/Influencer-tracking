@@ -12,6 +12,9 @@ import twitter from '../twitter.svg';
 import googlePlus from '../google-plus.svg';
 import email from '../email.svg';
 import ReactLoading from 'react-loading';
+import uparrow from '../uparrow.svg';
+import downarrow from '../downarrow.svg';
+import neutralarrow from '../neutralarrow.svg';
 
 var Loader = require('react-loader');
 
@@ -25,6 +28,10 @@ const iconStyle = {
   height: '20px',
   margin: '0 10px'
 
+}
+
+const arrowStyle = {
+  height: '15px',
 }
 
 const styleBlock = {
@@ -111,21 +118,23 @@ const influenceStyle = {
 const restStyleLeft = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '50%',
+  width: '30%',
 }
 const restStyleRight = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '50%',
+  width: '40%',
   height: '100%',
-  float: 'top'
+  float: 'top',
+  paddingLeft: '5px'
 }
 
 const restStyleEnd = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '35%',
-  height: '100%'
+  width: '30%',
+  height: '100%',
+  paddingLeft: '10px'
 }
 
 const restStyleBottom = {
@@ -176,6 +185,64 @@ const overHundred = (num) => {
     }
     return num;
 }
+
+const findGrowth = (arr, num) => {
+  var firstDate = "";
+  var lastDate = arr[arr.length-1];
+
+  var lastNum = 0;
+  var firstNum = 0;
+
+  var i = 0;
+  var j = 0;
+
+  if (num > (arr.length-1)) {
+    num = arr.length-1;
+  }
+  firstDate = arr[arr.length-num-1];
+
+  for (i = lastDate.length; i > 0; i--) {
+      if(lastDate.charAt(i) === " ")  {
+        lastNum = lastDate.substring(i, lastDate.length);
+        break;
+      }
+  }
+  lastNum = getNumber(lastNum);
+
+  for (j = firstDate.length; j > 0; j--) {
+      if(firstDate.charAt(j) === " ")  {
+        firstNum = firstDate.substring(i, firstDate.length);
+        break;
+      }
+  }
+
+  firstNum = getNumber(firstNum);
+  return rounder(((lastNum - firstNum) * 1.0/ (firstNum * 1.0)) * 100);
+
+
+}
+const rounder = (num) => {
+
+   var multiplicator = Math.pow(10, 4);
+   num = parseFloat((num * multiplicator).toFixed(11));
+   var test =(Math.round(num) / multiplicator);
+   return +(test.toFixed(4));
+}
+const getNumber = (str) => {
+  var num = 0;
+
+  if (str.charAt(str.length-1) === 'k') {
+    num = parseInt(str.substring(0, str.length-1)) * 1000;
+  }
+  else if (str.charAt(str.length-1) === 'm') {
+    num = parseInt(str.substring(0, str.length-1)) * 1000000;
+  }
+  else {
+    num = parseInt(str);
+  }
+  return num;
+}
+
 
 var assoc = "";
 var twitt = "";
@@ -358,6 +425,72 @@ class Search extends Component {
               ""
             )
           }
+          </div>
+
+          <div style={restStyleEnd}>
+          {
+            d.yt_growth ? (
+              d.yt_growth.toString() ? (
+                (isNaN(findGrowth(d.yt_growth, 7))) ? (
+                  ""
+                ) : (
+                  (findGrowth(d.yt_growth, 7) > 0) ? (
+                    <p style={{margin: '0'}}><i>Weekly Trends:</i><br />YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
+                  ) : (
+                    (findGrowth(d.yt_growth, 7) == 0) ? (
+                        <p style={{margin: '0'}}><i>Weekly Trends:</i><br />YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
+                    ) : (
+                        <p style={{margin: '0'}}><i>Weekly Trends:</i><br />YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
+                    )
+                  )
+                )
+              ) : ( "" )
+            ) : ( "" )
+          }
+
+          {
+            d.ig_growth ? (
+              d.ig_growth.toString() ? (
+                (isNaN(findGrowth(d.ig_growth, 7))) ? (
+                  ""
+                ) : (
+                  (findGrowth(d.ig_growth, 7) > 0) ? (
+                    <p style={{margin: '0'}}>IG trend: {findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
+                  ) : (
+                    (findGrowth(d.ig_growth, 7) == 0) ? (
+                        <p style={{margin: '0'}}>IG trend: {findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
+                    ) : (
+                        <p style={{margin: '0'}}>IG trend: {findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
+                    )
+                  )
+                )
+              ) : ( "" )
+            ) : ( "" )
+          }
+          {
+            d.twitter_growth ? (
+              d.twitter_growth.toString() ? (
+                (isNaN(findGrowth(d.twitter_growth, 7))) ? (
+                  ""
+                ) : (
+                  (findGrowth(d.twitter_growth, 7) > 0) ? (
+                    <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
+                  ) : (
+                    (findGrowth(d.twitter_growth, 7) == 0) ? (
+                        <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
+                    ) : (
+                      (findGrowth(d.twitter_growth, 7).toString().substring(0,4) == "-0.0") ? (
+                        <p style={{margin: '0'}}>Twt trend: 0.0% <img src={neutralarrow} style={arrowStyle} /> </p>
+                      ) : (
+                        <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
+                      )
+                    )
+                  )
+                )
+              ) : ( "" )
+            ) : ( "" )
+          }
+
           </div>
           </div>
           <div style={restStyleBottom}>
