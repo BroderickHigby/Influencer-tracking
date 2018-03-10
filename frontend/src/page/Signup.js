@@ -242,6 +242,8 @@ renderForm() {
     <div style={{width: '320px', margin: '100px auto 25px auto'}}>
     <div style={{fontSize: '1.688em', fontWeight: '700', lineHeight: '95%'}}>Start finding influencers right now</div>
     <div style={{fontSize:'1.125em', fontWeight: '700', marginTop: '25px'}}>Join Sapie Today!</div>
+    <video controls="controls" width="800" height="600"
+       name="Video Name" src="sapie_good.mov"></video>
     </div>
 
     <form onSubmit={this.handleSubmit} style={{}}>
