@@ -480,7 +480,7 @@ class Search extends Component {
                         <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
                     ) : (
                       (findGrowth(d.twitter_growth, 7).toString().substring(0,4) == "-0.0") ? (
-                        <p style={{margin: '0'}}>Twt trend: 0.0% <img src={neutralarrow} style={arrowStyle} /> </p>
+                        <p style={{margin: '0'}}>Twt trend: 0% <img src={neutralarrow} style={arrowStyle} /> </p>
                       ) : (
                         <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
                       )

@@ -7,6 +7,8 @@ import {
   CognitoUserPool,
   CognitoUserAttribute
 } from "amazon-cognito-identity-js";
+import ReactPlayer from 'react-player'
+
 
 const dropdownStyle = {
   backgroundColor: '#787878',
@@ -132,6 +134,24 @@ class Subscribe extends Component {
             <h5>Please use the same email you signed up with</h5>
             <br></br>
 
+            <div id='yearly' style={{display : 'inline-block', width: '42%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginRight: '40px'}}>
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href={"#collapse"} aria-expanded="false" aria-controls={"collapse"} style={{color: '#711aac'}}>
+            View Demo
+            </a>
+              <div id={"collapse"} class="panel-collapse collapse" role="tabpanel" aria-labelledby={"heading"} style={{backgroundColor: '#f9f9fa'}}>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-sm-2" style={{height: '100%', display: 'table-cell'}}>
+                    <br/>
+                      </div>
+                        <div clas="col-sm-10">
+                        <ReactPlayer url='https://youtu.be/PKdd6sQuzb4' playing />
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+
             <div id='webpage' style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0px'}}>
 
               <div id='monthly' style={{display : 'inline-block', width: '30%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
@@ -169,6 +189,8 @@ class Subscribe extends Component {
               stripeKey="pk_live_AEuriPJROzqDhDu5Y73oTUR4"
             />
           </div>
+          <br />
+
         </center>
       </div>
     );
