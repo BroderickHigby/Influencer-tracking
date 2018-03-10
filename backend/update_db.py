@@ -81,7 +81,7 @@ for entry in res['hits']['hits']:
                 twitter_url_list = twitter_url.split('/')
                 twitter_username = twitter_url_list[len(twitter_url_list) - 1]
                 twitter_scraper = TwitterScraper()
-                twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name = twitter_scraper.get_user_info(twitter_username)
+                twitter_description, twitter_favourites_count, twitter_followers_count, twitter_friends_count, twitter_id_str, twitter_screen_name, twitter_location = twitter_scraper.get_user_info(twitter_username)
                 entry_source['twitter_growth'].append(current_date + " " + str(twitter_followers_count))
             else:
                 entry_source['twitter_growth'].append(current_date + " " + str(0))
