@@ -62,7 +62,7 @@ class Influencer:
     def query(cls, query, limit=100):
         """Query for a list of influencers"""
         if isinstance(query, str):
-            '''actual_query = dict(
+            actual_query = dict(
                 size=10000,
                 sort=["influencer_score"],
                 query=dict(
@@ -78,7 +78,7 @@ class Influencer:
                   "fields": [ "youtube.brandingSettings.channel.description", "youtube.brandingSettings.channel.keywords" ]
                 }
               }
-            }
+            }'''
         elif query is None:
             actual_query = MATCH_ALL
         else:
