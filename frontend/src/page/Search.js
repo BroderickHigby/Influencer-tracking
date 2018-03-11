@@ -132,7 +132,7 @@ const restStyleRight = {
 const restStyleEnd = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '30%',
+  width: '35%',
   height: '100%',
   paddingLeft: '10px'
 }
@@ -435,12 +435,12 @@ class Search extends Component {
                   ""
                 ) : (
                   (findGrowth(d.yt_growth, 7) > 0) ? (
-                    <p style={{margin: '0'}}><i>Weekly Trends:</i><br />YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
+                    <p style={{margin: '0'}}>YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
                   ) : (
                     (findGrowth(d.yt_growth, 7) == 0) ? (
-                        <p style={{margin: '0'}}><i>Weekly Trends:</i><br />YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
+                        <p style={{margin: '0'}}>YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
                     ) : (
-                        <p style={{margin: '0'}}><i>Weekly Trends:</i><br />YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
+                        <p style={{margin: '0'}}>YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
                     )
                   )
                 )
@@ -480,7 +480,7 @@ class Search extends Component {
                         <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
                     ) : (
                       (findGrowth(d.twitter_growth, 7).toString().substring(0,4) == "-0.0") ? (
-                        <p style={{margin: '0'}}>Twt trend: 0% <img src={neutralarrow} style={arrowStyle} /> </p>
+                        <p style={{margin: '0'}}>Twt trend: 0.00% <img src={neutralarrow} style={arrowStyle} /> </p>
                       ) : (
                         <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
                       )
@@ -513,9 +513,9 @@ class Search extends Component {
               <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', height: '100%', display: 'table-cell', padding: '10px 20px'}}>
               Description: {d.youtube.brandingSettings.channel.description}
               <br/>
+              <br />
               Keywords: {d.youtube.brandingSettings.channel.keywords}
-
-              <br/> <br/>
+              <br />
               {
                 d.associated_websites ? (
                   "Websites: " + d.associated_websites
