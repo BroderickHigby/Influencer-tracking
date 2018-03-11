@@ -7,9 +7,9 @@ import json
 import stripe
 import os
 import sys
-sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod')
+sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/webcrawler/yougod/yougod')#(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod')
 from scrape_engine import *
-sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')
+sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/backend/campaign')#(0, '/Users/mark/Desktop/sapie/backend/campaign')
 from campaign import *
 
 app = Flask(__name__)
@@ -114,8 +114,12 @@ def cancel_subscription():
 
     return jsonify({'date': subscription.ended_at})
 
+@app.route('/campaign_redirect/<campaign_and_influencer>')
+def campaign_redirect(campaign_and_influencer):
+    # show the user profile for that user
+    return redirect("http://www.example.com", code=302)
 
 if __name__ == "__main__":
-    app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
+    #app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
     #app.run(host='172.31.26.107', port=5000)
-    #app.run(debug=True)
+    app.run(debug=True)

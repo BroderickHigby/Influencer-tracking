@@ -13,6 +13,7 @@ import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 import imaplib
+from random import randint
 
 class Campaign:
 	costs_per_post_by_influencer_size = {
@@ -26,14 +27,21 @@ class Campaign:
 	index = 'campaigns'
 	doc_type = 'campaign'
 
-
-	def __init__(self, company_name, company_id, duration, brands_industries, campaign_budget, campaign_objective, campaign_target_url, influencer_target_size, ad_copy, hard_coded=True):
+	base_url = 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyDAeQhxfB2kzTf7FKPQo-_SRc8N8rF1TvU'
+	def __init__(self, company_name, company_id, duration, brands_industries, campaign_budget, campaign_objective, campaign_target_url, influencer_target_size, ad_copy, other_notes=None, hard_coded=True, platforms=None):
 		#creates a campaign and gets the ball rollin..
 		#company = company(company_name) #generates company object
-		#campaignid = uuid.uuid4() #generates a campaignid
+		campaignid = uuid.uuid4() #generates a campaignid
 		#target_demographic = target_demographic(1,2,3,4,5,6,7) #calls demographic class
 		#are_too_poor, number_of_ads, ads_per_day = self.are_they_too_poor(budget, influencer_target_size, duration)
-
+		if platforms == None:
+			random_num = randint(0, 2)
+			if random_num == 0:
+				platforms = ['youtube']
+			elif random_num == 1:
+				platforms = ['instagram']
+			elif random_num == 2:
+				platforms = ['twitter']
 		#if are_too_poor:
 		if False:
 			print("SORRY YOU ARE TOO POOR FOR THIS. INCREASE BUDGET OR DECREASE INFLUENCER TARGET SIZE.")
@@ -41,29 +49,38 @@ class Campaign:
 			if hard_coded == True:
 				for industry in brands_industries:
 					suitable_influencers = Influencer.campaign_query(industry, "target_size", "platform")
+
+				contacted_influencers_ids = []
+				for suitable_influencer in suitable_influencers:
+					r = requests.post(base_url, data={"longUrl": "http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/campaign_redirect/" + campaignid + "^^" + suitable_influencer['_id']})
+					short_url_data = json.loads(r.text)
+					short_url = short_url_data['id']
+					contacted_influencers_ids.append(suitable_influencer['_id'])
+
 				self.send_initial_email_to_influencers()
-				'''doc = {
-						"company" : company,
-						"product_tags": product_tags
+
+
+				doc = {
+						"company" : company_name,
+						"company_id" : company_id,
+						"brands_industries": brands_industries,
 						"start_date": start_date,
 						"duration": duration,
-						"ads_per_day": ads_per_day,
-						"number_of_ads": number_of_ads,
-						"target_demographic": target_demographic,
-						"interest_tags": interest_tags,
+						"number_of_ads_goal": number_of_ads,
 						"budget": budget,
-						"influencer_target_size": influencer_target_size,
 						"platforms" : platforms,
-						"objective": objective,
-						"target_url": target_url,
+						"objective": campaign_objective,
+						"target_url": campaign_target_url,
 						"status": 'Seeking Influencers',
 						"results": [],
 						"influencers_used": [],
-						"contacted_influencers": [],
+						"contacted_influencers": contacted_influencers_ids,
+						"influencers_paid": [],
+						"payments_made": [],
 						"expected_results": None,
 						"ad_copy": ad_copy
-				}'''
-				#self.create_db_entry(doc, campaignid)
+				}
+				self.create_db_entry(doc, campaignid)
 
 			#get list of influencers to contact - use model (fake at first)
 			#contact influencers and process replies and tell company when campaign began
@@ -114,16 +131,16 @@ class Campaign:
 			ads_per_day = int(float(duration) / float(number_of_ads))
 		return are_too_poor, number_of_ads, ads_per_day
 
-	def send_initial_email_to_influencers(self):
+	def send_initial_email_to_influencers(self, influencer_name, company_name):
 		print("SENDINGGG")
 		fromaddr = "mkeane@ucsd.edu"
 		toaddr = "mkeane@ucsd.edu"
 		msg = MIMEMultipart()
 		msg['From'] = fromaddr
 		msg['To'] = toaddr
-		msg['Subject'] = "SUBJECT OF THE MAIL"
+		msg['Subject'] = "Paid Promotion"
 
-		body = "YOUR MESSAGE HERE"
+		body = "Greetings %s\nWe hope this message finds you well. We are Sapie Space and we help brands connect with influencers on social media. One of out clients, %s, would like to pay you %s to do a paid promotion for them.\nThey ask that you do a %s promotion in a post on %s with the following copy %s and direct your followers to the following link: %s.\n If this sounds agreeable to you please respond saying so and with your preferred method of payment.\n Thanks & look forward to hearing back from you!\nSapie Space" (influencer_name, company_name)
 		msg.attach(MIMEText(body, 'plain'))
 
 		server = smtplib.SMTP('smtp.gmail.com', 587)

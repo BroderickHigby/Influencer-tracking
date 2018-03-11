@@ -521,20 +521,16 @@
           console.log(company_name);
           console.log(company_id);
 
-
           axios.post('http://jsonplaceholder.typicode.com/todos', {
-            userId: '1',
-            title: todoTitle,
-            completed: false,
-            campaign_objective: campaign_objective,
-            influencer_target_size: influencer_target_size,
+            company_name: 'Sapie Space',
+            company_id: '120183102018',
             campaign_duration: campaign_duration,
-            campaign_budget: campaign_budget,
-            campaign_target_url: campaign_target_url,
-            ad_copy: ad_copy,
             brands_industries: brands_industries,
-            company_name: company_name,
-            company_id: company_id
+            campaign_budget: campaign_budget,
+            campaign_objective: campaign_objective,
+            campaign_target_url: campaign_target_url,
+            influencer_target_size: influencer_target_size,
+            ad_copy: ad_copy,
           })
           .then(function (response) {
             resultElement.innerHTML = generateSuccessHTMLOutput(response);
