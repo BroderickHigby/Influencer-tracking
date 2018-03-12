@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/backend/')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/')
 import influencer
 import requests
 import json
@@ -8,9 +8,9 @@ base_url = "https://www.googleapis.com/youtube/v3"
 api_key = "AIzaSyDhbjoj6RQNvYgOulCZSJS6ARk9LxaVJxY"
 import re
 from bs4 import BeautifulSoup
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/webcrawler/instagod/instagod')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler/instagod/instagod')
 from ig_scrape_engine import *
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/webcrawler/twittergod/twittergod')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler/twittergod/twittergod')
 from twitter_scraper import *
 import urllib
 import webbrowser

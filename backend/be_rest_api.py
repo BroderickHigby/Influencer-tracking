@@ -7,9 +7,9 @@ import json
 import stripe
 import os
 import sys
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/webcrawler/yougod/yougod')#(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler/yougod/yougod')#(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod')
 from scrape_engine import *
-sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/backend/campaign')#(0, '/Users/mark/Desktop/sapie/backend/campaign')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')#(0, '/Users/mark/Desktop/sapie/backend/campaign')
 from campaign import *
 
 app = Flask(__name__)
@@ -55,8 +55,9 @@ def run_query():
 
 @app.route('/create_campaign', methods=['GET', 'POST'])
 def create_campaign():
+    print('in it to win it')
     json_input = json.loads(request.data)
-    campaign = Campaign(json_input['company_name'], json_input['company_id'], json_input['duration'], json_input['brands_industries'], json_input['campaign_budget'], json_input['campaign_objective'], json_input['campaign_target_url'], json_input['influencer_target_size'], json_input['ad_copy'])
+    campaign = Campaign(json_input['company_name'], json_input['company_id'], json_input['campaign_duration'], json_input['brands_industries'], json_input['campaign_budget'], json_input['campaign_objective'], json_input['campaign_target_url'], json_input['influencer_target_size'], json_input['ad_copy'])
 
 @app.route('/charge_yearly', methods=['POST'])
 def charge_yearly():

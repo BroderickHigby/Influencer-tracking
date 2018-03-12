@@ -10,10 +10,13 @@ import sys
 sys.path.insert(0, '/Users/markkeane/Desktop/projects/sapie/backend')
 from influencer import *
 import smtplib
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+#from email.MIMEMultipart import MIMEMultipart
+#from email.MIMEText import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import imaplib
 from random import randint
+import requests
 
 class Campaign:
 	costs_per_post_by_influencer_size = {
@@ -28,33 +31,39 @@ class Campaign:
 	doc_type = 'campaign'
 
 	base_url = 'https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyDAeQhxfB2kzTf7FKPQo-_SRc8N8rF1TvU'
-	def __init__(self, company_name, company_id, duration, brands_industries, campaign_budget, campaign_objective, campaign_target_url, influencer_target_size, ad_copy, other_notes=None, hard_coded=True, platforms=None):
+
+	def __init__(self, company_name, company_id, duration, brands_industries, campaign_budget, campaign_objective, campaign_target_url, influencer_target_size, ad_copy, other_notes=None, hard_coded=True, platform=None):
 		#creates a campaign and gets the ball rollin..
 		#company = company(company_name) #generates company object
 		campaignid = uuid.uuid4() #generates a campaignid
 		#target_demographic = target_demographic(1,2,3,4,5,6,7) #calls demographic class
 		#are_too_poor, number_of_ads, ads_per_day = self.are_they_too_poor(budget, influencer_target_size, duration)
-		if platforms == None:
+		if platform == None:
 			random_num = randint(0, 2)
 			if random_num == 0:
-				platforms = ['youtube']
+				platform = 'youtube'
 			elif random_num == 1:
-				platforms = ['instagram']
+				platform = 'instagram'
 			elif random_num == 2:
-				platforms = ['twitter']
+				platform = 'twitter'
 		#if are_too_poor:
 		if False:
 			print("SORRY YOU ARE TOO POOR FOR THIS. INCREASE BUDGET OR DECREASE INFLUENCER TARGET SIZE.")
 		else:
 			if hard_coded == True:
+				suitable_influencers = []
 				for industry in brands_industries:
-					suitable_influencers = Influencer.campaign_query(industry, "target_size", "platform")
+					print('_______________________________')
+					print(Influencer.campaign_query(industry, "target_size", "platform"))
+					suitable_influencers.append(Influencer.campaign_query(industry, "target_size", "instagram"))# ig should be platform
 
 				contacted_influencers_ids = []
 				for suitable_influencer in suitable_influencers:
-					r = requests.post(base_url, data={"longUrl": "http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/campaign_redirect/" + campaignid + "^^" + suitable_influencer['_id']})
+					print(suitable_influencer)
+					r = requests.post(self.base_url, data={"longUrl": "http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/campaign_redirect/" + str(campaignid) + "^^" + suitable_influencer['_id']})
 					short_url_data = json.loads(r.text)
 					short_url = short_url_data['id']
+					print(short_url)
 					contacted_influencers_ids.append(suitable_influencer['_id'])
 
 				self.send_initial_email_to_influencers()
@@ -110,16 +119,16 @@ class Campaign:
 	def end_campaign(self):
 		self.status = 'Inactive'
 
-	'''def create_db_entry(self, doc, _id):
-        """Creates new influencer document"""
-        res = es.index(
-            index=index,
-            doc_type=doc_type,
-            body=doc,
-            id=_id
-        )
-        assert res['result'] == 'created' or res['result'] == 'updated'
-        return doc'''
+	def create_db_entry(self, doc, _id):
+		"""Creates new influencer document"""
+		res = es.index(
+			index=index,
+			doc_type=doc_type,
+			body=doc,
+			id=_id
+		)
+		assert res['result'] == 'created' or res['result'] == 'updated'
+		return doc
 
 	def are_they_too_poor(self, budget, influencer_target_size, duration):
 		number_of_ads = budget / costs_per_post_by_influencer_size[influencer_target_size]
