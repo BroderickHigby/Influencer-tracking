@@ -70,15 +70,7 @@ class Influencer:
                         query=query,
                     ),
                 ),
-            )'''
-            actual_query = {
-              "query": {
-                "multi_match" : {
-                  "query":    query,
-                  "fields": [ "youtube.brandingSettings.channel.description", "youtube.brandingSettings.channel.keywords" ]
-                }
-              }
-            }'''
+            )
         elif query is None:
             actual_query = MATCH_ALL
         else:
