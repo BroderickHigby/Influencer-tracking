@@ -39,8 +39,10 @@ class TwitterScraper:
             user_loc = ''
             if user.location != None:
                 user_loc = user.location
-            return user.description, user.favourites_count, user.followers_count, user.friends_count, user.id_str, user.screen_name, user_loc
+            return user.description, user.favourites_count, user.followers_count, user.friends_count, user.id_str, user.screen_name, user_loc, user.statuses_count
+            print("twitter GUCCI")
         except:
+            print('twitter fuck up')
             return '', '', '', '', '', '', ''
     def analyze_demographics_of_followers(self, username):
         following_usernames = TwitterScraper.get_followers_info(username, self.api)
