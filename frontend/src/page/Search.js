@@ -217,17 +217,19 @@ const findGrowth = (arr, num) => {
   }
 
   firstNum = getNumber(firstNum);
-  return rounder(((lastNum - firstNum) * 1.0/ (firstNum * 1.0)) * 100);
+  return rounder(((lastNum - firstNum) * 1.0/ (firstNum * 1.0)) * 100, 4);
 
 
 }
-const rounder = (num) => {
 
-   var multiplicator = Math.pow(10, 4);
+const rounder = (num, power) => {
+
+   var multiplicator = Math.pow(10, power);
    num = parseFloat((num * multiplicator).toFixed(11));
    var test =(Math.round(num) / multiplicator);
-   return +(test.toFixed(4));
+   return +(test.toFixed(power));
 }
+
 const getNumber = (str) => {
   var num = 0;
 
@@ -243,6 +245,76 @@ const getNumber = (str) => {
   return num;
 }
 
+const getFollowers = (map) => {
+  var totalFollowersIG =0;
+  var followersIG = 0;
+
+  var totalFollowersYT =0;
+  var followersYT = 0;
+
+  var totalFollowersTW =0;
+  var followersTW = 0;
+
+  var totalYTvid = 0;
+  var totalYTview = 0;
+
+  var YTview = 0;
+  var YTvid = 0;
+
+   for (var key in map) {
+     followersIG = getNumber(map[key].instagram.followers_count);
+
+     if (map[key].youtube.statistics.subscriberCount != "")
+        followersYT = (map[key].youtube.statistics.subscriberCount);
+
+     if (map[key].youtube.statistics.viewCount != "")
+        YTvid = (map[key].youtube.statistics.viewCount);
+
+     if (map[key].youtube.statistics.videoCount != "")
+        YTview = (map[key].youtube.statistics.videoCount);
+
+     if (map[key].twitter.followers_count != "")
+        followersTW = (map[key].twitter.followers_count);
+
+
+
+
+     if (!isNaN(followersIG)) {
+       totalFollowersIG += parseInt(followersIG); }
+
+     if (!isNaN(followersYT)) {
+       totalFollowersYT += parseInt(followersYT); }
+
+     if (!isNaN(followersTW)) {
+       totalFollowersTW += parseInt(followersTW); }
+
+     if (!isNaN(YTview)) {
+       totalYTview += parseInt(YTview); }
+
+     if (!isNaN(YTvid)) {
+       totalYTvid += parseInt(YTvid); }
+
+   }
+  console.log("Followers Total YT: " + totalFollowersYT);
+  var toReturn = [totalFollowersIG, totalFollowersYT, totalFollowersTW, totalYTvid, totalYTview];
+  return toReturn;
+}
+
+const truncateNumbers = (num) => {
+  console.log(num);
+  if (parseInt(num/1000000000) != 0) {
+    return (rounder(num/1000000000.0, 1) + " billion"); }
+
+  else if (parseInt(num/1000000) != 0) {
+    return (rounder(num/1000000.0, 1) + " million"); }
+
+  else if (parseInt(num/1000) != 0) {
+    return (rounder(num/1000.0, 1) + " thousand"); }
+
+  else {
+    return num;
+  }
+}
 
 var assoc = "";
 var twitt = "";
@@ -250,6 +322,14 @@ var instag = "";
 var locate = "";
 var events = "";
 var brands = "";
+
+var count = 0;
+var countIG = 0;
+var countTW = 0;
+var countYTFoll = 0;
+var countYTVid = 0;
+var countYTView = 0;
+var countFB =0;
 
 var influencerList = [];
 class Search extends Component {
@@ -318,7 +398,21 @@ class Search extends Component {
       <Fetcher root="/api/" endpoint="influencer" query={this.props.location.search}>
       <Content>
       <Filler />
-      <Sidebar hideSm></Sidebar>
+      <Sidebar hideSm>
+        We returned... <br />
+        <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em'}}>
+
+          <i>{Object.keys(influencerList).length}</i> influencers <br /><br />
+          <i>{truncateNumbers(getFollowers(influencerList)[0])}</i> Instagram followers<br /><br />
+          <i>{truncateNumbers(getFollowers(influencerList)[1])}</i> Youtube subscribers<br /><br />
+          <i>{truncateNumbers(getFollowers(influencerList)[4])}</i> Youtube videos<br /><br />
+          <i>{truncateNumbers(getFollowers(influencerList)[3])}</i> Youtube views<br /><br />
+          <i>{truncateNumbers(getFollowers(influencerList)[2])}</i> Twitter followers<br /><br />
+
+
+
+        </div>
+      </Sidebar>
       <div style={styleContent}>
 
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -340,7 +434,6 @@ class Search extends Component {
             d.facebook.url ? (
               <a href={d.facebook.url} target="_blank"><img src={face} style={iconStyle} />
               </a>
-
             ) : (
               ""
             )

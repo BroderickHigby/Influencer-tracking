@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
+import BigSearchBox from "../components/BigSearchBox.js";
 
 
 const styleContainer = {
