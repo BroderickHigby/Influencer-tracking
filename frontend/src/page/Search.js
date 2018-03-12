@@ -123,7 +123,7 @@ const restStyleLeft = {
 const restStyleRight = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '40%',
+  width: '45%',
   height: '100%',
   float: 'top',
   paddingLeft: '5px'
@@ -299,8 +299,8 @@ const getFollowers = (map) => {
      else
         followersTW = 0;
 
-     if (map[key].twitter.posts_count != "")
-        TWposts = (map[key].twitter.posts_count);
+     if (map[key].twitter.twitter_tweet_count != "")
+        TWposts = (map[key].twitter.twitter_tweet_count);
      else
         TWposts = 0;
 
@@ -452,7 +452,7 @@ class Search extends Component {
               <i>{truncateNumbers(getFollowers(influencerList)[4])}</i> Youtube videos<br /><br />
               <i>{truncateNumbers(getFollowers(influencerList)[3])}</i> Youtube views<br /><br />
               <i>{truncateNumbers(getFollowers(influencerList)[2])}</i> Twitter followers<br /><br />
-              {/* <i>{truncateNumbers(getFollowers(influencerList)[6])}</i> Tweets<br /><br /> */}
+              <i>{truncateNumbers(getFollowers(influencerList)[6])}</i> Tweets<br /><br />
 
 
             </div>
