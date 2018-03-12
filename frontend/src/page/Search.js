@@ -249,6 +249,12 @@ const getFollowers = (map) => {
   var totalFollowersIG =0;
   var followersIG = 0;
 
+  var IGposts = 0;
+  var IGpostsTotal = 0;
+
+  var TWposts =0;
+  var TWpoststotal =0;
+
   var totalFollowersYT =0;
   var followersYT = 0;
 
@@ -262,31 +268,58 @@ const getFollowers = (map) => {
   var YTvid = 0;
 
    for (var key in map) {
-     followersIG = getNumber(map[key].instagram.followers_count);
+
+     if (map[key].instagram.followers_count != "")
+        followersIG = getNumber(map[key].instagram.followers_count);
+     else
+        followersIG = 0;
+
+     if (map[key].instagram.posts_count != "")
+        IGposts = getNumber(map[key].instagram.posts_count);
+     else
+        IGposts = 0;
 
      if (map[key].youtube.statistics.subscriberCount != "")
-        followersYT = (map[key].youtube.statistics.subscriberCount);
+        followersYT = getNumber(map[key].youtube.statistics.subscriberCount);
+     else
+        followersYT = 0;
 
      if (map[key].youtube.statistics.viewCount != "")
-        YTvid = (map[key].youtube.statistics.viewCount);
+        YTvid = getNumber(map[key].youtube.statistics.viewCount);
+     else
+        YTvid = 0;
 
      if (map[key].youtube.statistics.videoCount != "")
-        YTview = (map[key].youtube.statistics.videoCount);
+        YTview = getNumber(map[key].youtube.statistics.videoCount);
+     else
+        YTview = 0;
 
      if (map[key].twitter.followers_count != "")
         followersTW = (map[key].twitter.followers_count);
+     else
+        followersTW = 0;
 
-
+     if (map[key].twitter.posts_count != "")
+        TWposts = (map[key].twitter.posts_count);
+     else
+        TWposts = 0;
 
 
      if (!isNaN(followersIG)) {
        totalFollowersIG += parseInt(followersIG); }
 
+     if (!isNaN(IGposts)) {
+       IGpostsTotal += parseInt(IGposts); }
+
+     if (!isNaN(TWposts)) {
+       TWpoststotal += parseInt(TWposts); }
+
      if (!isNaN(followersYT)) {
        totalFollowersYT += parseInt(followersYT); }
 
      if (!isNaN(followersTW)) {
-       totalFollowersTW += parseInt(followersTW); }
+       totalFollowersTW += parseInt(followersTW);
+     }
 
      if (!isNaN(YTview)) {
        totalYTview += parseInt(YTview); }
@@ -295,20 +328,24 @@ const getFollowers = (map) => {
        totalYTvid += parseInt(YTvid); }
 
    }
-  console.log("Followers Total YT: " + totalFollowersYT);
-  var toReturn = [totalFollowersIG, totalFollowersYT, totalFollowersTW, totalYTvid, totalYTview];
+  var toReturn = [totalFollowersIG, totalFollowersYT, totalFollowersTW,
+                  totalYTvid, totalYTview, IGpostsTotal, TWpoststotal];
   return toReturn;
 }
 
 const truncateNumbers = (num) => {
-  console.log(num);
-  if (parseInt(num/1000000000) != 0) {
-    return (rounder(num/1000000000.0, 1) + " billion"); }
+  if (num === 0) {
+    return num;
+  }
 
-  else if (parseInt(num/1000000) != 0) {
+
+  if ((num/1000000000) > 1) {
+    return ((num/1000000000.0, 1) + " billion"); }
+
+  else if ((num/1000000) > 1) {
     return (rounder(num/1000000.0, 1) + " million"); }
 
-  else if (parseInt(num/1000) != 0) {
+  else if ((num/1000) > 1) {
     return (rounder(num/1000.0, 1) + " thousand"); }
 
   else {
@@ -398,21 +435,33 @@ class Search extends Component {
       <Fetcher root="/api/" endpoint="influencer" query={this.props.location.search}>
       <Content>
       <Filler />
-      <Sidebar hideSm>
-        We returned... <br />
-        <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em'}}>
+      {
+        influencerList.length ? (
+          <Sidebar hideSm>
+            We found... <br />
+            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px'}}>
 
-          <i>{Object.keys(influencerList).length}</i> influencers <br /><br />
-          <i>{truncateNumbers(getFollowers(influencerList)[0])}</i> Instagram followers<br /><br />
-          <i>{truncateNumbers(getFollowers(influencerList)[1])}</i> Youtube subscribers<br /><br />
-          <i>{truncateNumbers(getFollowers(influencerList)[4])}</i> Youtube videos<br /><br />
-          <i>{truncateNumbers(getFollowers(influencerList)[3])}</i> Youtube views<br /><br />
-          <i>{truncateNumbers(getFollowers(influencerList)[2])}</i> Twitter followers<br /><br />
+              <i>{Object.keys(influencerList).length}</i> influencers <br /><br />
+            </div>
+            We analyzed...
+            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px'}}>
+
+              <i>{truncateNumbers(getFollowers(influencerList)[0])}</i> Instagram followers<br /><br />
+              <i>{truncateNumbers(getFollowers(influencerList)[5])}</i> Instagram posts<br /><br />
+              <i>{truncateNumbers(getFollowers(influencerList)[1])}</i> Youtube subscribers<br /><br />
+              <i>{truncateNumbers(getFollowers(influencerList)[4])}</i> Youtube videos<br /><br />
+              <i>{truncateNumbers(getFollowers(influencerList)[3])}</i> Youtube views<br /><br />
+              <i>{truncateNumbers(getFollowers(influencerList)[2])}</i> Twitter followers<br /><br />
+              {/* <i>{truncateNumbers(getFollowers(influencerList)[6])}</i> Tweets<br /><br /> */}
 
 
+            </div>
+          </Sidebar>
+        ) : (
+          ""
+        )
+      }
 
-        </div>
-      </Sidebar>
       <div style={styleContent}>
 
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
