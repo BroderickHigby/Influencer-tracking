@@ -43,7 +43,7 @@ class TwitterScraper:
             print("twitter GUCCI")
         except:
             print('twitter fuck up')
-            return '', '', '', '', '', '', ''
+            return '', '', '', '', '', '', '', ''
     def analyze_demographics_of_followers(self, username):
         following_usernames = TwitterScraper.get_followers_info(username, self.api)
         TwitterScraper.extract_followers_data(following_usernames)
