@@ -4,7 +4,7 @@ import uuid
 from database import es
 from elasticsearch.exceptions import NotFoundError
 from falcon import HTTPNotFound
-
+from nltk import wordnet as wn
 
 MATCH_ALL = {"query": {"match_all": {}}}
 
@@ -84,6 +84,7 @@ class Influencer:
         else:
             query['size'] = 10000
             actual_query = query
+
         try:
             res = es.search(
                 index=cls.index,
@@ -94,9 +95,28 @@ class Influencer:
             results = []
         else:
             results = []
+            score = 0
+
+            # search scoring
             for doc in res['hits']['hits']:
+                if 'description' in doc['_source']['youtube']['brandingSettings']['channel']:
+                    if query in (doc['_source']['youtube']['brandingSettings']['channel']['description']).split() :
+                        score += 10
+
+                if 'keywords' in doc['_source']['youtube']['brandingSettings']['channel']:
+                    if query in doc['_source']['youtube']['brandingSettings']['channel']['keywords']:
+                        score += 10
+
+                '''
+                if doc['_source']['youtube']['brandingSettings']['channel']
+                    if query in doc['_source']['youtube']['brandingSettings']['channel']['keywords']:
+                        score += 10
+                '''    
+                
+                doc['_source']['search_score'] = score
                 results.append(doc['_source'])
-        newlist = sorted(results, key=lambda k: k['influencer_score'], reverse=True)
+
+        newlist = sorted(results, key=lambda k: k['search_score'], reverse=True)
         return newlist
 
 
