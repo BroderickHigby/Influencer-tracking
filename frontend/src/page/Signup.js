@@ -23,6 +23,10 @@ import sapielogo from "../sapielogo.png";
 import searchIcon from "../search.svg";
 import connectionsIcon from "../connections.svg";
 import multipleIcon from "../multiple.svg";
+import ReactPlayer from 'react-player'
+import Popup from "reactjs-popup";
+
+
 
 
 const submitButtonStyle = {
@@ -32,6 +36,14 @@ const submitButtonStyle = {
   padding: '10px 10px',
   border: '0',
   fontSize: '1em'
+}
+
+const demoButtonStyle = {
+  backgroundColor: '#FFFFFF',
+  color:'#4379b3',
+  borderRadius: '20px',
+  border: '0',
+  paddingLeft: '3px'
 }
 
 const iconStyle = {
@@ -242,8 +254,7 @@ renderForm() {
     <div style={{width: '320px', margin: '100px auto 25px auto'}}>
     <div style={{fontSize: '1.688em', fontWeight: '700', lineHeight: '95%'}}>Start finding influencers right now</div>
     <div style={{fontSize:'1.125em', fontWeight: '700', marginTop: '25px'}}>Join Sapie Today!</div>
-    <video controls="controls" width="800" height="600"
-       name="Video Name" src="sapie_good.mov"></video>
+
     </div>
 
     <form onSubmit={this.handleSubmit} style={{}}>
@@ -295,21 +306,35 @@ renderForm() {
     </form>
     <div style={{width: '320px', margin: '10px auto 0px auto'}}>
     <div style={{fontSize:'1.125em', fontWeight: '400', marginTop: '25px'}}>Already a Member? <Link to ={'/app/login'}>Sign in</Link></div>
-    </div>
+    <div style={{fontSize:'1.125em', fontWeight: '400', marginTop: '25px'}}>Watch Sapie in Action?
+
+    <Popup trigger={<button style={demoButtonStyle}> View Demo</button>} position="right center">
+          <div>
+            <ReactPlayer url='https://youtu.be/PKdd6sQuzb4' playing />
+          </div>
+    </Popup>
+      </div>
+      </div>
 
 
 
     </div>
 
     <div class="col-md-6" style={{backgroundColor: '#a269c8', height: '100%', overflow: 'hidden'}}>
-    <div style={{position: 'absolute', textAlign: 'left', width: '60%', color: 'white', fontSize: '1.325em', zIndex: '2', top: '30%', left: '20%', fontWeight: '700'}}>
-    <div><img src={searchIcon} style={{height: '20px', marginRight: '10px'}} />Search for influencers.</div>
 
-    <div style={{marginTop: '48px', marginBottom: '48px'}}><img src={multipleIcon} style={{height: '20px', marginRight: '10px'}} />Find real influencers. </div>
-    <div><img src={connectionsIcon} style={{height: '20px', marginRight: '10px'}} />Make connections.</div>
+    <div style={{position: 'absolute', textAlign: 'left', width: '60%', color: 'white', fontSize: '1.325em', zIndex: '2', top: '30%', left: '20%', fontWeight: '700'}}>
+
+      <div><img src={searchIcon} style={{height: '20px', marginRight: '10px'}} />Search for influencers.</div>
+
+      <div style={{marginTop: '48px', marginBottom: '48px'}}><img src={multipleIcon} style={{height: '20px', marginRight: '10px'}} />Find real influencers. </div>
+      <div><img src={connectionsIcon} style={{height: '20px', marginRight: '10px'}} />Make connections.</div>
+
     </div>
+
     <img src={sapielogo} style={{height: '100%', position: 'absolute', left: '50%', zIndex: '1'}} />
+
     </div>
+
     </div>
 
 

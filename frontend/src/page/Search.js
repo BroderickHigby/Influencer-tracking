@@ -123,7 +123,7 @@ const restStyleLeft = {
 const restStyleRight = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '40%',
+  width: '45%',
   height: '100%',
   float: 'top',
   paddingLeft: '5px'
@@ -132,7 +132,7 @@ const restStyleRight = {
 const restStyleEnd = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '30%',
+  width: '35%',
   height: '100%',
   paddingLeft: '10px'
 }
@@ -217,17 +217,19 @@ const findGrowth = (arr, num) => {
   }
 
   firstNum = getNumber(firstNum);
-  return rounder(((lastNum - firstNum) * 1.0/ (firstNum * 1.0)) * 100);
+  return rounder(((lastNum - firstNum) * 1.0/ (firstNum * 1.0)) * 100, 4);
 
 
 }
-const rounder = (num) => {
 
-   var multiplicator = Math.pow(10, 4);
+const rounder = (num, power) => {
+
+   var multiplicator = Math.pow(10, power);
    num = parseFloat((num * multiplicator).toFixed(11));
    var test =(Math.round(num) / multiplicator);
-   return +(test.toFixed(4));
+   return +(test.toFixed(power));
 }
+
 const getNumber = (str) => {
   var num = 0;
 
@@ -243,6 +245,113 @@ const getNumber = (str) => {
   return num;
 }
 
+const getFollowers = (map) => {
+  var totalFollowersIG =0;
+  var followersIG = 0;
+
+  var IGposts = 0;
+  var IGpostsTotal = 0;
+
+  var TWposts =0;
+  var TWpoststotal =0;
+
+  var totalFollowersYT =0;
+  var followersYT = 0;
+
+  var totalFollowersTW =0;
+  var followersTW = 0;
+
+  var totalYTvid = 0;
+  var totalYTview = 0;
+
+  var YTview = 0;
+  var YTvid = 0;
+
+   for (var key in map) {
+
+     if (map[key].instagram.followers_count != "")
+        followersIG = getNumber(map[key].instagram.followers_count);
+     else
+        followersIG = 0;
+
+     if (map[key].instagram.posts_count != "")
+        IGposts = getNumber(map[key].instagram.posts_count);
+     else
+        IGposts = 0;
+
+     if (map[key].youtube.statistics.subscriberCount != "")
+        followersYT = getNumber(map[key].youtube.statistics.subscriberCount);
+     else
+        followersYT = 0;
+
+     if (map[key].youtube.statistics.viewCount != "")
+        YTvid = getNumber(map[key].youtube.statistics.viewCount);
+     else
+        YTvid = 0;
+
+     if (map[key].youtube.statistics.videoCount != "")
+        YTview = getNumber(map[key].youtube.statistics.videoCount);
+     else
+        YTview = 0;
+
+     if (map[key].twitter.followers_count != "")
+        followersTW = (map[key].twitter.followers_count);
+     else
+        followersTW = 0;
+
+     if (map[key].twitter.twitter_tweet_count != "")
+        TWposts = (map[key].twitter.twitter_tweet_count);
+     else
+        TWposts = 0;
+
+
+     if (!isNaN(followersIG)) {
+       totalFollowersIG += parseInt(followersIG); }
+
+     if (!isNaN(IGposts)) {
+       IGpostsTotal += parseInt(IGposts); }
+
+     if (!isNaN(TWposts)) {
+       TWpoststotal += parseInt(TWposts); }
+
+     if (!isNaN(followersYT)) {
+       totalFollowersYT += parseInt(followersYT); }
+
+     if (!isNaN(followersTW)) {
+       totalFollowersTW += parseInt(followersTW);
+     }
+
+     if (!isNaN(YTview)) {
+       totalYTview += parseInt(YTview); }
+
+     if (!isNaN(YTvid)) {
+       totalYTvid += parseInt(YTvid); }
+
+   }
+  var toReturn = [totalFollowersIG, totalFollowersYT, totalFollowersTW,
+                  totalYTvid, totalYTview, IGpostsTotal, TWpoststotal];
+  return toReturn;
+}
+
+const truncateNumbers = (num) => {
+  if (num === 0) {
+    return num;
+  }
+
+
+  if ((num/1000000000) > 1) {
+    return ((num/1000000000.0, 1) + " billion"); }
+
+  else if ((num/1000000) > 1) {
+    return (rounder(num/1000000.0, 1) + " million"); }
+
+  else if ((num/1000) > 1) {
+    return (rounder(num/1000.0, 1) + " thousand"); }
+
+  else {
+    return num;
+  }
+}
 
 var assoc = "";
 var twitt = "";
@@ -250,6 +359,14 @@ var instag = "";
 var locate = "";
 var events = "";
 var brands = "";
+
+var count = 0;
+var countIG = 0;
+var countTW = 0;
+var countYTFoll = 0;
+var countYTVid = 0;
+var countYTView = 0;
+var countFB =0;
 
 var influencerList = [];
 class Search extends Component {
@@ -318,7 +435,33 @@ class Search extends Component {
       <Fetcher root="/api/" endpoint="influencer" query={this.props.location.search}>
       <Content>
       <Filler />
-      <Sidebar hideSm></Sidebar>
+      {
+        influencerList.length ? (
+          <Sidebar hideSm>
+            We found... <br />
+            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px'}}>
+
+              <i>{Object.keys(influencerList).length}</i> influencers <br /><br />
+            </div>
+            We analyzed...
+            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px'}}>
+
+              <i>{truncateNumbers(getFollowers(influencerList)[0])}</i> Instagram followers<br /><br />
+              <i>{truncateNumbers(getFollowers(influencerList)[5])}</i> Instagram posts<br /><br />
+              <i>{truncateNumbers(getFollowers(influencerList)[1])}</i> Youtube subscribers<br /><br />
+              <i>{truncateNumbers(getFollowers(influencerList)[4])}</i> Youtube videos<br /><br />
+              <i>{truncateNumbers(getFollowers(influencerList)[3])}</i> Youtube views<br /><br />
+              <i>{truncateNumbers(getFollowers(influencerList)[2])}</i> Twitter followers<br /><br />
+              <i>{truncateNumbers(getFollowers(influencerList)[6])}</i> Tweets<br /><br />
+
+
+            </div>
+          </Sidebar>
+        ) : (
+          ""
+        )
+      }
+
       <div style={styleContent}>
 
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -340,7 +483,6 @@ class Search extends Component {
             d.facebook.url ? (
               <a href={d.facebook.url} target="_blank"><img src={face} style={iconStyle} />
               </a>
-
             ) : (
               ""
             )
@@ -435,12 +577,12 @@ class Search extends Component {
                   ""
                 ) : (
                   (findGrowth(d.yt_growth, 7) > 0) ? (
-                    <p style={{margin: '0'}}><i>Weekly Trends:</i><br />YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
+                    <p style={{margin: '0'}}>YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
                   ) : (
                     (findGrowth(d.yt_growth, 7) == 0) ? (
-                        <p style={{margin: '0'}}><i>Weekly Trends:</i><br />YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
+                        <p style={{margin: '0'}}>YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
                     ) : (
-                        <p style={{margin: '0'}}><i>Weekly Trends:</i><br />YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
+                        <p style={{margin: '0'}}>YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
                     )
                   )
                 )
@@ -480,7 +622,7 @@ class Search extends Component {
                         <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
                     ) : (
                       (findGrowth(d.twitter_growth, 7).toString().substring(0,4) == "-0.0") ? (
-                        <p style={{margin: '0'}}>Twt trend: 0.0% <img src={neutralarrow} style={arrowStyle} /> </p>
+                        <p style={{margin: '0'}}>Twt trend: 0.00% <img src={neutralarrow} style={arrowStyle} /> </p>
                       ) : (
                         <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
                       )
@@ -513,9 +655,9 @@ class Search extends Component {
               <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', height: '100%', display: 'table-cell', padding: '10px 20px'}}>
               Description: {d.youtube.brandingSettings.channel.description}
               <br/>
+              <br />
               Keywords: {d.youtube.brandingSettings.channel.keywords}
-
-              <br/> <br/>
+              <br />
               {
                 d.associated_websites ? (
                   "Websites: " + d.associated_websites

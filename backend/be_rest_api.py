@@ -8,7 +8,7 @@ import stripe
 import os
 import sys
 sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod/')
-#from scrape_engine import *
+from scrape_engine import *
 #sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')
 #from campaign import *
 
@@ -56,7 +56,7 @@ def run_query():
     query_result = Influencer.query(str(json_input['queryString']))
     print(query_result)
     print(type(query_result))
-    if len(query_result) <= 5:
+    if len(query_result) <= 10:
         search_list_by_keyword(part='snippet', maxResults=25, q=str(json_input['queryString']))
         query_result = Influencer.query(str(json_input['queryString']))
     print("returning query")
