@@ -87,24 +87,28 @@ class Influencer:
             results = []
         else:
             results = []
-            score = 0
 
             # search scoring
             for doc in res['hits']['hits']:
+                score = 0
                 if 'description' in doc['_source']['youtube']['brandingSettings']['channel']:
                     if query in (doc['_source']['youtube']['brandingSettings']['channel']['description']).split() :
-                        score += 10
+                        score += 5
 
-                if 'keywords' in doc['_source']['youtube']['brandingSettings']['channel']:
-                    if query in doc['_source']['youtube']['brandingSettings']['channel']['keywords']:
+                double_count = False
+                if 'title' in doc['_source']['youtube']['brandingSettings']['channel']:
+                    if query in (doc['_source']['youtube']['brandingSettings']['channel']['title']).lower():
                         score += 10
+                        double_count = True
+                 
+                if not double_count:
+                    if 'keywords' in doc['_source']['youtube']['brandingSettings']['channel']:
+                        if query in  (doc['_source']['youtube']['brandingSettings']['channel']['keywords']):
+                            print ('i went here')
+                            score += 10
 
-                '''
-                if doc['_source']['youtube']['brandingSettings']['channel']
-                    if query in doc['_source']['youtube']['brandingSettings']['channel']['keywords']:
-                        score += 10
-                '''    
                 
+                print (str(doc['_source']['youtube']['brandingSettings']['channel']['title']) + ' ' + str(score))
                 doc['_source']['search_score'] = score
                 results.append(doc['_source'])
 
