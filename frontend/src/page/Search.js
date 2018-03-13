@@ -653,7 +653,9 @@ class Search extends Component {
               </div>
               <div clas="col-sm-10">
               <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', height: '100%', display: 'table-cell', padding: '10px 20px'}}>
-              Description: {d.youtube.brandingSettings.channel.description}
+              Youtube Description: {d.youtube.brandingSettings.channel.description}
+              <br/>
+              Twitter Bio: {d.twitter.description}
               <br/>
               <br />
               Keywords: {d.youtube.brandingSettings.channel.keywords}
