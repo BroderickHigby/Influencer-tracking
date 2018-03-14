@@ -117,9 +117,12 @@ class Influencer:
         
         finalList = []
         for gg in newlist:
-            main_lang = detect(gg['youtube']['snippet']['description'])
-            if main_lang == 'en':
-                finalList.append(gg)
+            try:
+                main_lang = detect(gg['youtube']['snippet']['description'])
+                if main_lang == 'en':
+                    finalList.append(gg)
+            except:
+                print('lang error')
         
         return finalList
 
