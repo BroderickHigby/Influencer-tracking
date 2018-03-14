@@ -108,7 +108,7 @@ class Influencer:
                             score += 10
 
                 
-                print (str(doc['_source']['youtube']['brandingSettings']['channel']['title']) + ' ' + str(score))
+                #print (str(doc['_source']['youtube']['brandingSettings']['channel']['title']) + ' ' + str(score))
                 doc['_source']['search_score'] = score
                 results.append(doc['_source'])
 
