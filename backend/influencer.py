@@ -112,14 +112,14 @@ class Influencer:
                 doc['_source']['search_score'] = score
                 results.append(doc['_source'])
 
-        newlist = sorted(results, key=lambda k: k['search_score'], reverse=True)
+            newlist = sorted(results, key=lambda k: k['search_score'], reverse=True)
         
-        finalList = []
-        for gg in newlist:
-            if gg['youtube']['brandingSettings']['channel']['country'] == 'US':
-                finalList.append(gg)
+            finalList = []
+            for gg in newlist:
+                if gg['youtube']['brandingSettings']['channel']['country'] == 'US':
+                    finalList.append(gg)
         
-        return finalList
+            return finalList
 
 
 class InfluencerResource:
