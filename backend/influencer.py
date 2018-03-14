@@ -5,6 +5,7 @@ from database import es
 from elasticsearch.exceptions import NotFoundError
 from falcon import HTTPNotFound
 from nltk import wordnet as wn
+from langdetect import detect
 
 MATCH_ALL = {"query": {"match_all": {}}}
 
@@ -112,15 +113,15 @@ class Influencer:
                 doc['_source']['search_score'] = score
                 results.append(doc['_source'])
 
-            newlist = sorted(results, key=lambda k: k['search_score'], reverse=True)
+        newlist = sorted(results, key=lambda k: k['search_score'], reverse=True)
         
-            #finalList = []
-            #for gg in newlist:
-            #    if 'country' in  gg['youtube']['brandingSettings']['channel']:
-            #        if gg['youtube']['brandingSettings']['channel']['country'] == 'US':
-            #            finalList.append(gg)
+        finalList = []
+        for gg in newlist:
+            main_lang = detect(gg['youtube']['snippet']['description'])
+            if main_lang == 'en':
+                finalList.append(gg)
         
-            return newlist
+        return finalList
 
 
 class InfluencerResource:
