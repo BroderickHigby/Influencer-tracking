@@ -6,6 +6,8 @@ from elasticsearch.exceptions import NotFoundError
 from falcon import HTTPNotFound
 from nltk import wordnet as wn
 from langdetect import detect
+import nltk
+from nltk.corpus import wordnet
 
 MATCH_ALL = {"query": {"match_all": {}}}
 
@@ -112,6 +114,54 @@ class Influencer:
                 #print (str(doc['_source']['youtube']['brandingSettings']['channel']['title']) + ' ' + str(score))
                 doc['_source']['search_score'] = score
                 results.append(doc['_source'])
+                
+            synonyms = []
+
+            for syn in wordnet.synsets("good"):
+                for l in syn.lemmas():
+                   synonyms.append(l.name())
+            for ss in synonyms:
+                print('grr')
+                print(ss)
+                actual_query = dict(
+                    size=10000,
+                    sort=["influencer_score"],
+                    query=dict(
+                        query_string=dict(
+                            query=query,
+                        ),
+                    ),
+                )
+
+                res = es.search(
+                    index=cls.index,
+                    doc_type=cls.doc_type,
+                    body=dict(actual_query),
+                )
+                
+                # search scoring
+                for doc in res['hits']['hits']:
+                    score = 0
+                    if 'description' in doc['_source']['youtube']['brandingSettings']['channel']:
+                        if query in (doc['_source']['youtube']['brandingSettings']['channel']['description']).split() :
+                            score += 5
+
+                    double_count = False
+                    if 'title' in doc['_source']['youtube']['brandingSettings']['channel']:
+                        if query in (doc['_source']['youtube']['brandingSettings']['channel']['title']).lower():
+                            score += 10
+                            double_count = True
+
+                    if not double_count:
+                        if 'keywords' in doc['_source']['youtube']['brandingSettings']['channel']:
+                            if query in  (doc['_source']['youtube']['brandingSettings']['channel']['keywords']):
+                                print ('i went here')
+                                score += 10
+
+
+                    #print (str(doc['_source']['youtube']['brandingSettings']['channel']['title']) + ' ' + str(score))
+                    doc['_source']['search_score'] = score
+                    results.append(doc['_source'])
 
         newlist = sorted(results, key=lambda k: k['search_score'], reverse=True)
         
