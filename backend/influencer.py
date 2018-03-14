@@ -116,8 +116,9 @@ class Influencer:
         
             finalList = []
             for gg in newlist:
-                if gg['youtube']['brandingSettings']['channel']['country'] == 'US':
-                    finalList.append(gg)
+                if 'country' in  gg['youtube']['brandingSettings']['channel']:
+                    if gg['youtube']['brandingSettings']['channel']['country'] == 'US':
+                        finalList.append(gg)
         
             return finalList
 
