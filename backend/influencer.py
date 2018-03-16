@@ -173,7 +173,7 @@ class Influencer:
                         is_duplicate = False
                         has_email = True
                         for rr in results:
-                            if rr['_id'] == doc['_id']:
+                            if rr['id'] == doc['_id']:
                                 is_duplicate = True
                                 break
                         if doc['_source']['email'] == '':
