@@ -91,35 +91,38 @@ class Influencer:
         else:
             results = []
 
-            # search scoring
+            # Search Scoring based on the query verbatim
             for doc in res['hits']['hits']:
                 score = 0
                 if 'description' in doc['_source']['youtube']['brandingSettings']['channel']:
                     if query in (doc['_source']['youtube']['brandingSettings']['channel']['description']).split() :
                         score += 5
-
+                
+   
                 double_count = False
                 if 'title' in doc['_source']['youtube']['brandingSettings']['channel']:
                     if query in (doc['_source']['youtube']['brandingSettings']['channel']['title']).lower():
                         score += 10
                         double_count = True
+
                  
                 if not double_count:
                     if 'keywords' in doc['_source']['youtube']['brandingSettings']['channel']:
                         if query in  (doc['_source']['youtube']['brandingSettings']['channel']['keywords']):
-                            print ('i went here')
                             score += 10
 
-                
-                #print (str(doc['_source']['youtube']['brandingSettings']['channel']['title']) + ' ' + str(score))
+
+                print ('this is what you want')
+                print (doc['_source'])
                 doc['_source']['search_score'] = score
                 results.append(doc['_source'])
                 
+            # Ranking the results based on synonyms of the query
             synonyms = []
-
-            for syn in wordnet.synsets("good"):
+            for syn in wordnet.synsets(query):
                 for l in syn.lemmas():
                    synonyms.append(l.name())
+
             for ss in synonyms:
                 print('grr')
                 print(ss)
@@ -128,7 +131,7 @@ class Influencer:
                     sort=["influencer_score"],
                     query=dict(
                         query_string=dict(
-                            query=query,
+                            query=ss,
                         ),
                     ),
                 )
@@ -139,42 +142,49 @@ class Influencer:
                     body=dict(actual_query),
                 )
                 
-                # search scoring
+                # Ranking 
                 for doc in res['hits']['hits']:
                     score = 0
                     if 'description' in doc['_source']['youtube']['brandingSettings']['channel']:
-                        if query in (doc['_source']['youtube']['brandingSettings']['channel']['description']).split() :
-                            score += 5
+                        if ss in (doc['_source']['youtube']['brandingSettings']['channel']['description']).split() :
+                            score += 2
 
                     double_count = False
                     if 'title' in doc['_source']['youtube']['brandingSettings']['channel']:
-                        if query in (doc['_source']['youtube']['brandingSettings']['channel']['title']).lower():
-                            score += 10
+                        if ss in (doc['_source']['youtube']['brandingSettings']['channel']['title']).lower():
+                            score += 5
                             double_count = True
 
                     if not double_count:
                         if 'keywords' in doc['_source']['youtube']['brandingSettings']['channel']:
-                            if query in  (doc['_source']['youtube']['brandingSettings']['channel']['keywords']):
-                                print ('i went here')
-                                score += 10
+                            if ss in  (doc['_source']['youtube']['brandingSettings']['channel']['keywords']):
+                                score += 5
+                    
+                    check = False
+                    for entry in results:
+                        if doc['_source']['youtube']['brandingSettings']['channel']['title'] \
+                         == entry['youtube']['brandingSettings']['channel']['title']:
+                            entry['search_score'] += score
+                            check = True
+                            break
+                    
+                    if check == False:
+                        doc['_source']['search_score'] = score
+                        results.append(doc['_source'])
 
-
-                    #print (str(doc['_source']['youtube']['brandingSettings']['channel']['title']) + ' ' + str(score))
-                    doc['_source']['search_score'] = score
-                    results.append(doc['_source'])
-
-        newlist = sorted(results, key=lambda k: k['search_score'], reverse=True)
+        newList = sorted(results, key=lambda k: k['search_score'], reverse=True)
         
+        '''
         finalList = []
-        for gg in newlist:
+        for result in newlist:
             try:
                 main_lang = detect(gg['youtube']['snippet']['description'])
                 if main_lang == 'en':
                     finalList.append(gg)
             except:
                 print('lang error')
-        
-        return finalList
+        '''
+        return newList
 
 
 class InfluencerResource:
