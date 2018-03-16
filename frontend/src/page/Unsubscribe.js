@@ -157,7 +157,7 @@ class Unsubscribe extends Component {
           console.log(trial);
           trial = true;
           console.log(trial);
-          daysLeft = 30 - ((new Date().getTime() - parseInt(attributes[i].Value))/(1000 * 60 * 60 * 24));
+          daysLeft = 7 - ((new Date().getTime() - parseInt(attributes[i].Value))/(1000 * 60 * 60 * 24));
         }
       }
     }
