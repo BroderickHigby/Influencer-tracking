@@ -118,7 +118,7 @@ class Influencer:
                 
             synonyms = []
 
-            for syn in wordnet.synsets("good"):
+            for syn in wordnet.synsets(query):
                 for l in syn.lemmas():
                    synonyms.append(l.name())
             for ss in synonyms:
@@ -129,7 +129,7 @@ class Influencer:
                     sort=["influencer_score"],
                     query=dict(
                         query_string=dict(
-                            query=query,
+                            query=ss,
                         ),
                     ),
                 )
