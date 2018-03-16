@@ -7,6 +7,7 @@ from falcon import HTTPNotFound
 from nltk import wordnet as wn
 from langdetect import detect
 import nltk
+nltk.download('wordnet')
 from nltk.corpus import wordnet
 
 MATCH_ALL = {"query": {"match_all": {}}}
