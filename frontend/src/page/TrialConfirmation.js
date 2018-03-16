@@ -25,7 +25,7 @@ class TrialConfirmation extends Component {
         <br></br>
         <br></br>
         <center>
-          <h3> You have begun your 30 day trial today!</h3>
+          <h3> You have begun your 7 day trial today!</h3>
           <br></br>
           <button onClick={this.handleClick} style={trialButtonStyle}> Go to Home </button>
         </center>
