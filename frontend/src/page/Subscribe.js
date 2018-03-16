@@ -247,7 +247,7 @@ class Subscribe extends Component {
             />
           </div>
           <br />
-          <h3>Or... Start a free 30day trial </h3><br />
+          <h3>Or... Start a free 7day trial </h3><br />
           <button onClick={this.handleClick} style={trialButtonStyle}>Begin Trial</button>
 
         </center>
