@@ -57,6 +57,7 @@ class BigSearchBox extends Component {
     searchHandler = (evt) => this.setState({ goSearch: true });
 
     handleKeyPress = (event) => {
+
         if (event.key === 'Enter') { this.setState({ goSearch: true }); };
     }
 

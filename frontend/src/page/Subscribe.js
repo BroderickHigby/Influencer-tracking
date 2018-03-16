@@ -10,6 +10,15 @@ import {
 import ReactPlayer from 'react-player'
 
 
+const trialButtonStyle = {
+  backgroundColor: '#711AAC',
+  borderRadius: '20px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em'
+}
+
 const dropdownStyle = {
   backgroundColor: '#787878',
   borderRadius: '4px',
@@ -28,6 +37,55 @@ class Subscribe extends Component {
     this.onToken = this.onToken.bind(this);
   }
 
+  async handleClick() {
+    var attributes = await getAttributes();
+
+    var i =0;
+    var allowtrial = true;
+
+    for( i = 0; i< attributes.length; i++){
+      if(attributes[i].Name === "custom:subs_type"){
+        if(attributes[i].Value === "noTrial") {
+          console.log(attributes[i].Value);
+          allowtrial = false;
+        }
+      }
+    }
+    console.log(allowtrial);
+
+    if (allowtrial == true) {
+      const attributeList= [
+        new CognitoUserAttribute({
+          Name: 'custom:subs_id',
+          Value: new Date().getTime().toString()
+
+        }),
+        new CognitoUserAttribute({
+          Name: 'custom:subs_type',
+          Value: "trial"
+        }),
+        new CognitoUserAttribute({
+          Name: 'custom:subs_active',
+          Value: "true"
+        }),
+      ]
+
+      await updateCustomAttributes(attributeList);
+      attributes = await getAttributes();
+
+      for( i = 0; i< attributes.length; i++){
+        if(attributes[i].Name === "custom:subs_id"){
+          console.log(attributes[i].Value);
+          console.log(attributes[i].Value/(1000 * 60 * 60 * 24 * 30.25 * 12))
+        }
+      }
+      window.location = "http://app.sapie.space/app/trialconfirmation"
+    }
+    else {
+      window.location = "http://app.sapie.space/app/trialerror"
+    }
+  }
+
   async onToken(token) {
     var i =0;
     var attributes = await getAttributes();
@@ -37,13 +95,12 @@ class Subscribe extends Component {
       }
     }
     //Check to see if current user email is the same as inputed email
-    console.log(attributes);
-    /*
+
     if (attributes[i].Value !== token.email) {
       window.location = "./emailerror"
     }
-    */
-    //else {
+
+    else {
 
       var postData = {
           stripeToken: token.id,
@@ -121,7 +178,7 @@ class Subscribe extends Component {
         console.log(error)
       });
 
-    //}
+    }
   }
 
 
@@ -190,6 +247,8 @@ class Subscribe extends Component {
             />
           </div>
           <br />
+          <h3>Or... Start a free 30day trial </h3><br />
+          <button onClick={this.handleClick} style={trialButtonStyle}>Begin Trial</button>
 
         </center>
       </div>

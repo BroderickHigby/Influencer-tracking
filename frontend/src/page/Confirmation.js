@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 
+const trialButtonStyle = {
+  backgroundColor: '#711AAC',
+  borderRadius: '20px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em'
+}
+
 class Confirmation extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +27,7 @@ class Confirmation extends Component {
         <center>
           <h3> Thank you for your subscription!</h3>
           <br></br>
-          <button onClick={this.handleClick}> Go to Home </button>
+          <button onClick={this.handleClick} style={trialButtonStyle}> Go to Home </button>
         </center>
       </div>
     );
