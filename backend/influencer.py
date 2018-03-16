@@ -7,6 +7,7 @@ from falcon import HTTPNotFound
 from nltk import wordnet as wn
 from langdetect import detect
 import nltk
+nltk.download('wordnet')
 from nltk.corpus import wordnet
 
 MATCH_ALL = {"query": {"match_all": {}}}
@@ -119,6 +120,10 @@ class Influencer:
                 
             # Ranking the results based on synonyms of the query
             synonyms = []
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5ca1175c1da30c6429933eaf1d5fd7f093012fdc
             for syn in wordnet.synsets(query):
                 for l in syn.lemmas():
                    synonyms.append(l.name())

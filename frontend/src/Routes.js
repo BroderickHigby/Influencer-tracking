@@ -11,10 +11,13 @@ import LoginBox from "./page/LoginBox";
 import Signup from "./page/Signup";
 import Subscribe from "./page/Subscribe";
 import Settings from "./page/Settings";
-import Confirmation from "./page/Confirmation"
-import Unsubscribe from "./page/Unsubscribe"
-import Emailerror from "./page/Emailerror"
-import Cancelconfirm from "./page/Cancelconfirm"
+import Confirmation from "./page/Confirmation";
+import TrialConfirmation from "./page/TrialConfirmation";
+import Unsubscribe from "./page/Unsubscribe";
+import Emailerror from "./page/Emailerror";
+import TrialError from "./page/TrialError";
+
+import Cancelconfirm from "./page/Cancelconfirm";
 
 export default ({ childProps }) =>
   <Switch>
@@ -23,8 +26,11 @@ export default ({ childProps }) =>
     <AuthenticatedRoute path="/app/settings" component={Settings} props={childProps}/>
     <SubscribeRoute path="/app/subscribe" component={Subscribe} props={childProps}/>
     <AuthenticatedRoute path="/app/confirmation" component={Confirmation} props={childProps}/>
+    <AuthenticatedRoute path="/app/trialconfirmation" component={TrialConfirmation} props={childProps}/>
     <AuthenticatedRoute path="/app/unsubscribe" component={Unsubscribe} props={childProps}/>
     <AuthenticatedRoute path="/app/emailerror" component={Emailerror} props={childProps}/>
+    <AuthenticatedRoute path="/app/trialerror" component={TrialError} props={childProps}/>
+
     <AuthenticatedRoute path="/app/cancelconfirm" component={Cancelconfirm} props={childProps}/>
 
 

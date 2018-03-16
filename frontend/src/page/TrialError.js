@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 const trialButtonStyle = {
   backgroundColor: '#711AAC',
   borderRadius: '20px',
@@ -9,14 +10,14 @@ const trialButtonStyle = {
   fontSize: '1em'
 }
 
-class Cancelconfirm extends Component {
+class TrialError extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
-    window.location = "./home"
+    window.location = "./subscribe"
   }
   render() {
     return (
@@ -25,13 +26,13 @@ class Cancelconfirm extends Component {
         <br></br>
         <br></br>
         <center>
-          <h3> Your subscription has been cancelled!</h3>
+          <h3> ERROR: This user has already maxed out their trial period</h3>
           <br></br>
-          <button onClick={this.handleClick} style={trialButtonStyle}> Go to Home </button>
+          <button onClick={this.handleClick} style={trialButtonStyle}> Go back </button>
         </center>
       </div>
     );
   }
 }
 
-export default Cancelconfirm;
+export default TrialError;

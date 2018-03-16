@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 
+const trialButtonStyle = {
+  backgroundColor: '#711AAC',
+  borderRadius: '20px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em'
+}
+
 class Emailerror extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +27,7 @@ class Emailerror extends Component {
         <center>
           <h3> ERROR: Please use the email your account is connected to!</h3>
           <br></br>
-          <button onClick={this.handleClick}> Go back </button>
+          <button onClick={this.handleClick} style={trialButtonStyle}> Go back </button>
         </center>
       </div>
     );

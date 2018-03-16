@@ -9,7 +9,7 @@ const trialButtonStyle = {
   fontSize: '1em'
 }
 
-class Cancelconfirm extends Component {
+class TrialConfirmation extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
@@ -25,7 +25,7 @@ class Cancelconfirm extends Component {
         <br></br>
         <br></br>
         <center>
-          <h3> Your subscription has been cancelled!</h3>
+          <h3> You have begun your 7 day trial today!</h3>
           <br></br>
           <button onClick={this.handleClick} style={trialButtonStyle}> Go to Home </button>
         </center>
@@ -34,4 +34,4 @@ class Cancelconfirm extends Component {
   }
 }
 
-export default Cancelconfirm;
+export default TrialConfirmation;
