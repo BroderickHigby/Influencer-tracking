@@ -170,8 +170,17 @@ class Influencer:
                             break
                     
                     if check == False:
-                        doc['_source']['search_score'] = score
-                        results.append(doc['_source'])
+                        is_duplicate = False
+                        has_email = True
+                        for rr in results:
+                            if rr['_id'] == doc['_id']:
+                                is_duplicate = True
+                                break
+                        if doc['_source']['email'] == '':
+                            has_email = False
+                        if is_duplicate == False and has_email == True:
+                            doc['_source']['search_score'] = score
+                            results.append(doc['_source'])
 
         newList = sorted(results, key=lambda k: k['search_score'], reverse=True)
         
