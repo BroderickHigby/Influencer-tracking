@@ -26,7 +26,7 @@ class Home extends Component {
         if(attributes[i].Name === "custom:subs_type"){
           if(attributes[i].Value === "trial") {
             trial = true;
-            daysLeft = 30 - ((new Date().getTime() - parseInt(attributes[i].Value))/(1000 * 60 * 60 * 24));
+            daysLeft = 7 - ((new Date().getTime() - parseInt(attributes[i].Value))/(1000 * 60 * 60 * 24));
 
             if (daysLeft <= 0) {
 
