@@ -116,7 +116,8 @@ class Influencer:
                 print ('this is what you want')
                 print (doc['_source'])
                 doc['_source']['search_score'] = score
-                results.append(doc['_source'])
+                if doc['_source']['email'] != '':
+                    results.append(doc['_source'])
                 
             # Ranking the results based on synonyms of the query
             synonyms = []
