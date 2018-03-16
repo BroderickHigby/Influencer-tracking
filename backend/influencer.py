@@ -120,10 +120,6 @@ class Influencer:
                 
             # Ranking the results based on synonyms of the query
             synonyms = []
-<<<<<<< HEAD
-=======
-
->>>>>>> 5ca1175c1da30c6429933eaf1d5fd7f093012fdc
             for syn in wordnet.synsets(query):
                 for l in syn.lemmas():
                    synonyms.append(l.name())
