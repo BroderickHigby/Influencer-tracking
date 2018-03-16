@@ -7,6 +7,8 @@ import json
 import stripe
 import os
 import sys
+import csv
+import time
 sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod/')
 from scrape_engine import *
 #sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')
@@ -53,6 +55,12 @@ def run_query():
     json_input = json.loads(request.data)
     print("GEGEEGE")
     print(json_input['queryString'])
+    
+    fields = [str(json_input['queryString']), time.strftime("%Y-%m-%d %H:%M")]
+    with open(r'query_logs', 'a') as f:
+      writer = csv.writer(f)
+      writer.writerow(fields)
+    
     query_result = Influencer.query(str(json_input['queryString']))
     print(query_result)
     print(type(query_result))
