@@ -116,8 +116,7 @@ class Influencer:
                 print ('this is what you want')
                 print (doc['_source'])
                 doc['_source']['search_score'] = score
-                if doc['_source']['email'] != '':
-                    results.append(doc['_source'])
+                results.append(doc['_source'])
                 
             # Ranking the results based on synonyms of the query
             synonyms = []
@@ -172,14 +171,11 @@ class Influencer:
                     
                     if check == False:
                         is_duplicate = False
-                        has_email = True
                         for rr in results:
                             if rr['id'] == doc['_id']:
                                 is_duplicate = True
                                 break
-                        if doc['_source']['email'] == '':
-                            has_email = False
-                        if is_duplicate == False and has_email == True:
+                        if is_duplicate == False:
                             doc['_source']['search_score'] = score
                             results.append(doc['_source'])
 
