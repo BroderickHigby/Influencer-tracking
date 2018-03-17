@@ -179,7 +179,16 @@ class Influencer:
                             doc['_source']['search_score'] = score
                             results.append(doc['_source'])
 
-        newList = sorted(results, key=lambda k: k['search_score'], reverse=True)
+
+        # email filter 
+        newResults = []
+        for entry in results:
+            if 'email' in entry:
+                if entry['email'] != '': 
+                    newResults.append(entry)
+
+        newList = sorted(results, key=lambda k: k['search_score'], reverse=True) 
+        emailList = sorted(newResults, key=lambda k: k['search_score'], reverse=True)
         
         '''
         finalList = []
@@ -191,7 +200,7 @@ class Influencer:
             except:
                 print('lang error')
         '''
-        return newList
+        return newList # return emailList for only results with emails
 
 
 class InfluencerResource:
