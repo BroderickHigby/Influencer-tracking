@@ -410,7 +410,8 @@ class Search extends Component {
     this.state = {IL: [], loading: true};
     console.log('In CONSTRUCTOR');
     var postData = {
-      queryString: this.props.location.search.split("=")[1]
+      queryString: this.props.location.search.split("=")[1],
+      user_email: this.getUserData()
       //queryString: this.props.location.search.split("=")[1]
     };
 
@@ -429,7 +430,7 @@ class Search extends Component {
     console.log(axiosConfig);
 
     let currentComponent = this;
-    axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig, this.getUserData())
+    axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig)
     .then(function (response) {
       console.log("GREAT SUCCESS (in borat accent)");
       console.log(response.data);
