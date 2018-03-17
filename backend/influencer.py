@@ -200,7 +200,7 @@ class Influencer:
             except:
                 print('lang error')
         '''
-        return newList # return emailList for only results with emails
+        return emailList # return emailList for only results with emails
 
 
 class InfluencerResource:
