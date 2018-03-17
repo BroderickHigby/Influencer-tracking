@@ -179,7 +179,7 @@ const compactButtonStyle = {
   backgroundColor: '#66b2b2',
   borderRadius: '5px',
   color: 'white',
-  padding: '10px 10px',
+  padding: '3px 3px',
   border: '0',
   fontSize: '1em',
 }
@@ -409,9 +409,27 @@ class Search extends Component {
 
     this.state = {IL: [], loading: true};
     console.log('In CONSTRUCTOR');
+
+    this.getQuery();
+  };
+
+  async getQuery() {
+    var emailUser = "";
+
+    var attributes = await getAttributes();
+    console.log(attributes);
+    var i =0;
+
+    for( i = 0; i< attributes.length; i++){
+      if(attributes[i].Name === "email") {
+        emailUser = attributes[i].Value;
+      }
+    }
+
+
     var postData = {
       queryString: this.props.location.search.split("=")[1],
-      user_email: this.getUserData()
+      user_email: emailUser
       //queryString: this.props.location.search.split("=")[1]
     };
 
@@ -445,7 +463,7 @@ class Search extends Component {
 
   state = {
     loading: true
-  };
+  }
 
 
   componentWillMount(){
@@ -459,21 +477,6 @@ class Search extends Component {
     this.setState({loading: false})
   }
 
-  async getUserData() {
-    var attributes = await getAttributes();
-    var email = "";
-
-    var i =0;
-
-    for( i = 0; i< attributes.length; i++){
-      if(attributes[i].Name === "email") {
-        email = attributes[i].Value;
-      }
-    }
-    console.log(email.toString());
-    return email.toString();
-  }
-
   render() {
 
     return (
@@ -484,7 +487,14 @@ class Search extends Component {
       {
         influencerList.length ? (
           <Sidebar hideSm>
-          <center><img src={sapielogo} style={{height: '50%', width: '60%', paddingBottom: '20px'}} /></center>
+          <center>
+          <a href={"./app/home"} target="_blank">
+              <img src={sapielogo} style={{height: '50%', width: '60%', paddingBottom: '20px'}} />
+          </a>
+          <button onClick={this.handleClick} style={compactButtonStyle}>Back to Search</button>
+          <br />
+          </center>
+          <br />
 
 
             <p style={{color: "#008080"}}> We found... </p>
