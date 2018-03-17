@@ -55,8 +55,9 @@ def run_query():
     json_input = json.loads(request.data)
     print("GEGEEGE")
     print(json_input['queryString'])
+   
     
-    fields = [str(json_input['queryString']), time.strftime("%Y-%m-%d %H:%M")]
+    fields = [str(json_input['queryString']), time.strftime("%Y-%m-%d %H:%M"), str(json_input['user_email'])]
     with open(r'query_logs', 'a') as f:
       writer = csv.writer(f)
       writer.writerow(fields)
