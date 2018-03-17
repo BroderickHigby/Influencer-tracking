@@ -483,7 +483,7 @@ class Search extends Component {
       <React.Fragment>
       <Fetcher root="/api/" endpoint="influencer" query={this.props.location.search}>
       <Content>
-      <Filler />
+      {/*<Filler />*/}
       {
         influencerList.length ? (
           <Sidebar hideSm>
@@ -497,13 +497,13 @@ class Search extends Component {
           <br />
 
 
-            <p style={{color: "#008080"}}> We found... </p>
-            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '10px'}}>
+            <p style={{color: "#008080", paddingLeft: '10px'}}> We found... </p>
+            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
 
               <i>{Object.keys(influencerList).length}</i> influencers <br /><br />
             </div>
-              <p style={{color: "#008080"}}> We analyzed... </p>
-            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '10px'}}>
+              <p style={{color: "#008080", paddingLeft: '10px'}}> We analyzed... </p>
+            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
 
               <i>{truncateNumbers(getFollowers(influencerList)[0])}</i> Instagram followers<br /><br />
               <i>{truncateNumbers(getFollowers(influencerList)[5])}</i> Instagram posts<br /><br />
@@ -770,7 +770,7 @@ class Search extends Component {
           )
         }
         </div>
-        <Sidebar hideMd></Sidebar>
+        {/*<Sidebar hideMd></Sidebar>*/}
         <Filler />
 
         </Content>
