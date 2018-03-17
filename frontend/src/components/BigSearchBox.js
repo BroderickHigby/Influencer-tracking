@@ -12,7 +12,7 @@ const rootStyle = {
 };
 
 const inputStyle = {
-    border: '1px solid var(--secondary-color)',
+    border: '1.3px solid var(--secondary-color)',
     borderRadius: '3em',
     flexGrow: '1',
     height: '40px',
@@ -33,15 +33,15 @@ const styleButton  = {
 
 const buttonStyle = {
     backgroundColor: 'var(--primary-color)',
-    border: '1px solid var(--secondary-color)',
+    border: '1px solid var(--primary-color)',
     borderRadius: '3em',
-    color: 'var(--light-color)',
+    color: '#FFFFFF',
     display: 'inline-block',
     lineHeight: '40px',
     width: '100px',
     height: '40px',
     textDecoration: 'none',
-    fontWeight: '300',
+    fontWeight: '500',
     fontSize: '.75em',
 };
 

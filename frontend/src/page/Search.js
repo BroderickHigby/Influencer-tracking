@@ -179,9 +179,10 @@ const compactButtonStyle = {
   backgroundColor: '#66b2b2',
   borderRadius: '5px',
   color: 'white',
-  padding: '3px 3px',
+  padding: '6px 6px',
   border: '0',
-  fontSize: '1em',
+  fontWeight: '500',
+  fontSize: '1em'
 }
 
 
