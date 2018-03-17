@@ -24,7 +24,7 @@ export default ({ childProps }) =>
     <AuthenticatedRoute path="/app/home" component={Home} props={childProps}/>
     <SubscribedRoute path="/app/search" component={Search} props={childProps}/>
     <AuthenticatedRoute path="/app/settings" component={Settings} props={childProps}/>
-    <SubscribeRoute path="/app/subscribe" component={Subscribe} props={childProps}/>
+    <SubscribedRoute path="/app/subscribe" component={Subscribe} props={childProps}/>
     <AuthenticatedRoute path="/app/confirmation" component={Confirmation} props={childProps}/>
     <AuthenticatedRoute path="/app/trialconfirmation" component={TrialConfirmation} props={childProps}/>
     <AuthenticatedRoute path="/app/unsubscribe" component={Unsubscribe} props={childProps}/>

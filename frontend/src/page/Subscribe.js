@@ -8,21 +8,28 @@ import {
   CognitoUserAttribute
 } from "amazon-cognito-identity-js";
 import ReactPlayer from 'react-player'
+import Popup from "reactjs-popup";
 
+
+const demoButtonStyle = {
+  backgroundColor: '#FFFFFF',
+  color:'#4379b3',
+  borderRadius: '20px',
+  border: '0',
+  paddingLeft: '3px'
+}
 
 const trialButtonStyle = {
-  backgroundColor: '#66b2b2',
-  borderRadius: '3px',
+  backgroundColor: 'rgb(82, 145, 199)',
+  borderRadius: '5px',
   color: 'white',
   padding: '10px 10px',
-  border: '0',
+  border: '1px',
   fontSize: '1em'
 }
 
 const dropdownStyle = {
-  backgroundColor: '#787878',
   borderRadius: '4px',
-  color: 'white',
   padding: '10px 10px',
   border: '0',
   fontSize: '1em'
@@ -189,24 +196,13 @@ class Subscribe extends Component {
         <br></br>
             <div>
             <h5>Please use the same email you signed up with</h5>
-            <br></br>
+            <div style={{fontSize:'1.125em', fontWeight: '400', marginTop: '25px'}}>Watch Sapie in Action:
 
-            <div id='yearly' style={{display : 'inline-block', width: '42%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginRight: '40px'}}>
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href={"#collapse"} aria-expanded="false" aria-controls={"collapse"} style={{color: '#711aac'}}>
-            View Demo
-            </a>
-              <div id={"collapse"} class="panel-collapse collapse" role="tabpanel" aria-labelledby={"heading"} style={{backgroundColor: '#f9f9fa'}}>
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-sm-2" style={{height: '100%', display: 'table-cell'}}>
-                    <br/>
-                      </div>
-                        <div clas="col-sm-10">
-                        <ReactPlayer url='https://youtu.be/PKdd6sQuzb4' playing />
-                        </div>
-                      </div>
+            <Popup trigger={<button style={demoButtonStyle}> View Demo</button>} position="bottom right">
+                  <div>
+                    <ReactPlayer url='https://youtu.be/PKdd6sQuzb4' playing />
                   </div>
-                </div>
+            </Popup>
               </div>
 
             <div id='webpage' style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0px'}}>
@@ -247,7 +243,7 @@ class Subscribe extends Component {
             />
           </div>
           <br />
-          <h3>Or... Start a free 7day trial </h3><br />
+          <h3>Or... Start a free 7 day trial </h3><br />
           <button onClick={this.handleClick} style={trialButtonStyle}>Begin Trial</button>
 
         </center>
