@@ -11,7 +11,7 @@ import ReactPlayer from 'react-player'
 
 
 const trialButtonStyle = {
-  backgroundColor: '#711AAC',
+  backgroundColor: '#66b2b2',
   borderRadius: '3px',
   color: 'white',
   padding: '10px 10px',

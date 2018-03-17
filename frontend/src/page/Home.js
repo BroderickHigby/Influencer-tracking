@@ -12,7 +12,7 @@ import {
   CognitoUserAttribute
 } from "amazon-cognito-identity-js";
 
-import sapielogo from "../sapielogo.png";
+import sapielogo from "../sapielogo90.png";
 
 
 

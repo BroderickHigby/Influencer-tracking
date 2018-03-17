@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const trialButtonStyle = {
-  backgroundColor: '#711AAC',
+  backgroundColor: '#66b2b2',
   borderRadius: '20px',
   color: 'white',
   padding: '10px 10px',

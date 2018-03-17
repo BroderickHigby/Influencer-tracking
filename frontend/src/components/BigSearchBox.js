@@ -33,7 +33,7 @@ const styleButton  = {
 
 const buttonStyle = {
     backgroundColor: 'var(--primary-color)',
-    border: '0',
+    border: '1px solid var(--secondary-color)',
     borderRadius: '3em',
     color: 'var(--light-color)',
     display: 'inline-block',

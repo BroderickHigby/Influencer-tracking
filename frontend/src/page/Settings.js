@@ -56,7 +56,6 @@ export default class Settings extends Component{
   render(){
     return(
       <div className= "Settings" style = {rootStyle}>
-        <p>Username: {this.props.user.username}</p>
         <p>Subscribed:{this.props.subscribed
           ?
           <div><p>true</p>

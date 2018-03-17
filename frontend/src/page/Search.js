@@ -23,7 +23,7 @@ import ReactLoading from 'react-loading';
 import uparrow from '../uparrow.svg';
 import downarrow from '../downarrow.svg';
 import neutralarrow from '../neutralarrow.svg';
-import sapielogo from "../sapielogo.png";
+import sapielogo from "../sapielogo90.png";
 
 var Loader = require('react-loader');
 
@@ -491,7 +491,7 @@ class Search extends Component {
 
               <i>{Object.keys(influencerList).length}</i> influencers <br /><br />
             </div>
-              <p style={{color: "#008080"}}> We Analyzed... </p>
+              <p style={{color: "#008080"}}> We analyzed... </p>
             <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '10px'}}>
 
               <i>{truncateNumbers(getFollowers(influencerList)[0])}</i> Instagram followers<br /><br />
