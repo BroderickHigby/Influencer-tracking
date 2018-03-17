@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { Fetcher } from 'react-rebind';
 
+import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
+
+import {
+  AuthenticationDetails,
+  CognitoUserPool,
+  CognitoUserAttribute
+} from "amazon-cognito-identity-js";
+
 import Content from '../layout/Content';
 import Sidebar from '../layout/Sidebar';
 import MainContent from '../layout/MainContent';
@@ -15,12 +23,14 @@ import ReactLoading from 'react-loading';
 import uparrow from '../uparrow.svg';
 import downarrow from '../downarrow.svg';
 import neutralarrow from '../neutralarrow.svg';
+import sapielogo from "../sapielogo.png";
 
 var Loader = require('react-loader');
 
 
 const styleContent = {
-  width: '80%',
+  width: '70%',
+  marginLeft: '30px'
 }
 
 const iconStyle = {
@@ -89,7 +99,7 @@ const styleInnerContent = {
 }
 
 const topRightStyle =  {
-  backgroundColor: '#711AAC',
+  backgroundColor: '#008080',
   height: '50px',
   padding: '10px 20px',
   margin: '0',
@@ -108,7 +118,7 @@ const bottomRightStyle = {
 }
 
 const influenceStyle = {
-  color: '#711AAC',
+  color: '#006666',
   fontSize: '1.5em',
   margin: '15px 0 0 0',
   fontWeight: '400',
@@ -156,7 +166,7 @@ const expand =  (()=>{
 })
 
 const backButtonStyle = {
-  backgroundColor: '#711AAC',
+  backgroundColor: '#66b2b2',
   borderRadius: '20px',
   color: 'white',
   padding: '10px 10px',
@@ -164,6 +174,16 @@ const backButtonStyle = {
   fontSize: '1em',
   display: 'none'
 }
+
+const compactButtonStyle = {
+  backgroundColor: '#66b2b2',
+  borderRadius: '5px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em',
+}
+
 
 const numberWithCommas = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -368,6 +388,8 @@ var countYTVid = 0;
 var countYTView = 0;
 var countFB =0;
 
+//var checked = false;
+
 var influencerList = [];
 class Search extends Component {
 
@@ -375,6 +397,11 @@ class Search extends Component {
     console.log("CLICKED");
     window.location = "./home";
   }
+
+  // handleClickChk() {
+  //   checked = !checked;
+  //   console.log(checked);
+  // }
 
   constructor(props) {
     super(props);
@@ -386,6 +413,8 @@ class Search extends Component {
       queryString: this.props.location.search.split("=")[1]
       //queryString: this.props.location.search.split("=")[1]
     };
+
+
     console.log("GRGRGRGRGRGR!!!");
     console.log(postData.queryString);
     console.log("$$$$$$$$$$$$$$$$");
@@ -398,8 +427,9 @@ class Search extends Component {
     console.log('DOING AXIOS');
     console.log(postData);
     console.log(axiosConfig);
+
     let currentComponent = this;
-    axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig)
+    axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig, this.getUserData())
     .then(function (response) {
       console.log("GREAT SUCCESS (in borat accent)");
       console.log(response.data);
@@ -428,8 +458,23 @@ class Search extends Component {
     this.setState({loading: false})
   }
 
+  async getUserData() {
+    var attributes = await getAttributes();
+    var email = "";
+
+    var i =0;
+
+    for( i = 0; i< attributes.length; i++){
+      if(attributes[i].Name === "email") {
+        email = attributes[i].Value;
+      }
+    }
+    console.log(email.toString());
+    return email.toString();
+  }
 
   render() {
+
     return (
       <React.Fragment>
       <Fetcher root="/api/" endpoint="influencer" query={this.props.location.search}>
@@ -438,13 +483,16 @@ class Search extends Component {
       {
         influencerList.length ? (
           <Sidebar hideSm>
-            We found... <br />
-            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px'}}>
+          <center><img src={sapielogo} style={{height: '50%', width: '60%', paddingBottom: '20px'}} /></center>
+
+
+            <p style={{color: "#008080"}}> We found... </p>
+            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '10px'}}>
 
               <i>{Object.keys(influencerList).length}</i> influencers <br /><br />
             </div>
-            We analyzed...
-            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px'}}>
+              <p style={{color: "#008080"}}> We Analyzed... </p>
+            <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '10px'}}>
 
               <i>{truncateNumbers(getFollowers(influencerList)[0])}</i> Instagram followers<br /><br />
               <i>{truncateNumbers(getFollowers(influencerList)[5])}</i> Instagram posts<br /><br />
@@ -465,16 +513,18 @@ class Search extends Component {
       <div style={styleContent}>
 
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
       {influencerList.map(function(d, idx) {
         return (
-
           <div key={idx} style={styleBlock}>
+
 
           <div class="panel panel-default">
           <div class="row" style={rowStyle}>
           {d.keywords}
           <div class="col-sm-2" style={leftStyle}>
           <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
+
           </div>
           <div class="col-sm-10" style={rightStyle}>
           <div style={topRightStyle}>
@@ -636,7 +686,7 @@ class Search extends Component {
           </div>
           </div>
           <div style={restStyleBottom}>
-          <a role="button" data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded="false" aria-controls={"collapse"+idx} style={{color: '#711aac'}}>
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded="false" aria-controls={"collapse"+idx} style={{color: '#006666'}}>
           view more
           </a>
 
@@ -711,10 +761,12 @@ class Search extends Component {
         </div>
         <Sidebar hideMd></Sidebar>
         <Filler />
+
         </Content>
         </Fetcher>
         </React.Fragment>
       );
+
     }
   }
 

@@ -17,7 +17,7 @@ import multipleIcon from "../multiple.svg";
 
 
 const submitButtonStyle = {
-  backgroundColor: '#711AAC',
+  backgroundColor: '#66b2b2',
   borderRadius: '20px',
   color: 'white',
   padding: '10px 10px',
@@ -163,7 +163,7 @@ renderLogin(){
 
     </div>
 
-    <div class="col-md-6" style={{backgroundColor: '#a269c8', height: '100%', overflow: 'hidden'}}>
+    <div class="col-md-6" style={{backgroundColor: '#66b2b2', height: '100%', overflow: 'hidden'}}>
     <div style={{position: 'absolute', textAlign: 'left', width: '60%', color: 'white', fontSize: '1.325em', zIndex: '2', top: '30%', left: '20%', fontWeight: '700'}}>
     <div><img src={searchIcon} style={{height: '20px', marginRight: '10px'}} />Search for influencers.</div>
 

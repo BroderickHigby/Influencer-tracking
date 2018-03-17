@@ -12,6 +12,8 @@ import {
   CognitoUserAttribute
 } from "amazon-cognito-identity-js";
 
+import sapielogo from "../sapielogo.png";
+
 
 
 class Home extends Component {
@@ -52,6 +54,7 @@ class Home extends Component {
         }
       }
     }
+
     render() {
       this.checkTrial();
 
@@ -60,7 +63,15 @@ class Home extends Component {
               <Content>
                 <Filler />
                 <MainContent>
-                  <BigSearchBox />
+                  <center><img src={sapielogo} style={{height: '20%', width: '26%'}} /></center>
+
+                  <div style={{textAlign: 'center', color: '#5F5F5F', fontSize: '1em', fontWeight: '700', textAlign: "center"}}>
+
+                    <BigSearchBox />
+
+                  </div>
+
+
                 </MainContent>
                 <Filler />
               </Content>

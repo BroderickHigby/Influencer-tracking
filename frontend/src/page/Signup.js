@@ -30,7 +30,7 @@ import Popup from "reactjs-popup";
 
 
 const submitButtonStyle = {
-  backgroundColor: '#711AAC',
+  backgroundColor: '#66b2b2',
   borderRadius: '20px',
   color: 'white',
   padding: '10px 10px',
@@ -320,7 +320,7 @@ renderForm() {
 
     </div>
 
-    <div class="col-md-6" style={{backgroundColor: '#a269c8', height: '100%', overflow: 'hidden'}}>
+    <div class="col-md-6" style={{backgroundColor: '#66b2b2', height: '100%', overflow: 'hidden'}}>
 
     <div style={{position: 'absolute', textAlign: 'left', width: '60%', color: 'white', fontSize: '1.325em', zIndex: '2', top: '30%', left: '20%', fontWeight: '700'}}>
 
