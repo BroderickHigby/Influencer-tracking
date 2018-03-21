@@ -186,6 +186,12 @@ class Influencer:
             if 'email' in entry:
                 if entry['email'] != '': 
                     newResults.append(entry)
+            elif 'instagram' in entry:
+                if entry['instagram']['url'] != '':
+                    newResults.append(entry)
+            elif 'twitter' in entry:
+                if entry['twitter']['url'] != '':
+                    newResults.append(entry)
 
         newList = sorted(results, key=lambda k: k['search_score'], reverse=True) 
         emailList = sorted(newResults, key=lambda k: k['search_score'], reverse=True)
