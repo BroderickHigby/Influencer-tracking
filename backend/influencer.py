@@ -183,14 +183,11 @@ class Influencer:
         # email filter 
         newResults = []
         for entry in results:
-            if 'email' in entry:
-                if entry['email'] != '': 
+            if 'email' in entry and entry['email'] != '': 
                     newResults.append(entry)
-            elif 'instagram' in entry:
-                if entry['instagram']['url'] != '':
+            elif 'instagram' in entry and entry['instagram']['url'] != '':
                     newResults.append(entry)
-            elif 'twitter' in entry:
-                if entry['twitter']['url'] != '':
+            elif 'twitter' in entry and entry['twitter']['url'] != '':
                     newResults.append(entry)
 
         newList = sorted(results, key=lambda k: k['search_score'], reverse=True) 
