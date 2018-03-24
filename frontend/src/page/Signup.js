@@ -310,7 +310,7 @@ renderForm() {
 
     <Popup trigger={<button style={demoButtonStyle}> View Demo</button>} position="right center">
           <div>
-            <ReactPlayer url='https://youtu.be/PKdd6sQuzb4' playing />
+            <ReactPlayer url='https://youtu.be/Rf0L7LYVhBM' playing />
           </div>
     </Popup>
       </div>
