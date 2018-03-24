@@ -19,11 +19,13 @@ import insta from '../instagram.svg';
 import twitter from '../twitter.svg';
 import googlePlus from '../google-plus.svg';
 import email from '../email.svg';
+
 import ReactLoading from 'react-loading';
 import uparrow from '../uparrow.svg';
 import downarrow from '../downarrow.svg';
 import neutralarrow from '../neutralarrow.svg';
 import sapielogo from "../sapielogo90.png";
+
 
 var Loader = require('react-loader');
 
@@ -490,7 +492,7 @@ class Search extends Component {
           <Sidebar hideSm>
           <center>
           <a href={"./app/home"} target="_blank">
-              <img src={sapielogo} style={{height: '50%', width: '60%', paddingBottom: '20px'}} />
+              <img src={sapielogo} style={{height: '50%', width: '50%', paddingBottom: '20px'}} />
           </a>
           <button onClick={this.handleClick} style={compactButtonStyle}>Back to Search</button>
           <br />
@@ -541,6 +543,7 @@ class Search extends Component {
           <div class="col-sm-10" style={rightStyle}>
           <div style={topRightStyle}>
           <div style={styleTitle}>{truncation(d.youtube.snippet.title, 30)} </div>
+
           {
             d.facebook.url ? (
               <a href={d.facebook.url} target="_blank"><img src={face} style={iconStyle} />
