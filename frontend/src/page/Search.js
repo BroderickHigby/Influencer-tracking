@@ -1,3 +1,4 @@
+import ReactGA from 'react-ga';
 import React, { Component } from 'react';
 import { Fetcher } from 'react-rebind';
 
@@ -411,6 +412,12 @@ class Search extends Component {
     var strD = " ";
 
     this.state = {IL: [], loading: true};
+    
+    // Add your tracking ID created from https://analytics.google.com/analytics/web/#home/
+    ReactGA.initialize('UA-116399864-1');
+    // This just needs to be called once since we have no routes in this case.
+    ReactGA.pageview(window.location.pathname);
+    
     console.log('In CONSTRUCTOR');
 
     this.getQuery();
