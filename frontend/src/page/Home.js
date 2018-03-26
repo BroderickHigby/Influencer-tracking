@@ -20,13 +20,23 @@ class Home extends Component {
     async checkTrial() {
       var attributes = await getAttributes();
 
+      //FILL ARRAY WITH SUBSCRIPTION BYPASS emails_bypass
+      //TODO @Brody
+
+      var emails_bypass = ["nbavafa@gmail.com"];
+
       var i =0;
       var trial = false;
       var daysLeft = 0;
+      var trialIndex = 0;
 
       for( i = 0; i < attributes.length; i++){
+
         if(attributes[i].Name === "custom:subs_type"){
+          trialIndex = i;
+
           if(attributes[i].Value === "trial") {
+
             trial = true;
             daysLeft = 7 - ((new Date().getTime() - parseInt(attributes[i].Value))/(1000 * 60 * 60 * 24));
 
@@ -52,6 +62,47 @@ class Home extends Component {
             }
           }
         }
+      }
+      var k = 0;
+      var j = 0;
+
+
+      for(k = 0; k < attributes.length; k++) {
+
+        if(attributes[k].Name === "email") {
+
+          for (j = 0; j < emails_bypass.length; j++) {
+
+            if (emails_bypass[j] === attributes[k].Value) {
+
+              if (attributes[trialIndex].Value === "noTrial") {
+
+                const attributeList= [
+                  new CognitoUserAttribute({
+                    Name: 'custom:subs_id',
+                    Value: new Date().getTime().toString()
+
+                  }),
+                  new CognitoUserAttribute({
+                    Name: 'custom:subs_type',
+                    Value: "trial"
+                  }),
+                  new CognitoUserAttribute({
+                    Name: 'custom:subs_active',
+                    Value: "true"
+                  }),
+                ]
+
+                await updateCustomAttributes(attributeList);
+                window.location = "http://app.sapie.space/app/home";
+              }
+
+            }
+
+          }
+
+        }
+
       }
     }
 
