@@ -44,10 +44,13 @@ for entry in res['hits']['hits']:
         entry_source['events'] = sm['events']
         entry_source['organizations'] = sm['organizations']
         
-        
-        yt_views_metric = float(entry_source['youtube']['statistics']['viewCount']) / float(entry_source['youtube']['statistics']['videoCount'])
-        yt_subs_metric = float(entry_source['youtube']['statistics']['subscriberCount']) / float(entry_source['youtube']['statistics']['videoCount'])
-                
+        if entry_source['youtube']['statistics']['videoCount'] != "0":
+            yt_views_metric = float(entry_source['youtube']['statistics']['viewCount']) / float(entry_source['youtube']['statistics']['videoCount'])
+            yt_subs_metric = float(entry_source['youtube']['statistics']['subscriberCount']) / float(entry_source['youtube']['statistics']['videoCount'])
+        else:
+            yt_views_metric = float(entry_source['youtube']['statistics']['viewCount']) / 10000.00
+            yt_subs_metric = float(entry_source['youtube']['statistics']['subscriberCount']) / 10000.00
+            
         if yt_views_metric > 100000:
             yt_views_metric = 100000
         if yt_subs_metric > 6000:
