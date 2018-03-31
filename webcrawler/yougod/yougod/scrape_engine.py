@@ -180,6 +180,13 @@ def channels_list_by_id(q, part, id):
             #print(item)
             #pp.pprint(item)
             if int(item['youtube']['statistics']['subscriberCount']) < 100000:
+                if item['youtube']['statistics']['videoCount'] != "0":
+                    yt_views_metric = float(item['youtube']['statistics']['viewCount']) / float(item['youtube']['statistics']['videoCount'])
+                    yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / float(item['youtube']['statistics']['videoCount'])
+                else:
+                    yt_views_metric = float(item['youtube']['statistics']['viewCount']) / 10000.00
+                    yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / 10000.00
+                    
                 yt_views_metric = float(item['youtube']['statistics']['viewCount']) / float(item['youtube']['statistics']['videoCount'])
                 yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / float(item['youtube']['statistics']['videoCount'])
                 
