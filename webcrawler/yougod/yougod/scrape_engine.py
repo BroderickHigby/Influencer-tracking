@@ -180,26 +180,37 @@ def channels_list_by_id(q, part, id):
             #print(item)
             #pp.pprint(item)
             if int(item['youtube']['statistics']['subscriberCount']) < 100000:
-                base_influencer_score = 75
-                youtube_component = float(item['youtube']['statistics']['subscriberCount']) / 10000000.0
-                if youtube_component > 1.00:
-                    youtube_component = 1.00
-                youtube_component = youtube_component * 5.0
-                score = float(base_influencer_score) + youtube_component
-                if item['email'] != '':
-                    score += 5.00
-                if item['google_plus_url'] != '':
-                    score += 5.00
-                if item["facebook"]["url"] != '':
-                    score += 5.00
-                if item['instagram']['url'] != '':
-                    score += 5.00
-                if item['twitter']['url'] != '':
-                    score += 5.00
+                yt_views_metric = float(item['youtube']['statistics']['viewCount']) / float(item['youtube']['statistics']['videoCount'])
+                yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / float(item['youtube']['statistics']['videoCount'])
+                
+                if yt_views_metric > 100000:
+                    yt_views_metric = 100000
+                if yt_subs_metric > 6000:
+                    yt_subs_metric = 6000
+                
+                yt_views_score_component = (yt_views_metric / 100000) * 50.00
+                yt_subs_score_component = (yt_subs_metric / 6000) * 50.00
+                
+                score = yt_subs_score_component + yt_views_score_component
                 item['influencer_score'] = score
-                #print(score)
-                #print(item['influencer_score'])
-                #pp.pprint(item)
+                
+                #base_influencer_score = 75
+                #youtube_component = float(item['youtube']['statistics']['viewCount']) / 10000000.0
+                #if youtube_component > 1.00:
+                #    youtube_component = 1.00
+                #youtube_component = youtube_component * 5.0
+                #score = float(base_influencer_score) + youtube_component
+                #if item['email'] != '':
+                #    score += 5.00
+                #if item['google_plus_url'] != '':
+                #    score += 5.00
+                #if item["facebook"]["url"] != '':
+                #    score += 5.00
+                #if item['instagram']['url'] != '':
+                #    score += 5.00
+                #if item['twitter']['url'] != '':
+                #    score += 5.00
+                  
 
                 #Parse description for links.
                 desc = str(item['youtube']['snippet']['description'].encode('utf-8')).lower()
