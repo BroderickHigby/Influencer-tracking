@@ -65,7 +65,7 @@ class Pattern:
         pattern_ID = str("");
         for i in self.item_id:
             pattern_ID = pattern_ID + str(i) + ' ';
-        string = '{:80}'.format(pattern_ID.rstrip()) +  '{:10}'.format(':'+str(len(self.tid_list)))+ '{:30}'.format(str(self.tid_list));
+        string = '{:150}'.format(pattern_ID.rstrip()) +  '{:10}'.format(':'+str(len(self.tid_list))) #+ '{:30}'.format(str(self.tid_list));
         return (string);
 
 #End of Pattern class
