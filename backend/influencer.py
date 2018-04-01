@@ -77,8 +77,8 @@ class Influencer:
             #)
             actual_query = dict(
                 query=dict(
-                    match=dict(
-                        content=query,
+                    query_string=dict(
+                        query="\"%s\"" %(query),
                     ),
                 ),
             )
@@ -158,12 +158,19 @@ class Influencer:
                             synonyms.append(l.name())
                 
                 for ss in synonyms:
+                    #actual_query = dict(
+                    #    size=10000,
+                    #    sort=["influencer_score"],
+                    #    query=dict(
+                    #        query_string=dict(
+                    #            query=ss,
+                    #        ),
+                    #    ),
+                    #)
                     actual_query = dict(
-                        size=10000,
-                        sort=["influencer_score"],
                         query=dict(
                             query_string=dict(
-                                query=ss,
+                                query="\"%s\"" %(ss),
                             ),
                         ),
                     )
