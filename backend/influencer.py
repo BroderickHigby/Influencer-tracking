@@ -66,12 +66,19 @@ class Influencer:
     def query(cls, query, limit=100):
         """Query for a list of influencers"""
         if isinstance(query, str):
+            #actual_query = dict(
+            #    size=10000,
+            #    sort=["influencer_score"],
+            #    query=dict(
+            #        query_string=dict(
+            #            query=query,
+            #        ),
+            #    ),
+            #)
             actual_query = dict(
-                size=10000,
-                sort=["influencer_score"],
                 query=dict(
-                    query_string=dict(
-                        query=query,
+                    match=dict(
+                        content=query,
                     ),
                 ),
             )
