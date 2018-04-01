@@ -76,6 +76,7 @@ class Influencer:
             #    ),
             #)
             actual_query = {
+                "size" : 200,
                 "query":{
                     "match":{
                         "youtube.snippet.description":query,
