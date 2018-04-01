@@ -66,22 +66,22 @@ class Influencer:
     def query(cls, query, limit=100):
         """Query for a list of influencers"""
         if isinstance(query, str):
-            #actual_query = dict(
-            #    size=10000,
-            #    sort=["influencer_score"],
-            #    query=dict(
-            #        query_string=dict(
-            #            query=query,
-            #        ),
-            #    ),
-            #)
             actual_query = dict(
+                size=10000,
+                sort=["influencer_score"],
                 query=dict(
-                    match=dict(
+                    query_string=dict(
                         query=query,
                     ),
                 ),
             )
+            #actual_query = dict(
+            #    query=dict(
+            #        match=dict(
+            #            query=query,
+            #        ),
+            #    ),
+            #)
         elif query is None:
             actual_query = MATCH_ALL
         else:
@@ -158,22 +158,22 @@ class Influencer:
                             synonyms.append(l.name())
                 
                 for ss in synonyms:
-                    #actual_query = dict(
-                    #    size=10000,
-                    #    sort=["influencer_score"],
-                    #    query=dict(
-                    #        query_string=dict(
-                    #            query=ss,
-                    #        ),
-                    #    ),
-                    #)
                     actual_query = dict(
+                        size=10000,
+                        sort=["influencer_score"],
                         query=dict(
-                            match=dict(
+                            query_string=dict(
                                 query=ss,
                             ),
                         ),
                     )
+                    #actual_query = dict(
+                    #    query=dict(
+                    #        match=dict(
+                    #            query=ss,
+                    #        ),
+                    #    ),
+                    #)
                     
                     
                     res = es.search(
