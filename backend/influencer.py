@@ -105,33 +105,8 @@ class Influencer:
                 score = 0
                 # return those users you have one of the following:
                 # Email, instagram, twitter
-                newResults = []
-                for entry in results:
-                    # check if they have emails
-                    email_check = False
-                    if 'email' in entry:
-                        if entry['email'] != '': 
-                            newResults.append(entry)
-                            email_check = True
-            
-                    # check if they have an ig
-                    ig_check = False
-                    if email_check == False:
-                        if 'instagram' in entry:
-                            if entry['instagram']['url'] != '':
-                                newResults.append(entry)
-                                ig_check = True
-
-                    # twitter check
-                    if (ig_check == False) and (email_check == False):
-                        if 'twitter' in entry:
-                            if entry['twitter']['url'] != '':
-                                newResults.append(entry)
-
-                # newList = sorted(results, key=lambda k: k['search_score'], reverse=True) 
-                #influenceList = sorted(newResults, key=lambda k: k['search_score'], reverse=True)
-                #return influenceList # return emailList for only results with emails
-                return newResults
+               resullts.append(doc)
+            return results
 
 
 class InfluencerResource:
