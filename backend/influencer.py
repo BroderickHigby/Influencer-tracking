@@ -76,9 +76,9 @@ class Influencer:
             #    ),
             #)
             actual_query = {
-                "query"={
-                    "match"={
-                        "youtube.snippet.description"=query,
+                "query":{
+                    "match":{
+                        "youtube.snippet.description":query,
                     }
                 }
             }
@@ -168,9 +168,9 @@ class Influencer:
                     #    ),
                     #)
                     actual_query = {
-                        "query"={
-                            "match"={
-                                "youtube.snippet.description"=ss,
+                        "query":{
+                            "match":{
+                                "youtube.snippet.description":ss,
                             }
                         }
                     }
