@@ -78,7 +78,7 @@ class Influencer:
             actual_query = {
               "query": {
                 "match_phrase": {
-                  "query": query
+                  "youtube": query
                 }
               }
             }
@@ -170,7 +170,7 @@ class Influencer:
                     actual_query = {
                       "query": {
                         "match_phrase": {
-                          "query": ss
+                          "youtube": ss
                         }
                       }
                     }
