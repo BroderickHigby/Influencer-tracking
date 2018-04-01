@@ -102,7 +102,7 @@ class Influencer:
 
             # Search Scoring based on the result
             for doc in res['hits']['hits']:
-                results.append(doc)
+                results.append(doc['_source'])
             return results
 
 
