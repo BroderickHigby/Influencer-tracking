@@ -75,14 +75,24 @@ class Influencer:
             #        ),
             #    ),
             #)
-            actual_query = {
-                "size" : 200,
-                "query":{
-                    "match":{
-                        "youtube.snippet.description":query,
+            if " " not in query:
+                actual_query = {
+                    "size" : 200,
+                    "query":{
+                        "match":{
+                            "youtube.snippet.description":query,
+                        }
                     }
                 }
-            }
+            else:
+                actual_query = {
+                    "size" : 200,
+                    "query":{
+                        "match_phrase":{
+                            "youtube.snippet.description":query,
+                        }
+                    }
+                }
         elif query is None:
             actual_query = MATCH_ALL
         else:
