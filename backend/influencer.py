@@ -75,13 +75,13 @@ class Influencer:
             #        ),
             #    ),
             #)
-            actual_query = dict(
-                query=dict(
-                    match=dict(
-                        youtube.snippet.description=query,
-                    ),
-                ),
-            )
+            actual_query = {
+                "query"={
+                    "match"={
+                        "youtube.snippet.description"=query,
+                    }
+                }
+            }
         elif query is None:
             actual_query = MATCH_ALL
         else:
@@ -167,13 +167,13 @@ class Influencer:
                     #        ),
                     #    ),
                     #)
-                    actual_query = dict(
-                        query=dict(
-                            match=dict(
-                                 youtube.snippet.description=ss,
-                            ),
-                        ),
-                    )
+                    actual_query = {
+                        "query"={
+                            "match"={
+                                "youtube.snippet.description"=ss,
+                            }
+                        }
+                    }
                     
                     
                     res = es.search(
