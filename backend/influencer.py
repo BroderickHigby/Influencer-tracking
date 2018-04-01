@@ -77,7 +77,7 @@ class Influencer:
             #)
             actual_query = dict(
                 query=dict(
-                    match_phrase=dict(
+                    match=dict(
                         query=query,
                     ),
                 ),
@@ -169,7 +169,7 @@ class Influencer:
                     #)
                     actual_query = dict(
                         query=dict(
-                            match_phrase=dict(
+                            match=dict(
                                 query=ss,
                             ),
                         ),
