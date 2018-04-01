@@ -102,7 +102,7 @@ class Influencer:
 
             # Search Scoring based on the result
             for doc in res['hits']['hits']:
-                score = 0
+                score = 0'''
                 if len( str( query ).split() ) < 2:
 
                     if 'description' in doc['_source']['youtube']['brandingSettings']['channel']:
@@ -236,7 +236,7 @@ class Influencer:
                                 doc['_source']['search_score'] = score
                                 results.append(doc['_source'])
 
-
+                '''
                 # return those users you have one of the following:
                 # Email, instagram, twitter
                 newResults = []
