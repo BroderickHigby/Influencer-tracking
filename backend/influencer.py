@@ -77,9 +77,8 @@ class Influencer:
             #)
             actual_query = {
               "query": {
-                "query_string": {
-                  "query": query,
-                  "default_operator": "AND"
+                "match_phrase": {
+                  "query": query
                 }
               }
             }
@@ -170,9 +169,8 @@ class Influencer:
                     #)
                     actual_query = {
                       "query": {
-                        "query_string": {
-                          "query": ss,
-                          "default_operator": "AND"
+                        "match_phrase": {
+                          "query": ss
                         }
                       }
                     }
