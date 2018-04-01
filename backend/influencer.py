@@ -75,13 +75,14 @@ class Influencer:
             #        ),
             #    ),
             #)
-            actual_query = dict(
-                query=dict(
-                    query_string=dict(
-                        query="\"%s\"" %(query),
-                    ),
-                ),
-            )
+            actual_query = {
+              "query": {
+                "query_string": {
+                  "query": query,
+                  "default_operator": "AND"
+                }
+              }
+            }
         elif query is None:
             actual_query = MATCH_ALL
         else:
@@ -167,13 +168,14 @@ class Influencer:
                     #        ),
                     #    ),
                     #)
-                    actual_query = dict(
-                        query=dict(
-                            query_string=dict(
-                                query="\"%s\"" %(ss),
-                            ),
-                        ),
-                    )
+                    actual_query = {
+                      "query": {
+                        "query_string": {
+                          "query": ss,
+                          "default_operator": "AND"
+                        }
+                      }
+                    }
 
                     res = es.search(
                         index=cls.index,
