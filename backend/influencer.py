@@ -102,10 +102,7 @@ class Influencer:
 
             # Search Scoring based on the result
             for doc in res['hits']['hits']:
-                score = 0
-                # return those users you have one of the following:
-                # Email, instagram, twitter
-               resullts.append(doc)
+                resullts.append(doc)
             return results
 
 
