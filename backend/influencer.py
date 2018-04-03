@@ -14,7 +14,7 @@ MATCH_ALL = {"query": {"match_all": {}}}
 
 
 class Influencer:
-
+'''Creates an influencer doc'''
     index = 'sapie_yt'
     doc_type = 'influencer'
 
