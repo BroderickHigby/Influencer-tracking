@@ -66,15 +66,33 @@ class Influencer:
     def query(cls, query, limit=100):
         """Query for a list of influencers"""
         if isinstance(query, str):
-            actual_query = dict(
-                size=10000,
-                sort=["influencer_score"],
-                query=dict(
-                    query_string=dict(
-                        query=query,
-                    ),
-                ),
-            )
+            #actual_query = dict(
+            #    size=10000,
+            #    sort=["influencer_score"],
+            #    query=dict(
+            #        query_string=dict(
+            #            query=query,
+            #        ),
+            #    ),
+            #)
+            if " " not in query:
+                actual_query = {
+                    "size" : 200,
+                    "query":{
+                        "match":{
+                            "youtube.snippet.description":query,
+                        }
+                    }
+                }
+            else:
+                actual_query = {
+                    "size" : 200,
+                    "query":{
+                        "match_phrase":{
+                            "youtube.snippet.description":query,
+                        }
+                    }
+                }
         elif query is None:
             actual_query = MATCH_ALL
         else:
@@ -95,161 +113,8 @@ class Influencer:
 
             # Search Scoring based on the result
             for doc in res['hits']['hits']:
-                score = 0
-                if len( str( query ).split() ) < 2:
-
-                    if 'description' in doc['_source']['youtube']['brandingSettings']['channel']:
-                        if ( query.lower() ) in \
-                        (doc['_source']['youtube']['brandingSettings']['channel']['description']).split():
-                            score += 3
-
-                    double_count = False # a check to not count the query in the title and its keywords
-                    if 'title' in doc['_source']['youtube']['brandingSettings']['channel']:
-                        if ( query.lower() ) in \
-                        (doc['_source']['youtube']['brandingSettings']['channel']['title']).lower():
-                            score += 10
-                            double_count = True
-
-                    
-                    if not double_count:
-                        if 'keywords' in doc['_source']['youtube']['brandingSettings']['channel']:
-                            if ( word.lower() ) in \
-                            (doc['_source']['youtube']['brandingSettings']['channel']['keywords']):
-                                score += 10
-                # multiword queries
-                else:
-                    
-                    for word in ( query.split() ) :
-                        if 'description' in doc['_source']['youtube']['brandingSettings']['channel']:
-                            if ( word.lower() ) in \
-                            (doc['_source']['youtube']['brandingSettings']['channel']['description']).split():
-                                score += 2
-   
-                        double_count = False # a check to NOT count the query in the title and its keywords
-                        if 'title' in doc['_source']['youtube']['brandingSettings']['channel']:
-                            if ( word.lower() ) in \
-                            (doc['_source']['youtube']['brandingSettings']['channel']['title']).lower():
-                                score += 5
-                                double_count = True
-
-                        if not double_count:
-                            if 'keywords' in doc['_source']['youtube']['brandingSettings']['channel']:
-                                if ( word.lower() ) in \
-                                 (doc['_source']['youtube']['brandingSettings']['channel']['keywords']):
-                                    score += 5
-
-                doc['_source']['search_score'] = score
                 results.append(doc['_source'])
-                
-                # Ranking the results based on synonyms of the query
-                synonyms = []
-
-                # getting all synonyms from wordnet
-                for word in (str(query)).split():
-                    for syn in wordnet.synsets(word):
-                        for l in syn.lemmas():
-                            synonyms.append(l.name())
-                
-                for ss in synonyms:
-                    actual_query = dict(
-                        size=10000,
-                        sort=["influencer_score"],
-                        query=dict(
-                            query_string=dict(
-                                query=ss,
-                            ),
-                        ),
-                    )
-
-                    res = es.search(
-                        index=cls.index,
-                        doc_type=cls.doc_type,
-                        body=dict(actual_query),
-                    )
-                    
-                    # Ranking the synonym matches (e.g. movies and films)
-                    for doc in res['hits']['hits']:
-                        score = 0
-                        if 'description' in doc['_source']['youtube']['brandingSettings']['channel']:
-                            if (str(ss)).lower() in \
-                            (doc['_source']['youtube']['brandingSettings']['channel']['description']).split() :
-                                if len( query.split() ) < 2:
-                                    score += 3
-                                else:
-                                    score += 1
-                                    
-                        
-                        # a check to not count the query in the title and its keyword
-                        double_count = False
-                            
-                        if 'title' in doc['_source']['youtube']['brandingSettings']['channel']:
-                            if (str(ss)).lower() in \
-                            (doc['_source']['youtube']['brandingSettings']['channel']['title']).lower():
-                                if len( query.split() ) < 2:
-                                    score += 5
-                                else:
-                                    score += 3
-                                double_count = True
-
-                            if not double_count:
-                                if 'keywords' in doc['_source']['youtube']['brandingSettings']['channel']:
-                                    if ss in  \
-                                    (doc['_source']['youtube']['brandingSettings']['channel']['keywords']):
-                                        if len ( query.split() ) < 2:
-                                            score += 5
-                                        else:
-                                            score += 3
-                                    
-                        
-                        # "recheck later if code is redundant" - Mayank
-                        check = False # check if channel was returned in an earlier query
-                        for entry in results:
-                            if doc['_source']['youtube']['brandingSettings']['channel']['title'] \
-                             == entry['youtube']['brandingSettings']['channel']['title']:
-                                entry['search_score'] += score
-                                check = True
-                                break
-                        
-                        if check == False:
-                            is_duplicate = False
-                            for rr in results:
-                                if rr['id'] == doc['_id']:
-                                    is_duplicate = True
-                                    break
-                            
-                            if is_duplicate == False:
-                                doc['_source']['search_score'] = score
-                                results.append(doc['_source'])
-
-
-                # return those users you have one of the following:
-                # Email, instagram, twitter
-                newResults = []
-                for entry in results:
-                    # check if they have emails
-                    email_check = False
-                    if 'email' in entry:
-                        if entry['email'] != '': 
-                            newResults.append(entry)
-                            email_check = True
-            
-                    # check if they have an ig
-                    ig_check = False
-                    if email_check == False:
-                        if 'instagram' in entry:
-                            if entry['instagram']['url'] != '':
-                                newResults.append(entry)
-                                ig_check = True
-
-                    # twitter check
-                    if (ig_check == False) and (email_check == False):
-                        if 'twitter' in entry:
-                            if entry['twitter']['url'] != '':
-                                newResults.append(entry)
-
-                # newList = sorted(results, key=lambda k: k['search_score'], reverse=True) 
-                influenceList = sorted(newResults, key=lambda k: k['search_score'], reverse=True)
-                return influenceList # return emailList for only results with emails
+            return results
 
 
 class InfluencerResource:

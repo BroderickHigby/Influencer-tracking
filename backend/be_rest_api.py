@@ -65,7 +65,7 @@ def run_query():
     query_result = Influencer.query(str(json_input['queryString']))
     print(query_result)
     print(type(query_result))
-    if len(query_result) <= 10:
+    if len(query_result) <= 20:
         search_list_by_keyword(part='snippet', maxResults=25, q=str(json_input['queryString']))
         query_result = Influencer.query(str(json_input['queryString']))
     print("returning query")
