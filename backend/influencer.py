@@ -104,7 +104,7 @@ class Influencer:
                 actual_query2 = {
                     "size" : 200,
                     "query":{
-                        "match":{
+                        "match_phrase":{
                             "youtube.brandingSettings.channel.keywords":query,
                         }
                     }
@@ -144,7 +144,9 @@ class Influencer:
                         break
                 if is_in == False:
                     results.append(doc['_source'])
-            return results
+                    
+            newlist = sorted(results, key=lambda k: k['influencer_score'])
+            return newlist
 
 
 class InfluencerResource:
