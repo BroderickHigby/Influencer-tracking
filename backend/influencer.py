@@ -92,6 +92,14 @@ class Influencer:
                         }
                     }
                 }
+                actual_query3 = {
+                    "size" : 200,
+                    "query":{
+                        "match":{
+                            "youtube.brandingSettings.channel.title":query,
+                        }
+                    }
+                }
             else:
                 actual_query = {
                     "size" : 200,
@@ -106,6 +114,14 @@ class Influencer:
                     "query":{
                         "match_phrase":{
                             "youtube.brandingSettings.channel.keywords":query,
+                        }
+                    }
+                }
+                actual_query3 = {
+                    "size" : 200,
+                    "query":{
+                        "match_phrase":{
+                            "youtube.brandingSettings.channel.title":query,
                         }
                     }
                 }
@@ -127,6 +143,12 @@ class Influencer:
                 doc_type=cls.doc_type,
                 body=dict(actual_query2),
             )
+            
+            res3 = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query3),
+            )
         except NotFoundError:
             results = []
         else:
@@ -137,6 +159,15 @@ class Influencer:
             for doc in res['hits']['hits']:
                 results.append(doc['_source'])
             for doc in res2['hits']['hits']:
+                is_in = False
+                for already_added in results:
+                    if already_added['id'] == doc['_source']['id']:
+                        is_in = True
+                        break
+                if is_in == False:
+                    results.append(doc['_source'])
+                    
+            for doc in res3['hits']['hits']:
                 is_in = False
                 for already_added in results:
                     if already_added['id'] == doc['_source']['id']:
