@@ -139,7 +139,7 @@ class Influencer:
             for doc in res2['hits']['hits']:
                 is_in = False
                 for already_added in results:
-                    if alread_added['id'] == doc['_source']['id']:
+                    if already_added['id'] == doc['_source']['id']:
                         is_in = True
                         break
                 if is_in == False:
