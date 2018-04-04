@@ -145,7 +145,7 @@ class Influencer:
                 if is_in == False:
                     results.append(doc['_source'])
                     
-            newlist = sorted(results, key=lambda k: k['influencer_score'])
+            newlist = sorted(results, key=lambda k: k['influencer_score'], reverse=True)
             return newlist
 
 
