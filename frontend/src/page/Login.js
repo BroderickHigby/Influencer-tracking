@@ -8,12 +8,13 @@ import {
   CognitoUser
 } from "amazon-cognito-identity-js";
 import {confirmPassword, forgotPassword} from "../libs/awsLib";
-import logo from "../halfLogo.png";
+import logo from "../logos/halfLogo.png";
 import { Link } from "react-router-dom";
-import sapielogo from "../sapielogo.png";
-import searchIcon from "../search.svg";
-import connectionsIcon from "../connections.svg";
-import multipleIcon from "../multiple.svg";
+
+import sapielogo from "../logos/sapielogo.png";
+import searchIcon from "../icons/search.svg";
+import connectionsIcon from "../icons/connections.svg";
+import multipleIcon from "../icons/multiple.svg";
 
 
 const submitButtonStyle = {

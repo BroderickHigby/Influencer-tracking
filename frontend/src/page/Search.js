@@ -15,17 +15,18 @@ import Sidebar from '../layout/Sidebar';
 import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 import axios from 'axios';
-import face from '../facebook.svg';
-import insta from '../instagram.svg';
-import twitter from '../twitter.svg';
-import googlePlus from '../google-plus.svg';
-import email from '../email.svg';
+
+import face from '../icons/facebook.svg';
+import insta from '../icons/instagram.svg';
+import twitter from '../icons/twitter.svg';
+import googlePlus from '../icons/google-plus.svg';
+import email from '../icons/email.svg';
 
 import ReactLoading from 'react-loading';
-import uparrow from '../uparrow.svg';
-import downarrow from '../downarrow.svg';
-import neutralarrow from '../neutralarrow.svg';
-import sapielogo from "../sapielogo90.png";
+import uparrow from '../icons/uparrow.svg';
+import downarrow from '../icons/downarrow.svg';
+import neutralarrow from '../icons/neutralarrow.svg';
+import sapielogo from "../logos/sapielogo90.png";
 
 
 var Loader = require('react-loader');

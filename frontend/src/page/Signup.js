@@ -16,13 +16,13 @@ import {
 import config from "../config";
 import Flexbox from 'flexbox-react';
 
-import logo from "../halfLogo.png";
+import logo from "../logos/halfLogo.png";
 import Login from "./Login.js";
 
-import sapielogo from "../sapielogo.png";
-import searchIcon from "../search.svg";
-import connectionsIcon from "../connections.svg";
-import multipleIcon from "../multiple.svg";
+import sapielogo from "../logos/sapielogo.png";
+import searchIcon from "../icons/search.svg";
+import connectionsIcon from "../icons/connections.svg";
+import multipleIcon from "../icons/multiple.svg";
 import ReactPlayer from 'react-player'
 import Popup from "reactjs-popup";
 
