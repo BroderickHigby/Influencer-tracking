@@ -84,12 +84,28 @@ class Influencer:
                         }
                     }
                 }
+                actual_query2 = {
+                    "size" : 200,
+                    "query":{
+                        "match":{
+                            "youtube.brandingSettings.channel.keywords":query,
+                        }
+                    }
+                }
             else:
                 actual_query = {
                     "size" : 200,
                     "query":{
                         "match_phrase":{
                             "youtube.snippet.description":query,
+                        }
+                    }
+                }
+                actual_query2 = {
+                    "size" : 200,
+                    "query":{
+                        "match":{
+                            "youtube.brandingSettings.channel.keywords":query,
                         }
                     }
                 }
@@ -105,6 +121,12 @@ class Influencer:
                 doc_type=cls.doc_type,
                 body=dict(actual_query),
             )
+            
+            res2 = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query2),
+            )
         except NotFoundError:
             results = []
         else:
@@ -114,6 +136,14 @@ class Influencer:
             # Search Scoring based on the result
             for doc in res['hits']['hits']:
                 results.append(doc['_source'])
+            for doc in res2['hits']['hits']:
+                is_in = False
+                for already_added in results:
+                    if alread_added['id'] == doc['_source']['id']:
+                        is_in = True
+                        break
+                if is_in == False:
+                    results.append(doc['_source'])
             return results
 
 
