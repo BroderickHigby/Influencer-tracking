@@ -124,14 +124,23 @@ class Subscribe extends Component {
       //http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000
       //http://127.0.0.1:5000
 
+      /* Add again when using dropdown menu
+
       var e = document.getElementById("plans");
       var strUser = e.options[e.selectedIndex].value;
       console.log("Plan " + strUser);
+
+      */
 
 
       //If user email entered is the same as currently logged in
       //Else throw error and redo page
       var route = "";
+      route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly';
+      //remove when using dropdown menu
+
+      /* Add again when using dropdown menu
+
       if (strUser === "Monthly") {
         route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly';
       }
@@ -145,6 +154,8 @@ class Subscribe extends Component {
         console.log("No plan selected");
         window.location = "/app/subscribe"
       }
+
+      */
 
       axios.post(route, postData, axiosConfig)
       .then(async function (response) {
@@ -161,7 +172,8 @@ class Subscribe extends Component {
           }),
           new CognitoUserAttribute({
             Name: 'custom:subs_type',
-            Value: strUser
+            // Value: strUser
+            Value: "Monthly"
           }),
           new CognitoUserAttribute({
             Name: 'custom:subs_active',
@@ -209,11 +221,13 @@ class Subscribe extends Component {
 
               <div id='monthly' style={{display : 'inline-block', width: '30%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
                   <h3>Monthly Subscription</h3>
-                  <h2><b>$299.00</b><br></br> per month</h2>
-                  <h4>The Basic Plan</h4>
+                  <h2><b>$100.00</b><br></br> per month</h2>
+                  <h4>The Monthly Plan</h4>
 
               </div>
+            </div> {/* delete when adding more plans */}
 
+              {/*
               <div id='early' style={{display : 'inline-block', width: '40%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px'}}>
                   <h3> <i>Special</i> <br></br> Early Access Plan</h3>
                   <h2><strike>$299.00</strike><b> $149.00</b><br></br> per month</h2>
@@ -229,6 +243,7 @@ class Subscribe extends Component {
             </div>
 
 
+
             <select id="plans" style={dropdownStyle}>
               <option value="" disabled selected hidden >Select your Plan</option>
               <option value="Early">Early Access</option>
@@ -236,6 +251,9 @@ class Subscribe extends Component {
               <option value="Monthly">Monthly</option>
             </select>
             <br></br>
+
+            */}
+
             <br></br>
             <StripeCheckout
               token={this.onToken}
