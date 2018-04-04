@@ -26,18 +26,21 @@ html, body {
 
 body {
     color: var(--dark-color);
-    display: flex;
+    {/* display: flex; */}
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: 400;
+    min-width: 1000px;
 }
 
 .hide-flex-sm { display: flex; }
 .hide-flex-md { display: flex; }
 
+{/*
 @media screen and (max-width: 800px) {
     .hide-flex-sm { display: none; }
 }
+*/}
 
 @media screen and (max-width: 1000px) {
     .hide-flex-md { display: none; }

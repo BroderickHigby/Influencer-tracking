@@ -131,15 +131,19 @@ const influenceStyle = {
 const restStyleLeft = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '30%',
+  paddingRight: '10px',
+  minWidth: '130px',
 }
 const restStyleRight = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '45%',
+  //width: '45%',
   height: '100%',
   float: 'top',
-  paddingLeft: '5px'
+  paddingLeft: '5px',
+  paddingRight: '10px',
+  minWidth: '200px',
+
 }
 
 const restStyleEnd = {
@@ -147,11 +151,13 @@ const restStyleEnd = {
   display : 'table-cell',
   width: '35%',
   height: '100%',
-  paddingLeft: '10px'
+  paddingLeft: '5px',
+  minWidth: '100px',
 }
 
 const restStyleBottom = {
   color: 'rgba(0,0,0, .5)',
+  width: '100%'
 }
 
 const descriptionStyle = {
@@ -412,12 +418,12 @@ class Search extends Component {
     var strD = " ";
 
     this.state = {IL: [], loading: true};
-    
+
     // Add your tracking ID created from https://analytics.google.com/analytics/web/#home/
     ReactGA.initialize('UA-116399864-1');
     // This just needs to be called once since we have no routes in this case.
     ReactGA.pageview(window.location.pathname);
-    
+
     console.log('In CONSTRUCTOR');
 
     this.getQuery();
@@ -631,7 +637,7 @@ class Search extends Component {
           {
             d.locations ? (
               d.locations.toString() ? (
-                locate = ("Locations: " + truncation(d.locations.toString(), 15))
+                locate = ("Locations: " + truncation(d.locations.toString(), 15).toString())
               ) : (
                 ""
               )
@@ -770,19 +776,18 @@ class Search extends Component {
               </div>
         {
           influencerList.length ? (
-            ""
+            <Filler />
+
           ) : (
-            <div style={{marginTop: '100px'}}><
-            center>
+            <div style={{marginTop: '100px'}}>
+            <center>
             <ReactLoading type={"bars"} color={"black"} height='200px' width='200px' />
-            <button onClick={this.handleClick} style={backButtonStyle}>Back to Search</button>
+            {/*<button onClick={this.handleClick} style={backButtonStyle}>Back to Search</button>*/}
             </center>
             </div>
           )
         }
         </div>
-        {/*<Sidebar hideMd></Sidebar>*/}
-        <Filler />
 
         </Content>
         </Fetcher>
