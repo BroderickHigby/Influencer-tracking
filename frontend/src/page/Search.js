@@ -443,6 +443,12 @@ class Search extends Component {
       }
     }
 
+    if (this.props.location.search.split("=")[1] === "") {
+      window.location = "./app/home";
+    }
+    if (!this.props.location.search.split("=")[1].replace(/\s/g, '').length) {
+      window.location = "./app/home";
+    }
 
     var postData = {
       queryString: this.props.location.search.split("=")[1],
