@@ -445,6 +445,7 @@ class Search extends Component {
 
 
     if (!this.props.location.search.split("=")[1].replace(/\s/g, '').length) {
+      alert("Searches must contain more than empty space");
       window.location = "./app/home";
     }
 
