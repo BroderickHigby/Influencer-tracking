@@ -800,17 +800,22 @@ class Search extends Component {
             <img src={LoadingIcon}/>
             </div>
             <div class="col-md-7">
-            <div style={{fontSize: '2em', textTransform: 'uppercase'}}>some tips from our experts...</div>
-            <div style={tipTitle}>Make sure you are providing value</div>
-            <div style={tipDescription}>Most influencers get a ton of cold emails and spam. To stand out from the crowd, make sure to offer some value to the influencer. This will help get their attention and build a strong relationship.  </div>
-            <div style={tipTitle}>Give them creative control</div>
-            <div style={tipDescription}>We all want to control how we look to the public. But there's a reason the person you're reaching out to is influential. People love their personality! So let them be them. They know their audience better than you do. </div>
-            <div style={tipTitle}>Make sure to set a goal before engaging in a campaign</div>
-            <div style={tipDescription}>We are all about ROI. And we know you are too. So it is important to set a goal (whether that is revenue, sign ups, whatever...) to measure against. That way you can prove you were successful! </div>
-            <div style={tipTitle}>Set up a way to measure results</div>
-            <div style={tipDescription}>The easiest way we have found is to use Bit.ly (we will be creating one for you in the near future, so hang tight!). That way you can create unique, shareable destinations for people to click on. If you create a unique one for each influencer you reach out to, then you will know who the real winners are for your company. </div>
-            <div style={tipTitle}>Remember the Gold Rule </div>
-            <div style={tipDescription}>Influencers are people too, and hate spam as much as you and me! So let us just make sure we always ask "would I like this if I was in their position?" </div>
+            <div style={{fontSize: '1.5em', marginBottom: '10px'}}>Some tips from our experts...</div>
+
+            <div style={tipTitle}>Make sure you are providing value.</div>
+            <div style={tipDescription}>Most influencers get a ton of cold emails. To stand out from the crowd, make sure to offer some value. This will help get their attention and build a strong relationship.  </div>
+
+            <div style={tipTitle}>Give them creative control.</div>
+            <div style={tipDescription}>There is a reason the person you are reaching out to is influential. People love their personality! So let them be them. </div>
+
+            <div style={tipTitle}>Make sure to set a goal to measure against.</div>
+            <div style={tipDescription}>It is important to set a goal (whether that is revenue, sign ups, pageviews...) to measure against. That way you can prove you were successful! </div>
+
+            <div style={tipTitle}>Set up a way to measure that goal.</div>
+            <div style={tipDescription}>The easiest way we have found is to use a url shortener like Bit.ly. If you create a unique url for each influencer you work with, then you will know who the real winners are </div>
+
+            <div style={tipTitle}>Remember the gold rule.</div>
+            <div style={tipDescription}>Influencers are people too, so let us just make sure we always ask "would I like this if I was in their position?"  </div>
             </div>
             </div>
             </div>
