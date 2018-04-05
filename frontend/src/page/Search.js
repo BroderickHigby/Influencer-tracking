@@ -791,11 +791,12 @@ class Search extends Component {
             <Filler />
 
           ) : (
-            <div style={{marginTop: '20px'}}>
+            <div style={{marginTop: '20px', position: 'absolute', margin: '0 auto', width: '90%'}}>
 
             {/*<button onClick={this.handleClick} style={backButtonStyle}>Back to Search</button>*/}
             <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5" style={{textAlign: 'center'}}>
+            <div style={{fontSize: '1.5em', fontWeight: '400', marginBottom: '70px'}}> Finding influencers hang tight!</div>
             <img src={LoadingIcon}/>
             </div>
             <div class="col-md-7">
