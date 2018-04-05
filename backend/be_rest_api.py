@@ -17,9 +17,8 @@ from scrape_engine import *
 app = Flask(__name__)
 CORS(app)
 
-#sk_test_UUgREeF3vNIfwJoB2UZj0oyB
-#sk_live_QXvUGMApgvJE8W7PSkVSs8xo
 stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
+#stripe.api_key = 'sk_test_UUgREeF3vNIfwJoB2UZj0oyB'
 
 # plan = stripe.Plan.create(
 #   product={'name': 'monthly'},
@@ -137,9 +136,9 @@ def charge_monthly():
     #plan_CRlMXL8BNJ87SN
     subscription = stripe.Subscription.create(
         customer=customer.id,
-        # items=[{'plan': 'plan_CRlMXL8BNJ87SN'}],
+        #$300 items=[{'plan': 'plan_CRlMXL8BNJ87SN'}],
         items=[{'plan': 'plan_CcXaxLjrQvaJhg'}],
-
+        #Test items=[{'plan': 'plan_CSVSQ57kADdOlh'}],
     )
     print(subscription.id)
     return jsonify({'subscription': subscription})
