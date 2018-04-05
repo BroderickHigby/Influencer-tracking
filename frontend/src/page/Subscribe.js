@@ -191,7 +191,7 @@ class Subscribe extends Component {
 
         await updateCustomAttributes(attributeList);
 
-        window.location = "http://app.sapie.space/app/confirmation"
+        window.location = "http://app.sapie.space/app/signupconfirm"
 
       }).catch(error => {
         console.log(error)
