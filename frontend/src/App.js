@@ -9,10 +9,7 @@ import Routes from './Routes';
 import actions from './actions';
 import {CognitoUser} from 'amazon-cognito-identity-js';
 import { authUser, signOutUser, getCurrentUser, getAuthCurrentUser, getAttributes } from "./libs/awsLib";
-import {StripeProvider} from 'react-stripe-elements';
 
-import {Elements} from 'react-stripe-elements';
-import InjectedCheckoutForm from './page/components/CheckoutForm';
 
 class App extends Component {
   constructor(props) {

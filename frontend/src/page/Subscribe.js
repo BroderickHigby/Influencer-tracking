@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import StripeCheckout from 'react-stripe-checkout';
+import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
 import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
 import {
@@ -10,8 +10,6 @@ import {
 import ReactPlayer from 'react-player'
 
 import Popup from "reactjs-popup";
-import {Elements} from 'react-stripe-elements';
-import InjectedCheckoutForm from './components/CheckoutForm';
 
 
 const demoButtonStyle = {
@@ -47,6 +45,7 @@ class Subscribe extends Component {
     this.onToken = this.onToken.bind(this);
   }
 
+  /*
   async handleClick() {
     var attributes = await getAttributes();
 
@@ -95,6 +94,7 @@ class Subscribe extends Component {
       window.location = "http://app.sapie.space/app/trialerror"
     }
   }
+  */
 
   async onToken(token) {
     var i =0;
@@ -246,17 +246,21 @@ class Subscribe extends Component {
 
 
             <br></br>
-            <StripeCheckout
-              token={this.onToken}
-              stripeKey="pk_live_AEuriPJROzqDhDu5Y73oTUR4"
-            />
+
             */}
 
           <br />
 
+          <StripeCheckout
+            token={this.onToken}
+            stripeKey="pk_live_AEuriPJROzqDhDu5Y73oTUR4"
+          />
+
+          { /*
           <Elements>
             <InjectedCheckoutForm />
           </Elements>
+          */ }
 
           </div>
           </div>
