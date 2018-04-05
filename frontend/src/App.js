@@ -9,17 +9,23 @@ import Routes from './Routes';
 import actions from './actions';
 import {CognitoUser} from 'amazon-cognito-identity-js';
 import { authUser, signOutUser, getCurrentUser, getAuthCurrentUser, getAttributes } from "./libs/awsLib";
+import {StripeProvider} from 'react-stripe-elements';
+
+import {Elements} from 'react-stripe-elements';
+import InjectedCheckoutForm from './page/components/CheckoutForm';
 
 class App extends Component {
   constructor(props) {
     super(props);
+
 
     this.state = {
       user: null,
       isAuthenticated: false,
       isAuthenticating: true,
       subscribed: false,
-      justLoggedIn: true
+      justLoggedIn: true,
+
     };
   }
 
@@ -61,6 +67,15 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    // if (window.Stripe) {
+    //   this.setState({stripe: window.Stripe('pk_test_12345')});
+    // } else {
+    //     document.querySelector('#stripe-js').addEventListener('load', () => {
+    //     // Create Stripe instance once Stripe.js loads
+    //     this.setState({stripe: window.Stripe('pk_test_Jjys3Yuxu330uiclk4ViXeHM')});
+    //   });
+    // }
+
   try {
     if (await authUser()) {
       this.userHasAuthenticated(true);
@@ -104,14 +119,18 @@ class App extends Component {
         userHasLoggedIn: this.userHasLoggedIn
       }
 
+
       return (
+
         !this.state.isAuthenticating &&
+
         <Store actions={actions} initial={this.initialStore}>
           <Body>
             <Header handleLogout ={this.handleLogout} isAuthenticated={this.state.isAuthenticated} user={this.state.user} />
             <Routes childProps={childProps}/>
           </Body>
         </Store>
+
       );
     }
 }
