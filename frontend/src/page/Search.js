@@ -23,6 +23,7 @@ import googlePlus from '../icons/google-plus.svg';
 import email from '../icons/email.svg';
 
 import ReactLoading from 'react-loading';
+import LoadingIcon from '../icons/loading.gif';
 import uparrow from '../icons/uparrow.svg';
 import downarrow from '../icons/downarrow.svg';
 import neutralarrow from '../icons/neutralarrow.svg';
@@ -32,9 +33,19 @@ import sapielogo from "../logos/sapielogo90.png";
 var Loader = require('react-loader');
 
 
+const tipTitle = {
+  fontSize: '1.5em',
+  fontWeight: '700'
+}
+
+const tipDescription = {
+  fontSize: '1em',
+  marginBottom: '0px'
+}
+
 const styleContent = {
   width: '70%',
-  marginLeft: '30px'
+  marginLeft: '30px',
 }
 
 const iconStyle = {
@@ -780,12 +791,30 @@ class Search extends Component {
             <Filler />
 
           ) : (
-            <div style={{marginTop: '100px'}}>
-            <center>
-            <ReactLoading type={"bars"} color={"black"} height='200px' width='200px' />
+            <div style={{marginTop: '20px'}}>
+
             {/*<button onClick={this.handleClick} style={backButtonStyle}>Back to Search</button>*/}
-            </center>
+            <div class="row">
+            <div class="col-md-5">
+            <img src={LoadingIcon}/>
             </div>
+            <div class="col-md-7">
+            <div style={{fontSize: '2em', textTransform: 'uppercase'}}>some tips from our experts...</div>
+            <div style={tipTitle}>Make sure you are providing value</div>
+            <div style={tipDescription}>Most influencers get a ton of cold emails and spam. To stand out from the crowd, make sure to offer some value to the influencer. This will help get their attention and build a strong relationship.  </div>
+            <div style={tipTitle}>Give them creative control</div>
+            <div style={tipDescription}>We all want to control how we look to the public. But there's a reason the person you're reaching out to is influential. People love their personality! So let them be them. They know their audience better than you do. </div>
+            <div style={tipTitle}>Make sure to set a goal before engaging in a campaign</div>
+            <div style={tipDescription}>We are all about ROI. And we know you are too. So it is important to set a goal (whether that is revenue, sign ups, whatever...) to measure against. That way you can prove you were successful! </div>
+            <div style={tipTitle}>Set up a way to measure results</div>
+            <div style={tipDescription}>The easiest way we have found is to use Bit.ly (we will be creating one for you in the near future, so hang tight!). That way you can create unique, shareable destinations for people to click on. If you create a unique one for each influencer you reach out to, then you will know who the real winners are for your company. </div>
+            <div style={tipTitle}>Remember the Gold Rule </div>
+            <div style={tipDescription}>Influencers are people too, and hate spam as much as you and me! So let us just make sure we always ask "would I like this if I was in their position?" </div>
+            </div>
+            </div>
+            </div>
+
+
           )
         }
         </div>
