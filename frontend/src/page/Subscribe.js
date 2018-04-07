@@ -218,7 +218,7 @@ class Subscribe extends Component {
 
               <div id='monthly' style={{display : 'inline-block', width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
                   <h3>Monthly Subscription</h3>
-                  <h2><b>$100.00</b><br></br> per month</h2>
+                  <h2><b>$99.00</b><br></br> per year</h2>
                   <h4>The Monthly Plan</h4>
 
               {/*
