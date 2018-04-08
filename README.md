@@ -19,7 +19,10 @@ $ docker-compose build
 # This is one of many other ways to get Docker Compose running your selected environment.
 $ docker-compose up
 
-# Starting ES: elasticsearch is likely stored in your parent directory, go back to that, enter ./elasticsearch and then type:
+# Starting ES: 
+# elasticsearch is likely stored in your parent directory. Go back to that, enter 
+$ ./elasticsearch 
+# and then type:
 $ ./bin/elasticsearch
 # in root:  
 $ pip install -r requirements.txt
