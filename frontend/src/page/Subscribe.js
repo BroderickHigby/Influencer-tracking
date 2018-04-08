@@ -8,6 +8,7 @@ import {
   CognitoUserAttribute
 } from "amazon-cognito-identity-js";
 import ReactPlayer from 'react-player'
+
 import Popup from "reactjs-popup";
 
 
@@ -20,7 +21,7 @@ const demoButtonStyle = {
 }
 
 const trialButtonStyle = {
-  backgroundColor: 'rgb(82, 145, 199)',
+  backgroundColor: '#66b2b2',
   borderRadius: '5px',
   color: 'white',
   padding: '10px 10px',
@@ -44,6 +45,7 @@ class Subscribe extends Component {
     this.onToken = this.onToken.bind(this);
   }
 
+  /*
   async handleClick() {
     var attributes = await getAttributes();
 
@@ -86,12 +88,13 @@ class Subscribe extends Component {
           console.log(attributes[i].Value/(1000 * 60 * 60 * 24 * 30.25 * 12))
         }
       }
-      window.location = "http://app.sapie.space/app/trialconfirmation"
+      window.location = "http://app.sapie.space/app/signupconfirm"
     }
     else {
       window.location = "http://app.sapie.space/app/trialerror"
     }
   }
+  */
 
   async onToken(token) {
     var i =0;
@@ -124,14 +127,20 @@ class Subscribe extends Component {
       //http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000
       //http://127.0.0.1:5000
 
+      /* Add again when using dropdown menu
       var e = document.getElementById("plans");
       var strUser = e.options[e.selectedIndex].value;
       console.log("Plan " + strUser);
+      */
 
 
       //If user email entered is the same as currently logged in
       //Else throw error and redo page
       var route = "";
+      route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly';
+      //remove when using dropdown menu
+
+      /* Add again when using dropdown menu
       if (strUser === "Monthly") {
         route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly';
       }
@@ -145,6 +154,7 @@ class Subscribe extends Component {
         console.log("No plan selected");
         window.location = "/app/subscribe"
       }
+      */
 
       axios.post(route, postData, axiosConfig)
       .then(async function (response) {
@@ -161,7 +171,8 @@ class Subscribe extends Component {
           }),
           new CognitoUserAttribute({
             Name: 'custom:subs_type',
-            Value: strUser
+            // Value: strUser
+            Value: "Monthly"
           }),
           new CognitoUserAttribute({
             Name: 'custom:subs_active',
@@ -172,14 +183,13 @@ class Subscribe extends Component {
           Save the subscription_id to the the user in cognito with the
           email user_email. The subscription_id is used to cancel the subscription
           later on.
-
           Allow access to payed authenticated routes and now display
           Unsubscribe page instead of subscribe page.
         */
 
         await updateCustomAttributes(attributeList);
 
-        window.location = "http://app.sapie.space/app/confirmation"
+        window.location = "http://app.sapie.space/app/signupconfirm"
 
       }).catch(error => {
         console.log(error)
@@ -195,7 +205,6 @@ class Subscribe extends Component {
         <center>
         <br></br>
             <div>
-            <h5>Please use the same email you signed up with</h5>
             <div style={{fontSize:'1.125em', fontWeight: '400', marginTop: '25px'}}>Watch Sapie in Action:
 
             <Popup trigger={<button style={demoButtonStyle}> View Demo</button>} position="bottom right">
@@ -205,30 +214,28 @@ class Subscribe extends Component {
             </Popup>
               </div>
 
-            <div id='webpage' style={{width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0px'}}>
+            <div id='webpage' style={{width: '100%', height: '100%', display: 'fixed', alignItems: 'center', justifyContent: 'center', padding: '0px'}}>
 
-              <div id='monthly' style={{display : 'inline-block', width: '30%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
+              <div id='monthly' style={{display : 'inline-block', width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
                   <h3>Monthly Subscription</h3>
-                  <h2><b>$299.00</b><br></br> per month</h2>
-                  <h4>The Basic Plan</h4>
+                  <h2><b>$99.00</b><br></br> per year</h2>
+                  <h4>The Monthly Plan</h4>
 
-              </div>
+              {/*
+            </div>
+
 
               <div id='early' style={{display : 'inline-block', width: '40%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px'}}>
                   <h3> <i>Special</i> <br></br> Early Access Plan</h3>
                   <h2><strike>$299.00</strike><b> $149.00</b><br></br> per month</h2>
                   <h4> Limited Time Only!</h4>
-
               </div>
-
               <div id='yearly' style={{display : 'inline-block', width: '30%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginRight: '40px'}}>
                 <h3>Yearly Subscription</h3>
                 <h2><strike>$3588.00</strike> <b>$3229.20 </b><br></br> per year</h2>
                 <h4>10% off for a yearly subscription!</h4>
               </div>
             </div>
-
-
             <select id="plans" style={dropdownStyle}>
               <option value="" disabled selected hidden >Select your Plan</option>
               <option value="Early">Early Access</option>
@@ -236,12 +243,29 @@ class Subscribe extends Component {
               <option value="Monthly">Monthly</option>
             </select>
             <br></br>
+
+
             <br></br>
-            <StripeCheckout
-              token={this.onToken}
-              stripeKey="pk_live_AEuriPJROzqDhDu5Y73oTUR4"
-            />
+
+            */}
+
+          <br />
+
+          <StripeCheckout
+            token={this.onToken}
+            stripeKey="pk_live_AEuriPJROzqDhDu5Y73oTUR4"
+          />
+
+          { /*
+          <Elements>
+            <InjectedCheckoutForm />
+          </Elements>
+          */ }
+
           </div>
+          </div>
+          </div>
+
           <br />
           <h3>Or... Start a free 7 day trial </h3><br />
           <button onClick={this.handleClick} style={trialButtonStyle}>Begin Trial</button>

@@ -17,33 +17,32 @@ from scrape_engine import *
 app = Flask(__name__)
 CORS(app)
 
-#sk_test_UUgREeF3vNIfwJoB2UZj0oyB
-#sk_live_QXvUGMApgvJE8W7PSkVSs8xo
 stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
+#stripe.api_key = 'sk_test_UUgREeF3vNIfwJoB2UZj0oyB'
 
-plan = stripe.Plan.create(
-  product={'name': 'monthly'},
-  nickname='monthly',
-  interval='month',
-  currency='usd',
-  amount=29900,
-)
-
-plan = stripe.Plan.create(
-  product={'name': 'Yearly'},
-  nickname='yearly',
-  interval='year',
-  currency='usd',
-  amount=329900,
-)
-
-plan = stripe.Plan.create(
-  product={'name': 'Early'},
-  nickname='early',
-  interval='month',
-  currency='usd',
-  amount=14900,
-)
+# plan = stripe.Plan.create(
+#   product={'name': 'monthly'},
+#   nickname='monthly',
+#   interval='month',
+#   currency='usd',
+#   amount=29900,
+# )
+#
+# plan = stripe.Plan.create(
+#   product={'name': 'Yearly'},
+#   nickname='yearly',
+#   interval='year',
+#   currency='usd',
+#   amount=329900,
+# )
+#
+# plan = stripe.Plan.create(
+#   product={'name': 'Early'},
+#   nickname='early',
+#   interval='month',
+#   currency='usd',
+#   amount=14900,
+# )
 
 @app.route("/")
 def home():
@@ -55,17 +54,17 @@ def run_query():
     json_input = json.loads(request.data)
     print("GEGEEGE")
     print(json_input['queryString'])
-   
-    
+
+
     fields = [str(json_input['queryString']), time.strftime("%Y-%m-%d %H:%M"), str(json_input['user_email'])]
     with open(r'query_logs', 'a') as f:
       writer = csv.writer(f)
       writer.writerow(fields)
-    
+
     query_result = Influencer.query(str(json_input['queryString']))
     print(query_result)
     print(type(query_result))
-    if len(query_result) <= 20:
+    if len(query_result) <= 5:
         search_list_by_keyword(part='snippet', maxResults=25, q=str(json_input['queryString']))
         query_result = Influencer.query(str(json_input['queryString']))
     print("returning query")
@@ -137,7 +136,11 @@ def charge_monthly():
     #plan_CRlMXL8BNJ87SN
     subscription = stripe.Subscription.create(
         customer=customer.id,
-        items=[{'plan': 'plan_CRlMXL8BNJ87SN'}],
+        #$300 items=[{'plan': 'plan_CRlMXL8BNJ87SN'}],
+        #100/month items=[{'plan': 'plan_CcXaxLjrQvaJhg'}],
+        #Test items=[{'plan': 'plan_CSVSQ57kADdOlh'}],
+        items=[{'plan': 'plan_CdPky2a1798SMi'}]
+
     )
     print(subscription.id)
     return jsonify({'subscription': subscription})

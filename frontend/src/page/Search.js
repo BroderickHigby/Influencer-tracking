@@ -15,25 +15,37 @@ import Sidebar from '../layout/Sidebar';
 import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 import axios from 'axios';
-import face from '../facebook.svg';
-import insta from '../instagram.svg';
-import twitter from '../twitter.svg';
-import googlePlus from '../google-plus.svg';
-import email from '../email.svg';
+
+import face from '../icons/facebook.svg';
+import insta from '../icons/instagram.svg';
+import twitter from '../icons/twitter.svg';
+import googlePlus from '../icons/google-plus.svg';
+import email from '../icons/email.svg';
 
 import ReactLoading from 'react-loading';
-import uparrow from '../uparrow.svg';
-import downarrow from '../downarrow.svg';
-import neutralarrow from '../neutralarrow.svg';
-import sapielogo from "../sapielogo90.png";
+import LoadingIcon from '../icons/loading.gif';
+import uparrow from '../icons/uparrow.svg';
+import downarrow from '../icons/downarrow.svg';
+import neutralarrow from '../icons/neutralarrow.svg';
+import sapielogo from "../logos/sapielogo90.png";
 
 
 var Loader = require('react-loader');
 
 
+const tipTitle = {
+  fontSize: '1.5em',
+  fontWeight: '700'
+}
+
+const tipDescription = {
+  fontSize: '1em',
+  marginBottom: '0px'
+}
+
 const styleContent = {
   width: '70%',
-  marginLeft: '30px'
+  marginLeft: '30px',
 }
 
 const iconStyle = {
@@ -131,15 +143,19 @@ const influenceStyle = {
 const restStyleLeft = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '30%',
+  paddingRight: '10px',
+  minWidth: '130px',
 }
 const restStyleRight = {
   color: 'rgba(0,0,0, .5)',
   display : 'table-cell',
-  width: '45%',
+  //width: '45%',
   height: '100%',
   float: 'top',
-  paddingLeft: '5px'
+  paddingLeft: '5px',
+  paddingRight: '10px',
+  minWidth: '200px',
+
 }
 
 const restStyleEnd = {
@@ -147,11 +163,13 @@ const restStyleEnd = {
   display : 'table-cell',
   width: '35%',
   height: '100%',
-  paddingLeft: '10px'
+  paddingLeft: '5px',
+  minWidth: '100px',
 }
 
 const restStyleBottom = {
   color: 'rgba(0,0,0, .5)',
+  width: '100%'
 }
 
 const descriptionStyle = {
@@ -412,12 +430,12 @@ class Search extends Component {
     var strD = " ";
 
     this.state = {IL: [], loading: true};
-    
+
     // Add your tracking ID created from https://analytics.google.com/analytics/web/#home/
     ReactGA.initialize('UA-116399864-1');
     // This just needs to be called once since we have no routes in this case.
     ReactGA.pageview(window.location.pathname);
-    
+
     console.log('In CONSTRUCTOR');
 
     this.getQuery();
@@ -436,6 +454,11 @@ class Search extends Component {
       }
     }
 
+
+    if (!this.props.location.search.split("=")[1].replace(/\s/g, '').length) {
+      alert("Searches must contain more than empty space");
+      window.location = "./app/home";
+    }
 
     var postData = {
       queryString: this.props.location.search.split("=")[1],
@@ -631,7 +654,7 @@ class Search extends Component {
           {
             d.locations ? (
               d.locations.toString() ? (
-                locate = ("Locations: " + truncation(d.locations.toString(), 15))
+                locate = ("Locations: " + truncation(d.locations.toString(), 15).toString())
               ) : (
                 ""
               )
@@ -770,19 +793,42 @@ class Search extends Component {
               </div>
         {
           influencerList.length ? (
-            ""
+            <Filler />
+
           ) : (
-            <div style={{marginTop: '100px'}}><
-            center>
-            <ReactLoading type={"bars"} color={"black"} height='200px' width='200px' />
-            <button onClick={this.handleClick} style={backButtonStyle}>Back to Search</button>
-            </center>
+            <div style={{marginTop: '20px', position: 'absolute', margin: '0 auto', width: '90%'}}>
+
+            {/*<button onClick={this.handleClick} style={backButtonStyle}>Back to Search</button>*/}
+            <div class="row">
+            <div class="col-md-5" style={{textAlign: 'center'}}>
+            <div style={{fontSize: '1.5em', fontWeight: '400', marginBottom: '70px'}}> Finding influencers hang tight!</div>
+            <img src={LoadingIcon}/>
             </div>
+            <div class="col-md-7">
+            <div style={{fontSize: '1.5em', marginBottom: '10px'}}>Some tips from our experts...</div>
+
+            <div style={tipTitle}>Make sure you are providing value.</div>
+            <div style={tipDescription}>Most influencers get a ton of cold emails. To stand out from the crowd, make sure to offer some value. This will help get their attention and build a strong relationship.  </div>
+
+            <div style={tipTitle}>Give them creative control.</div>
+            <div style={tipDescription}>There is a reason the person you are reaching out to is influential. People love their personality! So let them be them. </div>
+
+            <div style={tipTitle}>Make sure to set a goal to measure against.</div>
+            <div style={tipDescription}>It is important to set a goal (whether that is revenue, sign ups, pageviews...) to measure against. That way you can prove you were successful! </div>
+
+            <div style={tipTitle}>Set up a way to measure that goal.</div>
+            <div style={tipDescription}>The easiest way we have found is to use a url shortener like Bit.ly. If you create a unique url for each influencer you work with, then you will know who the real winners are </div>
+
+            <div style={tipTitle}>Remember the gold rule.</div>
+            <div style={tipDescription}>Influencers are people too, so let us just make sure we always ask "would I like this if I was in their position?"  </div>
+            </div>
+            </div>
+            </div>
+
+
           )
         }
         </div>
-        {/*<Sidebar hideMd></Sidebar>*/}
-        <Filler />
 
         </Content>
         </Fetcher>

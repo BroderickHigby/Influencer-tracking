@@ -186,10 +186,13 @@ def channels_list_by_id(q, part, id):
                 else:
                     yt_views_metric = float(item['youtube']['statistics']['viewCount']) / 10000.00
                     yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / 10000.00
+                if str(item['youtube']['statistics']['videoCount']) != "0":
+                    yt_views_metric = float(item['youtube']['statistics']['viewCount']) / float(item['youtube']['statistics']['videoCount'])
+                    yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / float(item['youtube']['statistics']['videoCount'])
+                else:
+                    yt_views_metric = float(item['youtube']['statistics']['viewCount']) / 1.0
+                    yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / 1.0
                     
-                yt_views_metric = float(item['youtube']['statistics']['viewCount']) / float(item['youtube']['statistics']['videoCount'])
-                yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / float(item['youtube']['statistics']['videoCount'])
-                
                 if yt_views_metric > 100000:
                     yt_views_metric = 100000
                 if yt_subs_metric > 6000:

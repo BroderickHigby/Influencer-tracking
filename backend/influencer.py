@@ -84,12 +84,60 @@ class Influencer:
                         }
                     }
                 }
+                actual_query2 = {
+                    "size" : 200,
+                    "query":{
+                        "match":{
+                            "youtube.brandingSettings.channel.keywords":query,
+                        }
+                    }
+                }
+                actual_query3 = {
+                    "size" : 200,
+                    "query":{
+                        "match":{
+                            "youtube.brandingSettings.channel.title":query,
+                        }
+                    }
+                }
+                actual_query4 = {
+                    "size" : 200,
+                    "query":{
+                        "match":{
+                            "twitter.description":query,
+                        }
+                    }
+                }
             else:
                 actual_query = {
                     "size" : 200,
                     "query":{
                         "match_phrase":{
                             "youtube.snippet.description":query,
+                        }
+                    }
+                }
+                actual_query2 = {
+                    "size" : 200,
+                    "query":{
+                        "match_phrase":{
+                            "youtube.brandingSettings.channel.keywords":query,
+                        }
+                    }
+                }
+                actual_query3 = {
+                    "size" : 200,
+                    "query":{
+                        "match_phrase":{
+                            "youtube.brandingSettings.channel.title":query,
+                        }
+                    }
+                }
+                actual_query4 = {
+                    "size" : 200,
+                    "query":{
+                        "match_phrase":{
+                            "twitter.description":query,
                         }
                     }
                 }
@@ -105,6 +153,24 @@ class Influencer:
                 doc_type=cls.doc_type,
                 body=dict(actual_query),
             )
+            
+            res2 = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query2),
+            )
+            
+            res3 = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query3),
+            )
+            
+            res4 = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query4),
+            )
         except NotFoundError:
             results = []
         else:
@@ -114,7 +180,35 @@ class Influencer:
             # Search Scoring based on the result
             for doc in res['hits']['hits']:
                 results.append(doc['_source'])
-            return results
+            for doc in res2['hits']['hits']:
+                is_in = False
+                for already_added in results:
+                    if already_added['id'] == doc['_source']['id']:
+                        is_in = True
+                        break
+                if is_in == False:
+                    results.append(doc['_source'])
+                    
+            for doc in res3['hits']['hits']:
+                is_in = False
+                for already_added in results:
+                    if already_added['id'] == doc['_source']['id']:
+                        is_in = True
+                        break
+                if is_in == False:
+                    results.append(doc['_source'])
+                    
+            for doc in res4['hits']['hits']:
+                is_in = False
+                for already_added in results:
+                    if already_added['id'] == doc['_source']['id']:
+                        is_in = True
+                        break
+                if is_in == False:
+                    results.append(doc['_source'])
+                    
+            newlist = sorted(results, key=lambda k: k['influencer_score'], reverse=True)
+            return newlist
 
 
 class InfluencerResource:
