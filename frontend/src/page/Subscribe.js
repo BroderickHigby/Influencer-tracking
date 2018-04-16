@@ -11,7 +11,6 @@ import ReactPlayer from 'react-player'
 
 import Popup from "reactjs-popup";
 
-
 const demoButtonStyle = {
   backgroundColor: '#FFFFFF',
   color:'#4379b3',

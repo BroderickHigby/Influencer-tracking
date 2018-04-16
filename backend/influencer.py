@@ -14,7 +14,7 @@ MATCH_ALL = {"query": {"match_all": {}}}
 
 
 class Influencer:
-'''Creates an influencer doc'''
+    '''Creates an influencer doc'''
     index = 'sapie_yt'
     doc_type = 'influencer'
 
@@ -153,19 +153,19 @@ class Influencer:
                 doc_type=cls.doc_type,
                 body=dict(actual_query),
             )
-            
+
             res2 = es.search(
                 index=cls.index,
                 doc_type=cls.doc_type,
                 body=dict(actual_query2),
             )
-            
+
             res3 = es.search(
                 index=cls.index,
                 doc_type=cls.doc_type,
                 body=dict(actual_query3),
             )
-            
+
             res4 = es.search(
                 index=cls.index,
                 doc_type=cls.doc_type,
@@ -188,7 +188,7 @@ class Influencer:
                         break
                 if is_in == False:
                     results.append(doc['_source'])
-                    
+
             for doc in res3['hits']['hits']:
                 is_in = False
                 for already_added in results:
@@ -197,7 +197,7 @@ class Influencer:
                         break
                 if is_in == False:
                     results.append(doc['_source'])
-                    
+
             for doc in res4['hits']['hits']:
                 is_in = False
                 for already_added in results:
@@ -206,7 +206,7 @@ class Influencer:
                         break
                 if is_in == False:
                     results.append(doc['_source'])
-                    
+
             newlist = sorted(results, key=lambda k: k['influencer_score'], reverse=True)
             return newlist
 

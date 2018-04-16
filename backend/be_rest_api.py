@@ -87,8 +87,8 @@ def charge_yearly():
     customer = stripe.Customer.create(
         email = email_input,
         source=token,
-
     )
+
 
     subscription = stripe.Subscription.create(
         customer=customer.id,
@@ -132,16 +132,24 @@ def charge_monthly():
         email = email_input,
         source=token,
     )
-    #plan_CSVM2aXa9UW6NF
-    #plan_CRlMXL8BNJ87SN
-    subscription = stripe.Subscription.create(
-        customer=customer.id,
-        #$300 items=[{'plan': 'plan_CRlMXL8BNJ87SN'}],
-        #100/month items=[{'plan': 'plan_CcXaxLjrQvaJhg'}],
-        #Test items=[{'plan': 'plan_CSVSQ57kADdOlh'}],
-        items=[{'plan': 'plan_CdPky2a1798SMi'}]
 
-    )
+    #change to actual email later
+    if email_input == "bob@sapie.space":
+        subscription = stripe.Subscription.create(
+            customer=customer.id,
+            items=[{'plan': 'plan_CgyQc5NjADEVfY'}],
+        )
+    else:
+        #plan_CSVM2aXa9UW6NF
+        #plan_CRlMXL8BNJ87SN
+        subscription = stripe.Subscription.create(
+            customer=customer.id,
+            #$300 items=[{'plan': 'plan_CRlMXL8BNJ87SN'}],
+            #100/month items=[{'plan': 'plan_CcXaxLjrQvaJhg'}],
+            #Test items=[{'plan': 'plan_CSVSQ57kADdOlh'}],
+            items=[{'plan': 'plan_CdPky2a1798SMi'}]
+
+        )
     print(subscription.id)
     return jsonify({'subscription': subscription})
 
