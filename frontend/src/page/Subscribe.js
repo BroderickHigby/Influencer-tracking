@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios';
-import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
+import { updateCustomAttributes, getAttributes, getCurrentUser } from '../libs/awsLib';
 import {
   AuthenticationDetails,
   CognitoUserPool,
@@ -217,8 +217,20 @@ class Subscribe extends Component {
 
               <div id='monthly' style={{display : 'inline-block', width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
                   <h3>Monthly Subscription</h3>
-                  <h2><b>$99.00</b><br></br> per year</h2>
-                  <h4>The Monthly Plan</h4>
+                  {
+                    (getCurrentUser().username === "bob") ? (
+                      <div>
+                      <h2><b>$450.00</b><br></br> per year</h2>
+                      <h4>The Monthly Plan</h4>
+                      </div>
+
+                    ) : (
+                      <div>
+                      <h2><b>$99.00</b><br></br> per year</h2>
+                      <h4>The Yearly Plan</h4>
+                      </div>
+                    )
+                  }
 
               {/*
             </div>
