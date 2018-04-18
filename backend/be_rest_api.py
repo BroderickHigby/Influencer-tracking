@@ -134,7 +134,7 @@ def charge_monthly():
     )
 
     #change to actual email later
-    if email_input == "bob@sapie.space":
+    if email_input == "rl@excelerationcapital.com":
         subscription = stripe.Subscription.create(
             customer=customer.id,
             items=[{'plan': 'plan_CgyQc5NjADEVfY'}],
