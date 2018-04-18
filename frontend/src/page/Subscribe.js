@@ -220,7 +220,7 @@ class Subscribe extends Component {
                   {
                     (getCurrentUser().username === "bob") ? (
                       <div>
-                      <h2><b>$450.00</b><br></br> per year</h2>
+                      <h2><b>$450.00</b><br></br> per month</h2>
                       <h4>The Monthly Plan</h4>
                       </div>
 
