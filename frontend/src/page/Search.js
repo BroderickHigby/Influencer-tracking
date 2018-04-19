@@ -21,6 +21,7 @@ import insta from '../icons/instagram.svg';
 import twitter from '../icons/twitter.svg';
 import googlePlus from '../icons/google-plus.svg';
 import email from '../icons/email.svg';
+import youtube from '../icons/youtube.svg';
 
 import ReactLoading from 'react-loading';
 import LoadingIcon from '../icons/loading.gif';
@@ -44,14 +45,17 @@ const tipDescription = {
 }
 
 const styleContent = {
-  width: '70%',
+  width: '100%',
   marginLeft: '30px',
+  display: 'fixed',
+  alignItems: 'center',
+  justifyContent: 'center',
 }
 
 const iconStyle = {
 
-  height: '20px',
-  margin: '0 10px'
+  height: '30px',
+  margin: '0 5px'
 
 }
 
@@ -60,14 +64,19 @@ const arrowStyle = {
 }
 
 const styleBlock = {
-  marginBottom: '50px'
+  marginBottom: '50px',
+  width: '25%',
+  margin: '20px',
+  display : 'inline-block',
+  paddingBottom: '60px'
+  //height: '300px'
 }
 
 const styleTitle = {
-  fontSize: '1.5em',
+  fontSize: '1.4em',
   fontWeight: '400',
   color: 'white',
-  display: 'inline',
+  //display: 'inline',
 }
 
 const industryStyle =  {
@@ -76,18 +85,6 @@ const industryStyle =  {
   marginRight: '50px'
 }
 
-const styleImage = {
-  height: '200px',
-
-  position: 'absolute',
-  top: '0',
-  left: '50%',
-  transform: 'translate(-50%,0)',
-  minWidth: '100%',
-  maxWidth: 'none',
-  textAlign: 'center',
-  margin: '0 auto'
-}
 
 const rowStyle = {
   padding: '0px',
@@ -96,11 +93,16 @@ const rowStyle = {
   margin: '0'
 }
 
-const leftStyle = {
-  height: '200px',
+const imgStyle = {
+  width: '85px',
+  height: '85px',
   overflow: 'hidden',
-  padding: '0',
+  borderRadius: '50%',
+  //marginLeft: '40%',
+  //marginRight: '40%'
 }
+
+
 
 const rightStyle = {
   height: '200px',
@@ -115,18 +117,25 @@ const styleInnerContent = {
 
 const topRightStyle =  {
   backgroundColor: '#008080',
-  height: '50px',
-  padding: '10px 20px',
+  height: '125px',
+  //padding: '10px 20px',
+  paddingBottom: '10px',
+  paddingTop: '10px',
   margin: '0',
   color: 'white',
-  display: 'inline-block',
+  alignItems: 'center',
+  justifyContent: 'center',
+  display: 'fixed',
+
+  //display: 'inline-block',
   width: '100%',
 }
 
 const bottomRightStyle = {
   height: '150px',
   width: '100%',
-  padding: '0 20px',
+  marginTop: '10px',
+  padding: '20 20px',
   backgroundColor: '#f9f9fa',
   display: 'inline-block',
 
@@ -134,10 +143,10 @@ const bottomRightStyle = {
 
 const influenceStyle = {
   color: '#006666',
-  fontSize: '1.5em',
-  margin: '15px 0 0 0',
+  fontSize: '1.3em',
+  margin: '5px 0 0 0',
   fontWeight: '400',
-  marginBottom: '-20px'
+  marginBottom: '5px'
 }
 
 const restStyleLeft = {
@@ -410,6 +419,8 @@ var countYTVid = 0;
 var countYTView = 0;
 var countFB =0;
 
+var count = 0;
+
 //var checked = false;
 
 var influencerList = [];
@@ -419,11 +430,6 @@ class Search extends Component {
     console.log("CLICKED");
     window.location = "./home";
   }
-
-  // handleClickChk() {
-  //   checked = !checked;
-  //   console.log(checked);
-  // }
 
   constructor(props) {
     super(props);
@@ -559,83 +565,85 @@ class Search extends Component {
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
       {influencerList.map(function(d, idx) {
-        return (
-          <div key={idx} style={styleBlock}>
 
+        return (
+
+          <div key={idx} style={styleBlock}>
 
           <div class="panel panel-default">
           <div class="row" style={rowStyle}>
           {d.keywords}
-          <div class="col-sm-2" style={leftStyle}>
-          <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
 
-          </div>
-          <div class="col-sm-10" style={rightStyle}>
+
+          <div style={rightStyle}>
           <div style={topRightStyle}>
-          <div style={styleTitle}>{truncation(d.youtube.snippet.title, 30)} </div>
-
-          {
-            d.facebook.url ? (
-              <a href={d.facebook.url} target="_blank"><img src={face} style={iconStyle} />
-              </a>
-            ) : (
-              ""
-            )
-          }
-
-          {
-            d.instagram.url ? (
-              <a href={d.instagram.url} target="_blank"><img src={insta} style={iconStyle} />
-              </a>
-            ) : (
-              ""
-            )
-          }
-
-          {
-            d.twitter.url ? (
-              <a href={d.twitter.url} target="_blank"><img src={twitter} style={iconStyle} />
-              </a>
-            ) : (
-              ""
-            )
-          }
-
-          {
-            d.google_plus_url ? (
-              <a href={d.google_plus_url} target="_blank"><img src={googlePlus} style={iconStyle} />
-              </a>
-            ) : (
-              ""
-            )
-          }
-          {
-            d.email ?  (
-              <a href={"mailto:" + d.email} target="_top"><img src={email} style={iconStyle} />
-              </a>
-            ) : (
-              ""
-            )
-
-          }
+          <center>
+            <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={imgStyle}/>
+          <div style={styleTitle}><center>{truncation(d.youtube.snippet.title, 30)}</center></div>
+          </center>
 
           </div>
 
           <div style={bottomRightStyle}>
-          <div style={influenceStyle}>
-          {String(overHundred(d.influencer_score)).substr(0,4)} &#37; Social Score
-          </div>
+
+            <center>
+            {
+              d.youtube ? (
+                <a href={d.youtube.url} target="_blank"><img src={youtube} style={iconStyle} />
+                </a>
+              ) : ( "" )
+            }
+
+            {
+              d.facebook.url ? (
+                <a href={d.facebook.url} target="_blank"><img src={face} style={iconStyle} />
+                </a>
+              ) : ( "" )
+            }
+
+            {
+              d.instagram.url ? (
+                <a href={d.instagram.url} target="_blank"><img src={insta} style={iconStyle} />
+                </a>
+              ) : ( "" )
+            }
+
+            {
+              d.twitter.url ? (
+                <a href={d.twitter.url} target="_blank"><img src={twitter} style={iconStyle} />
+                </a>
+              ) : ( "" )
+            }
+
+            {
+              d.google_plus_url ? (
+                <a href={d.google_plus_url} target="_blank"><img src={googlePlus} style={iconStyle} />
+                </a>
+              ) : ( "" )
+            }
+
+            {
+              d.email ?  (
+                <a href={"mailto:" + d.email} target="_top"><img src={email} style={iconStyle} />
+                </a>
+              ) : ( "" )
+            }
+
+            </center>
+            <div style={influenceStyle}>
+              <center>{String(overHundred(d.influencer_score)).substr(0,4)} &#37; Social Score </center>
+            </div>
           <div style={{position: 'relative', height: '60px', marginTop: '20px'}}>
-          <div style={restStyleLeft}>
+            <div style={restStyleLeft}>
 
-            {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers<br></br>
-            {numberWithCommas(d.youtube.statistics.viewCount)} views<br></br>
-            {numberWithCommas(d.youtube.statistics.videoCount)} videos
+              {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers<br></br>
+              {numberWithCommas(d.youtube.statistics.viewCount)} views<br></br>
+              {numberWithCommas(d.youtube.statistics.videoCount)} videos
 
 
-          </div>
-          <div style={restStyleRight}>
-          {
+              </div>
+              <div style={restStyleRight}>
+                {
             d.twitter.followers_count ? (
               /*twitt = ("Twitter Followers: " + numberWithCommas(d.twitter.followers_count))*/
               <p style={{margin: '0'}}>Twitter Followers:  {numberWithCommas(d.twitter.followers_count)}</p>
@@ -643,7 +651,7 @@ class Search extends Component {
               ""
             )
           }
-          {
+                {
             d.instagram.followers_count ? (
               <p style={{margin: '0'}}>Instagram Followers: {numberWithCommas(d.instagram.followers_count)} </p>
 
@@ -651,7 +659,7 @@ class Search extends Component {
               ""
             )
           }
-          {
+                {
             d.locations ? (
               d.locations.toString() ? (
                 locate = ("Locations: " + truncation(d.locations.toString(), 15).toString())
@@ -662,10 +670,10 @@ class Search extends Component {
               ""
             )
           }
-          </div>
+              </div>
 
-          <div style={restStyleEnd}>
-          {
+              <div style={restStyleEnd}>
+                {
             d.yt_growth ? (
               d.yt_growth.toString() ? (
                 (isNaN(findGrowth(d.yt_growth, 7))) ? (
@@ -684,8 +692,7 @@ class Search extends Component {
               ) : ( "" )
             ) : ( "" )
           }
-
-          {
+                {
             d.ig_growth ? (
               d.ig_growth.toString() ? (
                 (isNaN(findGrowth(d.ig_growth, 7))) ? (
@@ -704,7 +711,7 @@ class Search extends Component {
               ) : ( "" )
             ) : ( "" )
           }
-          {
+                {
             d.twitter_growth ? (
               d.twitter_growth.toString() ? (
                 (isNaN(findGrowth(d.twitter_growth, 7))) ? (
@@ -728,15 +735,17 @@ class Search extends Component {
             ) : ( "" )
           }
 
-          </div>
-          </div>
-          <div style={restStyleBottom}>
-          <a role="button" data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded="false" aria-controls={"collapse"+idx} style={{color: '#006666'}}>
-          view more
-          </a>
+              </div>
+            </div>
 
+            <div style={restStyleBottom}>
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded="false" aria-controls={"collapse"+idx} style={{color: '#006666'}}>
+                view more
+              </a>
+
+            </div>
           </div>
-          </div>
+
           </div>
           </div>
 
@@ -788,6 +797,7 @@ class Search extends Component {
           </div>
 
           </div>)
+
         })}
 
               </div>
