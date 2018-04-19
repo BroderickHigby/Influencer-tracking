@@ -623,7 +623,7 @@ class Search extends Component {
 
           <div style={bottomRightStyle}>
           <div style={influenceStyle}>
-          {String(overHundred(d.influencer_score)).substr(0,4)} &#37; influence
+          {String(overHundred(d.influencer_score)).substr(0,4)} &#37; Social Score
           </div>
           <div style={{position: 'relative', height: '60px', marginTop: '20px'}}>
           <div style={restStyleLeft}>

@@ -20,29 +20,6 @@ CORS(app)
 stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 #stripe.api_key = 'sk_test_UUgREeF3vNIfwJoB2UZj0oyB'
 
-# plan = stripe.Plan.create(
-#   product={'name': 'monthly'},
-#   nickname='monthly',
-#   interval='month',
-#   currency='usd',
-#   amount=29900,
-# )
-#
-# plan = stripe.Plan.create(
-#   product={'name': 'Yearly'},
-#   nickname='yearly',
-#   interval='year',
-#   currency='usd',
-#   amount=329900,
-# )
-#
-# plan = stripe.Plan.create(
-#   product={'name': 'Early'},
-#   nickname='early',
-#   interval='month',
-#   currency='usd',
-#   amount=14900,
-# )
 
 @app.route("/")
 def home():
@@ -74,49 +51,6 @@ def run_query():
 def create_campaign():
     json_input = json.loads(request.data)
     campaign = Campaign(json_input['company_name'])
-
-@app.route('/charge_yearly', methods=['POST'])
-def charge_yearly():
-    print("in charge be_rest_api")
-
-    #YEARLY SUBSCRIPTIONS
-    json_input = json.loads(request.data)
-    token = json_input['stripeToken']
-    email_input = json_input['stripeEmail']
-
-    customer = stripe.Customer.create(
-        email = email_input,
-        source=token,
-    )
-
-
-    subscription = stripe.Subscription.create(
-        customer=customer.id,
-        items=[{'plan': 'plan_CRLOE39msGhBfc'}],
-    )
-    return jsonify({'subscription': subscription})
-
-
-@app.route('/charge_early', methods=['POST'])
-def charge_early():
-    print("in charge be_rest_api")
-
-    #YEARLY SUBSCRIPTIONS
-    json_input = json.loads(request.data)
-    token = json_input['stripeToken']
-    email_input = json_input['stripeEmail']
-
-    customer = stripe.Customer.create(
-        email = email_input,
-        source=token,
-
-    )
-
-    subscription = stripe.Subscription.create(
-        customer=customer.id,
-        items=[{'plan': 'plan_CRLOxGBhLxSduz'}],
-    )
-    return jsonify({'subscription': subscription})
 
 
 @app.route('/charge_monthly', methods=['POST'])

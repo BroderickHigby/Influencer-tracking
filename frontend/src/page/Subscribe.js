@@ -232,7 +232,8 @@ class Subscribe extends Component {
                     )
                   }
 
-              {/*
+              {
+                /*
             </div>
 
 
@@ -258,7 +259,8 @@ class Subscribe extends Component {
 
             <br></br>
 
-            */}
+            */
+          }
 
           <br />
 
