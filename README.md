@@ -1,14 +1,14 @@
 #Sapie Space
-
-Sapie Space helps businesses go viral using machine learning to connect them with influencers in their industry.*
+Sapie Space's mission is to connect businesses to social media influencers using machine learning.*
 
 
 ## Quick Start
-
 Make sure you have latest Docker and Docker Compose installed. Download elasticsearch and run these commands from project root:
 
 ```console
 # create a virtualenv in your parent directory if you need one to install requirements (Windows/MacOSx)
+$ virtualenv your_environment_name
+$ source /bin/activate/your_environment_name
 
 # you will run echo only once to create local `.env` file indicating you are using dev environment.
 $ echo COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml > .env
@@ -24,20 +24,20 @@ $ docker-compose up
 $ ./elasticsearch 
 # and then type:
 $ ./bin/elasticsearch
-# in root:  
-$ pip install -r requirements.txt
+# in root:
+$ pip3 install -r new_requirements.txt
 
-# in sapie/be: 
-$ pip install -r requirements.txt
+# in sapie/backend
+$ python3 be_rest_api.py
 
 # in sapie/fe:
 $ npm install
 $ npm start
 ```
 
-Then you just have to point your browser to http://localhost:8080/ to
+Then you just have to point your browser to http://locaalhost:3000/ to
 see it running. You can also access API endpoints directly like
-http://localhost:8080/api/influencer
+http://localhost:3000/api/influencer
 
 
 To connect to the SapieSpace EC2 Instance on AWS:
@@ -55,7 +55,6 @@ Please note that in most cases the username above will be correct, check AWS EC2
 
 ```
 ### Known Issues
-
 You might have trouble pulling ElasticSearch official images. You can try it manually just in case:
 
 ```console
@@ -77,7 +76,6 @@ link](https://docs.google.com/presentation/d/1cEplBy7avil1pP7XFVi694qOlSWiG58qNW
 
 
 ## A brief history of Sapie Space
-
 Jack Treseler and Brody are the co-founders of Sapie Space. Brody was working at Google and Jack was
 an employee at Square. Jack came up with the idea when  he found it difficult to make connections with influencers, see how 
 influential they actually are, as well as if they were a good fit for the company. 
@@ -109,12 +107,10 @@ task management, and We use [Slack](www.slack.com) to communicate.
 We are organizing the house, but if you are trying to run this, you
 might try to look into these first.
 
-- Python 2.7 might be required, but we are trying to migrate to 3.5
-- Autoload requires magick++, easiest installed on a unix-based platform
-- ImageMagick is required
+- Python 3.6 required
 - Use Homebrew or Macports for OSX
 - brew install graphicsmagick boost-python
-- pip install -r requirements.txt
+- pip3 install -r new_requirements.txt
 - sudo apt-get install httperf libgraphicsmagick++-dev libboost-python-dev
 
 Make you run also have run the following commands in the correponding directory to install all python and js dependencies:
