@@ -25,6 +25,9 @@ stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 def home():
     return "hi"
 
+if __name__ =="__main__":
+    app.run(ssl_context='adhoc')
+
 @app.route('/run_query', methods=['GET', 'POST'])
 def run_query():
     print("in query")
