@@ -25,7 +25,7 @@ stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 def home():
     return "hi"
 
-if __name__ =="__main__":
+if __name__=="__main__":
     app.run(ssl_context='adhoc')
 
 @app.route('/run_query', methods=['GET', 'POST'])
@@ -104,6 +104,6 @@ def cancel_subscription():
 
 
 if __name__ == "__main__":
-    app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
+    app.run(host='https://ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
     #app.run(host='172.31.26.107', port=5000)
     #app.run(debug=True)

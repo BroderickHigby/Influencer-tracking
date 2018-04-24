@@ -11,6 +11,7 @@
     "classnames": "^2.2.5",
     "flexbox": "0.0.3",
     "flexbox-react": "^4.4.0",
+    "forever": "^0.15.3",
     "object-path": "^0.11.4",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
@@ -28,7 +29,7 @@
     "react-scripts": "1.0.17",
     "react-stripe-checkout": "^2.6.3",
     "react-stripe-elements": "^1.6.0",
-    "reactjs-popup": "^1.0.4",
+    "reactjs-popup": "^1.1.1",
     "stripe": "^5.4.0",
     "webfontloader": "^1.6.28"
   },
