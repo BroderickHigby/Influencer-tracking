@@ -29,7 +29,7 @@
     "react-scripts": "1.0.17",
     "react-stripe-checkout": "^2.6.3",
     "react-stripe-elements": "^1.6.0",
-    "reactjs-popup": "^1.0.4",
+    "reactjs-popup": "github:nbavafa/reactjs-popup#master",
     "stripe": "^5.4.0",
     "webfontloader": "^1.6.28"
   },
