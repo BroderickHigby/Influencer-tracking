@@ -722,9 +722,9 @@ class Search extends Component {
     console.log(axiosConfig);
 
     let currentComponent = this;
+    
     //http://127.0.0.1:5000
-
-    axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig)
+    axios.post('https://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig)
     .then(function (response) {
       console.log("GREAT SUCCESS (in borat accent)");
       console.log(response.data);
