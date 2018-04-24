@@ -911,7 +911,11 @@ class Search extends Component {
                   </div>
 
                   <div style={{width: '8%', display: 'inline-block'}}>
-                    <p style={accountsStyle}> <center> <b>Trends</b> </center> </p>
+                  {
+                    (d.yt_growth || d.ig_growth || d.twitter_growth) ? (
+                      <p style={accountsStyle}> <center> <b>Trends</b> </center> </p>
+                    ) : ( "" )
+                  }
                   </div>
 
                   <div style={{width: '65%', display: 'inline-block'}}>
@@ -995,7 +999,7 @@ class Search extends Component {
                     d.youtube.statistics.subscriberCount ? (
                       <div style={{marginTop: '10px', verticalAlign: 'center'}}>
                       <a href={d.youtube.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={youtube} style={iconStyleAccounts} /> </a>
-                      <p style={styleHandles}> @{(d.youtube.snippet.customUrl) ? ( d.youtube.snippet.customUrl ) : ( d.youtube.snippet.title)} </p>
+                      <p style={styleHandles}> @{(d.youtube.snippet.customUrl) ? ( truncation(d.youtube.snippet.customUrl,15) ) : ( truncation(d.youtube.snippet.title, 15) )} </p>
                       </div>
                     ) : (  ""  )
                   }
@@ -1003,7 +1007,7 @@ class Search extends Component {
                     d.instagram.followers_count ? (
                       <div style={{marginTop: '10px', verticalAlign: 'center'}}>
                       <a href={d.instagram.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={insta} style={iconStyleAccounts} /> </a>
-                      <p style={styleHandles}> @{getIGScreenName(d.instagram.url)} </p>
+                      <p style={styleHandles}> @{getIGScreenName(d.instagram.url, 15)} </p>
                       </div>
                     ) : ("")
                   }
@@ -1011,7 +1015,7 @@ class Search extends Component {
                     d.twitter.followers_count ? (
                       <div style={{marginTop: '10px', verticalAlign: 'center'}}>
                       <a href={d.twitter.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={twitter} style={iconStyleAccounts} /> </a>
-                      <p style={styleHandles}> @{d.twitter.screen_name} </p>
+                      <p style={styleHandles}> @{truncation(d.twitter.screen_name, 15)} </p>
                       </div>
                     ) : (  ""  )
                   }
@@ -1019,7 +1023,7 @@ class Search extends Component {
                     d.google_plus_url ? (
                       <div style={{marginTop: '10px', verticalAlign: 'center'}}>
                       <a href={d.google_plus_url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={googlePlus} style={iconStyleAccounts} /> </a>
-                      <p style={styleHandles}> @{(d.youtube.snippet.customUrl) ? ( d.youtube.snippet.customUrl ) : ( d.youtube.snippet.title)} </p>
+                      <p style={styleHandles}> @{(d.youtube.snippet.customUrl) ? ( truncation(d.youtube.snippet.customUrl,15) ) : ( truncation(d.youtube.snippet.title, 15) )} </p>
                       </div>
                     ) : ( "" )
                   }
