@@ -110,6 +110,9 @@ def cancel_subscription():
 
 
 if __name__ == "__main__":
-    app.run(host='https://ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=True, ssl_context=context)
+    try:
+        app.run(host='https://ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=True, ssl_context=context)
+    except:
+        app.run(host='localhost', port=5000, debug=True)
     #app.run(host='172.31.26.107', port=5000)
     #app.run(debug=True)
