@@ -241,7 +241,7 @@ const iconStyleAccounts = {
 }
 
 const iconStyleTrends = {
-  height: '35px',
+  height: '25px',
   margin: '5px',
   padding: '2px',
   marginRight: '1px',
@@ -249,11 +249,11 @@ const iconStyleTrends = {
 }
 
 const iconStyleCountry = {
-  height: '60px',
+  height: '55px',
   margin: '5px',
   padding: '1px',
   marginRight: '10px',
-  borderRadius:'30px',
+  borderRadius:'25px',
   border: '2px solid #66b2b2',
 }
 
@@ -900,9 +900,6 @@ class Search extends Component {
                 <div style = {styleContentBottom}>
                 <div style={{width:'100%', display: 'inline-block'}}>
                   {/*Locations, Trends */}
-                  <div style={{width: '11%', display: 'inline-block'}}>
-                  <p style={accountsStyle}> <center> <b>Audience<br/> Location </b> </center> </p>
-                  </div>
                   <div style={{width: '25%', display: 'inline-block'}}>
                   { (d.youtube.snippet.country === "US") ? ( <a href={"_blank"} target="_blank"><img src={US} style={iconStyleCountry} /> </a>) : ( "" ) }
                   { (d.youtube.snippet.country === "UK") ? ( <a href={"_blank"} target="_blank"><img src={UK} style={iconStyleCountry} /> </a>) : ( "" ) }
@@ -913,11 +910,11 @@ class Search extends Component {
                   <a href={"_blank"} target="_blank"><img src={world} style={iconStyleCountry} /> </a>
                   </div>
 
-                  <div style={{width: '10%', display: 'inline-block'}}>
+                  <div style={{width: '8%', display: 'inline-block'}}>
                     <p style={accountsStyle}> <center> <b>Trends</b> </center> </p>
                   </div>
 
-                  <div style={{width: '50%', display: 'inline-block'}}>
+                  <div style={{width: '65%', display: 'inline-block'}}>
                     {
                        d.yt_growth ? (
                          d.yt_growth.toString() ? (
@@ -986,7 +983,8 @@ class Search extends Component {
                 </div>
                 </div>
 
-
+                <br />
+                <br />
 
                 <div style={{width: '45%', display: 'inline-block', verticalAlign: 'top'}}>
                   <div style={{width: '27%', display: 'inline-block', verticalAlign: 'top'}}>
