@@ -21,6 +21,12 @@ stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 #stripe.api_key = 'sk_test_UUgREeF3vNIfwJoB2UZj0oyB'
 
 
+from OpenSSL import SSL
+context = SSL.Context(SSL.SSLv23_METHOD)
+context.use_privatekey_file('/etc/pki/nginx/private/server.key')
+context.use_certificate_file('/etc/pki/nginx/server.crt')
+
+
 @app.route("/")
 def home():
     return "hi"
@@ -104,6 +110,6 @@ def cancel_subscription():
 
 
 if __name__ == "__main__":
-    app.run(host='https://ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
+    app.run(host='https://ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=True, ssl_context=context)
     #app.run(host='172.31.26.107', port=5000)
     #app.run(debug=True)
