@@ -1,6 +1,8 @@
 from selenium import webdriver
 import json
-sys.path.insert(0, '/home/ec2-user/sapie/backend/')
+import sys
+#sys.path.insert(0, '/home/ec2-user/sapie/backend/')
+sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend/')
 import influencer
 import uuid
 
@@ -47,12 +49,12 @@ for search_term in search_terms:
             item['twitter'] = {}
             item['twitter']['url'] = user_url
             item['twitter']['description'] = description
-            item['twitter']['favourites_count'] = key_attributes[3].split(' ')[0]
-            item['twitter']['followers_count'] = key_attributes[2].split(' ')[0]
+            item['twitter']['favourites_count'] = key_attributes[3].split(' ')[0].replace(',', '')
+            item['twitter']['followers_count'] = key_attributes[2].split(' ')[0].replace(',', '')
             item['twitter']['friends_count'] = ''
             item['twitter']['id_str'] = ''
             item['twitter']['screen_name'] = screen_name
-            item['twitter']['twitter_tweet_count'] = key_attributes[0].split(' ')[0]
+            item['twitter']['twitter_tweet_count'] = key_attributes[0].split(' ')[0].replace(',', '')
 
             item['instagram'] = {}
             item['instagram']['url'] = ''
@@ -64,10 +66,10 @@ for search_term in search_terms:
             item['youtube']['kind'] = ''
             item['youtube']['etag'] = ''
             item['youtube']['id'] = ''
-            item['youtube']['snippet'] = ''
-            item['youtube']['brandingSettings'] = ''
-            item['youtube']['contentDetails'] = ''
-            item['youtube']['statistics'] = ''
+            item['youtube']['snippet'] = {}
+            item['youtube']['brandingSettings'] = {}
+            item['youtube']['contentDetails'] = {}
+            item['youtube']['statistics'] = {}
 
             item['google_plus_url'] = ''
             print(json.dumps(item, sort_keys=True, indent=4))
