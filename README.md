@@ -1,8 +1,44 @@
 #Sapie Space
 Sapie Space's mission is to connect businesses to social media influencers using machine learning.*
 
-
 ## Quick Start
+
+```console
+# First, clone the repo to a desired folder
+$ git clone https://github.com/sapie-space/sapie.git
+
+# Now, we are going to install npm dependancies
+$ cd ~.../sapie/frontend
+$ npm install
+
+# Next, we need to point search requires to our localhost
+$ cd .../sapie/frontend/src/page
+$ atom Search.js
+
+# Around line 670, there is a line that says axios.post('https://ec2.../run_query')
+# Change the URL ('https://ec2../run_query') to ('http://127.0.0.1:5000/run_query')
+# Note: this is the default FLASK url and may differ if you've changed the default
+
+
+# Now we are going to install the backend requirements
+$ cd ~../sapie/backend
+$ pip3 install -r requirements.txt
+$ cd ~../sapie/backend
+$ atom be_rest_api.py
+
+# In this file, we will need to comment out this line : sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod/')
+# Next, scroll to the bottom and in if __name__ == "__main__", comment out the try-catch run block and simply
+# uncomment app.run(debug=True)
+
+
+# Next, run the backend in cd .../sapie/backend
+$ python3 be_rest_api.py
+
+# Lastly, run the frontend. Open a new terminal window and navigate to /sapie/frontend
+$ npm start
+
+
+## Quick Start (with ENV and Docker)
 Make sure you have latest Docker and Docker Compose installed. Download elasticsearch and run these commands from project root:
 
 ```console
@@ -35,7 +71,7 @@ $ npm install
 $ npm start
 ```
 
-Then you just have to point your browser to http://locaalhost:3000/ to
+Then you just have to point your browser to http://localhost:3000/ to
 see it running. You can also access API endpoints directly like
 http://localhost:3000/api/influencer
 

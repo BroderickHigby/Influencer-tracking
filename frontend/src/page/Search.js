@@ -2,17 +2,10 @@ import ReactGA from 'react-ga';
 import React, { Component } from 'react';
 import { Fetcher } from 'react-rebind';
 
-import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
-
-import {
-  AuthenticationDetails,
-  CognitoUserPool,
-  CognitoUserAttribute
-} from "amazon-cognito-identity-js";
+import { getAttributes } from '../libs/awsLib';
 
 import Content from '../layout/Content';
 import Sidebar from '../layout/Sidebar';
-import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 import axios from 'axios';
 
@@ -53,7 +46,9 @@ import Popup from "reactjs-popup";
 
 
 var Loader = require('react-loader');
-
+var lightColor = '#66b2b2';
+var darkColor = '#008080';
+var lightGray = '#E8E8E8';
 
 const popButtonStyle = {
   backgroundColor: 'Transparent',
@@ -64,7 +59,7 @@ const popButtonStyle = {
 }
 
 const statsButtonStyle = {
-  backgroundColor: '#66b2b2',
+  backgroundColor: lightColor,
   borderRadius: '10px',
   color: 'white',
   padding: '5px 5px',
@@ -104,7 +99,7 @@ const iconStyleStats = {
 }
 
 const statsTextStyle = {
-    fontColor: '#66b2b2',
+    fontColor: lightColor,
 }
 
 const iconStyle = {
@@ -126,7 +121,7 @@ const styleBlock = {
   display : 'inline-block',
   minWidth: '247',
   //height: '300px'
-  backgroundColor: '#E8E8E8',//'#f9f9fa',
+  backgroundColor: lightGray,//'#f9f9fa',
 }
 
 const bottomButtons = {
@@ -151,26 +146,10 @@ const styleTitle = {
 const styleTitlePopup = {
   fontSize: '1.5em',
   fontWeight: '400',
-  color: '#66b2b2',
+  color: lightColor,
   display: 'inline',
   marginTop: '25px',
   marginBottom: '20px'
-}
-
-const topRightStylePopup =  {
-  backgroundColor: '#008080',
-  //height: '50px',
-  margin: '0',
-  marginLeft: '-19',
-  color: 'white',
-  display: 'inline-block',
-  width: '100%',
-}
-
-const industryStyle =  {
-  display: 'inline',
-  fontSize: '1.3em',
-  marginRight: '50px'
 }
 
 
@@ -183,25 +162,14 @@ const imgStyle = {
   //marginRight: '40%'
 }
 
-const rightStylePopup = {
-  height: '200px',
-  margin: '5 5 5 5',
-  marginRight: '0px',
-}
-
 const rightStyle = {
   //height: '200px',
   padding: '0 0 0 0',
   margin: '0',
 }
 
-const styleInnerContent = {
-  color: 'black',
-  fontSize: '1em',
-}
-
 const topRightStyle =  {
-  backgroundColor: '#66b2b2',
+  backgroundColor: lightColor,
   height: '50%',
   //padding: '10px 20px',
   paddingBottom: '0px',
@@ -223,7 +191,7 @@ const bottomRightStyle = {
   //marginTop: '10px',
   //padding: '20 20px',
   borderRadius: '10px',
-  backgroundColor: '#E8E8E8',//'#f9f9fa',
+  backgroundColor: lightGray,//'#f9f9fa',
   display: 'inline-block',
 }
 
@@ -255,30 +223,6 @@ const iconStyleCountry = {
   marginRight: '10px',
   borderRadius:'25px',
   border: '2px solid #66b2b2',
-}
-
-
-const scoreStyle = {
-  color: '#006666',
-  fontSize: '1.7em',
-  marginTop: '5px',
-  marginBottom: '-6px',
-  fontWeight: '400',
-}
-
-const influenceStyle = {
-  color: '#006666',
-  fontSize: '1.3em',
-  marginBottom: '5px',
-  fontWeight: '400',
-}
-
-
-const rowStyle = {
-  padding: '0px',
-  width: '100%',
-  left: '0',
-  margin: '0'
 }
 
 const leftStyle = {
@@ -313,7 +257,7 @@ const styleHandles = {
 }
 
 const backButtonStyle = {
-  backgroundColor: '#66b2b2',
+  backgroundColor: lightColor,
   borderRadius: '20px',
   color: 'white',
   padding: '10px 10px',
@@ -323,7 +267,7 @@ const backButtonStyle = {
 }
 
 const compactButtonStyle = {
-  backgroundColor: '#66b2b2',
+  backgroundColor: lightColor,
   borderRadius: '5px',
   color: 'white',
   padding: '6px 6px',
@@ -354,7 +298,7 @@ const numberWithCommas = (num) => {
 
 const truncation = (strD, length) => {
   var ending = "...";
-  if((typeof strD) == 'string') {
+  if((typeof strD) === 'string') {
     if (strD.length > length) {
       return strD.substring(0, length - ending.length) + ending;
     }
@@ -395,7 +339,7 @@ const getlengths = (user) => {
     arr[i] = ((arr[i]) * 1.0)/max;
   }
   for (i = 0; i < arr.length; i++) {
-    if (arr[i] != 1) {
+    if (arr[i] !== 1) {
       arr[i] += .1;
     }
   }
@@ -722,7 +666,7 @@ class Search extends Component {
     console.log(axiosConfig);
 
     let currentComponent = this;
-    
+
     //http://127.0.0.1:5000
     axios.post('https://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig)
     .then(function (response) {
@@ -773,12 +717,12 @@ class Search extends Component {
           <br />
 
 
-            <p style={{color: "#008080", paddingLeft: '10px'}}> We found... </p>
+            <p style={{color: darkColor, paddingLeft: '10px'}}> We found... </p>
             <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
 
               <i>{Object.keys(influencerList).length}</i> influencers <br /><br />
             </div>
-              <p style={{color: "#008080", paddingLeft: '10px'}}> We analyzed... </p>
+              <p style={{color: darkColor, paddingLeft: '10px'}}> We analyzed... </p>
             <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
 
               <i>{truncateNumbers(getFollowers(influencerList)[0])}</i> Instagram followers<br /><br />
@@ -930,7 +874,7 @@ class Search extends Component {
                                 <a href={"_blank"} target="_blank"><img src={ytbutton} style={iconStyleTrends} /> </a>
                                   {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
                              ) : (
-                               (findGrowth(d.yt_growth, 7) == 0) ? (
+                               (findGrowth(d.yt_growth, 7) === 0) ? (
                                    <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={ytbutton} style={iconStyleTrends} /> </a>{findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
                                ) : (
                                    <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={ytbutton} style={iconStyleTrends} /> </a>{findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
@@ -950,7 +894,7 @@ class Search extends Component {
                              (findGrowth(d.ig_growth, 7) > 0) ? (
                                <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={igcam} style={iconStyleTrends} /> </a>{findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
                              ) : (
-                               (findGrowth(d.ig_growth, 7) == 0) ? (
+                               (findGrowth(d.ig_growth, 7) === 0) ? (
                                    <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={igcam} style={iconStyleTrends} /> </a>{findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
                                ) : (
                                    <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={igcam} style={iconStyleTrends} /> </a>{findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
@@ -970,10 +914,10 @@ class Search extends Component {
                              (findGrowth(d.twitter_growth, 7) > 0) ? (
                                <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={twbird} style={iconStyleTrends} /> </a>{findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
                              ) : (
-                               (findGrowth(d.twitter_growth, 7) == 0) ? (
+                               (findGrowth(d.twitter_growth, 7) === 0) ? (
                                    <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={twbird} style={iconStyleTrends} /> </a>{findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
                                ) : (
-                                 (findGrowth(d.twitter_growth, 7).toString().substring(0,4) == "-0.0") ? (
+                                 (findGrowth(d.twitter_growth, 7).toString().substring(0,4) === "-0.0") ? (
                                    <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={twbird} style={iconStyleTrends} /> </a>0.00% <img src={neutralarrow} style={arrowStyle} /> </p>
                                  ) : (
                                    <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={twbird} style={iconStyleTrends} /> </a>{findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
@@ -1041,7 +985,7 @@ class Search extends Component {
                 <div style={{width: '45%', display: 'inline-block', verticalAlign: 'top'}}>
                   <div style={{width: '27%', display: 'inline-block', verticalAlign: 'top'}}>
                     {
-                      ((d.associated_websites.toString() != "") || (d.branded_products.toString() !== 0) || (d.youtube.brandingSettings.channel.keywords)) ? (
+                      ((d.associated_websites.toString() !== "") || (d.branded_products.toString() !== 0) || (d.youtube.brandingSettings.channel.keywords)) ? (
                         <p style={accountsStyle}> <b>Other</b></p>
                       ) : ( "" )
                     }

@@ -8,8 +8,6 @@ import BigSearchBox from '../components/BigSearchBox';
 import TopSearches from '../components/TopSearches';
 import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
 import {
-  AuthenticationDetails,
-  CognitoUserPool,
   CognitoUserAttribute
 } from "amazon-cognito-identity-js";
 
