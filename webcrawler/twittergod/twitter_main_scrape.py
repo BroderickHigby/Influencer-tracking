@@ -1,8 +1,8 @@
 from selenium import webdriver
 import json
 import sys
-#sys.path.insert(0, '/home/ec2-user/sapie/backend/')
-sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend/')
+sys.path.insert(0, '/home/ec2-user/sapie/backend/')
+#sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend/')
 import influencer
 import uuid
 
