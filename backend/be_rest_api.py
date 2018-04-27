@@ -102,6 +102,11 @@ def cancel_subscription():
     return jsonify({'date': subscription.ended_at})
 
 
+@app.route('/post_twitter_influencer', methods=['POST'])
+def post_twitter_influencer():
+    json_input = json.loads(request.data)
+    influencer.Influencer.create(json_input.item, json_input.screen_name)
+
 app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=True, ssl_context=context)
 context = ("./host.cert","./host.key")
 
