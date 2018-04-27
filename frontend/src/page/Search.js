@@ -30,6 +30,7 @@ import instaPop from '../icons/old_media/instagram.svg';
 import twitterPop from '../icons/old_media/twitter.svg';
 import googlePlusPop from '../icons/old_media/google-plus.svg';
 import emailPop from '../icons/old_media/email.svg';
+import youtubePop from '../icons/old_media/youtube.svg';
 
 import ytbutton from '../icons/youtubebutton.svg';
 import igcam from '../icons/instagramcamera.svg';
@@ -765,6 +766,15 @@ class Search extends Component {
               <div style={{  color: 'white', display: 'absolute', fontSize: "1.1em", display: 'inline-block'}}>{truncation(d.youtube.snippet.title, 15)}</div>
 
               <div className="strike-through" style={{border: "solid .5px white", marginTop: '5px', marginBottom: "1px", marginRight: '10px'}}></div>
+              {
+                d.youtube.id ? (
+                  <a href={'https://youtube.com/channel/' + d.youtube.id} target="_blank"><img src={youtubePop} style={iconStylePopup} />
+                  </a>
+                ) : (
+                  ""
+                )
+              }
+
               {
                 d.facebook.url ? (
                   <a href={d.facebook.url} target="_blank"><img src={facePop} style={iconStylePopup} />
