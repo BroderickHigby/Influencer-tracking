@@ -9,8 +9,8 @@ import os
 import sys
 import csv
 import time
-sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod/')
-from scrape_engine import *
+import ssl
+
 
 context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
 context.load_cert_chain('/etc/letsencrypt/live/app.sapie.space/cert.pem','/etc/letsencrypt/live/app.sapie.space/privkey.pem')
@@ -20,16 +20,8 @@ from scrape_engine import *
 
 app = Flask(__name__)
 
-
 stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 #stripe.api_key = 'sk_test_UUgREeF3vNIfwJoB2UZj0oyB'
-
-
-from OpenSSL import SSL
-context = SSL.Context(SSL.SSLv23_METHOD)
-context.use_privatekey_file('/etc/pki/nginx/private/server.key')
-context.use_certificate_file('/etc/pki/nginx/server.crt')
-
 
 @app.route("/")
 def home():
