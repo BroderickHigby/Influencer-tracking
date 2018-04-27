@@ -21,6 +21,7 @@ import cv2
 import numpy as np
 import pprint
 import description_parser
+sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 from score import *
 
 pp = pprint.PrettyPrinter(indent=4)
@@ -183,7 +184,7 @@ def channels_list_by_id(q, part, id):
             #pp.pprint(item)
             if int(item['youtube']['statistics']['subscriberCount']) < 100000:
 
-                score_object = Score(item)
+                score_object = InfluencerScore(item)
                 item['influencer_score'] = score_object.get_score()
 
                 #Parse description for links.
