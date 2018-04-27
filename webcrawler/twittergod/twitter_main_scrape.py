@@ -5,6 +5,7 @@ sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 #sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend/')
 import influencer
 import uuid
+import requests
 
 driver = webdriver.Chrome('chromedriver')  # Optional argument, if not specified will search path.
 driver2 = webdriver.Chrome('chromedriver')
@@ -74,7 +75,8 @@ for search_term in search_terms:
             item['google_plus_url'] = ''
             print(json.dumps(item, sort_keys=True, indent=4))
             print('*******')
-            influencer.Influencer.create(item, screen_name)
+            r = requests.post('https://app.sapie.space/xapi/post_twitter_influencer', data = {'item': item, 'screen_name': screen_name})
+            #influencer.Influencer.create(item, screen_name)
         except Exception as e:
             print(e)
             print('----')
