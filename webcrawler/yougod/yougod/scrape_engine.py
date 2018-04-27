@@ -83,7 +83,7 @@ def remove_empty_kwargs(**kwargs):
 
 def search_list_by_keyword(part, maxResults, q):
     is_first = True
-    for gg in range(1,3):
+    for gg in range(1,2):
         if is_first == True:
             query_url = base_url + "/search?part=snippet&maxResults=50&q=" + q + "&key=" + api_key
             r = requests.get(query_url)
@@ -289,7 +289,8 @@ def pull_social_media_links(channel_id):
             google_plus_url = a['href']
         elif 'twitch.tv' in a['href']:
             if '/redirect?' in a['href']:
-                twitch_url = a['href'].split('%2F%2F')[1]
+                twitch_url = ''
+                #twitch_url = a['href'].split('%2F%2F')[1]
             else:
                 twitch_url = a['href']
 
