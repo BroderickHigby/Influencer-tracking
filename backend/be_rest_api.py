@@ -19,6 +19,8 @@ sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod/')
 from scrape_engine import *
 
 app = Flask(__name__)
+# FOR LOCAL HOST - Uncomment CORS and app.run(host=...
+# CORS(app)
 
 stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 #stripe.api_key = 'sk_test_UUgREeF3vNIfwJoB2UZj0oyB'
