@@ -102,7 +102,7 @@ def search_list_by_keyword(part, maxResults, q):
             print('8888888')
             explore_returned_items(data['items'], q)
             if 'nextPageToken' in data:
- s               next_page_token = data['nextPageToken']
+                next_page_token = data['nextPageToken']
             else:
                 break
 
