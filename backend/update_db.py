@@ -11,6 +11,7 @@ sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/twittergod/twittergod')
 from twitter_scraper import *
 sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 import influencer
+from score import *
 
 doc = {
     'size' : 10000,
@@ -43,24 +44,9 @@ for entry in res['hits']['hits']:
         entry_source['branded_products'] = sm['branded_products']
         entry_source['events'] = sm['events']
         entry_source['organizations'] = sm['organizations']
-        
-        if entry_source['youtube']['statistics']['videoCount'] != "0":
-            yt_views_metric = float(entry_source['youtube']['statistics']['viewCount']) / float(entry_source['youtube']['statistics']['videoCount'])
-            yt_subs_metric = float(entry_source['youtube']['statistics']['subscriberCount']) / float(entry_source['youtube']['statistics']['videoCount'])
-        else:
-            yt_views_metric = float(entry_source['youtube']['statistics']['viewCount']) / 10000.00
-            yt_subs_metric = float(entry_source['youtube']['statistics']['subscriberCount']) / 10000.00
-            
-        if yt_views_metric > 100000:
-            yt_views_metric = 100000
-        if yt_subs_metric > 6000:
-            yt_subs_metric = 6000     
-            
-        yt_views_score_component = (yt_views_metric / 100000) * 50.00
-        yt_subs_score_component = (yt_subs_metric / 6000) * 50.00
-                
-        score = yt_subs_score_component + yt_views_score_component
-        entry_source['influencer_score'] = score
+
+        score_object = Score(entry_source)
+        entry_source['influencer_score'] = score_object.get_score()
 
         if 'ig_growth' not in entry_source:
             entry_source['ig_growth'] = []

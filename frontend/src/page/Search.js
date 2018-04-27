@@ -242,7 +242,7 @@ const descriptionStyle = {
 
 const accountsStyle = {
   display: 'inline-block',
-  color: 'rgb(0,0,0,0.75)',
+  color: 'rgba(0,0,0,0.75)',
   fontSize: '.81em',
   marginTop: '3px',
   marginLeft:'10px'
@@ -804,7 +804,7 @@ class Search extends Component {
 
               {
                 d.email ?  (
-                  <a href={"mailto:" + d.email} target="_top"><img src={emailPop} style={iconStylePopup} />
+                  <a href={"mailto:" + d.email} target="_top"><img src={email} style={iconStylePopup} />
                   </a>
                 ) : (
                   ""
@@ -826,6 +826,8 @@ class Search extends Component {
                     modal
                     closeOnDocumentClick
                 >
+
+                <div style={{maxWidth: '1000px', maxHeight: '100px'}}>
 
                 <div className="col-sm-3" style={leftStyle}>
                   <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
@@ -875,7 +877,7 @@ class Search extends Component {
                                   {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
                              ) : (
                                (findGrowth(d.yt_growth, 7) === 0) ? (
-                                   <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={ytbutton} style={iconStyleTrends} /> </a>{findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
+                                   <p style={accountsStyle}><a href={"youtube.com/channel/" + d.youtube.id} target="_blank"><img src={ytbutton} style={iconStyleTrends} /> </a>{findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
                                ) : (
                                    <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={ytbutton} style={iconStyleTrends} /> </a>{findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
                                )
@@ -942,7 +944,7 @@ class Search extends Component {
                   {
                     d.youtube.statistics.subscriberCount ? (
                       <div style={{marginTop: '10px', verticalAlign: 'center'}}>
-                      <a href={d.youtube.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={youtube} style={iconStyleAccounts} /> </a>
+                      <a href={"youtube.com/channel/" + d.youtube.id} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={youtube} style={iconStyleAccounts} /> </a>
                       <p style={styleHandles}> @{(d.youtube.snippet.customUrl) ? ( truncation(d.youtube.snippet.customUrl,15) ) : ( truncation(d.youtube.snippet.title, 15) )} </p>
                       </div>
                     ) : (  ""  )
@@ -979,6 +981,17 @@ class Search extends Component {
                       </div>
                     ) : ( "" )
                   }
+                  {
+                    d.email ?  (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={"mailto:" + d.email} style={{display: 'inline-block', width: '27%'}} target="_top"><img src={emailPop} style={iconStylePopup} /> </a>
+                      <p style={styleHandles}> {truncation(d.email, 15)}> </p>
+                      </div>
+                    ) : (
+                      ""
+                    )
+
+                  }
                   </div>
                 </div>
 
@@ -1011,6 +1024,7 @@ class Search extends Component {
 
 
                 </div>
+                </div>
 
                 </Popup>
                 </div>
@@ -1029,7 +1043,7 @@ class Search extends Component {
               d.youtube.statistics.subscriberCount ? (
                 <div style={{fontColor: "#FAFAFA", marginTop: '10px', verticalAlign: 'center'}}>
                 <p style = {statsTextStyle}>
-                <a href={d.youtube.url} style={{display: 'inline-block', width: '16%'}} target="_blank"><img src={youtube} style={iconStyleStats} /> </a>
+                <a href={"youtube.com/channel/" + d.youtube.id} style={{display: 'inline-block', width: '16%'}} target="_blank"><img src={youtube} style={iconStyleStats} /> </a>
                 <p style={{width:'12%', display: 'inline-block'}}> {truncateNumbers2(d.youtube.statistics.subscriberCount)} </p>
                 <div className="strike-through" style={{width: '65%', display: 'inline-block', width: (150 * getlengths(d)[0]), border: "solid 6px #ff3333", borderRadius: '2px', marginLeft: '10px'}}></div>
                 </p>
