@@ -1,3 +1,4 @@
+# FOR LOCAL HOST - Uncomment app.run(host=...
 from flask import Flask, render_template, redirect, url_for,request
 from flask import make_response
 from flask.json import jsonify
@@ -19,8 +20,8 @@ sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod/')
 from scrape_engine import *
 
 app = Flask(__name__)
-# FOR LOCAL HOST - Uncomment CORS and app.run(host=...
-# CORS(app)
+
+CORS(app)
 
 stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 #stripe.api_key = 'sk_test_UUgREeF3vNIfwJoB2UZj0oyB'
@@ -112,4 +113,5 @@ def post_twitter_influencer():
 app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=True, ssl_context=context)
 context = ("./host.cert","./host.key")
 
+# FOR LOCAL HOST - Uncomment app.run(host=...
 # app.run(host='localhost', port=5000, debug=True)
