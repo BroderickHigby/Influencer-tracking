@@ -83,7 +83,7 @@ def remove_empty_kwargs(**kwargs):
 
 def search_list_by_keyword(part, maxResults, q):
     is_first = True
-    for gg in range(1,3):
+    for gg in range(1,2):
         if is_first == True:
             query_url = base_url + "/search?part=snippet&maxResults=50&q=" + q + "&key=" + api_key
             r = requests.get(query_url)
