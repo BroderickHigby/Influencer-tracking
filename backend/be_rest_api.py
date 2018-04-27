@@ -102,9 +102,7 @@ def cancel_subscription():
     return jsonify({'date': subscription.ended_at})
 
 
-  
-    try:
-        app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=True, ssl_context=context)
-        context = ("./host.cert","./host.key")
-    except:
-        app.run(host='localhost', port=5000, debug=True)
+app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=True, ssl_context=context)
+context = ("./host.cert","./host.key")
+
+# app.run(host='localhost', port=5000, debug=True)
