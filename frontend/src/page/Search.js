@@ -803,7 +803,7 @@ class Search extends Component {
 
               {
                 d.email ?  (
-                  <a href={"mailto:" + d.email} target="_top"><img src={email} style={iconStylePopup} />
+                  <a href={"mailto:" + d.email} target="_top"><img src={emailPop} style={iconStylePopup} />
                   </a>
                 ) : (
                   ""
@@ -826,7 +826,7 @@ class Search extends Component {
                     closeOnDocumentClick
                 >
 
-                <div style={{maxWidth: '1000px', maxHeight: '100px'}}>
+                <div style={{maxHeight: '500px', overflow:"auto"}}>
 
                 <div className="col-sm-3" style={leftStyle}>
                   <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
