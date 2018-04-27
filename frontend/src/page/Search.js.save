@@ -1,0 +1,440 @@
+import ReactGA from 'react-ga';
+import React, { Component } from 'react';
+import { Fetcher } from 'react-rebind';
+
+import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
+
+import {
+  AuthenticationDetails,
+  CognitoUserPool,
+  CognitoUserAttribute
+} from "amazon-cognito-identity-js";
+
+import Content from '../layout/Content';
+import Sidebar from '../layout/Sidebar';
+import MainContent from '../layout/MainContent';
+import Filler from '../layout/Filler';
+import axios from 'axios';
+
+import face from '../icons/facebook.svg';
+import insta from '../icons/instagram.svg';
+import twitter from '../icons/twitter.svg';
+import googlePlus from '../icons/google-plus.svg';
+import email from '../icons/email.svg';
+import youtube from '../icons/youtube.svg';
+import blank from '../icons/blank.svg';
+
+import US from '../icons/united-states.svg';
+import CA from '../icons/canada.svg';
+import DE from '../icons/germany.svg';
+import UK from '../icons/united-kingdom.svg';
+import AU from '../icons/australia.svg';
+import world from '../icons/world.svg';
+import FR from '../icons/france.svg';
+
+import facePop from '../icons/old_media/facebook.svg';
+import instaPop from '../icons/old_media/instagram.svg';
+import twitterPop from '../icons/old_media/twitter.svg';
+import googlePlusPop from '../icons/old_media/google-plus.svg';
+import emailPop from '../icons/old_media/email.svg';
+
+import ytbutton from '../icons/youtubebutton.svg';
+import igcam from '../icons/instagramcamera.svg';
+import twbird from '../icons/twitterbird.svg';
+
+import ReactLoading from 'react-loading';
+import LoadingIcon from '../icons/loading.gif';
+import uparrow from '../icons/uparrow.svg';
+import downarrow from '../icons/downarrow.svg';
+import neutralarrow from '../icons/neutralarrow.svg';
+import sapielogo from "../logos/sapielogo90.png";
+
+import Popup from "reactjs-popup";
+
+
+var Loader = require('react-loader');
+
+
+const popButtonStyle = {
+  backgroundColor: 'Transparent',
+  borderRadius: '1px',
+  color: 'white',
+  border: '1px',
+  fontSize: '.7em',
+}
+
+const statsButtonStyle = {
+  backgroundColor: '#66b2b2',
+  borderRadius: '10px',
+  color: 'white',
+  padding: '5px 5px',
+  border: '1px',
+  fontSize: '.9em'
+}
+
+const tipTitle = {
+  fontSize: '1.5em',
+  fontWeight: '700'
+}
+
+const tipDescription = {
+  fontSize: '1em',
+  marginBottom: '0px'
+}
+
+const styleContent = {
+  width: '100%',
+  marginLeft: '30px',
+  display: 'fixed',
+  alignItems: 'center',
+  justifyContent: 'center',
+}
+
+const styleContentBottom = {
+  width: '100%',
+  marginLeft: '10px',
+  display: 'inline-block',
+  alignItems: 'center',
+  justifyContent: 'center',
+}
+
+const iconStyleStats = {
+  height: '30px',
+  marginLeft: '10px',
+}
+
+const statsTextStyle = {
+    fontColor: '#66b2b2',
+}
+
+const iconStyle = {
+  height: '30px',
+  margin: '0 3px',
+  marginTop: '10px'
+}
+
+const arrowStyle = {
+  height: '15px',
+}
+
+const styleBlock = {
+  //marginBottom: '50px',
+  width: '27%',
+  margin: '25px',
+  height: '300px',
+  borderRadius: '10px',
+  display : 'inline-block',
+  minWidth: '247',
+  //height: '300px'
+  backgroundColor: '#E8E8E8',//'#f9f9fa',
+}
+
+const bottomButtons = {
+  width: '100%',
+  alignItems: 'center',
+  justifyContent: 'center',
+  display : 'flex',
+}
+
+
+const styleTitle = {
+  fontSize: '1.4em',
+  fontWeight: '400',
+  minWidth: '217.25px',
+  marginRight: '5px',
+  textAlign: 'left',
+  marginLeft: '10px',
+  display: 'inline-block'
+  //display: 'inline',
+}
+
+const styleTitlePopup = {
+  fontSize: '1.5em',
+  fontWeight: '400',
+  color: '#66b2b2',
+  display: 'inline',
+  marginTop: '25px',
+  marginBottom: '20px'
+}
+
+const topRightStylePopup =  {
+  backgroundColor: '#008080',
+  //height: '50px',
+  margin: '0',
+  marginLeft: '-19',
+  color: 'white',
+  display: 'inline-block',
+  width: '100%',
+}
+
+const industryStyle =  {
+  display: 'inline',
+  fontSize: '1.3em',
+  marginRight: '50px'
+}
+
+
+const imgStyle = {
+  width: '85px',
+  height: '85px',
+  overflow: 'hidden',
+  borderRadius: '50%',
+  //marginLeft: '40%',
+  //marginRight: '40%'
+}
+
+const rightStylePopup = {
+  height: '200px',
+  margin: '5 5 5 5',
+  marginRight: '0px',
+}
+
+const rightStyle = {
+  //height: '200px',
+  padding: '0 0 0 0',
+  margin: '0',
+}
+
+const styleInnerContent = {
+  color: 'black',
+  fontSize: '1em',
+}
+
+const topRightStyle =  {
+  backgroundColor: '#66b2b2',
+  height: '50%',
+  //padding: '10px 20px',
+  paddingBottom: '0px',
+  paddingTop: '10px',
+  margin: '0',
+  color: 'white',
+  alignItems: 'center',
+  borderRadius: '10px',
+  justifyContent: 'center',
+  display: 'fixed',
+
+  //display: 'inline-block',
+  width: '100%',
+}
+
+const bottomRightStyle = {
+  height: '100%',
+  width: '100%',
+  //marginTop: '10px',
+  //padding: '20 20px',
+  borderRadius: '10px',
+  backgroundColor: '#E8E8E8',//'#f9f9fa',
+  display: 'inline-block',
+}
+
+const iconStylePopup = {
+  height: '17px',
+  margin: '5px'
+}
+
+const iconStyleAccounts = {
+  height: '40px',
+  margin: '5px',
+  padding: '2px',
+  marginRight: '10px',
+  marginLeft: '15px'
+}
+
+const iconStyleTrends = {
+  height: '25px',
+  margin: '5px',
+  padding: '2px',
+  marginRight: '1px',
+  marginLeft: '15px'
+}
+
+const iconStyleCountry = {
+  height: '55px',
+  margin: '5px',
+  padding: '1px',
+  marginRight: '10px',
+  borderRadius:'25px',
+  border: '2px solid #66b2b2',
+}
+
+
+const scoreStyle = {
+  color: '#006666',
+  fontSize: '1.7em',
+  marginTop: '5px',
+  marginBottom: '-6px',
+  fontWeight: '400',
+}
+
+const influenceStyle = {
+  color: '#006666',
+  fontSize: '1.3em',
+  marginBottom: '5px',
+  fontWeight: '400',
+}
+
+
+const rowStyle = {
+  padding: '0px',
+  width: '100%',
+  left: '0',
+  margin: '0'
+}
+
+const leftStyle = {
+  height: '150px',
+  overflow: 'hidden',
+  padding: '0',
+  display: 'inline-block'
+}
+
+const descriptionStyle = {
+  color: 'rgba(0,0,0,0.5)',
+  top: '0',
+  display: 'inline',
+  lineHeight: 'normal',
+  fontSize: '.75em',
+}
+
+const accountsStyle = {
+  display: 'inline-block',
+  color: 'rgb(0,0,0,0.75)',
+  fontSize: '.81em',
+  marginTop: '3px',
+  marginLeft:'10px'
+}
+
+const styleHandles = {
+  //width:'12%',
+  display: 'inline-block',
+  color: 'rgb(0,0,0,0.5)',
+  fontSize: '.75em',
+  marginLeft: '2px'
+}
+
+const backButtonStyle = {
+  backgroundColor: '#66b2b2',
+  borderRadius: '20px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em',
+  display: 'none'
+}
+
+const compactButtonStyle = {
+  backgroundColor: '#66b2b2',
+  borderRadius: '5px',
+  color: 'white',
+  padding: '6px 6px',
+  border: '0',
+  fontWeight: '500',
+  fontSize: '1em'
+}
+
+const styleImage = {
+  height: '140px',
+  width: '140px',
+  borderRadius: '70px',
+  border: '4px solid #66b2b2',
+  padding: '3px',
+  position: 'absolute',
+  verticalAlign: 'top',
+  top: '0',
+  left: '50%',
+  transform: 'translate(-50%,0)',
+  //minWidth: '100%',
+  marginTop: '10px'
+}
+
+
+const numberWithCommas = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+const truncation = (strD, length) => {
+  var ending = "...";
+  if((typeof strD) == 'string') {
+    if (strD.length > length) {
+      return strD.substring(0, length - ending.length) + ending;
+    }
+  }
+    return strD;
+}
+
+const overHundred = (num) => {
+    if (num > 99.9) {
+      return 100;
+    }
+    return num;
+}
+
+const getlengths = (user) => {
+  //index 1 is Youtube
+  //      2 is instagram
+  //      3 is Twitter
+  var arr = [1, 1, 1];
+  var max = 0;
+  var i;
+
+  if (!isNaN(user.youtube.statistics.subscriberCount)) arr[0] = parseInt(user.youtube.statistics.subscriberCount);
+  else arr[0] =0;
+
+  if (user.instagram) arr[1] = getNumber(user.instagram.followers_count);
+  else arr[1] =0;
+
+  if (user.twitter) arr[2] = parseInt(user.twitter.followers_count);
+  else arr[2] =0;
+
+  for (i = 0; i < arr.length; i++) {
+    if (max < (arr[i])) {
+      max = arr[i];
+    }
+  }
+  for (i = 0; i < arr.length; i++) {
+    arr[i] = ((arr[i]) * 1.0)/max;
+  }
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i] != 1) {
+      arr[i] += .1;
+    }
+  }
+  return arr;
+}
+
+const findGrowth = (arr, num) => {
+  var firstDate = "";
+  var lastDate = arr[arr.length-1];
+
+  var lastNum = 0;
+  var firstNum = 0;
+
+  var i = 0;
+  var j = 0;
+
+  if (num > (arr.length-1)) {
+    num = arr.length-1;
+  }
+  firstDate = arr[arr.length-num-1];
+
+  for (i = lastDate.length; i > 0; i--) {
+      if(lastDate.charAt(i) === " ")  {
+        lastNum = lastDate.substring(i, lastDate.length);
+        break;
+      }
+  }
+  lastNum = getNumber(lastNum);
+
+  for (j = firstDate.length; j > 0; j--) {
+      if(firstDate.charAt(j) === " ")  {
+        firstNum = firstDate.substring(i, firstDate.length);
+        break;
+      }
+  }
+
+  firstNum = getNumber(firstNum);
+  return rounder(((lastNum - firstNum) * 1.0/ (firstNum * 1.0)) * 100, 4);
+
+
+}
+

@@ -1,9 +1,9 @@
 
-class influencer_score():
+class InfluencerScore():
     def __init__(self, influencer):
         self.influencer = influencer
 
-    def get_score():
+    def get_score(self):
         if self.influencer['youtube']['statistics']['videoCount'] != "0":
             yt_views_metric = float(self.influencer['youtube']['statistics']['viewCount']) / float(self.influencer['youtube']['statistics']['videoCount'])
             yt_subs_metric = float(self.influencer['youtube']['statistics']['subscriberCount']) / float(self.influencer['youtube']['statistics']['videoCount'])

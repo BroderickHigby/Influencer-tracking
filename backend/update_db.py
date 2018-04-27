@@ -12,7 +12,7 @@ from twitter_scraper import *
 sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 import influencer
 from score import *
-
+#import score
 doc = {
     'size' : 10000,
     'query': {
@@ -45,7 +45,7 @@ for entry in res['hits']['hits']:
         entry_source['events'] = sm['events']
         entry_source['organizations'] = sm['organizations']
 
-        score_object = Score(entry_source)
+        score_object = InfluencerScore(entry_source)
         entry_source['influencer_score'] = score_object.get_score()
 
         if 'ig_growth' not in entry_source:
