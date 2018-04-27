@@ -289,7 +289,8 @@ def pull_social_media_links(channel_id):
             google_plus_url = a['href']
         elif 'twitch.tv' in a['href']:
             if '/redirect?' in a['href']:
-                twitch_url = a['href'].split('%2F%2F')[1]
+                twitch_url = ''
+                #twitch_url = a['href'].split('%2F%2F')[1]
             else:
                 twitch_url = a['href']
 
