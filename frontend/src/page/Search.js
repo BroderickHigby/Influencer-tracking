@@ -17,13 +17,15 @@ import email from '../icons/email.svg';
 import youtube from '../icons/youtube.svg';
 import blank from '../icons/blank.svg';
 
-import US from '../icons/united-states.svg';
-import CA from '../icons/canada.svg';
-import DE from '../icons/germany.svg';
-import UK from '../icons/united-kingdom.svg';
-import AU from '../icons/australia.svg';
-import world from '../icons/world.svg';
-import FR from '../icons/france.svg';
+import US from '../icons/flags/united-states.svg';
+import CA from '../icons/flags/canada.svg';
+import DE from '../icons/flags/germany.svg';
+import UK from '../icons/flags/united-kingdom.svg';
+import AU from '../icons/flags/australia.svg';
+import world from '../icons/flags/world.svg';
+import FR from '../icons/flags/france.svg';
+import JP from '../icons/flags/japan.svg';
+import IN from '../icons/flags/india.svg';
 
 import facePop from '../icons/old_media/facebook.svg';
 import instaPop from '../icons/old_media/instagram.svg';
@@ -862,6 +864,10 @@ class Search extends Component {
                   { (d.youtube.snippet.country === "DE") ? ( <a href={"_blank"} target="_blank"><img src={DE} style={iconStyleCountry} /> </a>) : ( "" ) }
                   { (d.youtube.snippet.country === "FR") ? ( <a href={"_blank"} target="_blank"><img src={FR} style={iconStyleCountry} /> </a>) : ( "" ) }
                   { (d.youtube.snippet.country === "AU") ? ( <a href={"_blank"} target="_blank"><img src={AU} style={iconStyleCountry} /> </a>) : ( "" ) }
+                  { (d.youtube.snippet.country === "JP") ? ( <a href={"_blank"} target="_blank"><img src={JP} style={iconStyleCountry} /> </a>) : ( "" ) }
+                  { (d.youtube.snippet.country === "IN") ? ( <a href={"_blank"} target="_blank"><img src={IN} style={iconStyleCountry} /> </a>) : ( "" ) }
+
+
                   <a href={"_blank"} target="_blank"><img src={world} style={iconStyleCountry} /> </a>
                   </div>
 
