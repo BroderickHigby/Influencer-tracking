@@ -251,7 +251,7 @@ const accountsStyle = {
 const styleHandles = {
   //width:'12%',
   display: 'inline-block',
-  color: 'rgb(0,0,0,0.5)',
+  color: 'rgba(0,0,0,0.5)',
   fontSize: '.75em',
   marginLeft: '2px'
 }
