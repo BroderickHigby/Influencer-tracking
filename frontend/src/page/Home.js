@@ -93,7 +93,7 @@ class Home extends Component {
                 ]
 
                 await updateCustomAttributes(attributeList);
-                window.location = "http://app.sapie.space/app/home";
+                window.location = "https://app.sapie.space/app/home";
               }
 
             }

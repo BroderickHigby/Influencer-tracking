@@ -61,7 +61,7 @@ class Unsubscribe extends Component {
         //http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000
         //http://127.0.0.1:5000
 
-        axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/cancel_subscription', postData, axiosConfig)
+        axios.post('https://app.sapie.space/xapi/cancel_subscription', postData, axiosConfig)
         .then(async function (response) {
 
           //Set value in cognito pool (with email) of subscribed to false
@@ -97,7 +97,7 @@ class Unsubscribe extends Component {
 
           await updateCustomAttributes(attributeList);
 
-          window.location = "http://app.sapie.space/app/cancelconfirm"
+          window.location = "https://app.sapie.space/app/cancelconfirm"
 
         }).catch(error => {
           console.log(error)
@@ -120,7 +120,7 @@ class Unsubscribe extends Component {
          ]
 
       await updateCustomAttributes(attributeList);
-      window.location = "http://app.sapie.space/app/home"
+      window.location = "https://app.sapie.space/app/home"
 
     }
 
