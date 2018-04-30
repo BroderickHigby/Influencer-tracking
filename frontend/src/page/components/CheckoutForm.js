@@ -6,7 +6,7 @@ import {
   CognitoUserAttribute
 } from "amazon-cognito-identity-js";
 import { getCurrentUser, updateCustomAttributes, getAttributes } from '../../libs/awsLib.js';
-import CardSection from './CardSection';
+import CardSection from './CardElement.js';
 import axios from 'axios';
 
 const trialButtonStyle = {
