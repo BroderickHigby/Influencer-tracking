@@ -15,6 +15,8 @@ import {Elements} from 'react-stripe-elements';
 import InjectedCheckoutForm from './components/CheckoutForm';
 
 
+
+
 const demoButtonStyle = {
   backgroundColor: '#FFFFFF',
   color:'#4379b3',
@@ -45,9 +47,7 @@ const dropdownStyle = {
 class Subscribe extends Component {
   constructor(props) {
     super(props);
-    this.onToken = this.onToken.bind(this);
   }
-
 
   async handleClick() {
     var attributes = await getAttributes();
@@ -95,109 +95,6 @@ class Subscribe extends Component {
     }
     else {
       window.location = "https://app.sapie.space/app/trialerror"
-    }
-  }
-
-
-  async onToken(token) {
-    var i =0;
-    var attributes = await getAttributes();
-    for( i = 0; i< attributes.length; i++){
-      if(attributes[i].Name === "email"){
-        break;
-      }
-    }
-    //Check to see if current user email is the same as inputed email
-
-    if (attributes[i].Value !== token.email) {
-      window.location = "./emailerror"
-    }
-
-    else {
-
-      var postData = {
-          stripeToken: token.id,
-          stripeEmail: token.email,
-      };
-
-      let axiosConfig = {
-          headers: {
-              'Content-Type': 'application/json;charset=UTF-8',
-              "Access-Control-Allow-Origin": "*"
-          }
-      };
-
-      //http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000
-      //http://127.0.0.1:5000
-
-      /* Add again when using dropdown menu
-      var e = document.getElementById("plans");
-      var strUser = e.options[e.selectedIndex].value;
-      console.log("Plan " + strUser);
-      */
-
-
-      //If user email entered is the same as currently logged in
-      //Else throw error and redo page
-      var route = "";
-      route = "https://app.sapie.space/xapi/charge_monthly";
-      //remove when using dropdown menu
-
-      /* Add again when using dropdown menu
-      if (strUser === "Monthly") {
-        route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly';
-      }
-      else if (strUser === "Yearly") {
-        route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_yearly';
-      }
-      else if (strUser === "Early") {
-        route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_early';
-      }
-      else {
-        console.log("No plan selected");
-        window.location = "/app/subscribe"
-      }
-      */
-
-      axios.post(route, postData, axiosConfig)
-      .then(async function (response) {
-        console.log("Charge confirmation sent to " + token.email + " //success");
-
-        var subs = response.data.subscription;
-        var subscription_id = subs.id;
-        var user_email = token.email;
-
-        const attributeList= [
-          new CognitoUserAttribute({
-            Name: 'custom:subs_id',
-            Value: subs.id
-          }),
-          new CognitoUserAttribute({
-            Name: 'custom:subs_type',
-            // Value: strUser
-            Value: "Monthly"
-          }),
-          new CognitoUserAttribute({
-            Name: 'custom:subs_active',
-            Value: "true"
-          })
-        ]
-        /*
-          Save the subscription_id to the the user in cognito with the
-          email user_email. The subscription_id is used to cancel the subscription
-          later on.
-          Allow access to payed authenticated routes and now display
-          Unsubscribe page instead of subscribe page.
-        */
-
-        await updateCustomAttributes(attributeList);
-
-        window.location = "https://app.sapie.space/app/signupconfirm"
-
-      }).catch(error => {
-        console.log(error)
-      });
-
     }
   }
 
