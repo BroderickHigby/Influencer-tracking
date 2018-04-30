@@ -14,9 +14,6 @@ import Popup from "reactjs-popup";
 import {Elements} from 'react-stripe-elements';
 import InjectedCheckoutForm from './components/CheckoutForm';
 
-
-
-
 const demoButtonStyle = {
   backgroundColor: '#FFFFFF',
   color:'#4379b3',
@@ -33,16 +30,6 @@ const trialButtonStyle = {
   border: '1px',
   fontSize: '1em'
 }
-
-const dropdownStyle = {
-  borderRadius: '4px',
-  padding: '10px 10px',
-  border: '0',
-  fontSize: '1em'
-}
-
-//pk_test_Jjys3Yuxu330uiclk4ViXeHM
-//pk_live_AEuriPJROzqDhDu5Y73oTUR4
 
 class Subscribe extends Component {
   constructor(props) {
