@@ -136,7 +136,7 @@ class Subscribe extends Component {
       //If user email entered is the same as currently logged in
       //Else throw error and redo page
       var route = "";
-      route = 'http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/charge_monthly';
+      route = "https://app.sapie.space/xapi/charge_monthly";
       //remove when using dropdown menu
 
       /* Add again when using dropdown menu
@@ -188,7 +188,7 @@ class Subscribe extends Component {
 
         await updateCustomAttributes(attributeList);
 
-        window.location = "http://app.sapie.space/app/signupconfirm"
+        window.location = "https://app.sapie.space/app/signupconfirm"
 
       }).catch(error => {
         console.log(error)
