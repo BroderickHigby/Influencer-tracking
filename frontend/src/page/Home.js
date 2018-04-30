@@ -110,7 +110,6 @@ class Home extends Component {
 
         return (
             <React.Fragment>
-              <Content>
                 <Filler />
                 <MainContent>
                   <center><img src={sapielogo} style={{height: '20%', width: '26%'}} /></center>
@@ -125,7 +124,6 @@ class Home extends Component {
 
                 </MainContent>
                 <Filler />
-              </Content>
             </React.Fragment>
         );
     }
