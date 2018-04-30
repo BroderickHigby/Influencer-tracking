@@ -314,13 +314,12 @@ renderForm() {
     <div style={{fontSize:'1.125em', fontWeight: '400', marginTop: '25px'}}>Watch Sapie in Action?
 
     <Popup
-        trigger={<button style={demoButtonStyle}
+        trigger={<button style={demoButtonStyle} View Demo</button>}
         position="right center"
         modal
         closeOnDocumentClick
       >
         <div style={{minWidth: '400px'}}>
-        View Demo</button>} position="right center">
           <div>
             <ReactPlayer url='https://youtu.be/Rf0L7LYVhBM' playing />
           </div>
