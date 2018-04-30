@@ -314,7 +314,7 @@ renderForm() {
     <div style={{fontSize:'1.125em', fontWeight: '400', marginTop: '25px'}}>Watch Sapie in Action?
 
     <Popup
-        trigger={<button style={demoButtonStyle} View Demo</button>}
+        trigger={<button style={demoButtonStyle}>View Demo</button>}
         position="right center"
         modal
         closeOnDocumentClick
