@@ -44,7 +44,7 @@ class Subscribe extends Component {
     this.onToken = this.onToken.bind(this);
   }
 
-  /*
+
   async handleClick() {
     var attributes = await getAttributes();
 
@@ -87,13 +87,13 @@ class Subscribe extends Component {
           console.log(attributes[i].Value/(1000 * 60 * 60 * 24 * 30.25 * 12))
         }
       }
-      window.location = "http://app.sapie.space/app/signupconfirm"
+      window.location = "https://app.sapie.space/app/signupconfirm"
     }
     else {
-      window.location = "http://app.sapie.space/app/trialerror"
+      window.location = "https://app.sapie.space/app/trialerror"
     }
   }
-  */
+
 
   async onToken(token) {
     var i =0;
