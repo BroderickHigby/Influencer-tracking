@@ -135,9 +135,11 @@ class Subscribe extends Component {
           />
           */ }
 
+
           <Elements>
             <InjectedCheckoutForm />
           </Elements>
+
 
           </div>
           </div>

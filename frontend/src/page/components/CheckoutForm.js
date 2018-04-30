@@ -40,7 +40,6 @@ class CheckoutForm extends React.Component {
     }
 
 
-
     this.props.stripe.createToken({name: getCurrentUser().username}).then(({token}) => {
       console.log('Received Stripe token:', token);
       var postData = {
