@@ -54,9 +54,6 @@ class CheckoutForm extends React.Component {
           }
       };
 
-      //http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000
-      //http://127.0.0.1:5000
-
       /* Add again when using dropdown menu
       var e = document.getElementById("plans");
       var strUser = e.options[e.selectedIndex].value;
