@@ -11,6 +11,10 @@ import ReactPlayer from 'react-player'
 
 import Popup from "reactjs-popup";
 
+import {Elements} from 'react-stripe-elements';
+import InjectedCheckoutForm from './components/CheckoutForm';
+
+
 const demoButtonStyle = {
   backgroundColor: '#FFFFFF',
   color:'#4379b3',
@@ -232,48 +236,17 @@ class Subscribe extends Component {
                     )
                   }
 
-              {
-                /*
-            </div>
-
-
-              <div id='early' style={{display : 'inline-block', width: '40%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px'}}>
-                  <h3> <i>Special</i> <br></br> Early Access Plan</h3>
-                  <h2><strike>$299.00</strike><b> $149.00</b><br></br> per month</h2>
-                  <h4> Limited Time Only!</h4>
-              </div>
-              <div id='yearly' style={{display : 'inline-block', width: '30%', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginRight: '40px'}}>
-                <h3>Yearly Subscription</h3>
-                <h2><strike>$3588.00</strike> <b>$3229.20 </b><br></br> per year</h2>
-                <h4>10% off for a yearly subscription!</h4>
-              </div>
-            </div>
-            <select id="plans" style={dropdownStyle}>
-              <option value="" disabled selected hidden >Select your Plan</option>
-              <option value="Early">Early Access</option>
-              <option value="Yearly">Yearly</option>
-              <option value="Monthly">Monthly</option>
-            </select>
-            <br></br>
-
-
-            <br></br>
-
-            */
-          }
-
           <br />
-
+          {/*
           <StripeCheckout
             token={this.onToken}
             stripeKey="pk_live_AEuriPJROzqDhDu5Y73oTUR4"
           />
+          */ }
 
-          { /*
           <Elements>
             <InjectedCheckoutForm />
           </Elements>
-          */ }
 
           </div>
           </div>
