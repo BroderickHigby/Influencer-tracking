@@ -873,7 +873,7 @@ class Search extends Component {
 
                   <div style={{width: '8%', display: 'inline-block'}}>
                   {
-                    (d.yt_growth || d.ig_growth || d.twitter_growth) ? (
+                    ( (d.yt_growth.length != 0) || (d.ig_growth.length != 0) || d.twitter_growth ) ? (
                       <p style={accountsStyle}> <center> <b>Trends</b> </center> </p>
                     ) : ( "" )
                   }
