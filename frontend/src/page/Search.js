@@ -760,12 +760,26 @@ class Search extends Component {
           <div style={topRightStyle}>
           <center>
           <div style={{width: '28%', display: 'inline-block', verticalAlign: 'top', marginLeft: '1px'}}>
-            <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={imgStyle}/>
+          {
+            (d.platform_base === "youtube") ? (
+              <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={imgStyle}/>
+            ) : (
+              ""
+            )
+          }
           </div>
 
           <div style={{width: '70%', display: 'inline-block'}}>
             <div style={styleTitle}>
-              <div style={{  color: 'white', display: 'absolute', fontSize: "1.1em", display: 'inline-block'}}>{truncation(d.youtube.snippet.title, 15)}</div>
+              <div style={{  color: 'white', display: 'absolute', fontSize: "1.1em", display: 'inline-block'}}>
+                {
+                  (d.platform_base === "youtube") ? (
+                    truncation(d.youtube.snippet.title, 15)
+                  ) : (
+                    ""
+                  )
+                }
+              </div>
 
               <div className="strike-through" style={{border: "solid .5px white", marginTop: '5px', marginBottom: "1px", marginRight: '10px'}}></div>
               {
@@ -841,14 +855,32 @@ class Search extends Component {
                 <div style={{maxHeight: '500px', overflow:"auto"}}>
 
                 <div className="col-sm-3" style={leftStyle}>
-                  <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
+                {
+                  (d.platform_base === "youtube") ? (
+                    <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
+                  ) : (
+                    ""
+                  )
+                }
                 </div>
                 <div className="col-sm-8" style={{padding: '7px', margin: '5px', marginLeft:'20px'}}>
-                  <p style={styleTitlePopup}> <b>{truncation(d.youtube.snippet.title, 30)} </b> <br />  </p>
+                  {
+                    (d.platform_base === "youtube") ? (
+                      <p style={styleTitlePopup}> <b>{truncation(d.youtube.snippet.title, 30)} </b> <br />  </p>
+                    ) : (
+                      ""
+                    )
+                  }
                   <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.35)", borderRadius: '1px'}}>
                   </div>
                   <div style={{marginTop:'0px'}}>
-                    <p style={descriptionStyle}> {d.youtube.brandingSettings.channel.description} </p>
+                  {
+                    (d.platform_base === "youtube") ? (
+                      <p style={descriptionStyle}> {d.youtube.brandingSettings.channel.description} </p>
+                    ) : (
+                      ""
+                    )
+                  }
                   </div>
                 </div>
 
