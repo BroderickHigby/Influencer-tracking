@@ -61,13 +61,6 @@ def run_query():
     print("returning query")
     return jsonify({'query_results': query_result})
 
-'''
-@app.route('/create_campaign', methods=['GET', 'POST'])
-def create_campaign():
-    json_input = json.loads(request.data)
-    campaign = Campaign(json_input['company_name'])
-'''
-
 @app.route('/charge_monthly', methods=['POST'])
 def charge_monthly():
     print("in charge be_rest_api")
@@ -120,8 +113,7 @@ def post_twitter_influencer():
     json_input = json.loads(request.data)
     influencer.Influencer.create(json_input.item, json_input.screen_name)
 
-app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=True, ssl_context=context)
-context = ("./host.cert","./host.key")
+app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=False, ssl_context=context)
 
 # FOR LOCAL HOST - Uncomment app.run(host=...
 # app.run(host='localhost', port=5000, debug=True)
