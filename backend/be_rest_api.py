@@ -3,7 +3,7 @@ from flask import make_response
 from flask.json import jsonify
 from influencer import *
 from flask_cors import CORS
-from nltk..stem.wordnet import WordNetLemmatizer
+from nltk.stem.wordnet import WordNetLemmatizer
 import json
 import stripe
 import os
@@ -43,8 +43,8 @@ def run_query():
     lem_split = ""
     lemming = lmtzr.lemmatize(str(json_input['queryString']))
     for word in lemming.split():
+	lem_split = str(lem_split)
         lem_split += lmtzr.lemmatize(word) + " "
-        lem_split = str(lem_split)
 
     print(lem_split)
     fields = [lem_split, time.strftime("%Y-%m-%d %H:%M"), str(json_input['user_email'])]
@@ -52,12 +52,12 @@ def run_query():
       writer = csv.writer(f)
       writer.writerow(fields)
 
-    query_result = Influencer.query(lem_split)
+    query_result = Influencer.query(str(lem_split))
     print(query_result)
     print(type(query_result))
     if len(query_result) <= 5:
         search_list_by_keyword(part='snippet', maxResults=25, q=lem_split)
-        query_result = Influencer.query(lem_split)
+        query_result = Influencer.query(str(lem_split))
     print("returning query")
     return jsonify({'query_results': query_result})
 
