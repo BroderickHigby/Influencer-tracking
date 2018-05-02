@@ -31,7 +31,7 @@ stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 
 @app.route("/")
 def home():
-    return "hi"
+    return "welcome home"
 
 @app.route('/run_query', methods=['GET', 'POST'])
 def run_query():
@@ -40,20 +40,24 @@ def run_query():
     lmtzr = WordNetLemmatizer()
     print("Running query")
     print(json_input['queryString'])
+    lem_split = ""
     lemming = lmtzr.lemmatize(str(json_input['queryString']))
-    print(lemming)
+    for word in lemming.split():
+        lem_split += lmtzr.lemmatize(word) + " "
+        lem_split = str(lem_split)
 
-    fields = [lemming, time.strftime("%Y-%m-%d %H:%M"), str(json_input['user_email'])]
+    print(lem_split)
+    fields = [lem_split, time.strftime("%Y-%m-%d %H:%M"), str(json_input['user_email'])]
     with open(r'query_logs', 'a') as f:
       writer = csv.writer(f)
       writer.writerow(fields)
 
-    query_result = Influencer.query(lemming)
+    query_result = Influencer.query(lem_split)
     print(query_result)
     print(type(query_result))
     if len(query_result) <= 5:
-        search_list_by_keyword(part='snippet', maxResults=25, q=lemming)
-        query_result = Influencer.query(lemming)
+        search_list_by_keyword(part='snippet', maxResults=25, q=lem_split)
+        query_result = Influencer.query(lem_split)
     print("returning query")
     return jsonify({'query_results': query_result})
 
@@ -77,6 +81,7 @@ def charge_monthly():
         email = email_input,
         source=token,
     )
+
 
     #change to actual email later
     if email_input == "rl@excelerationcapital.com":
