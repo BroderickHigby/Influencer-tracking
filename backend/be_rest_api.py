@@ -10,13 +10,20 @@ import os
 import sys
 import csv
 import time
+import ssl
+
+
+context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+context.load_cert_chain('/etc/letsencrypt/live/app.sapie.space/cert.pem','/etc/letsencrypt/live/app.sapie.space/privkey.pem')
+
 sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod/')
 from scrape_engine import *
 #sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')
 #from campaign import *
 
 app = Flask(__name__)
-CORS(app)
+
+# CORS(app)
 
 stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 #stripe.api_key = 'sk_test_UUgREeF3vNIfwJoB2UZj0oyB'
@@ -103,8 +110,13 @@ def cancel_subscription():
 
     return jsonify({'date': subscription.ended_at})
 
+@app.route('/post_twitter_influencer', methods=['POST'])
+def post_twitter_influencer():
+    json_input = json.loads(request.data)
+    influencer.Influencer.create(json_input.item, json_input.screen_name)
 
-if __name__ == "__main__":
-    app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000)
-    #app.run(host='172.31.26.107', port=5000)
-    #app.run(debug=True)
+app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=True, ssl_context=context)
+context = ("./host.cert","./host.key")
+
+# FOR LOCAL HOST - Uncomment app.run(host=...
+# app.run(host='localhost', port=5000, debug=True)
