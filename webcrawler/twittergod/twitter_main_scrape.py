@@ -3,12 +3,11 @@ import json
 import sys
 sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 #sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend/')
-import influencer
 import uuid
 import requests
 
-driver = webdriver.Chrome('chromedriver')  # Optional argument, if not specified will search path.
-driver2 = webdriver.Chrome('chromedriver')
+driver = webdriver.Chrome('//Users/mark/Desktop/sapie/webcrawler/twittergod/chromedriver')  # Optional argument, if not specified will search path.
+driver2 = webdriver.Chrome('//Users/mark/Desktop/sapie/webcrawler/twittergod/chromedriver')
 search_terms = ['nba', 'mma']
 
 for search_term in search_terms:
