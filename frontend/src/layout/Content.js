@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 const rootStyle = {
     display: 'flex',
     flexGrow: '1',
-    marginTop: '10px'
+    //marginTop: '10px',
+    minWidth: '1450px'
 };
 
 class Content extends Component {

@@ -7,8 +7,7 @@ import Header from './layout/Header';
 
 import Routes from './Routes';
 import actions from './actions';
-import {CognitoUser} from 'amazon-cognito-identity-js';
-import { authUser, signOutUser, getCurrentUser, getAuthCurrentUser, getAttributes } from "./libs/awsLib";
+import { authUser, signOutUser, getAuthCurrentUser, getAttributes } from "./libs/awsLib";
 
 
 class App extends Component {
@@ -77,7 +76,7 @@ class App extends Component {
     if (await authUser()) {
       this.userHasAuthenticated(true);
       this.userUpdate(getAuthCurrentUser());
-      if(this.state.justLoggedIn == true){
+      if(this.state.justLoggedIn === true){
         await this.userJustLoggedIn();
       }
     }

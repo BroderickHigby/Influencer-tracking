@@ -21,6 +21,9 @@ import cv2
 import numpy as np
 import pprint
 import description_parser
+sys.path.insert(0, '/home/ec2-user/sapie/backend/')
+from score import *
+
 pp = pprint.PrettyPrinter(indent=4)
 def print_response(response):
     for ii in response:
@@ -80,7 +83,7 @@ def remove_empty_kwargs(**kwargs):
 
 def search_list_by_keyword(part, maxResults, q):
     is_first = True
-    for gg in range(1,3):
+    for gg in range(1,2):
         if is_first == True:
             query_url = base_url + "/search?part=snippet&maxResults=50&q=" + q + "&key=" + api_key
             r = requests.get(query_url)
@@ -180,47 +183,9 @@ def channels_list_by_id(q, part, id):
             #print(item)
             #pp.pprint(item)
             if int(item['youtube']['statistics']['subscriberCount']) < 100000:
-                if item['youtube']['statistics']['videoCount'] != "0":
-                    yt_views_metric = float(item['youtube']['statistics']['viewCount']) / float(item['youtube']['statistics']['videoCount'])
-                    yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / float(item['youtube']['statistics']['videoCount'])
-                else:
-                    yt_views_metric = float(item['youtube']['statistics']['viewCount']) / 10000.00
-                    yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / 10000.00
-                if str(item['youtube']['statistics']['videoCount']) != "0":
-                    yt_views_metric = float(item['youtube']['statistics']['viewCount']) / float(item['youtube']['statistics']['videoCount'])
-                    yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / float(item['youtube']['statistics']['videoCount'])
-                else:
-                    yt_views_metric = float(item['youtube']['statistics']['viewCount']) / 1.0
-                    yt_subs_metric = float(item['youtube']['statistics']['subscriberCount']) / 1.0
-                    
-                if yt_views_metric > 100000:
-                    yt_views_metric = 100000
-                if yt_subs_metric > 6000:
-                    yt_subs_metric = 6000
-                
-                yt_views_score_component = (yt_views_metric / 100000) * 50.00
-                yt_subs_score_component = (yt_subs_metric / 6000) * 50.00
-                
-                score = yt_subs_score_component + yt_views_score_component
-                item['influencer_score'] = score
-                
-                #base_influencer_score = 75
-                #youtube_component = float(item['youtube']['statistics']['viewCount']) / 10000000.0
-                #if youtube_component > 1.00:
-                #    youtube_component = 1.00
-                #youtube_component = youtube_component * 5.0
-                #score = float(base_influencer_score) + youtube_component
-                #if item['email'] != '':
-                #    score += 5.00
-                #if item['google_plus_url'] != '':
-                #    score += 5.00
-                #if item["facebook"]["url"] != '':
-                #    score += 5.00
-                #if item['instagram']['url'] != '':
-                #    score += 5.00
-                #if item['twitter']['url'] != '':
-                #    score += 5.00
-                  
+
+                score_object = InfluencerScore(item)
+                item['influencer_score'] = score_object.get_score()
 
                 #Parse description for links.
                 desc = str(item['youtube']['snippet']['description'].encode('utf-8')).lower()
@@ -324,7 +289,8 @@ def pull_social_media_links(channel_id):
             google_plus_url = a['href']
         elif 'twitch.tv' in a['href']:
             if '/redirect?' in a['href']:
-                twitch_url = a['href'].split('%2F%2F')[1]
+                twitch_url = ''
+                #twitch_url = a['href'].split('%2F%2F')[1]
             else:
                 twitch_url = a['href']
 

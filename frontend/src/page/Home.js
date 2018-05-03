@@ -8,8 +8,6 @@ import BigSearchBox from '../components/BigSearchBox';
 import TopSearches from '../components/TopSearches';
 import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
 import {
-  AuthenticationDetails,
-  CognitoUserPool,
   CognitoUserAttribute
 } from "amazon-cognito-identity-js";
 
@@ -95,7 +93,7 @@ class Home extends Component {
                 ]
 
                 await updateCustomAttributes(attributeList);
-                window.location = "http://app.sapie.space/app/home";
+                window.location = "https://app.sapie.space/app/home";
               }
 
             }

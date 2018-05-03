@@ -2,17 +2,10 @@ import ReactGA from 'react-ga';
 import React, { Component } from 'react';
 import { Fetcher } from 'react-rebind';
 
-import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
-
-import {
-  AuthenticationDetails,
-  CognitoUserPool,
-  CognitoUserAttribute
-} from "amazon-cognito-identity-js";
+import { getAttributes } from '../libs/awsLib';
 
 import Content from '../layout/Content';
 import Sidebar from '../layout/Sidebar';
-import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 import axios from 'axios';
 
@@ -21,6 +14,29 @@ import insta from '../icons/instagram.svg';
 import twitter from '../icons/twitter.svg';
 import googlePlus from '../icons/google-plus.svg';
 import email from '../icons/email.svg';
+import youtube from '../icons/youtube.svg';
+import blank from '../icons/blank.svg';
+
+import US from '../icons/flags/united-states.svg';
+import CA from '../icons/flags/canada.svg';
+import DE from '../icons/flags/germany.svg';
+import UK from '../icons/flags/united-kingdom.svg';
+import AU from '../icons/flags/australia.svg';
+import world from '../icons/flags/world.svg';
+import FR from '../icons/flags/france.svg';
+import JP from '../icons/flags/japan.svg';
+import IN from '../icons/flags/india.svg';
+
+import facePop from '../icons/old_media/facebook.svg';
+import instaPop from '../icons/old_media/instagram.svg';
+import twitterPop from '../icons/old_media/twitter.svg';
+import googlePlusPop from '../icons/old_media/google-plus.svg';
+import emailPop from '../icons/old_media/email.svg';
+import youtubePop from '../icons/old_media/youtube.svg';
+
+import ytbutton from '../icons/youtubebutton.svg';
+import igcam from '../icons/instagramcamera.svg';
+import twbird from '../icons/twitterbird.svg';
 
 import ReactLoading from 'react-loading';
 import LoadingIcon from '../icons/loading.gif';
@@ -29,9 +45,30 @@ import downarrow from '../icons/downarrow.svg';
 import neutralarrow from '../icons/neutralarrow.svg';
 import sapielogo from "../logos/sapielogo90.png";
 
+import Popup from "reactjs-popup";
+
 
 var Loader = require('react-loader');
+var lightColor = '#66b2b2';
+var darkColor = '#008080';
+var lightGray = '#E8E8E8';
 
+const popButtonStyle = {
+  backgroundColor: 'Transparent',
+  borderRadius: '1px',
+  color: 'white',
+  border: '1px',
+  fontSize: '.7em',
+}
+
+const statsButtonStyle = {
+  backgroundColor: lightColor,
+  borderRadius: '10px',
+  color: 'white',
+  padding: '5px 5px',
+  border: '1px',
+  fontSize: '.9em'
+}
 
 const tipTitle = {
   fontSize: '1.5em',
@@ -44,15 +81,34 @@ const tipDescription = {
 }
 
 const styleContent = {
-  width: '70%',
+  width: '100%',
   marginLeft: '30px',
+  display: 'fixed',
+  alignItems: 'center',
+  justifyContent: 'center',
+}
+
+const styleContentBottom = {
+  width: '100%',
+  marginLeft: '10px',
+  display: 'inline-block',
+  alignItems: 'center',
+  justifyContent: 'center',
+}
+
+const iconStyleStats = {
+  height: '30px',
+  marginLeft: '10px',
+}
+
+const statsTextStyle = {
+    fontColor: lightColor,
 }
 
 const iconStyle = {
-
-  height: '20px',
-  margin: '0 10px'
-
+  height: '30px',
+  margin: '0 3px',
+  marginTop: '10px'
 }
 
 const arrowStyle = {
@@ -60,134 +116,151 @@ const arrowStyle = {
 }
 
 const styleBlock = {
-  marginBottom: '50px'
+  //marginBottom: '50px',
+  width: '27%',
+  margin: '25px',
+  height: '300px',
+  borderRadius: '10px',
+  display : 'inline-block',
+  minWidth: '247',
+  //height: '300px'
+  backgroundColor: lightGray,//'#f9f9fa',
 }
+
+const bottomButtons = {
+  width: '100%',
+  alignItems: 'center',
+  justifyContent: 'center',
+  display : 'flex',
+}
+
 
 const styleTitle = {
+  fontSize: '1.4em',
+  fontWeight: '400',
+  minWidth: '217.25px',
+  marginRight: '5px',
+  textAlign: 'left',
+  marginLeft: '10px',
+  display: 'inline-block'
+  //display: 'inline',
+}
+
+const styleTitlePopup = {
   fontSize: '1.5em',
   fontWeight: '400',
-  color: 'white',
+  color: lightColor,
   display: 'inline',
+  marginTop: '25px',
+  marginBottom: '20px'
 }
 
-const industryStyle =  {
-  display: 'inline',
-  fontSize: '1.3em',
-  marginRight: '50px'
-}
 
-const styleImage = {
-  height: '200px',
-
-  position: 'absolute',
-  top: '0',
-  left: '50%',
-  transform: 'translate(-50%,0)',
-  minWidth: '100%',
-  maxWidth: 'none',
-  textAlign: 'center',
-  margin: '0 auto'
-}
-
-const rowStyle = {
-  padding: '0px',
-  width: '100%',
-  left: '0',
-  margin: '0'
-}
-
-const leftStyle = {
-  height: '200px',
+const imgStyle = {
+  width: '85px',
+  height: '85px',
   overflow: 'hidden',
-  padding: '0',
+  borderRadius: '50%',
+  //marginLeft: '40%',
+  //marginRight: '40%'
 }
 
 const rightStyle = {
-  height: '200px',
+  //height: '200px',
   padding: '0 0 0 0',
   margin: '0',
 }
 
-const styleInnerContent = {
-  color: 'black',
-  fontSize: '1em',
-}
-
 const topRightStyle =  {
-  backgroundColor: '#008080',
-  height: '50px',
-  padding: '10px 20px',
+  backgroundColor: lightColor,
+  height: '50%',
+  //padding: '10px 20px',
+  paddingBottom: '0px',
+  paddingTop: '10px',
   margin: '0',
   color: 'white',
-  display: 'inline-block',
+  alignItems: 'center',
+  borderRadius: '10px',
+  justifyContent: 'center',
+  display: 'fixed',
+
+  //display: 'inline-block',
   width: '100%',
 }
 
 const bottomRightStyle = {
-  height: '150px',
+  height: '100%',
   width: '100%',
-  padding: '0 20px',
-  backgroundColor: '#f9f9fa',
+  //marginTop: '10px',
+  //padding: '20 20px',
+  borderRadius: '10px',
+  backgroundColor: lightGray,//'#f9f9fa',
   display: 'inline-block',
-
 }
 
-const influenceStyle = {
-  color: '#006666',
-  fontSize: '1.5em',
-  margin: '15px 0 0 0',
-  fontWeight: '400',
-  marginBottom: '-20px'
+const iconStylePopup = {
+  height: '17px',
+  margin: '5px'
 }
 
-const restStyleLeft = {
-  color: 'rgba(0,0,0, .5)',
-  display : 'table-cell',
-  paddingRight: '10px',
-  minWidth: '130px',
-}
-const restStyleRight = {
-  color: 'rgba(0,0,0, .5)',
-  display : 'table-cell',
-  //width: '45%',
-  height: '100%',
-  float: 'top',
-  paddingLeft: '5px',
-  paddingRight: '10px',
-  minWidth: '200px',
-
+const iconStyleAccounts = {
+  height: '40px',
+  margin: '5px',
+  padding: '2px',
+  marginRight: '10px',
+  marginLeft: '15px'
 }
 
-const restStyleEnd = {
-  color: 'rgba(0,0,0, .5)',
-  display : 'table-cell',
-  width: '35%',
-  height: '100%',
-  paddingLeft: '5px',
-  minWidth: '100px',
+const iconStyleTrends = {
+  height: '25px',
+  margin: '5px',
+  padding: '2px',
+  marginRight: '1px',
+  marginLeft: '15px'
 }
 
-const restStyleBottom = {
-  color: 'rgba(0,0,0, .5)',
-  width: '100%'
+const iconStyleCountry = {
+  height: '55px',
+  margin: '5px',
+  padding: '1px',
+  marginRight: '10px',
+  borderRadius:'25px',
+  border: '2px solid #66b2b2',
+}
+
+const leftStyle = {
+  height: '150px',
+  overflow: 'hidden',
+  padding: '0',
+  display: 'inline-block'
 }
 
 const descriptionStyle = {
-  position: 'absolute',
   color: 'rgba(0,0,0,0.5)',
   top: '0',
-  left: '50%',
   display: 'inline',
-  fontSize: '.7em',
-
+  lineHeight: 'normal',
+  fontSize: '.75em',
 }
 
-const expand =  (()=>{
+const accountsStyle = {
+  display: 'inline-block',
+  color: 'rgba(0,0,0,0.75)',
+  fontSize: '.81em',
+  marginTop: '3px',
+  marginLeft:'10px'
+}
 
-})
+const styleHandles = {
+  //width:'12%',
+  display: 'inline-block',
+  color: 'rgba(0,0,0,0.5)',
+  fontSize: '.75em',
+  marginLeft: '2px'
+}
 
 const backButtonStyle = {
-  backgroundColor: '#66b2b2',
+  backgroundColor: lightColor,
   borderRadius: '20px',
   color: 'white',
   padding: '10px 10px',
@@ -197,13 +270,28 @@ const backButtonStyle = {
 }
 
 const compactButtonStyle = {
-  backgroundColor: '#66b2b2',
+  backgroundColor: lightColor,
   borderRadius: '5px',
   color: 'white',
   padding: '6px 6px',
   border: '0',
   fontWeight: '500',
   fontSize: '1em'
+}
+
+const styleImage = {
+  height: '140px',
+  width: '140px',
+  borderRadius: '70px',
+  border: '4px solid #66b2b2',
+  padding: '3px',
+  position: 'absolute',
+  verticalAlign: 'top',
+  top: '0',
+  left: '50%',
+  transform: 'translate(-50%,0)',
+  //minWidth: '100%',
+  marginTop: '10px'
 }
 
 
@@ -213,7 +301,7 @@ const numberWithCommas = (num) => {
 
 const truncation = (strD, length) => {
   var ending = "...";
-  if((typeof strD) == 'string') {
+  if((typeof strD) === 'string') {
     if (strD.length > length) {
       return strD.substring(0, length - ending.length) + ending;
     }
@@ -226,6 +314,39 @@ const overHundred = (num) => {
       return 100;
     }
     return num;
+}
+
+const getlengths = (user) => {
+  //index 1 is Youtube
+  //      2 is instagram
+  //      3 is Twitter
+  var arr = [1, 1, 1];
+  var max = 0;
+  var i;
+
+  if (!isNaN(user.youtube.statistics.subscriberCount)) arr[0] = parseInt(user.youtube.statistics.subscriberCount);
+  else arr[0] =0;
+
+  if (user.instagram) arr[1] = getNumber(user.instagram.followers_count);
+  else arr[1] =0;
+
+  if (user.twitter) arr[2] = parseInt(user.twitter.followers_count);
+  else arr[2] =0;
+
+  for (i = 0; i < arr.length; i++) {
+    if (max < (arr[i])) {
+      max = arr[i];
+    }
+  }
+  for (i = 0; i < arr.length; i++) {
+    arr[i] = ((arr[i]) * 1.0)/max;
+  }
+  for (i = 0; i < arr.length; i++) {
+    if (arr[i] !== 1) {
+      arr[i] += .1;
+    }
+  }
+  return arr;
 }
 
 const findGrowth = (arr, num) => {
@@ -264,6 +385,35 @@ const findGrowth = (arr, num) => {
 
 }
 
+const getFBHandle = (str) => {
+  var i;
+  var count = 0;
+  var index =0;
+  for (i = str.length-1; i >= 0; i--) {
+    if (str.charAt(i) === '/') {
+      count++;
+      switch(count) {
+        case 1:
+          index = i;
+          break;
+        case 2:
+          return str.substring(i+1, index);
+          break;
+      }
+    }
+  }
+  return str;
+}
+
+const getIGScreenName = (str) => {
+  var i;
+  for (i = str.length-2; i >= 0; i--) {
+    if (str.charAt(i) === '/') {
+      return str.substring(i+1);
+    }
+  }
+  return str;
+}
 const rounder = (num, power) => {
 
    var multiplicator = Math.pow(10, power);
@@ -272,8 +422,40 @@ const rounder = (num, power) => {
    return +(test.toFixed(power));
 }
 
+const prettyString = (arr) => {
+  var toReturn = arr[0];
+  var i;
+  for (i = 1; i < arr.length; i++) {
+    toReturn = toReturn + ", " + arr[i];
+  }
+  return toReturn;
+}
+
+const addCommas = (str) => {
+  var toReturn = "";
+  var i;
+  var j;
+  var flag = false;
+
+  for (i = 0; i < str.length; i++) {
+    if (str.charAt(i) === '"') {
+      flag = !flag;
+    }
+
+    if (str.charAt(i) === ' ') {
+      if (!flag) {
+        var first = str.substring(0, i);
+        var last = str.substring(i);
+        toReturn = first + "," + last;
+      }
+    }
+  }
+  return toReturn;
+}
+
 const getNumber = (str) => {
   var num = 0;
+  str = str.replace(/,/g, "");
 
   if (str.charAt(str.length-1) === 'k') {
     num = parseInt(str.substring(0, str.length-1)) * 1000;
@@ -311,37 +493,37 @@ const getFollowers = (map) => {
 
    for (var key in map) {
 
-     if (map[key].instagram.followers_count != "")
+     if (map[key].instagram.followers_count !== "")
         followersIG = getNumber(map[key].instagram.followers_count);
      else
         followersIG = 0;
 
-     if (map[key].instagram.posts_count != "")
+     if (map[key].instagram.posts_count !== "")
         IGposts = getNumber(map[key].instagram.posts_count);
      else
         IGposts = 0;
 
-     if (map[key].youtube.statistics.subscriberCount != "")
+     if (map[key].youtube.statistics.subscriberCount !== "")
         followersYT = getNumber(map[key].youtube.statistics.subscriberCount);
      else
         followersYT = 0;
 
-     if (map[key].youtube.statistics.viewCount != "")
+     if (map[key].youtube.statistics.viewCount !== "")
         YTvid = getNumber(map[key].youtube.statistics.viewCount);
      else
         YTvid = 0;
 
-     if (map[key].youtube.statistics.videoCount != "")
+     if (map[key].youtube.statistics.videoCount !== "")
         YTview = getNumber(map[key].youtube.statistics.videoCount);
      else
         YTview = 0;
 
-     if (map[key].twitter.followers_count != "")
+     if (map[key].twitter.followers_count !== "")
         followersTW = (map[key].twitter.followers_count);
      else
         followersTW = 0;
 
-     if (map[key].twitter.twitter_tweet_count != "")
+     if (map[key].twitter.twitter_tweet_count !== "")
         TWposts = (map[key].twitter.twitter_tweet_count);
      else
         TWposts = 0;
@@ -375,21 +557,29 @@ const getFollowers = (map) => {
   return toReturn;
 }
 
-const truncateNumbers = (num) => {
+const truncateNumbers2 = (num) => {
   if (num === 0) {
+    return num; }
+  if ((num/1000000000) > 1) {
+    return ((num/1000000000.0, 1) + "B"); }
+  else if ((num/1000000) > 1) {
+    return (rounder(num/1000000.0, 1) + " M"); }
+  else if ((num/1000) > 1) {
+    return (rounder(num/1000.0, 1) + "K"); }
+  else {
     return num;
   }
+}
 
-
+const truncateNumbers = (num) => {
+  if (num === 0) {
+    return num; }
   if ((num/1000000000) > 1) {
     return ((num/1000000000.0, 1) + " billion"); }
-
   else if ((num/1000000) > 1) {
     return (rounder(num/1000000.0, 1) + " million"); }
-
   else if ((num/1000) > 1) {
     return (rounder(num/1000.0, 1) + " thousand"); }
-
   else {
     return num;
   }
@@ -409,6 +599,9 @@ var countYTFoll = 0;
 var countYTVid = 0;
 var countYTView = 0;
 var countFB =0;
+var count = 0;
+
+var followingCounts = [0, 0, 0];
 
 //var checked = false;
 
@@ -419,11 +612,6 @@ class Search extends Component {
     console.log("CLICKED");
     window.location = "./home";
   }
-
-  // handleClickChk() {
-  //   checked = !checked;
-  //   console.log(checked);
-  // }
 
   constructor(props) {
     super(props);
@@ -481,9 +669,10 @@ class Search extends Component {
     console.log(axiosConfig);
 
     let currentComponent = this;
-    axios.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5000/run_query', postData, axiosConfig)
+
+    axios.post("https://app.sapie.space/xapi/run_query", postData, axiosConfig)
     .then(function (response) {
-      console.log("GREAT SUCCESS (in borat accent)");
+      console.log("Successful search");
       console.log(response.data);
       influencerList = response.data.query_results;
       console.log(influencerList);
@@ -530,12 +719,12 @@ class Search extends Component {
           <br />
 
 
-            <p style={{color: "#008080", paddingLeft: '10px'}}> We found... </p>
+            <p style={{color: darkColor, paddingLeft: '10px'}}> We found... </p>
             <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
 
               <i>{Object.keys(influencerList).length}</i> influencers <br /><br />
             </div>
-              <p style={{color: "#008080", paddingLeft: '10px'}}> We analyzed... </p>
+              <p style={{color: darkColor, paddingLeft: '10px'}}> We analyzed... </p>
             <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
 
               <i>{truncateNumbers(getFollowers(influencerList)[0])}</i> Instagram followers<br /><br />
@@ -556,241 +745,431 @@ class Search extends Component {
 
       <div style={styleContent}>
 
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
       {influencerList.map(function(d, idx) {
+
         return (
+
           <div key={idx} style={styleBlock}>
 
-
-          <div class="panel panel-default">
-          <div class="row" style={rowStyle}>
+          <div>
           {d.keywords}
-          <div class="col-sm-2" style={leftStyle}>
-          <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
 
-          </div>
-          <div class="col-sm-10" style={rightStyle}>
+
+          <div style={rightStyle}>
           <div style={topRightStyle}>
-          <div style={styleTitle}>{truncation(d.youtube.snippet.title, 30)} </div>
-
+          <center>
+          <div style={{width: '28%', display: 'inline-block', verticalAlign: 'top', marginLeft: '1px'}}>
           {
-            d.facebook.url ? (
-              <a href={d.facebook.url} target="_blank"><img src={face} style={iconStyle} />
-              </a>
+            (d.platform_base === "youtube") ? (
+              <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={imgStyle}/>
             ) : (
               ""
             )
           }
+          </div>
 
-          {
-            d.instagram.url ? (
-              <a href={d.instagram.url} target="_blank"><img src={insta} style={iconStyle} />
-              </a>
-            ) : (
-              ""
-            )
-          }
+          <div style={{width: '70%', display: 'inline-block'}}>
+            <div style={styleTitle}>
+              <div style={{  color: 'white', display: 'absolute', fontSize: "1.1em", display: 'inline-block'}}>
+                {
+                  (d.platform_base === "youtube") ? (
+                    truncation(d.youtube.snippet.title, 15)
+                  ) : (
+                    ""
+                  )
+                }
+              </div>
 
-          {
-            d.twitter.url ? (
-              <a href={d.twitter.url} target="_blank"><img src={twitter} style={iconStyle} />
-              </a>
-            ) : (
-              ""
-            )
-          }
+              <div className="strike-through" style={{border: "solid .5px white", marginTop: '5px', marginBottom: "1px", marginRight: '10px'}}></div>
+              {
+                d.youtube.id ? (
+                  <a href={'https://youtube.com/channel/' + d.youtube.id} target="_blank"><img src={youtubePop} style={iconStylePopup} />
+                  </a>
+                ) : (
+                  ""
+                )
+              }
 
-          {
-            d.google_plus_url ? (
-              <a href={d.google_plus_url} target="_blank"><img src={googlePlus} style={iconStyle} />
-              </a>
-            ) : (
-              ""
-            )
-          }
-          {
-            d.email ?  (
-              <a href={"mailto:" + d.email} target="_top"><img src={email} style={iconStyle} />
-              </a>
-            ) : (
-              ""
-            )
+              {
+                d.facebook.url ? (
+                  <a href={d.facebook.url} target="_blank"><img src={facePop} style={iconStylePopup} />
+                  </a>
+                ) : (
+                  ""
+                )
+              }
 
-          }
+              {
+                d.instagram.url ? (
+                  <a href={d.instagram.url} target="_blank"><img src={instaPop} style={iconStylePopup} />
+                  </a>
+                ) : (
+                  ""
+                )
+              }
+
+              {
+                d.twitter.url ? (
+                  <a href={d.twitter.url} target="_blank"><img src={twitterPop} style={iconStylePopup} />
+                  </a>
+                ) : (
+                  ""
+                )
+              }
+
+              {
+                d.google_plus_url ? (
+                  <a href={d.google_plus_url} target="_blank"><img src={googlePlusPop} style={iconStylePopup} />
+                  </a>
+                ) : (
+                  ""
+                )
+              }
+
+              {
+                d.email ?  (
+                  <a href={"mailto:" + d.email} target="_top"><img src={emailPop} style={iconStylePopup} />
+                  </a>
+                ) : (
+                  ""
+                )
+
+              }
+
+              <a href={"_blank"} target="_blank"><img src={blank} style={iconStylePopup} />
+              </a>
+
+
+              <div style={{marginTop: '2px'}}>
+                <p style={{fontSize: "1.4em", width: '60%', display: 'inline-block'}}>{String(overHundred(d.influencer_score)).substr(0,4)}&#37;</p>
+                <div style={{width:'40%', display: 'inline-block', verticalAlign: 'bottom', marginBottom: '16px'}}>
+
+                <Popup
+                    trigger={<button style={popButtonStyle}> <u>More Info</u></button>}
+                    position="right center"
+                    modal
+                    closeOnDocumentClick
+                >
+
+                <div style={{maxHeight: '500px', overflow:"auto"}}>
+
+                <div className="col-sm-3" style={leftStyle}>
+                {
+                  (d.platform_base === "youtube") ? (
+                    <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
+                  ) : (
+                    ""
+                  )
+                }
+                </div>
+                <div className="col-sm-8" style={{padding: '7px', margin: '5px', marginLeft:'20px'}}>
+                  {
+                    (d.platform_base === "youtube") ? (
+                      <p style={styleTitlePopup}> <b>{truncation(d.youtube.snippet.title, 30)} </b> <br />  </p>
+                    ) : (
+                      ""
+                    )
+                  }
+                  <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.35)", borderRadius: '1px'}}>
+                  </div>
+                  <div style={{marginTop:'0px'}}>
+                  {
+                    (d.platform_base === "youtube") ? (
+                      <p style={descriptionStyle}> {d.youtube.brandingSettings.channel.description} </p>
+                    ) : (
+                      ""
+                    )
+                  }
+                  </div>
+                </div>
+
+
+
+                <div style = {styleContentBottom}>
+                <div style={{width:'100%', display: 'inline-block'}}>
+                  {/*Locations, Trends */}
+                  <div style={{width: '25%', display: 'inline-block'}}>
+                  { (d.youtube.snippet.country === "US") ? ( <a href={"_blank"} target="_blank"><img src={US} style={iconStyleCountry} /> </a>) : ( "" ) }
+                  { (d.youtube.snippet.country === "UK") ? ( <a href={"_blank"} target="_blank"><img src={UK} style={iconStyleCountry} /> </a>) : ( "" ) }
+                  { (d.youtube.snippet.country === "CA") ? ( <a href={"_blank"} target="_blank"><img src={CA} style={iconStyleCountry} /> </a>) : ( "" ) }
+                  { (d.youtube.snippet.country === "DE") ? ( <a href={"_blank"} target="_blank"><img src={DE} style={iconStyleCountry} /> </a>) : ( "" ) }
+                  { (d.youtube.snippet.country === "FR") ? ( <a href={"_blank"} target="_blank"><img src={FR} style={iconStyleCountry} /> </a>) : ( "" ) }
+                  { (d.youtube.snippet.country === "AU") ? ( <a href={"_blank"} target="_blank"><img src={AU} style={iconStyleCountry} /> </a>) : ( "" ) }
+                  { (d.youtube.snippet.country === "JP") ? ( <a href={"_blank"} target="_blank"><img src={JP} style={iconStyleCountry} /> </a>) : ( "" ) }
+                  { (d.youtube.snippet.country === "IN") ? ( <a href={"_blank"} target="_blank"><img src={IN} style={iconStyleCountry} /> </a>) : ( "" ) }
+
+
+                  <a href={"_blank"} target="_blank"><img src={world} style={iconStyleCountry} /> </a>
+                  </div>
+
+                  <div style={{width: '8%', display: 'inline-block'}}>
+                  {
+                    ( (d.yt_growth.length != 0) || (d.ig_growth.length != 0) || d.twitter_growth ) ? (
+                      <p style={accountsStyle}> <center> <b>Trends</b> </center> </p>
+                    ) : ( "" )
+                  }
+                  </div>
+
+                  <div style={{width: '65%', display: 'inline-block'}}>
+                    {
+                       d.yt_growth ? (
+                         d.yt_growth.toString() ? (
+                           (isNaN(findGrowth(d.yt_growth, 7))) ? (
+                             ""
+                           ) : (
+                             (findGrowth(d.yt_growth, 7) > 0) ? (
+                               <p style={accountsStyle}>
+                                <a href={"_blank"} target="_blank"><img src={ytbutton} style={iconStyleTrends} /> </a>
+                                  {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
+                             ) : (
+                               (findGrowth(d.yt_growth, 7) === 0) ? (
+                                   <p style={accountsStyle}><a href={"https://www.youtube.com/channel/" + d.youtube.id} target="_blank"><img src={ytbutton} style={iconStyleTrends} /> </a>{findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
+                               ) : (
+                                   <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={ytbutton} style={iconStyleTrends} /> </a>{findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
+                               )
+                             )
+                           )
+                         ) : ( "" )
+                       ) : ( "" )
+                     }
+
+                     {
+                       d.ig_growth ? (
+                         d.ig_growth.toString() ? (
+                           (isNaN(findGrowth(d.ig_growth, 7))) ? (
+                             ""
+                           ) : (
+                             (findGrowth(d.ig_growth, 7) > 0) ? (
+                               <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={igcam} style={iconStyleTrends} /> </a>{findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
+                             ) : (
+                               (findGrowth(d.ig_growth, 7) === 0) ? (
+                                   <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={igcam} style={iconStyleTrends} /> </a>{findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
+                               ) : (
+                                   <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={igcam} style={iconStyleTrends} /> </a>{findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
+                               )
+                             )
+                           )
+                         ) : ( "" )
+                       ) : ( "" )
+                     }
+
+                     {
+                       d.twitter_growth ? (
+                         d.twitter_growth.toString() ? (
+                           (isNaN(findGrowth(d.twitter_growth, 7))) ? (
+                             ""
+                           ) : (
+                             (findGrowth(d.twitter_growth, 7) > 0) ? (
+                               <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={twbird} style={iconStyleTrends} /> </a>{findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
+                             ) : (
+                               (findGrowth(d.twitter_growth, 7) === 0) ? (
+                                   <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={twbird} style={iconStyleTrends} /> </a>{findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
+                               ) : (
+                                 (findGrowth(d.twitter_growth, 7).toString().substring(0,4) === "-0.0") ? (
+                                   <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={twbird} style={iconStyleTrends} /> </a>0.00% <img src={neutralarrow} style={arrowStyle} /> </p>
+                                 ) : (
+                                   <p style={accountsStyle}><a href={"_blank"} target="_blank"><img src={twbird} style={iconStyleTrends} /> </a>{findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
+                                 )
+                               )
+                             )
+                           )
+                         ) : ( "" )
+                       ) : ( "" )
+                     }
+                </div>
+                </div>
+
+                <br />
+                <br />
+
+                <div style={{width: '45%', display: 'inline-block', verticalAlign: 'top'}}>
+                  <div style={{width: '27%', display: 'inline-block', verticalAlign: 'top'}}>
+                    <p style={accountsStyle}> <b>Accounts</b></p>
+                  </div>
+                  <div style={{width: '70%', marginLeft:'5px', display: 'inline-block'}}>
+                  {
+                    d.youtube.statistics.subscriberCount ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={"https://www.youtube.com/channel/" + d.youtube.id} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={youtube} style={iconStyleAccounts} /> </a>
+                      <p style={styleHandles}> @{(d.youtube.snippet.customUrl) ? ( truncation(d.youtube.snippet.customUrl,15) ) : ( truncation(d.youtube.snippet.title, 15) )} </p>
+                      </div>
+                    ) : (  ""  )
+                  }
+                  {
+                    d.instagram.followers_count ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.instagram.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={insta} style={iconStyleAccounts} /> </a>
+                      <p style={styleHandles}> @{getIGScreenName(d.instagram.url, 15)} </p>
+                      </div>
+                    ) : ("")
+                  }
+                  {
+                    d.twitter.followers_count ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.twitter.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={twitter} style={iconStyleAccounts} /> </a>
+                      <p style={styleHandles}> @{truncation(d.twitter.screen_name, 15)} </p>
+                      </div>
+                    ) : (  ""  )
+                  }
+                  {
+                    d.google_plus_url ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.google_plus_url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={googlePlus} style={iconStyleAccounts} /> </a>
+                      <p style={styleHandles}> @{(d.youtube.snippet.customUrl) ? ( truncation(d.youtube.snippet.customUrl,15) ) : ( truncation(d.youtube.snippet.title, 15) )} </p>
+                      </div>
+                    ) : ( "" )
+                  }
+                  {
+                    d.facebook.url ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.facebook.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={face} style={iconStyleAccounts} /> </a>
+                      <p style={styleHandles}> @{truncation(getFBHandle(d.facebook.url), 15)} </p>
+                      </div>
+                    ) : ( "" )
+                  }
+                  {
+                    d.email ?  (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={"mailto:" + d.email} style={{display: 'inline-block', width: '27%'}} target="_top"><img src={email} style={iconStyleAccounts} /> </a>
+                      <p style={styleHandles}> {truncation(d.email, 15)}> </p>
+                      </div>
+                    ) : (
+                      ""
+                    )
+
+                  }
+                  </div>
+                </div>
+
+                <div style={{width: '45%', display: 'inline-block', verticalAlign: 'top'}}>
+                  <div style={{width: '27%', display: 'inline-block', verticalAlign: 'top'}}>
+                    {
+                      ((d.associated_websites.toString() !== "") || (d.branded_products.toString() !== 0) || (d.youtube.brandingSettings.channel.keywords)) ? (
+                        <p style={accountsStyle}> <b>Other</b></p>
+                      ) : ( "" )
+                    }
+                  </div>
+                  <div style={{width: '70%', marginLeft:'5px', display: 'inline-block'}}>
+                  {
+                    (d.associated_websites.toString() !== "" ) ? (
+                      <p style={accountsStyle}>{prettyString(d.associated_websites)} </p>
+                    ) : ( "" )
+                  }
+                  {
+                    (d.branded_products.toString() !== "") ? (
+                      <p>Branded Products: {prettyString(d.branded_products)}</p>
+                    ) : ( "" )
+                  }
+                  {
+                    (d.youtube.brandingSettings.channel.keywords) ? (
+                      <p style={accountsStyle}>Keywords: {addCommas(truncation(d.youtube.brandingSettings.channel.keywords,65))} </p>
+                    ) : ( "" )
+                  }
+                  </div>
+                </div>
+
+
+                </div>
+                </div>
+
+                </Popup>
+                </div>
+              </div>
+
+              </div>
+          </div>
+
+          </center>
 
           </div>
 
           <div style={bottomRightStyle}>
-          <div style={influenceStyle}>
-          {String(overHundred(d.influencer_score)).substr(0,4)} &#37; influence
-          </div>
-          <div style={{position: 'relative', height: '60px', marginTop: '20px'}}>
-          <div style={restStyleLeft}>
+          <div>
+            {
+              d.youtube.statistics.subscriberCount ? (
+                <div style={{fontColor: "#FAFAFA", marginTop: '10px', verticalAlign: 'center'}}>
+                <p style = {statsTextStyle}>
+                <a href={"https://www.youtube.com/channel/" + d.youtube.id} style={{display: 'inline-block', width: '16%'}} target="_blank"><img src={youtube} style={iconStyleStats} /> </a>
+                <p style={{width:'12%', display: 'inline-block'}}> {truncateNumbers2(d.youtube.statistics.subscriberCount)} </p>
+                <div className="strike-through" style={{width: '65%', display: 'inline-block', width: (150 * getlengths(d)[0]), border: "solid 6px #ff3333", borderRadius: '2px', marginLeft: '10px'}}></div>
+                </p>
 
-            {numberWithCommas(d.youtube.statistics.subscriberCount)} subscribers<br></br>
-            {numberWithCommas(d.youtube.statistics.viewCount)} views<br></br>
-            {numberWithCommas(d.youtube.statistics.videoCount)} videos
-
-
-          </div>
-          <div style={restStyleRight}>
-          {
-            d.twitter.followers_count ? (
-              /*twitt = ("Twitter Followers: " + numberWithCommas(d.twitter.followers_count))*/
-              <p style={{margin: '0'}}>Twitter Followers:  {numberWithCommas(d.twitter.followers_count)}</p>
-            ) : (
-              ""
-            )
-          }
-          {
-            d.instagram.followers_count ? (
-              <p style={{margin: '0'}}>Instagram Followers: {numberWithCommas(d.instagram.followers_count)} </p>
-
-            ) : (
-              ""
-            )
-          }
-          {
-            d.locations ? (
-              d.locations.toString() ? (
-                locate = ("Locations: " + truncation(d.locations.toString(), 15).toString())
+                </div>
               ) : (
-                ""
+                <div style={{fontColor: "#FAFAFA", marginTop: '10px', verticalAlign: 'center'}}>
+                <p style = {statsTextStyle}>
+                <a href={"_blank"} style={{display: 'inline-block', width: '16%'}} target="_blank"><img src={blank} style={iconStyleStats} /> </a>
+                <p style={{width:'12%', display: 'inline-block'}}> {" "} </p>
+                <div className="strike-through" style={{width: '65%', display: 'inline-block', width: "100", border: "solid 6px Transparent", borderRadius: '2px', marginLeft: '10px'}}></div>
+                </p>
+
+                </div>
               )
-            ) : (
-              ""
-            )
-          }
-          </div>
-
-          <div style={restStyleEnd}>
-          {
-            d.yt_growth ? (
-              d.yt_growth.toString() ? (
-                (isNaN(findGrowth(d.yt_growth, 7))) ? (
-                  ""
-                ) : (
-                  (findGrowth(d.yt_growth, 7) > 0) ? (
-                    <p style={{margin: '0'}}>YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
-                  ) : (
-                    (findGrowth(d.yt_growth, 7) == 0) ? (
-                        <p style={{margin: '0'}}>YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
-                    ) : (
-                        <p style={{margin: '0'}}>YT trend: {findGrowth(d.yt_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
-                    )
-                  )
-                )
-              ) : ( "" )
-            ) : ( "" )
-          }
-
-          {
-            d.ig_growth ? (
-              d.ig_growth.toString() ? (
-                (isNaN(findGrowth(d.ig_growth, 7))) ? (
-                  ""
-                ) : (
-                  (findGrowth(d.ig_growth, 7) > 0) ? (
-                    <p style={{margin: '0'}}>IG trend: {findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
-                  ) : (
-                    (findGrowth(d.ig_growth, 7) == 0) ? (
-                        <p style={{margin: '0'}}>IG trend: {findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
-                    ) : (
-                        <p style={{margin: '0'}}>IG trend: {findGrowth(d.ig_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
-                    )
-                  )
-                )
-              ) : ( "" )
-            ) : ( "" )
-          }
-          {
-            d.twitter_growth ? (
-              d.twitter_growth.toString() ? (
-                (isNaN(findGrowth(d.twitter_growth, 7))) ? (
-                  ""
-                ) : (
-                  (findGrowth(d.twitter_growth, 7) > 0) ? (
-                    <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={uparrow} style={arrowStyle} /> </p>
-                  ) : (
-                    (findGrowth(d.twitter_growth, 7) == 0) ? (
-                        <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={neutralarrow} style={arrowStyle} /> </p>
-                    ) : (
-                      (findGrowth(d.twitter_growth, 7).toString().substring(0,4) == "-0.0") ? (
-                        <p style={{margin: '0'}}>Twt trend: 0.00% <img src={neutralarrow} style={arrowStyle} /> </p>
-                      ) : (
-                        <p style={{margin: '0'}}>Twt trend: {findGrowth(d.twitter_growth, 7).toString().substr(0,4)}% <img src={downarrow} style={arrowStyle} /> </p>
-                      )
-                    )
-                  )
-                )
-              ) : ( "" )
-            ) : ( "" )
-          }
-
-          </div>
-          </div>
-          <div style={restStyleBottom}>
-          <a role="button" data-toggle="collapse" data-parent="#accordion" href={"#collapse"+idx} aria-expanded="false" aria-controls={"collapse"+idx} style={{color: '#006666'}}>
-          view more
-          </a>
-
-          </div>
-          </div>
-          </div>
-          </div>
-
-            <div id={"collapse"+idx} class="panel-collapse collapse" role="tabpanel" aria-labelledby={"heading"+idx} style={{backgroundColor: '#f9f9fa'}}>
-              <div class="panel-body">
-              <div class="row">
-              <div class="col-sm-2" style={{height: '100%', display: 'table-cell'}}>
-              <br/>
-              </div>
-              <div clas="col-sm-10">
-              <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', height: '100%', display: 'table-cell', padding: '10px 20px'}}>
-              Youtube Description: {d.youtube.brandingSettings.channel.description}
-              <br/>
-              <br/>
-              Twitter Bio: {d.twitter.description}
-              <br/>
-              <br />
-              Keywords: {d.youtube.brandingSettings.channel.keywords}
-              <br />
-              {
-                d.associated_websites ? (
-                  "Websites: " + d.associated_websites
-                ) : (
-                  ""
-                )
-              }
-              <br/>
-              {
-                d.locations ? (
-                  "Locations: " + d.locations
-                ) : (
-                  ""
-                )
-              }
-              <br/>
-              {
-                d.branded_products ? (
-                  "Branded Products: " + d.branded_products
-                ) : (
-                  ""
-                )
-              }
-              </div>
-              </div>
-              </div>
-              </div>
+            }
             </div>
+            <div>
+            {
+              d.instagram.followers_count ? (
+                <div style={{fontColor: "#FAFAFA", marginTop: '10px', verticalAlign: 'center'}}>
+                <p style = {statsTextStyle}>
+                <a href={d.instagram.url} style={{display: 'inline-block', width: '16%'}} target="_blank"><img src={insta} style={iconStyleStats} /> </a>
+                  <p style={{width:'12%', display: 'inline-block'}}> {truncateNumbers2(d.instagram.followers_count)} </p>
+
+                <div className="strike-through" style={{width: '65%', display: 'inline-block', width: (150 * getlengths(d)[1]), border: "solid 6px #b366ff", borderRadius: '2px', marginLeft: '10px'}}></div>
+                </p>
+
+                </div>
+
+              ) : (
+                <div style={{fontColor: "#FAFAFA", marginTop: '10px', verticalAlign: 'center'}}>
+                <p style = {statsTextStyle}>
+                <a href={"_blank"} style={{display: 'inline-block', width: '16%'}} target="_blank"><img src={blank} style={iconStyleStats} /> </a>
+                <p style={{width:'12%', display: 'inline-block'}}> {" "} </p>
+                <div className="strike-through" style={{width: '65%', display: 'inline-block', width: "100", border: "solid 6px Transparent", borderRadius: '2px', marginLeft: '10px'}}></div>
+                </p>
+
+                </div>
+              )
+            }
+            </div>
+            <div>
+            {
+              d.twitter.followers_count ? (
+                <div style={{fontColor: "#FAFAFA", marginTop: '10px', verticalAlign: 'center'}}>
+                <p style = {statsTextStyle}>
+                <a href={"_blank"} style={{display: 'inline-block', width: '16%'}} target="_blank"><img src={twitter} style={iconStyleStats} /> </a>
+                  <p style={{width:'12%', display: 'inline-block'}}> {truncateNumbers2(d.twitter.followers_count)} </p>
+                  <div className="strike-through" style={{width: '65%', display: 'inline-block', width: (150 * getlengths(d)[2]), border: "solid 6px #00a3cc", borderRadius: '2px', marginLeft: '10px'}}></div>
+                </p>
+                </div>
+
+              ) : (
+                <div style={{fontColor: "#FAFAFA", marginTop: '10px', verticalAlign: 'center'}}>
+                <p style = {statsTextStyle}>
+                <a href={d.twitter.url} style={{display: 'inline-block', width: '16%'}} target="_blank"><img src={blank} style={iconStyleStats} /> </a>
+                <p style={{width:'12%', display: 'inline-block'}}> {" "} </p>
+                <div className="strike-through" style={{width: '65%', display: 'inline-block', width: "100", border: "solid 6px Transparent", borderRadius: '2px', marginLeft: '10px'}}></div>
+                </p>
+
+                </div>
+              )
+            }
+            </div>
+
+
+          </div>
+
+
+          </div>
+
 
           </div>
 
           </div>)
+
         })}
 
-              </div>
         {
           influencerList.length ? (
             <Filler />

@@ -1,3 +1,4 @@
+
 Pattern                                                                         Occurances: Tid_List
 Industry:apps                                                                                                                                         :19
 Industry:apps InstaFollowing:0x10                                                                                                                     :4
