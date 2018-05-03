@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import logo from "../halfLogo.png";
+import logo from "../logos/halfLogo.png";
 import Login from "./Login.js";
 
 
@@ -9,6 +9,7 @@ export default class LoginBox extends Component {
     super(props);
 
   };
+
 
 render() {
   return (

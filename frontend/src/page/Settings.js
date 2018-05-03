@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import {CognitoUser} from "amazon-cognito-identity-js";
 import { FormGroup, FormControl, ControlLabel, Button } from "react-bootstrap";
 import {Link} from 'react-router-dom';
-
 import { getCurrentUser, changePassword } from '../libs/awsLib.js';
+import sapielogo from "../logos/sapielogo90.png";
 
 import LoaderButton from "./components/LoaderButton";
+
 const rootStyle = {
     textAlign: 'center'
 };
@@ -13,6 +14,15 @@ const rootStyle = {
 const formStyle = {
   margin: '0 auto',
   maxWidth: '320px'
+}
+
+const buttonStyle = {
+  //backgroundColor: '#66b2b2',
+  borderRadius: '4px',
+  color: 'black',
+  padding: '5px 10px',
+  border: '1',
+  fontSize: '1em'
 }
 
 export default class Settings extends Component{
@@ -38,6 +48,9 @@ export default class Settings extends Component{
     });
   }
 
+  handleClick() {
+    window.location = "/app/unsubscribe";
+  }
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -56,16 +69,29 @@ export default class Settings extends Component{
   render(){
     return(
       <div className= "Settings" style = {rootStyle}>
-        <p>Subscribed:{this.props.subscribed
+        <br />
+        <br />
+        <p>
+          <a href={"./app/home"} target="_blank">
+              <img src={sapielogo} style={{height: '15%', width: '15%', paddingBottom: '20px'}} />
+          </a>
+          <h3>Settings for <b>{getCurrentUser().username}</b></h3>
+
+          {this.props.subscribed
           ?
-          <div><p>true</p>
-          <br></br>
-          <Link to= "/app/unsubscribe">Click to unsubscribe </Link></div>
+          <div>
+
+            <p>Subscribed: true</p>
+            <br />
+            <button onClick={this.handleClick} style={buttonStyle}> Click to unsubscribe </button>
+          </div>
 
           :[
-          <Link to= "/app/subscribe">false, Click to subscribe </Link>
+            <Link to= "/app/subscribe">Subscribed: false, Click to subscribe </Link>
           ]
-      }</p>
+          }
+        </p>
+
         {!this.state.change
           ?<Button onClick = {()=> this.setState({change: true})}>Change Password</Button>
           :[<form key={1} onSubmit={this.handleSubmit} style= {formStyle}>

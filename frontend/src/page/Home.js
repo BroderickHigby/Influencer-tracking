@@ -5,6 +5,7 @@ import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 
 import BigSearchBox from '../components/BigSearchBox';
+import TopSearches from '../components/TopSearches';
 import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
 import {
   AuthenticationDetails,
@@ -12,7 +13,7 @@ import {
   CognitoUserAttribute
 } from "amazon-cognito-identity-js";
 
-import sapielogo from "../sapielogo90.png";
+import sapielogo from "../logos/sapielogo90.png";
 
 
 
@@ -119,6 +120,7 @@ class Home extends Component {
                   <div style={{textAlign: 'center', color: '#5F5F5F', fontSize: '1em', fontWeight: '700', textAlign: "center"}}>
 
                     <BigSearchBox />
+                    <TopSearches />
 
                   </div>
 
