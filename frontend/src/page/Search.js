@@ -973,7 +973,7 @@ class Search extends Component {
                   }
                   <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.35)", borderRadius: '1px'}}>
                   </div>
-                  <div style={{marginTop:'0px', maxHeight: '200px'}}>
+                  <div style={{marginTop:'0px', maxHeight: '200px', overflow: 'auto'}}>
                   {
                     (d.platform_base === "youtube") ? (
                       <p style={descriptionStyle}> {d.youtube.brandingSettings.channel.description} </p>
