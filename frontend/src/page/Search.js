@@ -883,9 +883,9 @@ class Search extends Component {
                   }
                   </div>
                   <center>
-                  <div>
+                  <div style={{marginTop: '160px', zIndex: '10', width: '60%'}}>
                   <Popup
-                      trigger={<button style={compactButtonStyle}>Contact Influencer</button>}
+                      trigger={<button style={backButtonStyle}>Contact Influencer</button>}
                       position="right center"
                       closeOnDocumentClick
                   >
