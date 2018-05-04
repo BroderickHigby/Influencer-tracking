@@ -873,7 +873,7 @@ class Search extends Component {
                 <div style={{maxHeight: '500px', minWidth: '300px', overflow:"auto"}}>
 
                 <div className="col-sm-3" style={leftStyle}>
-                  <div>
+                  <div style={{width: '100%'}}>
                   {
                     (d.platform_base === "youtube") ? (
                       <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
@@ -883,7 +883,7 @@ class Search extends Component {
                   }
                   </div>
                   <center>
-                  <div style={{marginTop: '150px', zIndex: '10', width: '60%'}}>
+                  <div style={{width: '60%'}}>
                   <Popup
                       trigger={<button style={backButtonStyle}>Contact Influencer</button>}
                       position="right center"
