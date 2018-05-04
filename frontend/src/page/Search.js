@@ -863,7 +863,7 @@ class Search extends Component {
                 <p style={{fontSize: "1.4em", width: '60%', display: 'inline-block'}}>{String(overHundred(d.influencer_score)).substr(0,4)}&#37;</p>
                 <div style={{width:'40%', display: 'inline-block', verticalAlign: 'bottom', marginBottom: '16px'}}>
                 <Popup
-                    trigger={<button style={popButtonStyle}>Contact Influencer</button>}
+                    trigger={<button style={popButtonStyle}><u>Contact</u></button>}
                     position="right center"
                     closeOnDocumentClick
                 >
