@@ -883,7 +883,7 @@ class Search extends Component {
                   }
                   </div>
                   <center>
-                  <div style={{marginTop: '160px', zIndex: '10', width: '60%'}}>
+                  <div style={{marginTop: '150px', zIndex: '10', width: '60%'}}>
                   <Popup
                       trigger={<button style={backButtonStyle}>Contact Influencer</button>}
                       position="right center"
@@ -973,7 +973,7 @@ class Search extends Component {
                   }
                   <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.35)", borderRadius: '1px'}}>
                   </div>
-                  <div style={{marginTop:'0px'}}>
+                  <div style={{marginTop:'0px', maxWidth: '200px'}}>
                   {
                     (d.platform_base === "youtube") ? (
                       <p style={descriptionStyle}> {d.youtube.brandingSettings.channel.description} </p>
