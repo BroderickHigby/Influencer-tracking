@@ -862,7 +862,81 @@ class Search extends Component {
               <div style={{marginTop: '2px'}}>
                 <p style={{fontSize: "1.4em", width: '60%', display: 'inline-block'}}>{String(overHundred(d.influencer_score)).substr(0,4)}&#37;</p>
                 <div style={{width:'40%', display: 'inline-block', verticalAlign: 'bottom', marginBottom: '16px'}}>
+                <Popup
+                    trigger={<button style={popButtonStyle}>Contact Influencer</button>}
+                    position="right center"
+                    closeOnDocumentClick
+                >
 
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                   {
+                    d.youtube.statistics.subscriberCount ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={"https://www.youtube.com/channel/" + d.youtube.id} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={youtube} style={iconStyleContact} /> </a>
+                      <p style={styleHandles}><a href={"https://www.youtube.com/channel/" + d.youtube.id} target="_blank">Youtube Channel</a></p>
+                      </div>
+                    ) : (  ""  )
+                  }
+                  </div>
+
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                  {
+                    d.instagram.followers_count ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.instagram.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={insta} style={iconStyleContact} /> </a>
+                      <p style={styleContact}><a href={d.instagram.url} target="_blank">Instagram Page</a></p>
+                      </div>
+                    ) : ("")
+                  }
+                  </div>
+
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                  {
+                    d.twitter.followers_count ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.twitter.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={twitter} style={iconStyleContact} /> </a>
+                      <p style={styleContact}><a href={d.twitter.url} target="_blank">Twitter Page</a></p>
+                      </div>
+                    ) : (  ""  )
+                  }
+                  </div>
+
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                  {
+                    d.google_plus_url ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.google_plus_url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={googlePlus} style={iconStyleContact} /> </a>
+                      <p style={styleContact}><a href={d.google_plus_url} target="_blank">Google Profile</a></p>
+                      </div>
+                    ) : ( "" )
+                  }
+                  </div>
+
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                  {
+                    d.facebook.url ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.facebook.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={face} style={iconStyleContact} /> </a>
+                      <p style={styleContact}><a href={d.facebook.url} target="_blank">Facebook Page</a></p>
+                      </div>
+                    ) : ( "" )
+                  }
+                  </div>
+
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                  {
+                    d.email ?  (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={"mailto:" + d.email} style={{display: 'inline-block', width: '27%'}} target="_top"><img src={email} style={iconStyleContact} /> </a>
+                      <p style={styleContact}><a href={"mailto:" + d.email} target="_blank">Draft Email</a></p>
+                      </div>
+                    ) : (
+                      ""
+                    )
+                  }
+                  </div>
+
+                </Popup>
                 <Popup
                     trigger={<button style={popButtonStyle}> <u>More Info</u></button>}
                     position="right center"
@@ -883,83 +957,7 @@ class Search extends Component {
                   }
                   </div>
                   <center>
-                  <div>
-                  <Popup
-                      trigger={<button style={backButtonStyle}>Contact Influencer</button>}
-                      position="right center"
-                      closeOnDocumentClick
-                  >
 
-                    <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
-                     {
-                      d.youtube.statistics.subscriberCount ? (
-                        <div style={{marginTop: '10px', verticalAlign: 'center'}}>
-                        <a href={"https://www.youtube.com/channel/" + d.youtube.id} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={youtube} style={iconStyleContact} /> </a>
-                        <p style={styleHandles}><a href={"https://www.youtube.com/channel/" + d.youtube.id} target="_blank">Youtube Channel</a></p>
-                        </div>
-                      ) : (  ""  )
-                    }
-                    </div>
-
-                    <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
-                    {
-                      d.instagram.followers_count ? (
-                        <div style={{marginTop: '10px', verticalAlign: 'center'}}>
-                        <a href={d.instagram.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={insta} style={iconStyleContact} /> </a>
-                        <p style={styleContact}><a href={d.instagram.url} target="_blank">Instagram Page</a></p>
-                        </div>
-                      ) : ("")
-                    }
-                    </div>
-
-                    <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
-                    {
-                      d.twitter.followers_count ? (
-                        <div style={{marginTop: '10px', verticalAlign: 'center'}}>
-                        <a href={d.twitter.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={twitter} style={iconStyleContact} /> </a>
-                        <p style={styleContact}><a href={d.twitter.url} target="_blank">Twitter Page</a></p>
-                        </div>
-                      ) : (  ""  )
-                    }
-                    </div>
-
-                    <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
-                    {
-                      d.google_plus_url ? (
-                        <div style={{marginTop: '10px', verticalAlign: 'center'}}>
-                        <a href={d.google_plus_url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={googlePlus} style={iconStyleContact} /> </a>
-                        <p style={styleContact}><a href={d.google_plus_url} target="_blank">Google Profile</a></p>
-                        </div>
-                      ) : ( "" )
-                    }
-                    </div>
-
-                    <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
-                    {
-                      d.facebook.url ? (
-                        <div style={{marginTop: '10px', verticalAlign: 'center'}}>
-                        <a href={d.facebook.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={face} style={iconStyleContact} /> </a>
-                        <p style={styleContact}><a href={d.facebook.url} target="_blank">Facebook Page</a></p>
-                        </div>
-                      ) : ( "" )
-                    }
-                    </div>
-
-                    <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
-                    {
-                      d.email ?  (
-                        <div style={{marginTop: '10px', verticalAlign: 'center'}}>
-                        <a href={"mailto:" + d.email} style={{display: 'inline-block', width: '27%'}} target="_top"><img src={email} style={iconStyleContact} /> </a>
-                        <p style={styleContact}><a href={"mailto:" + d.email} target="_blank">Draft Email</a></p>
-                        </div>
-                      ) : (
-                        ""
-                      )
-                    }
-                    </div>
-
-                  </Popup>
-                  </div>
                   </center>
 
                 </div>
