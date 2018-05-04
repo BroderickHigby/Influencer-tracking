@@ -238,7 +238,7 @@ const iconStyleCountry = {
 
 const leftStyle = {
   height: '150px',
-  overflow: 'hidden',
+  overflow: 'auto',
   padding: '0',
   display: 'inline-block'
 }
