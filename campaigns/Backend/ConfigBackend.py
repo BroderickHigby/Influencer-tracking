@@ -19,6 +19,7 @@ es_campaign_doc_type = 'campaigns'
 
 BITLY_API_USER = "o_7i5ou1badc"
 BITLY_API_KEY = "R_38d8be744a3d41c3b7ab970b60c90264"
+BITLY_ACCESS_TOKEN = 'd29c8df4425ae2a72d13f77f904cf132aac0b208'
 
 
 app_root_url = 'https://www.app.sapie.space'

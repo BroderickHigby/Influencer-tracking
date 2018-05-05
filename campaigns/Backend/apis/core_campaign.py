@@ -9,12 +9,19 @@ import uuid
 app = Flask(__name__)
 
 
-@app.route('/process_new_goals')
+@app.route('/process_new_goals', methods=['POST'])
 def api_process_new_goals():
+    input = request.get_json()
+    print("meow")
     campaign_id = str(uuid.uuid4())
+    print('meow2')
     optimal_influencers = CalculateOptimalInfluencers.get_optimal_influencers()
-    UrlGenerator.generate_and_add_url_for_each_influencers_in_list(optimal_influencers, request.args['client_id'], campaign_id)
-    DatabaseInterface.write_campaign_to_db(request.args, optimal_influencers, campaign_id)
+    print(request.get_json())
+    print('meow3')
+    UrlGenerator.generate_and_add_url_for_each_influencers_in_list(optimal_influencers, input['client_id'], campaign_id)
+    print('meow4')
+    DatabaseInterface.write_campaign_to_db(input, optimal_influencers, campaign_id)
+    print('hiss')
     return optimal_influencers
 
 
@@ -41,7 +48,8 @@ def process_conversion(client_id, influencer_id, campaign_id):
 
 @app.route('/get_clientid_results')
 def api_get_clientid_results():
-    return DatabaseInterface.get_campaign_results_for_client_id(request.args['client_id'])
+    input = request.get_json()
+    return DatabaseInterface.get_campaign_results_for_client_id(input['client_id'])
 
 
 

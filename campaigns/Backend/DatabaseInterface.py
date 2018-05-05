@@ -1,4 +1,5 @@
-import elasticsearch as es
+from elasticsearch import Elasticsearch
+es = Elasticsearch()
 from ConfigBackend import *
 import datetime
 
@@ -22,10 +23,12 @@ class DatabaseInterface:
 
     @staticmethod
     def write_campaign_to_db(goal, optimal_influencers, campaign_id):
-        campaign_doc  ={}
+        campaign_doc  = {}
         campaign_doc['goal'] = goal
         campaign_doc['influencers'] = optimal_influencers
         campaign_doc['conversions'] = []
+        #print(campaign_doc)
+        print(campaign_doc['influencers'][0]['twitter']['favourites_count'])
         res = es.index(
             index=es_campaign_index,
             doc_type=es_campaign_doc_type,
