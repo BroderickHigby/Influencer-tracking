@@ -1,21 +1,55 @@
 from selenium import webdriver
 import json
 import sys
-sys.path.insert(0, '/home/ec2-user/sapie/backend/')
-#sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend/')
+#sys.path.insert(0, '/home/ec2-user/sapie/backend/')
+sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend/')
+import influencer
 import uuid
 import requests
 
-driver = webdriver.Chrome('//Users/mark/Desktop/sapie/webcrawler/twittergod/chromedriver')  # Optional argument, if not specified will search path.
-driver2 = webdriver.Chrome('//Users/mark/Desktop/sapie/webcrawler/twittergod/chromedriver')
-search_terms = ['nba', 'mma']
+search_terms = ['nba',
+                'mma',
+                'marketing',
+                'seo',
+                'digital marketing',
+                'investors',
+                'investing',
+                'angel investor',
+                'venture capital',
+                'business development',
+                'ceo',
+                'founder',
+                'writer',
+                'author',
+                'book blogger',
+                'book agent',
+                'publisher',
+                'blogging',
+                'journalist',
+                'social media marketing',
+                'politics',
+                'ngo',
+                'activism',
+                'medicine',
+                'charity',
+                'startup',
+                'entrepreneurs',
+                'finance',
+                'crypto currency'
+            ]
 
 for search_term in search_terms:
+    driver = webdriver.Chrome('/Users/markkeane/Desktop/sapie/webcrawler/twittergod/chromedriver')  # Optional argument, if not specified will search path.
+    driver2 = webdriver.Chrome('/Users/markkeane/Desktop/sapie/webcrawler/twittergod/chromedriver')
     base_url = 'https://twitter.com/search?q=' + search_term + '&src=typd&lang=en'
+    print(search_term)
     print(base_url)
     driver.get(base_url)
+    print('cat')
     items = driver.find_elements_by_class_name("stream-item-header")
+    print('oink')
     for tweet in items:
+        print('hisssss')
         try:
             user_url = tweet.find_element_by_tag_name("a").get_attribute('href')
             #print(user_url)
@@ -74,11 +108,13 @@ for search_term in search_terms:
             item['google_plus_url'] = ''
             print(json.dumps(item, sort_keys=True, indent=4))
             print('*******')
-            r = requests.post('https://app.sapie.space/xapi/post_twitter_influencer', data = {'item': item, 'screen_name': screen_name})
-            #influencer.Influencer.create(item, screen_name)
+            #r = requests.post('https://app.sapie.space/xapi/post_twitter_influencer', data = {'item': item, 'screen_name': screen_name})
+            influencer.Influencer.create(item, screen_name)
         except Exception as e:
             print(e)
             print('----')
     print(len(items))
     driver.quit()
     driver2.quit()
+    del driver
+    del driver2
