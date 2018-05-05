@@ -212,7 +212,7 @@ const iconStyleAccounts = {
 }
 
 const iconStyleContact = {
-  height: '27px',
+  height: '30px',
   margin: '2px',
   padding: '2px',
   marginRight: '3px',
