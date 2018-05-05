@@ -861,10 +861,10 @@ class Search extends Component {
 
               <div style={{marginTop: '2px'}}>
                 <div style={{width: '60%', display: 'inline-block'}}>
-                  <p style={{fontSize: "1.4em", marginBottom: '-3px'}}>{String(overHundred(d.influencer_score)).substr(0,4)}&#37;</p>
+                  <p style={{fontSize: "1.4em", marginBottom: '-4px'}}>{String(overHundred(d.influencer_score)).substr(0,4)}&#37;</p>
                   <p style={{fontSize: ".7em"}}>influence</p>
                 </div>
-                <div style={{width:'40%', display: 'inline-block', verticalAlign: 'bottom', marginBottom: '13px'}}>
+                <div style={{width:'40%', display: 'inline-block', verticalAlign: 'bottom', marginBottom: '11px'}}>
                 <Popup
                     trigger={<button style={popButtonStyle}><u>Contact</u></button>}
                     position="right center"
