@@ -212,7 +212,7 @@ const iconStyleAccounts = {
 }
 
 const iconStyleContact = {
-  height: '20px',
+  height: '27px',
   margin: '2px',
   padding: '2px',
   marginRight: '3px',
@@ -860,7 +860,10 @@ class Search extends Component {
 
 
               <div style={{marginTop: '2px'}}>
-                <p style={{fontSize: "1.4em", width: '60%', display: 'inline-block'}}>{String(overHundred(d.influencer_score)).substr(0,4)}&#37;</p>
+                <div style={{width: '60%', display: 'inline-block'}}>
+                  <p style={{fontSize: "1.4em"}}>{String(overHundred(d.influencer_score)).substr(0,4)}&#37;</p>
+                  <p style={{fontSize: ".7em"}}>influence</p>
+                </div>
                 <div style={{width:'40%', display: 'inline-block', verticalAlign: 'bottom', marginBottom: '16px'}}>
                 <Popup
                     trigger={<button style={popButtonStyle}><u>Contact</u></button>}
