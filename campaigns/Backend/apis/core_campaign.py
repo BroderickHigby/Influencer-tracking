@@ -1,27 +1,27 @@
-from flask import request
-from '../ML/CalculateOptimalInfluencers' import *
-from '../UrlGenerator' import *
-from '../DatabaseInterface' import *
-from '../AutoContact' import *
-from '../Client' import *
+from flask import request, redirect, Flask
+import sys
+sys.path.append('..')
+from ML.CalculateOptimalInfluencers import *
+from UrlGenerator import *
+from DatabaseInterface import *
+import uuid
 
 app = Flask(__name__)
 
 
-@app.route('/create_campaign')
-def api_create_campaign():
-    calc_optimal_influencers = CalculateOptimalInfluencers()
-    url_generator = UrlGenerator()
-    optimal_influencers = calc_optimal_influencers.get_optimal_influencers()
-    url_generator.generate_and_add_url_for_influencers_in_list(optimal_influencers)
+@app.route('/process_new_goals')
+def api_process_new_goals():
+    campaign_id = str(uuid.uuid4())
+    optimal_influencers = CalculateOptimalInfluencers.get_optimal_influencers()
+    UrlGenerator.generate_and_add_url_for_each_influencers_in_list(optimal_influencers, request.args['client_id'], campaign_id)
+    DatabaseInterface.write_campaign_to_db(request.args, optimal_influencers, campaign_id)
+    return optimal_influencers
 
-    DatabaseInterface.write_campaign_to_db()
-    AutoContact.contact_influencers(optimal_influencers, request)
 
-    if 'name' in request.args:
-        return 'Hello ' + request.args['name']
-    else:
-        return 'Hello John Doe'
+    #if 'name' in request.args:
+    #    return 'Hello ' + request.args['name']
+    #else:
+    #    return 'Hello John Doe'
 
 
 @app.route('/create_client')
@@ -30,8 +30,19 @@ def api_create_client():
     DatabaseInterface.write_client_to_db(client)
 
 
-@app.route('/process_event/<campaign_id>')
-def show_post(post_title):
+@app.route('/process_conversion/<client_id>/<influencer_id>/<campaign_id>')
+def process_conversion(client_id, influencer_id, campaign_id):
+    DatabaseInterface.add_conversion_event(campaign_id, influencer_id)
+    target_url = DatabaseInterface.get_target_url(client_id, campaign_id)
+
+    return redirect(target_url, code=302)
+
+
+
+@app.route('/get_clientid_results')
+def api_get_clientid_results():
+    return DatabaseInterface.get_campaign_results_for_client_id(request.args['client_id'])
+
 
 
 if __name__ == '__main__':

@@ -1,10 +1,14 @@
-from '../ConfigBackend' import *
+import sys
+sys.path.append('..')
+from ConfigBackend import *
+from DatabaseInterface import *
+
 
 class CalculateOptimalInfluencers:
-
+    @staticmethod
     def get_optimal_influencers(self):
         if use_random_influencers_for_campaign == True:
-            return get_random_influencers(number_of_influencers_to_contact_per_campaign)
+            return DatabaseInterface.get_random_influencers(number_of_influencers_to_contact_per_campaign)
         #else:
 
     #def find_ideal_influencer_attributes(self, client_industries, budget):
@@ -12,4 +16,4 @@ class CalculateOptimalInfluencers:
 
     #def get_influencers_matching_ideal_attributes(self):
 
-    def get_random_influencers(self, count):
+
