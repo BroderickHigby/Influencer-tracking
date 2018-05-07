@@ -40,10 +40,10 @@ def run_query():
     lmtzr = WordNetLemmatizer()
     print("Running query")
     print(json_input['queryString'])
-    lem_split = ""
+    lem_split = ""  # type: str
     lemming = lmtzr.lemmatize(str(json_input['queryString']))
     for word in lemming.split():
-	lem_split = str(lem_split)
+        lem_split = str(lem_split)
         lem_split += lmtzr.lemmatize(word) + " "
 
     print(lem_split)

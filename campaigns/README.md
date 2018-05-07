@@ -1,0 +1,67 @@
+# CAMPAIGN MANAGEMENT PORTAL #
+
+The idea of the campaign management portal is to provide businesses and brands with a more interactive, nuanced, and direct way to
+advertise their products and brand to social media influencers. Instead of requiring clients to know and input what kind of
+influencers they want to search for, they can instead provide what they wish to accomplish with a campaign and let Sapie Space
+connect them with the best influencers and put together the most effective campaign.
+
+This portal will manifest itself in a page that lets users input a bunch of information about what they want to accomplish VS
+just showing them a generic search field.
+
+Basic Ideas for the Portal UI:
+
+Core campaign fields:
+* campaign_goal: brand_awareness || sell_products || drive_digital_traffic || drive_physical_traffic
+* brand/product_industries: skating || beauty || tennis || ........
+* target_url:
+* copy_to_use: text/images/clips/words they want used in the promotions.
+* target_social_media_platforms: youtube || twitch || instagram || snapchat ....
+* budget:
+
+Additional Campaign fields: 
+* Link Clicks
+* Number of ads they want to run
+
+
+Demographics:
+
+promotion_location: city/cities || state/states || whole country ||
+promotion_ages: any_range(s) || none
+* MPAA Rating 
+* Feel - A common description for the company - synonyms
+
+
+When the client hits Submit after filling out the above form:
+
+A series of influencers are displayed to them in a list with key metrics of each influencer. 
+Such as what social media they are active on, followers/influencer rating, cost of plug, engagement metrics, 
+as well as match scores for how well their audience matches the demographics specified by our client.
+
+The client can remove influencers or add influencers to this default list.
+
+Can do final tweaking to campaign before they start 
+- we then contact influencers on their behalf and provide a campaign management portal.
+
+Set up urls that link to client target url that use google analytics and cookies to track interests, demographics, social media, etc.
+
+
+
+
+## clients fill out the create campaign form. this gets written to the db as a campaign object ##
+
+On the backend we rate/match a ton of influencers first with a fake model, 
+then with a real model as we gather data from doing this. We reach out automatically to a large group of influencers 
+that our models say match the inputs they gave in the create campaign form.
+Once a few influencers respond and agree to run the plugs the campaign status goes active. 
+All of this is shown in the campaign management portal.
+
+Whenever a conversion on the campaign happens from the influencer plug (link click, or product purchased),
+this gets written to the campaign object variable called results, a datetime list that just shows how many conversions it has had and when they took place.
+Once the campaign ends (by budget or by time), we automatically send the client a full report of the campaign 
+(and make it available in the history section of the campaign management portal).
+
+We then retrain our models using this new campaign as an input and switch the status of the campaign to ended.
+
+^ that is the summary, i think it could all be done automatically, 
+even the reaching out to influencers tbh without too much work
+and this is what i was thinking for a campaign object: (basically the info we would need them to give us in the form):
