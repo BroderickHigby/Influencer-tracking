@@ -253,7 +253,6 @@ class FormContainer extends Component {
           type="submit"
           className="btn btn-primary float-right"
           value="Launch Campaign"/>
-          <br />
 
         <button
           className="btn btn-link float-left"
