@@ -22,13 +22,13 @@ const CheckboxOrRadioGroup = (props) => (
   </div>
 );
 
-CheckboxOrRadioGroup.propTypes = {
-  title: propTypes.string.isRequired,
-  type: propTypes.oneOf(['checkbox', 'radio']).isRequired,
-  setName: propTypes.string.isRequired,
-  options: propTypes.array.isRequired,
-  selectedOptions: propTypes.array,
-  controlFunc: propTypes.func.isRequired
+CheckboxOrRadioGroup.PropTypes = {
+  title: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
+  setName: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  selectedOptions: PropTypes.array,
+  controlFunc: PropTypes.func.isRequired
 };
 
 export default CheckboxOrRadioGroup;

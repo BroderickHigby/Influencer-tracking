@@ -15,14 +15,14 @@ const TextArea = (props) => (
   </div>
 );
 
-TextArea.propTypes = {
-  title: propTypes.string.isRequired,
-  rows: propTypes.number.isRequired,
-  name: propTypes.string.isRequired,
-  content: propTypes.string.isRequired,
-  resize: propTypes.bool,
-  placeholder: propTypes.string,
-  controlFunc: propTypes.func.isRequired
+TextArea.PropTypes = {
+  title: PropTypes.string.isRequired,
+  rows: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  resize: PropTypes.bool,
+  placeholder: PropTypes.string,
+  controlFunc: PropTypes.func.isRequired
 };
 
 export default TextArea;

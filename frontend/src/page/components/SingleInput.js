@@ -14,16 +14,16 @@ const SingleInput = (props) => (
   </div>
 );
 
-SingleInput.propTypes = {
-  inputType: propTypes.oneOf(['text', 'number']).isRequired,
-  title: propTypes.string.isRequired,
-  name: propTypes.string.isRequired,
-  controlFunc: propTypes.func.isRequired,
-  content: propTypes.oneOfType([
-    propTypes.string,
-    propTypes.number,
+SingleInput.PropTypes = {
+  inputType: PropTypes.oneOf(['text', 'number']).isRequired,
+  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  controlFunc: PropTypes.func.isRequired,
+  content: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
   ]).isRequired,
-  placeholder: propTypes.string,
+  placeholder: PropTypes.string,
 };
 
 export default SingleInput;
