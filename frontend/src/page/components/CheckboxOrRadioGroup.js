@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 const CheckboxOrRadioGroup = (props) => (
   <div style={{maxHeight: '300px', overflow: 'auto'}}>
     <label className="form-label">{props.title}</label>
-    <div className="checkbox-group" style={{maxHeight: '300px', overflow: 'auto', overflowY: 'scroll'}}>
+    <div className="checkbox-group" style={{maxHeight: '300px', overflow: 'auto'}}>
       {props.options.map(opt => {
         return (
-          <label key={opt} className="form-label capitalize">
+          <label key={opt} className="form-label capitalize" style={{fontSize: '.8em', fontWeight: '100'}}>
             <input
               className="form-checkbox"
               name={props.setName}

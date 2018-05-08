@@ -5,7 +5,7 @@
   "ownerAgeRangeSelection": "",
 
   "goalSelections": ["link clicks", "traffic"],
-  "selectedGoals": ["traffic"],
+  "selectedGoals": [""],
 
   "industrySelections": ["Accountants",
                           "Advertising/Public Relations",
@@ -189,13 +189,13 @@
                           "Waste Management",
                           "Wine, Beer & Liquor",
                           "Women's Issues "],
-  "selectedIndustry": ["Vegan"],
+  "selectedIndustry": [""],
 
   "feelOptions": ["Relaxed", "Upbeat", "Informative", "Adventerous", "Silly"],
-  "selectedFeel": ["Relaxed"],
+  "selectedFeel": [""],
 
   "MPAAOptions": ["G", "PG", "PG-13", "R", "NR"],
-  "mpaaSelection": ["G"],
+  "mpaaSelection": [""],
 
   "currentBudget": 0,
   "description": ""
