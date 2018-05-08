@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const TextArea = (props) => (
   <div className="form-group">
     <label className="form-label">{props.title}</label>
+    <br />
     <textarea
       className="form-input"
       style={{width: '90%'}}

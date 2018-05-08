@@ -163,7 +163,7 @@ class FormContainer extends Component {
   render() {
     return (
       <form className="container" onSubmit={this.handleFormSubmit}>
-        <h5>Launch Campaign</h5>
+      <br />
         <SingleInput
           inputType={'text'}
           title={'Location'}
@@ -171,12 +171,16 @@ class FormContainer extends Component {
           controlFunc={this.handleLocationChange}
           content={this.state.location}
           placeholder={'Enter a location you would like to target'} />
+          <br />
+
         <Select
           name={'ageRange'}
           placeholder={'Choose your age demographic'}
           controlFunc={this.handleAgeRangeSelect}
           options={this.state.ageOptions}
           selectedOption={this.state.ownerAgeRangeSelection} />
+          <br />
+
         <CheckboxOrRadioGroup
           title={'Which industries are you targetting?'}
           setName={'industry'}
@@ -184,6 +188,8 @@ class FormContainer extends Component {
           controlFunc={this.handleIndustrySelection}
           options={this.state.industrySelections}
           selectedOptions={this.state.selectedIndustry} />
+          <br />
+
         <CheckboxOrRadioGroup
           title={'What are your goals?'}
           setName={'goals'}
@@ -191,6 +197,8 @@ class FormContainer extends Component {
           controlFunc={this.handleGoalSelection}
           options={this.state.goalSelections}
           selectedOptions={this.state.selectedGoals} />
+          <br />
+
         <CheckboxOrRadioGroup
           title={'What MPAA Ratings are you targetting?'}
           setName={'MPAA'}
@@ -198,6 +206,8 @@ class FormContainer extends Component {
           type={'checkbox'}
           options={this.state.MPAAOptions}
           selectedOptions={this.state.mpaaSelection} />
+          <br />
+
         <CheckboxOrRadioGroup
           title={'What brand "feel" are you trying to advertise?'}
           setName={'feel'}
@@ -205,6 +215,8 @@ class FormContainer extends Component {
           type={'checkbox'}
           options={this.state.feelOptions}
           selectedOptions={this.state.selectedFeel} />
+          <br />
+
         <SingleInput
           inputType={'number'}
           title={'What is your budget?'}
@@ -212,6 +224,8 @@ class FormContainer extends Component {
           controlFunc={this.handleBudgetChange}
           content={this.state.currentBudget}
           placeholder={'Enter your budget'} />
+          <br />
+
         <TextArea
           title={'Other information'}
           rows={5}
@@ -220,10 +234,14 @@ class FormContainer extends Component {
           name={'currentPetInfo'}
           controlFunc={this.handleDescriptionChange}
           placeholder={'If you have anything else you would like to tell our team, let us know here.'} />
+          <br />
+
         <input
           type="submit"
           className="btn btn-primary float-right"
           value="Launch Campaign"/>
+          <br />
+
         <button
           className="btn btn-link float-left"
           onClick={this.handleClearForm}>Clear form</button>
