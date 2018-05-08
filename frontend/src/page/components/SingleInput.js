@@ -14,7 +14,7 @@ const SingleInput = (props) => (
   </div>
 );
 
-SingleInput.PropTypes = {
+SingleInput.propTypes = {
   inputType: PropTypes.oneOf(['text', 'number']).isRequired,
   title: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
