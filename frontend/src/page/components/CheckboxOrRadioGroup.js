@@ -6,7 +6,7 @@ class CheckboxOrRadioGroup extends React.Component {
   render() {
     return (
       <div>
-        <label className="form-label">{props.title}</label>
+        <label className="form-label">{this.props.title}</label>
         <div className="checkbox-group">
           {this.props.options.map(opt => {
               <label key={opt} className="form-label capitalize">
