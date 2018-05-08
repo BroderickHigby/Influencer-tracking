@@ -14,7 +14,6 @@ class Campaign extends Component {
         <div className="container">
             <div className="columns">
               <div className="col-md-9 centered">
-                <h3>Launch a Campaign!</h3>
                 <FormContainer />
               </div>
             </div>
