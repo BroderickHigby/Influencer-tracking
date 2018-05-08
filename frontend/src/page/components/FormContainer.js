@@ -38,7 +38,7 @@ class FormContainer extends Component {
   }
   componentDidMount() {
 
-    fetch('./campaign_options.json')
+    fetch('campaign_options.json')
       .then(res => res.json())
       .then(data => {
         this.setState({
