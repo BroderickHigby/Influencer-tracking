@@ -21,7 +21,8 @@ class FormContainer extends Component {
       currentBudget: 0,
       description: '',
       industrySelections: [],
-      selectedIndustry: []
+      selectedIndustry: [],
+      feelOptions: []
     };
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
