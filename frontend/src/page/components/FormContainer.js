@@ -37,27 +37,23 @@ class FormContainer extends Component {
     this.handleFeelSelection = this.handleFeelSelection.bind(this);
   }
   componentDidMount() {
+    var data = JSON.parse(campaign_options);
 
-    fetch('campaign_options.json')
-      .then(res => res.json())
-      .then(data => {
-        this.setState({
-          location: data.location,
-          goalSelections: data.goalSelections,
-          selectedGoals: data.selectedGoals,
-          ageOptions: data.ageOptions,
-          ownerAgeRangeSelection: data.ownerAgeRangeSelection,
-          MPAAOptions: data.MPAAOptions,
-          mpaaSelection: data.mpaaSelection,
-          currentBudget: data.currentBudget,
-          description: data.description,
-          industrySelections: data.industrySelections,
-          selectedIndustry: data.selectedIndustry,
-          feelOptions: data.feelOptions,
-          selectedFeel: data.selectedFeel
+    this.setState({
+      location: data.location,
+      goalSelections: data.goalSelections,
+      selectedGoals: data.selectedGoals,
+      ageOptions: data.ageOptions,
+      ownerAgeRangeSelection: data.ownerAgeRangeSelection,
+      MPAAOptions: data.MPAAOptions,
+      mpaaSelection: data.mpaaSelection,
+      currentBudget: data.currentBudget,
+      description: data.description,
+      industrySelections: data.industrySelections,
+      selectedIndustry: data.selectedIndustry,
+      feelOptions: data.feelOptions,
+      selectedFeel: data.selectedFeel
 
-        });
-      });
   }
 
   handleLocationChange(e) {
