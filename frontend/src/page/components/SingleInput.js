@@ -15,15 +15,15 @@ const SingleInput = (props) => (
 );
 
 SingleInput.propTypes = {
-  inputType: React.PropTypes.oneOf(['text', 'number']).isRequired,
-  title: React.PropTypes.string.isRequired,
-  name: React.PropTypes.string.isRequired,
-  controlFunc: React.PropTypes.func.isRequired,
-  content: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
+  inputType: propTypes.oneOf(['text', 'number']).isRequired,
+  title: propTypes.string.isRequired,
+  name: propTypes.string.isRequired,
+  controlFunc: propTypes.func.isRequired,
+  content: propTypes.oneOfType([
+    propTypes.string,
+    propTypes.number,
   ]).isRequired,
-  placeholder: React.PropTypes.string,
+  placeholder: propTypes.string,
 };
 
 export default SingleInput;

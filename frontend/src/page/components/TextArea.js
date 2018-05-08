@@ -16,13 +16,13 @@ const TextArea = (props) => (
 );
 
 TextArea.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  rows: React.PropTypes.number.isRequired,
-  name: React.PropTypes.string.isRequired,
-  content: React.PropTypes.string.isRequired,
-  resize: React.PropTypes.bool,
-  placeholder: React.PropTypes.string,
-  controlFunc: React.PropTypes.func.isRequired
+  title: propTypes.string.isRequired,
+  rows: propTypes.number.isRequired,
+  name: propTypes.string.isRequired,
+  content: propTypes.string.isRequired,
+  resize: propTypes.bool,
+  placeholder: propTypes.string,
+  controlFunc: propTypes.func.isRequired
 };
 
 export default TextArea;

@@ -22,11 +22,11 @@ const Select = (props) => (
 );
 
 Select.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  options: React.PropTypes.array.isRequired,
-  selectedOption: React.PropTypes.string,
-  controlFunc: React.PropTypes.func.isRequired,
-  placeholder: React.PropTypes.string
+  name: propTypes.string.isRequired,
+  options: propTypes.array.isRequired,
+  selectedOption: propTypes.string,
+  controlFunc: propTypes.func.isRequired,
+  placeholder: propTypes.string
 };
 
 export default Select;
