@@ -10,6 +10,7 @@ import data from './campaign_options.json'
 var lightColor = '#66b2b2';
 var darkColor = '#008080';
 var lightGray = '#E8E8E8';
+
 const ButtonStyle = {
   backgroundColor: lightColor,
   borderRadius: '20px',
@@ -250,6 +251,7 @@ class FormContainer extends Component {
 
         <input
           type="submit"
+          className="btn btn-primary float-right"
           style={ButtonStyle}
           value="Launch Campaign"/>
           <br />
