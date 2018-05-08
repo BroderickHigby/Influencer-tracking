@@ -18,7 +18,7 @@ class FormContainer extends Component {
       ageOptions: [],
       ownerAgeRangeSelection: '',
       MPAAOptions: [],
-      siblingSelection: [],
+      mpaaSelection: [],
       currentBudget: 0,
       description: '',
       industrySelections: [],
@@ -110,12 +110,12 @@ class FormContainer extends Component {
   handleMPAASelection(e) {
     const mpaaSelection = e.target.value;
     let mpaaSelectionArray;
-    if(this.state.selectedMPAA.indexOf(mpaaSelection) > -1) {
-      mpaaSelectionArray = this.state.selectedMPAA.filter(s => s !== mpaaSelection)
+    if(this.state.mpaaSelection.indexOf(mpaaSelection) > -1) {
+      mpaaSelectionArray = this.state.mpaaSelection.filter(s => s !== mpaaSelection)
     } else {
-      mpaaSelectionArray = [...this.state.selectedMPAA, mpaaSelection];
+      mpaaSelectionArray = [...this.state.mpaaSelection, mpaaSelection];
     }
-    this.setState({ selectedMPAA: mpaaSelectionArray });  }
+    this.setState({ mpaaSelection: mpaaSelectionArray });  }
 
   handleDescriptionChange(e) {
     this.setState({ description: e.target.value });
@@ -163,7 +163,7 @@ class FormContainer extends Component {
           placeholder={'Choose your age demographic'}
           controlFunc={this.handleAgeRangeSelect}
           options={this.state.ageOptions}
-          selectedOptions={this.state.ownerAgeRangeSelection} />
+          selectedOption={this.state.ownerAgeRangeSelection} />
         <CheckboxOrRadioGroup
           title={'Which industries are you targetting?'}
           setName={'industry'}
@@ -184,7 +184,7 @@ class FormContainer extends Component {
           controlFunc={this.handleMPAASelection}
           type={'checkbox'}
           options={this.state.MPAAOptions}
-          selectedOptions={this.state.selectedMPAA} />
+          selectedOptions={this.state.mpaaSelection} />
         <CheckboxOrRadioGroup
           title={'What brand "feel" are you trying to advertise?'}
           setName={'feel'}
