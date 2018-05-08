@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 
 const SingleInput = (props) => (
   <div className="form-group">
-    <label className="form-label">{props.title}</label>
+    <label className="form-label" style={{marginRight: '6px'}}>{props.title}</label>
     <input
       style={{
           width: '60%',
           padding: '6px 10px',
           margin: '8px 0',
-          boxSizing: 'borderBox',
       }}
       className="form-input"
       name={props.name}
