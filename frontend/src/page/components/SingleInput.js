@@ -9,6 +9,7 @@ const SingleInput = (props) => (
           width: '60%',
           padding: '6px 10px',
           margin: '8px 0',
+          fontSize: '1.1em'
       }}
       className="form-input"
       name={props.name}

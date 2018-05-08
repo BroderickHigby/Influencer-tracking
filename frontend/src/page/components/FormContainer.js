@@ -7,6 +7,19 @@ import './campaignStyles.css';
 import PropTypes from 'prop-types';
 import data from './campaign_options.json'
 
+var lightColor = '#66b2b2';
+var darkColor = '#008080';
+var lightGray = '#E8E8E8';
+
+const ButtonStyle = {
+  backgroundColor: lightColor,
+  borderRadius: '20px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em',
+  display: 'none'
+}
 
 class FormContainer extends Component {
   constructor(props) {
@@ -244,6 +257,7 @@ class FormContainer extends Component {
 
         <button
           className="btn btn-link float-left"
+          style={ButtonStyle}
           onClick={this.handleClearForm}>Clear form</button>
       </form>
     );
