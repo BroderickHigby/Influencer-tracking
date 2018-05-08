@@ -42,6 +42,7 @@ class FormContainer extends Component {
     //fetch('./campaign_options.json')
       //.then(res => res.json())
       //.then(data => {
+      console.log(data);
         this.setState({
           location: data.location,
           goalSelections: data.goalSelections,
@@ -56,7 +57,6 @@ class FormContainer extends Component {
           selectedIndustry: data.selectedIndustry,
           feelOptions: data.feelOptions,
           selectedFeel: data.selectedFeel
-
         });
       //});
   }
@@ -137,11 +137,18 @@ class FormContainer extends Component {
 
     const formPayload = {
       location: this.state.location,
+      goalSelections: this.state.goalSelections,
       selectedGoals: this.state.selectedGoals,
+      ageOptions: this.state.ageOptions,
       ownerAgeRangeSelection: this.state.ownerAgeRangeSelection,
-      siblingSelection: this.state.siblingSelection,
+      MPAAOptions: this.state.MPAAOptions,
+      mpaaSelection: this.state.mpaaSelection,
       currentBudget: this.state.currentBudget,
-      description: this.state.description
+      description: this.state.description,
+      industrySelections: this.state.industrySelections,
+      selectedIndustry: this.state.selectedIndustry,
+      feelOptions: this.state.feelOptions,
+      selectedFeel: this.state.selectedFeel
     };
 
     console.log('Send this in a POST request:', formPayload)
