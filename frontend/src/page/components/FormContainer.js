@@ -54,6 +54,7 @@ class FormContainer extends Component {
       feelOptions: data.feelOptions,
       selectedFeel: data.selectedFeel
 
+    });
   }
 
   handleLocationChange(e) {
