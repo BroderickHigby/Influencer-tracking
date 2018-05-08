@@ -42,7 +42,7 @@ class FormContainer extends Component {
     //fetch('./campaign_options.json')
       //.then(res => res.json())
       //.then(data => {
-      console.log(data);
+      console.log(data.MPAAOptions);
         this.setState({
           location: data.location,
           goalSelections: data.goalSelections,
@@ -124,12 +124,18 @@ class FormContainer extends Component {
   handleClearForm(e) {
     e.preventDefault();
     this.setState({
-      location: '',
-      selectedGoals: [],
-      ownerAgeRangeSelection: '',
-      siblingSelection: [],
-      currentBudget: 0,
-      description: ''
+        location: '',
+        goalSelections: [],
+        selectedGoals: [],
+        ageOptions: [],
+        ownerAgeRangeSelection: '',
+        MPAAOptions: [],
+        mpaaSelection: [],
+        currentBudget: 0,
+        description: '',
+        industrySelections: [],
+        selectedIndustry: [],
+        feelOptions: []
     });
   }
   handleFormSubmit(e) {
