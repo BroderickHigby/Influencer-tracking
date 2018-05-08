@@ -19,6 +19,7 @@ import Emailerror from "./page/confirmations/Emailerror";
 import TrialError from "./page/confirmations/TrialError";
 import SignupConfirmation from "./page/confirmations/SignupConfirmation";
 import Cancelconfirm from "./page/confirmations/Cancelconfirm";
+import Campaign from "./page/Campaign.js"
 
 export default ({ childProps }) =>
   <Switch>
@@ -33,6 +34,7 @@ export default ({ childProps }) =>
     <AuthenticatedRoute path="/app/trialerror" component={TrialError} props={childProps}/>
     <AuthenticatedRoute path="/app/signupconfirm" component={SignupConfirmation} props={childProps}/>
     <AuthenticatedRoute path="/app/cancelconfirm" component={Cancelconfirm} props={childProps}/>
+    <AuthenticatedRoute path="/app/campaign" component={Campaign} props={childProps}/>
 
 
     <UnauthenticatedRoute path="/app/login" component={Login} props={childProps}/>
