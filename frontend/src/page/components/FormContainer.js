@@ -137,18 +137,19 @@ class FormContainer extends Component {
   handleClearForm(e) {
     e.preventDefault();
     this.setState({
-        location: '',
-        goalSelections: [],
-        selectedGoals: [],
-        ageOptions: [],
-        ownerAgeRangeSelection: '',
-        MPAAOptions: [],
-        mpaaSelection: [],
-        currentBudget: 0,
-        description: '',
-        industrySelections: [],
-        selectedIndustry: [],
-        feelOptions: []
+      location: data.location,
+      goalSelections: data.goalSelections,
+      selectedGoals: data.selectedGoals,
+      ageOptions: data.ageOptions,
+      ownerAgeRangeSelection: data.ownerAgeRangeSelection,
+      MPAAOptions: data.MPAAOptions,
+      mpaaSelection: data.mpaaSelection,
+      currentBudget: data.currentBudget,
+      description: data.description,
+      industrySelections: data.industrySelections,
+      selectedIndustry: data.selectedIndustry,
+      feelOptions: data.feelOptions,
+      selectedFeel: data.selectedFeel
     });
   }
   handleFormSubmit(e) {
