@@ -5,6 +5,7 @@ import TextArea from './TextArea';
 import Select from './Select';
 import './campaignStyles.css';
 import PropTypes from 'prop-types';
+import data from './campaign_options.json'
 
 
 class FormContainer extends Component {
@@ -38,9 +39,9 @@ class FormContainer extends Component {
   }
   componentDidMount() {
     //Fix fetch!
-    fetch('./campaign_options.json')
-      .then(res => res.json())
-      .then(data => {
+    //fetch('./campaign_options.json')
+      //.then(res => res.json())
+      //.then(data => {
         this.setState({
           location: data.location,
           goalSelections: data.goalSelections,
@@ -57,7 +58,7 @@ class FormContainer extends Component {
           selectedFeel: data.selectedFeel
 
         });
-      });
+      //});
   }
 
   handleLocationChange(e) {
