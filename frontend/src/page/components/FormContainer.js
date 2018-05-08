@@ -178,7 +178,6 @@ class FormContainer extends Component {
           options={this.state.ageOptions}
           selectedOption={this.state.ownerAgeRangeSelection} />
         <CheckboxOrRadioGroup
-          style={{maxHeight: '100px', overflow: 'auto'}}
           title={'Which industries are you targetting?'}
           setName={'industry'}
           type={'checkbox'}
