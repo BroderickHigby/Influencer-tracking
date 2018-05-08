@@ -163,7 +163,7 @@ class FormContainer extends Component {
           placeholder={'Choose your age demographic'}
           controlFunc={this.handleAgeRangeSelect}
           options={this.state.ageOptions}
-          selectedOption={this.state.ownerAgeRangeSelection} />
+          selectedOptions={this.state.ownerAgeRangeSelection} />
         <CheckboxOrRadioGroup
           title={'Which industries are you targetting?'}
           setName={'industry'}
