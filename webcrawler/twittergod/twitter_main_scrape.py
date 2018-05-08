@@ -4,6 +4,9 @@ import sys
 #sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend/')
 import influencer
+
+sys.path.insert(0, '/Users/markkeane/Desktop/sapie/webcrawler')
+from nlp_description_parser import *
 import uuid
 import requests
 
@@ -49,7 +52,6 @@ for search_term in search_terms:
     items = driver.find_elements_by_class_name("stream-item-header")
     print('oink')
     for tweet in items:
-        print('hisssss')
         try:
             user_url = tweet.find_element_by_tag_name("a").get_attribute('href')
             #print(user_url)
@@ -67,6 +69,13 @@ for search_term in search_terms:
 
             screen_name = profile_header.find_element_by_tag_name('b').text
             #print(screen_name)
+            tweets_list = []
+            all_text = description
+            tweets = driver2.find_elements_by_class_name('js-tweet-text-container')
+            for tweet_made in tweets:
+                tweet_text = tweet_made.find_element_by_tag_name('p').text
+                tweets_list.append(tweet_text)
+                all_text += " " + tweet_text
 
             #print('----')
             item = {}
@@ -89,6 +98,7 @@ for search_term in search_terms:
             item['twitter']['id_str'] = ''
             item['twitter']['screen_name'] = screen_name
             item['twitter']['twitter_tweet_count'] = key_attributes[0].split(' ')[0].replace(',', '')
+            item['twitter']['tweets_made'] = tweets_list
 
             item['instagram'] = {}
             item['instagram']['url'] = ''
@@ -107,7 +117,7 @@ for search_term in search_terms:
 
             item['google_plus_url'] = ''
 
-            dp = description_parser.DescriptionParser(desc)
+            dp = DescriptionParser(all_text)
             entity_json = dp.comprehend_entities()
             sm = dp.parse_entities_for_sm(entity_json)
 
