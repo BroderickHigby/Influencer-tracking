@@ -4,9 +4,6 @@ import SingleInput from './SingleInput';
 import TextArea from './TextArea';
 import Select from './Select';
 import './campaignStyles.css';
-import { data } from './campaign_json';
-
-
 import PropTypes from 'prop-types';
 
 
@@ -40,23 +37,27 @@ class FormContainer extends Component {
     this.handleFeelSelection = this.handleFeelSelection.bind(this);
   }
   componentDidMount() {
+    //Fix fetch!
+    fetch('./campaign_options.json')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          location: data.location,
+          goalSelections: data.goalSelections,
+          selectedGoals: data.selectedGoals,
+          ageOptions: data.ageOptions,
+          ownerAgeRangeSelection: data.ownerAgeRangeSelection,
+          MPAAOptions: data.MPAAOptions,
+          mpaaSelection: data.mpaaSelection,
+          currentBudget: data.currentBudget,
+          description: data.description,
+          industrySelections: data.industrySelections,
+          selectedIndustry: data.selectedIndustry,
+          feelOptions: data.feelOptions,
+          selectedFeel: data.selectedFeel
 
-    this.setState({
-      location: data.location,
-      goalSelections: data.goalSelections,
-      selectedGoals: data.selectedGoals,
-      ageOptions: data.ageOptions,
-      ownerAgeRangeSelection: data.ownerAgeRangeSelection,
-      MPAAOptions: data.MPAAOptions,
-      mpaaSelection: data.mpaaSelection,
-      currentBudget: data.currentBudget,
-      description: data.description,
-      industrySelections: data.industrySelections,
-      selectedIndustry: data.selectedIndustry,
-      feelOptions: data.feelOptions,
-      selectedFeel: data.selectedFeel
-
-    });
+        });
+      });
   }
 
   handleLocationChange(e) {
