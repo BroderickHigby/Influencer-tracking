@@ -7,7 +7,12 @@ const TextArea = (props) => (
     <br />
     <textarea
       className="form-input"
-      style={{width: '90%'}}
+      style={{
+          width: '90%',
+          padding: '6px 10px',
+          margin: '8px 0',
+          fontSize: '1.1em '
+      }}
       name={props.name}
       rows={props.rows}
       value={props.content}
