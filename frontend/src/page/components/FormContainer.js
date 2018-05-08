@@ -11,7 +11,7 @@ var lightColor = '#66b2b2';
 var darkColor = '#008080';
 var lightGray = '#E8E8E8';
 
-const ButtonStyle = {
+const buttonStyle = {
   backgroundColor: lightColor,
   borderRadius: '20px',
   color: 'white',
@@ -256,8 +256,7 @@ class FormContainer extends Component {
           <br />
 
         <button
-          className="btn btn-link float-left"
-          style={ButtonStyle}
+          style={buttonStyle}
           onClick={this.handleClearForm}>Clear form</button>
       </form>
     );
