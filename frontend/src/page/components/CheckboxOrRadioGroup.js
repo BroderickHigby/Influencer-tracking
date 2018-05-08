@@ -22,7 +22,7 @@ const CheckboxOrRadioGroup = (props) => (
   </div>
 );
 
-CheckboxOrRadioGroup.PropTypes = {
+CheckboxOrRadioGroup.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['checkbox', 'radio']).isRequired,
   setName: PropTypes.string.isRequired,
