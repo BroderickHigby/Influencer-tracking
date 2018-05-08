@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 const Select = (props) => (
   <div className="form-group">
@@ -27,4 +29,4 @@ Select.propTypes = {
   placeholder: React.PropTypes.string
 };
 
-export default Select;  
+export default Select;

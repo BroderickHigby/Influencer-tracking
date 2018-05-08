@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TextArea = (props) => (
   <div className="form-group">
@@ -24,4 +25,4 @@ TextArea.propTypes = {
   controlFunc: React.PropTypes.func.isRequired
 };
 
-export default TextArea;  
+export default TextArea;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const SingleInput = (props) => (
   <div className="form-group">
@@ -25,4 +26,4 @@ SingleInput.propTypes = {
   placeholder: React.PropTypes.string,
 };
 
-export default SingleInput;  
+export default SingleInput;

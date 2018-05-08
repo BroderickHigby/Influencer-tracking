@@ -4,6 +4,8 @@ import SingleInput from './SingleInput';
 import TextArea from './TextArea';
 import Select from './Select';
 import './campaignStyles.css';
+import PropTypes from 'prop-types';
+
 
 class FormContainer extends Component {
   constructor(props) {

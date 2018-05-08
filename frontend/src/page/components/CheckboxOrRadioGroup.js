@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const CheckboxOrRadioGroup = (props) => (
   <div>
@@ -30,4 +31,4 @@ CheckboxOrRadioGroup.propTypes = {
   controlFunc: React.PropTypes.func.isRequired
 };
 
-export default CheckboxOrRadioGroup;  
+export default CheckboxOrRadioGroup;
