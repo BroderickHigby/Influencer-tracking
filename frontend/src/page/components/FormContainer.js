@@ -4,6 +4,9 @@ import SingleInput from './SingleInput';
 import TextArea from './TextArea';
 import Select from './Select';
 import './campaignStyles.css';
+import { data } from './campaign_json';
+
+
 import PropTypes from 'prop-types';
 
 
@@ -37,7 +40,6 @@ class FormContainer extends Component {
     this.handleFeelSelection = this.handleFeelSelection.bind(this);
   }
   componentDidMount() {
-    var data = JSON.parse(campaign_options);
 
     this.setState({
       location: data.location,
