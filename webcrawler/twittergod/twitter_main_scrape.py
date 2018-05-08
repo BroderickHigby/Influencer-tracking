@@ -106,6 +106,26 @@ for search_term in search_terms:
             item['youtube']['statistics'] = {}
 
             item['google_plus_url'] = ''
+
+            dp = description_parser.DescriptionParser(desc)
+            entity_json = dp.comprehend_entities()
+            sm = dp.parse_entities_for_sm(entity_json)
+
+            if 'email' in sm.keys():
+                item['email'] = sm['email']
+            if 'ig' in sm.keys():
+                item['instagram']['url'] = sm['ig']
+            if 'fb' in sm.keys():
+                item['facebook']['url'] = sm['fb']
+            item['associated_websites'] = sm['associated_websites']
+            item['locations'] = sm['locations']
+            item['branded_products'] = sm['branded_products']
+            item['events'] = sm['events']
+            item['organizations'] = sm['organizations']
+            item['ig_growth'] = []
+            item['yt_growth'] = []
+
+
             print(json.dumps(item, sort_keys=True, indent=4))
             print('*******')
             #r = requests.post('https://app.sapie.space/xapi/post_twitter_influencer', data = {'item': item, 'screen_name': screen_name})

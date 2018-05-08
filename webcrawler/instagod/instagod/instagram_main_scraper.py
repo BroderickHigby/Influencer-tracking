@@ -4,6 +4,10 @@ import sys
 #sys.path.insert(0, '/home/ec2-user/sapie/backend/')
 sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend/')
 import influencer
+sys.path.insert(0, '/Users/markkeane/Desktop/sapie/webcrawler')
+from nlp_description_parser import *
+import re
+from sys import getsizeof
 import uuid
 import requests
 
@@ -80,9 +84,19 @@ for search_term in search_terms:
                 #print(bio_text)
                 #print(c_mets)
                 #print('----')
-
-
-
+                all_text = bio_text
+                photo_caption_objects = driver2.find_elements_by_class_name('_4rbun')
+                photo_captions = []
+                for ii, photo_caption_object in enumerate(photo_caption_objects):
+                    caption_text = photo_caption_object.find_element_by_tag_name('img').get_attribute('alt')
+                    all_text += " " + caption_text
+                    photo_captions.append(caption_text)
+                #all_text = re.sub(r'[^\x00-\x7F]+', ' ', all_text)
+                #all_text = all_text.encode('ascii')
+                if sys.getsizeof(all_text) > 20000:
+                    all_text = all_text[:len(all_text) // 2]
+                print(sys.getsizeof(all_text))
+                print("KHSFKSDFH")
                 item = {}
                 item['platform_base'] = "instagram"
                 item['industry'] = search_term
@@ -109,6 +123,8 @@ for search_term in search_terms:
                 item['instagram']['posts_count'] = c_mets[0].split(' ')[0]
                 item['instagram']['followers_count'] = c_mets[1].split(' ')[0]
                 item['instagram']['following_count'] = c_mets[2].split(' ')[0]
+                item['instagram']['bio'] = bio_text
+                item['instagram']['photo_captions'] = photo_captions
 
                 item['youtube'] = {}
                 item['youtube']['kind'] = ''
@@ -120,6 +136,27 @@ for search_term in search_terms:
                 item['youtube']['statistics'] = {}
 
                 item['google_plus_url'] = ''
+
+
+                dp = DescriptionParser(all_text)
+                entity_json = dp.comprehend_entities()
+                sm = dp.parse_entities_for_sm(entity_json)
+
+                if 'email' in sm.keys():
+                    item['email'] = sm['email']
+                if 'fb' in sm.keys():
+                    item['facebook']['url'] = sm['fb']
+                if 'twitter' in sm.keys():
+                    item['twitter']['url'] = sm['twitter']
+                item['associated_websites'] = sm['associated_websites']
+                item['locations'] = sm['locations']
+                item['branded_products'] = sm['branded_products']
+                item['events'] = sm['events']
+                item['organizations'] = sm['organizations']
+                item['ig_growth'] = []
+                item['yt_growth'] = []
+
+                #print(json.dumps(entity_json, sort_keys=True, indent=4))
                 print(json.dumps(item, sort_keys=True, indent=4))
                 print('*******')
                 #r = requests.post('https://app.sapie.space/xapi/post_twitter_influencer', data = {'item': item, 'screen_name': screen_name})
