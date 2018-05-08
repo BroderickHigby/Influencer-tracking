@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class CheckboxOrRadioGroup extends {
+class CheckboxOrRadioGroup extends React.Component {
 
   render() {
     return (
