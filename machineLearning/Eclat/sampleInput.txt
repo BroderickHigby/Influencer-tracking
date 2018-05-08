@@ -1,5 +1,0 @@
-16 chealth d1x10000000 e5x1000 f1x10000000000 g0 h0 i1 j1 k0 l0 m0 n9x1000 o1x100000 p q r
-16 chealth d0 e1x100 f3x10000000 g0 h0 i0 j0 k0 l0 m0 n o p q r
-16 chealth d2x100000 e8x10000 f1x100000000 g0 h0 i1 j1 k1 l0 m0 n5x10 o9x100000 p q r
-16 chealth d8x1000000 e9x100 f1x1000000000 g0 h1 i1 j0 k0 l0 m0 n o p3,959 q600.4k r0x10
-16 chealth d2x1000 e8x100 f4x100000 g0 h0 i0 j0 k0 l0 m0 n o p q r
