@@ -77,6 +77,10 @@ for search_term in search_terms:
                 tweets_list.append(tweet_text)
                 all_text += " " + tweet_text
 
+            #profile_pic_url = driver2.find_element_by_class_name("ProfileAvatar-image ").find_element_by_tag_name('img').get_attribute('src')
+            profile_pic_avator = driver2.find_element_by_class_name("ProfileAvatar")
+            profile_pic_url = profile_pic_avator.find_element_by_tag_name('img').get_attribute('src')
+
             #print('----')
             item = {}
             item['platform_base'] = "twitter"
@@ -99,6 +103,7 @@ for search_term in search_terms:
             item['twitter']['screen_name'] = screen_name
             item['twitter']['twitter_tweet_count'] = key_attributes[0].split(' ')[0].replace(',', '')
             item['twitter']['tweets_made'] = tweets_list
+            item['twitter']['profile_pic_url'] = profile_pic_url
 
             item['instagram'] = {}
             item['instagram']['url'] = ''
