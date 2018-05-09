@@ -139,7 +139,8 @@ for search_term in search_terms:
             print(json.dumps(item, sort_keys=True, indent=4))
             print('*******')
             #r = requests.post('https://app.sapie.space/xapi/post_twitter_influencer', data = {'item': item, 'screen_name': screen_name})
-            influencer.Influencer.create(item, screen_name)
+            #influencer.Influencer.create(item, screen_name)
+            r = requests.post('http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:5441/post_influencer', json={"item": item, "screen_name": screen_name})
         except Exception as e:
             print(e)
             print('----')
