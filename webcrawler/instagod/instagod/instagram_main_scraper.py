@@ -97,6 +97,10 @@ for search_term in search_terms:
                     all_text = all_text[:len(all_text) // 2]
                 print(sys.getsizeof(all_text))
                 print("KHSFKSDFH")
+
+                profile_pic_url = driver2.find_element_by_class_name('_rewi8').get_attribute('src')
+                print(profile_pic_url)
+
                 item = {}
                 item['platform_base'] = "instagram"
                 item['industry'] = search_term
@@ -125,6 +129,7 @@ for search_term in search_terms:
                 item['instagram']['following_count'] = c_mets[2].split(' ')[0]
                 item['instagram']['bio'] = bio_text
                 item['instagram']['photo_captions'] = photo_captions
+                item['instagram']['profile_pic_url'] = profile_pic_url
 
                 item['youtube'] = {}
                 item['youtube']['kind'] = ''
