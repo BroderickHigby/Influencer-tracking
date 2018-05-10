@@ -197,7 +197,7 @@ class Influencer:
                         break
                 if is_in == False:
                     results.append(doc['_source'])
-
+            
             for doc in res4['hits']['hits']:
                 is_in = False
                 for already_added in results:
@@ -206,7 +206,9 @@ class Influencer:
                         break
                 if is_in == False:
                     results.append(doc['_source'])
-
+            for gg in results:
+                if 'influencer_score' not in gg:
+                    gg['influencer_score'] = 95.0
             newlist = sorted(results, key=lambda k: k['influencer_score'], reverse=True)
             return newlist
 
