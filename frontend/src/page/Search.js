@@ -1182,7 +1182,9 @@ class Search extends Component {
                   }
                   {
                     (d.youtube.brandingSettings.channel) ? (
-                      <p style={accountsStyle}>Keywords: {addCommas(truncation(d.youtube.brandingSettings.channel.keywords,65))} </p>
+                      (d.youtube.brandingSettings.channel.keywords) (
+                        <p style={accountsStyle}>Keywords: {addCommas(truncation(d.youtube.brandingSettings.channel.keywords,65))} </p>
+                      ) : ( "" )
                     ) : ( "" )
                   }
                   </div>
