@@ -311,6 +311,8 @@ class Influencer:
             for gg in results:
                 if 'influencer_score' not in gg:
                     gg['influencer_score'] = 95.0
+                if gg['platform_base'] == 'instagram':
+                    gg['instagram']['screen_name'] = gg['instagram']['url'].split('/')[len(gg['instagram']['url'].split('/')) - 1]
             newlist = sorted(results, key=lambda k: k['influencer_score'], reverse=True)
             return newlist
 
