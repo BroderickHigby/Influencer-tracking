@@ -26,9 +26,17 @@ class DatabaseInterface:
         campaign_doc  = {}
         campaign_doc['goal'] = goal
         campaign_doc['influencers'] = optimal_influencers
+        print(type(campaign_doc['influencers']))
+        print('fuck u')
         campaign_doc['conversions'] = []
         #print(campaign_doc)
-        print(campaign_doc['influencers'][0]['twitter']['favourites_count'])
+        #for influencer in campaign_doc['influencers']:
+        #    print(influencer)
+        #    print('DOGGGGG')
+        #    if influencer['twitter']['favourites_count'] == '':
+        #        influencer['twitter']['favourites_count'] = 0
+        #    else:
+        #        influencer['twitter']['favourites_count'] = int(influencer['twitter']['favourites_count'] )
         res = es.index(
             index=es_campaign_index,
             doc_type=es_campaign_doc_type,

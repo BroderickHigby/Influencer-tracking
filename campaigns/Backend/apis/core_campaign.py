@@ -18,7 +18,7 @@ def api_process_new_goals():
     optimal_influencers = CalculateOptimalInfluencers.get_optimal_influencers()
     print(request.get_json())
     print('meow3')
-    UrlGenerator.generate_and_add_url_for_each_influencers_in_list(optimal_influencers, input['client_id'], campaign_id)
+    UrlGenerator.generate_and_8add_url_for_each_influencers_in_list(optimal_influencers, input['client_id'], campaign_id)
     print('meow4')
     DatabaseInterface.write_campaign_to_db(input, optimal_influencers, campaign_id)
     print('hiss')

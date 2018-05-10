@@ -2,16 +2,18 @@ from selenium import webdriver
 import json
 import sys
 #sys.path.insert(0, '/home/ec2-user/sapie/backend/')
-sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend/')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/')
 import influencer
-sys.path.insert(0, '/Users/markkeane/Desktop/sapie/webcrawler')
+sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler')
 from nlp_description_parser import *
 import re
 from sys import getsizeof
 import uuid
 import requests
 
-search_terms = ['Motorcycles'
+search_terms = [
+                'ucsd',
+                'Motorcycles'
                 'Cars',
                 'Trucks',
                 'Skating',
@@ -55,8 +57,8 @@ search_terms = ['Motorcycles'
             ]
 
 for search_term in search_terms:
-    driver = webdriver.Chrome('/Users/markkeane/Desktop/sapie/webcrawler/twittergod/chromedriver')  # Optional argument, if not specified will search path.
-    driver2 = webdriver.Chrome('/Users/markkeane/Desktop/sapie/webcrawler/twittergod/chromedriver')
+    driver = webdriver.Chrome('/Users/mark/Desktop/sapie/webcrawler/twittergod/chromedriver')  # Optional argument, if not specified will search path.
+    driver2 = webdriver.Chrome('/Users/mark/Desktop/sapie/webcrawler/twittergod/chromedriver')
     base_url = 'https://www.instagram.com/explore/tags/' + search_term +'/'
     print(search_term)
     print(base_url)

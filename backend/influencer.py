@@ -108,6 +108,33 @@ class Influencer:
                         }
                     }
                 }
+
+                actual_query5 = {
+                    "size": 200,
+                    "query": {
+                        "match": {
+                            "instagram.bio": query,
+                        }
+                    }
+                }
+
+                actual_query6 = {
+                    "size": 200,
+                    "query": {
+                        "match": {
+                            "instagram.photo_captions": query,
+                        }
+                    }
+                }
+
+                actual_query7 = {
+                    "size": 200,
+                    "query": {
+                        "match": {
+                            "twitter.tweets_made": query,
+                        }
+                    }
+                }
             else:
                 actual_query = {
                     "size" : 200,
@@ -141,6 +168,33 @@ class Influencer:
                         }
                     }
                 }
+
+                actual_query5 = {
+                    "size": 200,
+                    "query": {
+                        "match": {
+                            "instagram.bio": query,
+                        }
+                    }
+                }
+
+                actual_query6 = {
+                    "size": 200,
+                    "query": {
+                        "match": {
+                            "instagram.photo_captions": query,
+                        }
+                    }
+                }
+
+                actual_query7 = {
+                    "size": 200,
+                    "query": {
+                        "match": {
+                            "twitter.tweets_made": query,
+                        }
+                    }
+                }
         elif query is None:
             actual_query = MATCH_ALL
         else:
@@ -170,6 +224,24 @@ class Influencer:
                 index=cls.index,
                 doc_type=cls.doc_type,
                 body=dict(actual_query4),
+            )
+
+            res5 = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query5),
+            )
+
+            res6 = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query6),
+            )
+
+            res7 = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query7),
             )
         except NotFoundError:
             results = []
@@ -206,6 +278,36 @@ class Influencer:
                         break
                 if is_in == False:
                     results.append(doc['_source'])
+
+
+            for doc in res5['hits']['hits']:
+                is_in = False
+                for already_added in results:
+                    if already_added['id'] == doc['_source']['id']:
+                        is_in = True
+                        break
+                if is_in == False:
+                    results.append(doc['_source'])
+
+            for doc in res6['hits']['hits']:
+                is_in = False
+                for already_added in results:
+                    if already_added['id'] == doc['_source']['id']:
+                        is_in = True
+                        break
+                if is_in == False:
+                    results.append(doc['_source'])
+
+            for doc in res7['hits']['hits']:
+                is_in = False
+                for already_added in results:
+                    if already_added['id'] == doc['_source']['id']:
+                        is_in = True
+                        break
+                if is_in == False:
+                    results.append(doc['_source'])
+
+
             for gg in results:
                 if 'influencer_score' not in gg:
                     gg['influencer_score'] = 95.0
