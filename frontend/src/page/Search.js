@@ -521,7 +521,7 @@ const getFollowers = (map) => {
      else
         IGposts = 0;
 
-     if (map[key].youtube.statistics !== "")
+     if (map[key].youtube.statistics.subscriberCount)
         followersYT = getNumber(map[key].youtube.statistics.subscriberCount);
      else
         followersYT = 0;
