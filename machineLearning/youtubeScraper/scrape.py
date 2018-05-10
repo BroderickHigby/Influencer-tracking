@@ -16,7 +16,7 @@ import httplib
 channel = sys.argv[1]
 
 
-vidNumber = 10;
+vidNumber = 11;
 urlList = [];
 #Scraped Data
 viewCount = 0;
@@ -36,7 +36,7 @@ print("https://www.youtube.com/channel/" + channel + "/videos")
 results = driver.find_elements_by_xpath("//a[@id='thumbnail']")
 
 #iterate through all the elements
-counter = 0;
+counter = 1;
 while counter < vidNumber:
     url = results[counter].get_attribute('href');
     urlList.append(url);
@@ -45,10 +45,12 @@ while counter < vidNumber:
 counter = 0;
 while counter <len(urlList):
     driver.get(urlList[counter])
-    time.sleep(random.randint(10000,12000)/1000)
+    time.sleep(random.randint(500,1000)/1000)
     #print "-------------------------------"
     print "Video: " + str(counter+1)
 
+    while len(driver.find_elements_by_class_name("view-count")) == 0:
+        time.sleep(.01)
     if counter == 0:
         result = driver.find_elements_by_class_name("date")
         date = str(result[0].text)
@@ -67,22 +69,30 @@ while counter <len(urlList):
     #VIEW COUNT
     result = driver.find_elements_by_class_name("view-count")
     viewCount += int(re.sub('[^0-9]','', str(result[0].text)))
-    print "Views: " + str(viewCount);
+    print str(result[0].text);
 
     #Comments
+    while len(driver.find_elements_by_class_name("count-text")) == 0:
+        time.sleep(.1)
     result = driver.find_elements_by_class_name("count-text")
     comments += int(re.sub('[^0-9]','', str(result[0].text)))
-    print "Comments: " + str(comments);
+    print str(result[0].text);
 
     #Thumbs Up
     result = driver.find_elements_by_class_name("ytd-toggle-button-renderer")
-    upThumbs += int(re.sub('[^0-9]','', str(result[3].get_attribute("aria-label"))))
-    print "Thumbs up: " + str(upThumbs);    
+    try:
+        upThumbs += int(re.sub('[^0-9]','', str(result[3].get_attribute("aria-label"))))
+    except:
+        pass
+    print str(result[3].get_attribute("aria-label"));    
 
     #Thumbs Up
     result = driver.find_elements_by_class_name("ytd-toggle-button-renderer")
-    downThumbs += int(re.sub('[^0-9]','', str(result[7].get_attribute("aria-label"))))
-    print "Thumbs Down: " + str(downThumbs);
+    try:
+        downThumbs += int(re.sub('[^0-9]','', str(result[7].get_attribute("aria-label"))))
+    except:
+        pass
+    print str(result[7].get_attribute("aria-label"));
     print "-------------------------------"
 
     counter+=1;
@@ -90,20 +100,21 @@ while counter <len(urlList):
 
 youtubeTime = (date1 - date2)/60/60/24
 avgViews = float(viewCount)/10
-#print "View: " +str(viewCount)
-#print "Average Views: " + str(avgViews)
 youtubeEngagement = ((comments + upThumbs+downThumbs)/10 * avgViews)
-print youtubeEngagement
-print upThumbs/(upThumbs + downThumbs)
-print youtubeTime
 youtubeInfluence = (youtubeEngagement*(upThumbs/(upThumbs + downThumbs)))/youtubeTime
-#youtubeInfluence = (youtubeInfluence * 10000000000 / 50000000000)
-'''print "Time Elapsed: " + str(youtubeTime)
-print "Average Views: " + str(avgViews)
-print "youtubeEngagement: " + str(youtubeEngagement)
+
+youtubeInfluence = (youtubeInfluence * 10000000000 / 50000000000)
+
+print "USER DATA:"
+print "Total Views: " +str(viewCount)
+print "Comments: " + str(comments)
 print "Thumbs Up: " + str(upThumbs)
 print "Thumbs Down: " + str(downThumbs)
-print "Comments: " + str(comments)'''
+print "Time Elapsed: " + str(youtubeTime)
+print "Percent Engagement: " + str(upThumbs/(upThumbs + downThumbs))
+print "Days Passed: " + str(youtubeTime) +'\n'
+
+
 
 print "Influence Score is :" + str(youtubeInfluence);
 
