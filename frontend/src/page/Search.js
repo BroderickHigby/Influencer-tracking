@@ -521,7 +521,7 @@ const getFollowers = (map) => {
      else
         IGposts = 0;
 
-     if (map[key].youtube.statistics.subscriberCount !== "")
+     if (map[key].youtube.statistics !== "")
         followersYT = getNumber(map[key].youtube.statistics.subscriberCount);
      else
         followersYT = 0;
@@ -771,8 +771,6 @@ class Search extends Component {
           <div key={idx} style={styleBlock}>
 
           <div>
-          {d.keywords}
-
 
           <div style={rightStyle}>
           <div style={topRightStyle}>
@@ -782,7 +780,11 @@ class Search extends Component {
             (d.platform_base === "youtube") ? (
               <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={imgStyle}/>
             ) : (
-              ""
+              (d.platform_base == "twitter") ? (
+                <img src={d.twitter.profile_pic_url} alt="profile pic" style={imgStyle}/>
+              ) : (
+                <img src={d.instagram.profile_pic_url} alt="profile pic" style={imgStyle}/>
+              )
             )
           }
           </div>
@@ -794,7 +796,11 @@ class Search extends Component {
                   (d.platform_base === "youtube") ? (
                     truncation(d.youtube.snippet.title, 15)
                   ) : (
-                    ""
+                    (d.platform_base === "twitter") ? (
+                      truncation(d.twitter.screen_name, 15)
+                    ) : (
+                      truncation(d.instagram.url, 15)
+                    )
                   )
                 }
               </div>
@@ -955,7 +961,11 @@ class Search extends Component {
                     (d.platform_base === "youtube") ? (
                       <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
                     ) : (
-                      ""
+                      (d.platform_base == "twitter") ? (
+                        <img src={d.twitter.profile_pic_url} alt="profile pic" style={styleImage}/>
+                      ) : (
+                        <img src={d.instagram.profile_pic_url} alt="profile pic" style={styleImage}/>
+                      )
                     )
                   }
                   </div>
@@ -969,7 +979,11 @@ class Search extends Component {
                     (d.platform_base === "youtube") ? (
                       <p style={styleTitlePopup}> <b>{truncation(d.youtube.snippet.title, 30)} </b> <br />  </p>
                     ) : (
-                      ""
+                      (d.platform_base === "twitter") ? (
+                        <p style={styleTitlePopup}> <b>{truncation(d.twitter.screen_name, 30)} </b> <br />  </p>
+                      ) : (
+                        <p style={styleTitlePopup}> <b>{truncation(d.instagram.url, 30)} </b> <br />  </p>
+                      )
                     )
                   }
                   <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.35)", borderRadius: '1px'}}>
@@ -979,7 +993,11 @@ class Search extends Component {
                     (d.platform_base === "youtube") ? (
                       <p style={descriptionStyle}> {d.youtube.brandingSettings.channel.description} </p>
                     ) : (
-                      ""
+                      (d.platform_base === "twitter") ? (
+                        <p style={descriptionStyle}> {d.twitter.description} </p>
+                      ) : (
+                        <p style={descriptionStyle}> {d.instagram.bio} </p>
+                      )
                     )
                   }
                   </div>

@@ -21,7 +21,7 @@ const ButtonStyle = {
   display: 'none'
 }
 
-class FormContainer extends Component {
+class CampaignForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -263,4 +263,4 @@ class FormContainer extends Component {
   }
 }
 
-export default FormContainer;
+export default CampaignForm;
