@@ -187,13 +187,12 @@ class Subscribe extends Component {
                         (getCurrentUser().username === "bob") ? (
                           <div>
                           <h2><b>$450.00</b><br></br> per month</h2>
-                          <h4>The Monthly Plan</h4>
+                          <h4>The Yearly Plan</h4>
                           </div>
 
                         ) : (
                           <div>
                           <h2><b>$99.00</b><br></br> per year</h2>
-                          <h4>The Yearly Plan</h4>
                           </div>
                         )
                       }
@@ -214,9 +213,11 @@ class Subscribe extends Component {
                 </TabPanel>
                 <TabPanel>
                 <div id='monthly' style={{display : 'inline-block', width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
+                <h3>Currently not supported</h3>
+                {/*
                 <h3>Enter an Access Code</h3>
                 <br/>
-                {/*
+
 
                 <form>
 
