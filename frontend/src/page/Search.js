@@ -526,12 +526,12 @@ const getFollowers = (map) => {
      else
         followersYT = 0;
 
-     if (map[key].youtube.statistics.viewCount !== "")
+     if (map[key].youtube.statistics.viewCount)
         YTvid = getNumber(map[key].youtube.statistics.viewCount);
      else
         YTvid = 0;
 
-     if (map[key].youtube.statistics.videoCount !== "")
+     if (map[key].youtube.statistics.videoCount)
         YTview = getNumber(map[key].youtube.statistics.videoCount);
      else
         YTview = 0;
