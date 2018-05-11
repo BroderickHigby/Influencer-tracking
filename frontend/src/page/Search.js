@@ -38,6 +38,7 @@ import ytbutton from '../icons/youtubebutton.svg';
 import igcam from '../icons/instagramcamera.svg';
 import twbird from '../icons/twitterbird.svg';
 
+import { Redirect } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import LoadingIcon from '../icons/loading.gif';
 import uparrow from '../icons/uparrow.svg';
@@ -646,8 +647,8 @@ class Search extends Component {
       else if (this.state.selectedPlatforms[i] === "Instagram") passin = "y";
     }
     var adder = passyt + passtw+ passin
-    var addy = "https://app.sapie.space/app/search?query=" + this.state.search + "=" + adder;
-    window.location = addy;
+    const url = `/app/search?query=${this.state.searchValue}=${adder}`;
+    return <Redirect push={true} to={url} />;
   }
 
   constructor(props) {
