@@ -94,7 +94,7 @@ def run_query():
             for ii, idx in enumerate(query_result):
                 if idx['youtube']['id'] != '':
                     print "Poping in youtube"
-                    query_copy.pop(ii)
+                    query_copy.remove(query_result[ii])
 
         if json_input['instagram'] != 'y':
             #Return Insta query
@@ -102,7 +102,7 @@ def run_query():
             for ii, idx in enumerate(query_result):
                 if idx['instagram']['url'] != '':
                     print "Poping in instagram"
-                    query_copy.pop(ii)
+                    query_copy.remove(query_result[ii])
 
         if json_input['twitter'] != 'y':
             #return twitter query
@@ -110,7 +110,7 @@ def run_query():
             for ii, idx in enumerate(query_result):
                 if idx['twitter']['url'] != '':
                     print "popping in twitter"
-                    query_copy.pop(ii)
+                    query_copy.remove(query_result[ii])
 
         return jsonify({'query_results': query_copy})
 
