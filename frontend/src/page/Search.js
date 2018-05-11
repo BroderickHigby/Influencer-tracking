@@ -647,7 +647,8 @@ class Search extends Component {
       else if (this.state.selectedPlatforms[i] === "Instagram") passin = "y";
     }
     var adder = passyt + passtw+ passin
-    const url = `/app/search?query=${this.state.searchValue}=${adder}`;
+    var thesearched = this.props.location.search.split("=")[1]
+    const url = `/app/search?query=${thesearched}=${adder}`;
     window.location = url;
   }
 
