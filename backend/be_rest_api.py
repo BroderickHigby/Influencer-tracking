@@ -84,22 +84,20 @@ def run_query():
 
         if json_input['youtube'] != "y":
             #Return YT query
-            for idx in query_result:
-                try: (idx['youtube']['snippet']['thumbnails'])
-                    except NameError:
-                        query_result.remove(idx)
-                    else:
-                        pass
+            for ii, idx in enumerate(query_result):
+                if idx['youtube']['id'] != '':
+                    query_result.remove(ii)
+
         if json_input['instagram'] != "y":
-            for idx in query_result:
-                if (idx['instagram']['url'] == ""):
-                    query_result.remove(idx)
-            #Return insta query
+            #Return Insta query
+            for ii, idx in enumerate(query_result):
+                if idx['instagram']['url'] != '':
+                    query_result.remove(ii)
         if json_input['twitter'] != "y":
             #return twitter query
-            for idx in query_result:
-                if (idx['twitter']['description'] == ""):
-                    query_result.remove(idx)
+            for ii, idx in enumerate(query_result):
+                if idx['twitter']['url'] != '':
+                    query_result.remove(ii)
 
         return jsonify({'query_results': query_result})
 
