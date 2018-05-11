@@ -51,7 +51,7 @@ def run_query():
         with open(r'query_logs', 'a') as f:
             writer = csv.writer(f)
             writer.writerow(fields)
-	query_result = Influencer.query(str(lem_split), search_location)
+	query_result = Influencer.query(str(lem_split), search_location=search_location)
         print(query_result)
         print(type(query_result))
         if len(query_result) <= 5:
