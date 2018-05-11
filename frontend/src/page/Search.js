@@ -46,6 +46,7 @@ import neutralarrow from '../icons/neutralarrow.svg';
 import sapielogo from "../logos/sapielogo90.png";
 
 import Popup from "reactjs-popup";
+import CheckboxOrRadioGroup from './components/CheckboxOrRadioGroup';
 
 
 var Loader = require('react-loader');
@@ -285,6 +286,16 @@ const backButtonStyle = {
   border: '0',
   fontSize: '1em',
   display: 'none'
+}
+
+const submitButtonStyle = {
+  backgroundColor: '#66b2b2',
+  borderRadius: '10px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em',
+  width: '25%'
 }
 
 const compactButtonStyle = {
@@ -631,11 +642,29 @@ class Search extends Component {
     window.location = "./home";
   }
 
+  handleSubmit() {
+    var passyt = ""
+    var passtw = ""
+    var passin = ""
+    var i = 0
+    console.log(this.state.platforms)
+    /*for (i = 0; i < this.state.platforms; i++) {
+      if (this.state.platforms[i])
+    }
+    window.location = "https://app.sapie.space/app/promo" */
+  }
+
   constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePlatSelection = this.handlePlatSelection.bind(this);
     var strD = " ";
 
-    this.state = {IL: [], loading: true};
+    this.state = {IL: [],
+                  loading: true,
+                  platforms: ["Youtube", "Instagram", "Twitter"],
+                  selectedPlatforms: ""
+                  };
 
     // Add your tracking ID created from https://analytics.google.com/analytics/web/#home/
     ReactGA.initialize('UA-116399864-1');
@@ -644,10 +673,10 @@ class Search extends Component {
 
     console.log('In CONSTRUCTOR');
 
-    this.getQuery();
+    this.getQuery("yes", "yes", "yes");
   };
 
-  async getQuery() {
+  async getQuery(yt, insta, twitt) {
     var emailUser = "";
 
     var attributes = await getAttributes();
@@ -669,7 +698,9 @@ class Search extends Component {
     var postData = {
       queryString: this.props.location.search.split("=")[1],
       user_email: emailUser,
-      platform: "all"
+      youtube: yt,
+      twitter: twitt,
+      instagram: insta
       //queryString: this.props.location.search.split("=")[1]
     };
 
@@ -718,6 +749,17 @@ class Search extends Component {
     this.setState({loading: false})
   }
 
+  handlePlatSelection(e) {
+    const platSelection = e.target.value;
+    let platSelectionArray;
+    if(this.state.selectedFeel.indexOf(platSelection) > -1) {
+      platSelectionArray = this.state.selectedPlatforms.filter(s => s !== platSelection)
+    } else {
+      platSelectionArray = [...this.state.selectedPlatforms, platSelection];
+    }
+    this.setState({ selectedPlatforms: platSelectionArray });
+  }
+
   render() {
 
     return (
@@ -736,6 +778,19 @@ class Search extends Component {
           <br />
           </center>
           <br />
+
+          <form>
+          <CheckboxOrRadioGroup
+            title={'Which platforms would you like to see?'}
+            setName={'platforms'}
+            controlFunc={this.handlePlatSelection}
+            type={'checkbox'}
+            options={this.state.platforms}
+            selectedOptions={this.state.selectedPlatforms} />
+            <br />
+          </form>
+          <button onClick={this.handleSubmit} style={submitButtonStyle}>Filter Results</button>
+
 
 
             <p style={{color: darkColor, paddingLeft: '10px'}}> We found... </p>
