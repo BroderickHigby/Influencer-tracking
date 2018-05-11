@@ -775,7 +775,7 @@ class Search extends Component {
           <br />
           </center>
           <br />
-          {/*
+
 
           <div style = {{fontColor: darkColor, margin: '2px'}}>
           <center>
@@ -793,7 +793,7 @@ class Search extends Component {
           </div>
           <br />
 
-          */}
+          
 
             <p style={{color: darkColor, paddingLeft: '10px'}}> We found... </p>
             <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
