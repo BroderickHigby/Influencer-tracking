@@ -668,7 +668,8 @@ class Search extends Component {
 
     var postData = {
       queryString: this.props.location.search.split("=")[1],
-      user_email: emailUser
+      user_email: emailUser,
+      platform: "all"
       //queryString: this.props.location.search.split("=")[1]
     };
 
