@@ -38,6 +38,7 @@ import ytbutton from '../icons/youtubebutton.svg';
 import igcam from '../icons/instagramcamera.svg';
 import twbird from '../icons/twitterbird.svg';
 
+import { Redirect } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import LoadingIcon from '../icons/loading.gif';
 import uparrow from '../icons/uparrow.svg';
