@@ -799,7 +799,7 @@ class Search extends Component {
                     (d.platform_base === "twitter") ? (
                       truncation(d.twitter.screen_name, 15)
                     ) : (
-                      truncation(d.instagram.url, 15)
+                      truncation(d.instagram.screen_name, 15)
                     )
                   )
                 }
@@ -982,7 +982,7 @@ class Search extends Component {
                       (d.platform_base === "twitter") ? (
                         <p style={styleTitlePopup}> <b>{truncation(d.twitter.screen_name, 30)} </b> <br />  </p>
                       ) : (
-                        <p style={styleTitlePopup}> <b>{truncation(d.instagram.url, 30)} </b> <br />  </p>
+                        <p style={styleTitlePopup}> <b>{truncation(d.instagram.screen_name, 30)} </b> <br />  </p>
                       )
                     )
                   }
