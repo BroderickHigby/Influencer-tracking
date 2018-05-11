@@ -36,7 +36,7 @@ class TopSearches extends Component {
 
   render() {
     if(this.state.goSearchTop) {
-      const url = `/app/search?query=${this.state.searchValue}=yyy`;
+      const url = `/app/search?query=${this.state.searchValue}`;
       return <Redirect push={true} to={url} />;
 
     }
