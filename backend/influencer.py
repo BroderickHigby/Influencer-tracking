@@ -172,7 +172,7 @@ class Influencer:
                 actual_query5 = {
                     "size": 200,
                     "query": {
-                        "match": {
+                        "match_phrase": {
                             "instagram.bio": query,
                         }
                     }
@@ -181,7 +181,7 @@ class Influencer:
                 actual_query6 = {
                     "size": 200,
                     "query": {
-                        "match": {
+                        "match_phrase": {
                             "instagram.photo_captions": query,
                         }
                     }
@@ -190,7 +190,7 @@ class Influencer:
                 actual_query7 = {
                     "size": 200,
                     "query": {
-                        "match": {
+                        "match_phrase": {
                             "twitter.tweets_made": query,
                         }
                     }
