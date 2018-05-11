@@ -65,6 +65,7 @@ class Influencer:
     @classmethod
     def query(cls, query, search_location='', limit=100):
         if search_location == '':
+            print("NO SEARCH LOCATION GIVEN")
             """Query for a list of influencers"""
             if isinstance(query, str):
                 #actual_query = dict(
@@ -317,6 +318,7 @@ class Influencer:
                 #newlist = sorted(results, key=lambda k: k['influencer_score'], reverse=True)
                 return results
         else:
+            print("SEARCH LOCATION GIVEN")
             """Query for a list of influencers"""
             if isinstance(query, str):
                 # actual_query = dict(
