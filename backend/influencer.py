@@ -63,7 +63,7 @@ class Influencer:
         es.delete(index=cls.index, doc_type=cls.doc_type, id=id_to_delete)
 
     @classmethod
-    def query(cls, query, limit=100):
+    def query(cls, query, search_location='', limit=100):
         """Query for a list of influencers"""
         if isinstance(query, str):
             #actual_query = dict(
