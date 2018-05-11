@@ -772,7 +772,7 @@ class Search extends Component {
           <br />
           </center>
           <br />
-          <div style = {{fontColor: darkColor, margin: '2px'}}
+          <div style = {{fontColor: darkColor, margin: '2px'}}>
           <form>
           <CheckboxOrRadioGroup
             title={'Which platforms would you like to see?'}
