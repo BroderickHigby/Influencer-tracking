@@ -648,7 +648,7 @@ class Search extends Component {
     }
     var adder = passyt + passtw+ passin
     const url = `/app/search?query=${this.state.searchValue}=${adder}`;
-    return <Redirect push={true} to={url} />;
+    window.location = url;
   }
 
   constructor(props) {
@@ -791,7 +791,7 @@ class Search extends Component {
           </center>
           </div>
           <br />
-          
+
 
             <p style={{color: darkColor, paddingLeft: '10px'}}> We found... </p>
             <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
