@@ -640,7 +640,7 @@ class Search extends Component {
     var passin = ""
     var i = 0
     console.log(this.state.selectedPlatforms)
-    for (i = 0; i < this.state.selectedPlatforms; i++) {
+    for (i = 0; i < this.state.selectedPlatforms.length; i++) {
       if (this.state.selectedPlatforms[i] === "Youtube") passyt = "yes";
       else if (this.state.selectedPlatforms[i] === "Twitter") passtw = "yes";
       else if (this.state.selectedPlatforms[i] === "Instagram") passin = "yes";
@@ -772,7 +772,7 @@ class Search extends Component {
           <br />
           </center>
           <br />
-
+          <div style = {{fontColor: darkColor, margin: '2px'}}
           <form>
           <CheckboxOrRadioGroup
             title={'Which platforms would you like to see?'}
@@ -781,11 +781,10 @@ class Search extends Component {
             type={'checkbox'}
             options={this.state.platforms}
             selectedOptions={this.state.selectedPlatforms} />
-            <br />
           </form>
           <button onClick={this.handleSubmit} style={compactButtonStyle}>Filter Results</button>
-
-
+          </div>
+          <br />
 
             <p style={{color: darkColor, paddingLeft: '10px'}}> We found... </p>
             <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
