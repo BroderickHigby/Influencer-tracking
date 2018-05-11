@@ -647,7 +647,7 @@ class Search extends Component {
     var passtw = ""
     var passin = ""
     var i = 0
-    console.log(this.state.platforms)
+    console.log(this.state.selectedPlatforms)
     /*for (i = 0; i < this.state.platforms; i++) {
       if (this.state.platforms[i])
     }
