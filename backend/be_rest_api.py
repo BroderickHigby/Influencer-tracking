@@ -1,9 +1,9 @@
-# FOR LOCAL HOST - Uncomment app.run(host=...
 from flask import Flask, render_template, redirect, url_for,request
 from flask import make_response
 from flask.json import jsonify
 from influencer import *
 from flask_cors import CORS
+from nltk.stem.wordnet import WordNetLemmatizer
 import json
 import stripe
 import os
@@ -18,45 +18,90 @@ context.load_cert_chain('/etc/letsencrypt/live/app.sapie.space/cert.pem','/etc/l
 
 sys.path.insert(0, '/home/ec2-user/sapie/webcrawler/yougod/yougod/')
 from scrape_engine import *
+#sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/campaign')
+#from campaign import *
 
 app = Flask(__name__)
 
-CORS(app)
+# CORS(app)
 
 stripe.api_key = 'sk_live_QXvUGMApgvJE8W7PSkVSs8xo'
 #stripe.api_key = 'sk_test_UUgREeF3vNIfwJoB2UZj0oyB'
 
+
 @app.route("/")
 def home():
-    return "hi"
+    return "welcome home"
 
 @app.route('/run_query', methods=['GET', 'POST'])
 def run_query():
     print("in query")
     json_input = json.loads(request.data)
-    print("GEGEEGE")
-    print(json_input['queryString'])
+    lmtzr = WordNetLemmatizer()
+    if '|||' in json_input['queryString']:
+	searches = json_input['queryString'].split('|||')
+	search_term = searches[0]
+	search_location = searches[1]
+	lem_split = ""
+        lemming = lmtzr.lemmatize(str(json_input['queryString']))
+	for word in lemming.split():
+	    lem_split = str(lem_split)
+            lem_split += lmtzr.lemmatize(word) + " "
+        fields = [lem_split, time.strftime("%Y-%m-%d %H:%M"), str(json_input['user_email'])]
+        with open(r'query_logs', 'a') as f:
+            writer = csv.writer(f)
+            writer.writerow(fields)
+	query_result = Influencer.query(str(lem_split), search_location=search_location)
+        print(query_result)
+        print(type(query_result))
+        if len(query_result) <= 5:
+            search_list_by_keyword(part='snippet', maxResults=25, q=lem_split)
+            query_result = Influencer.query(str(lem_split))
+        print("returning query")
+        return jsonify({'query_results': query_result})
+    else:
+        print("Running query")
+        print(json_input['queryString'])
+        lem_split = ""
+        lemming = lmtzr.lemmatize(str(json_input['queryString']))
+        for word in lemming.split():
+	    lem_split = str(lem_split)
+            lem_split += lmtzr.lemmatize(word) + " "
 
+        print(lem_split)
+        fields = [lem_split, time.strftime("%Y-%m-%d %H:%M"), str(json_input['user_email'])]
+        with open(r'query_logs', 'a') as f:
+            writer = csv.writer(f)
+            writer.writerow(fields)
 
-    fields = [str(json_input['queryString']), time.strftime("%Y-%m-%d %H:%M"), str(json_input['user_email'])]
-    with open(r'query_logs', 'a') as f:
-      writer = csv.writer(f)
-      writer.writerow(fields)
+        query_result = Influencer.query(str(lem_split))
+        print(query_result)
+        print(type(query_result))
+        if len(query_result) <= 5:
+            search_list_by_keyword(part='snippet', maxResults=25, q=lem_split)
+            query_result = Influencer.query(str(lem_split))
+        print("returning query")
 
-    query_result = Influencer.query(str(json_input['queryString']))
-    print(query_result)
-    print(type(query_result))
-    if len(query_result) <= 5:
-        search_list_by_keyword(part='snippet', maxResults=25, q=str(json_input['queryString']))
-        query_result = Influencer.query(str(json_input['queryString']))
-    print("returning query")
-    return jsonify({'query_results': query_result})
+        if json_input['youtube'] != "yes":
+            #Return YT query
+            for idx in query_result:
+                try: (idx['youtube']['snippet']['thumbnails'])
+                    except NameError:
+                        query_result.remove(idx)
+                    else:
+                        pass
+        if json_input['instagram'] != "yes":
+            for idx in query_result:
+                if (idx['instagram']['url'] == ""):
+                    query_result.remove(idx)
+            #Return insta query
+        if json_input['twitter'] != "yes":
+            #return twitter query
+            for idx in query_result:
+                if (idx['twitter']['description'] == ""):
+                    query_result.remove(idx)
 
-@app.route('/create_campaign', methods=['GET', 'POST'])
-def create_campaign():
-    json_input = json.loads(request.data)
-    campaign = Campaign(json_input['company_name'])
-
+        return jsonify({'query_results': query_result})
 
 @app.route('/charge_monthly', methods=['POST'])
 def charge_monthly():
@@ -71,6 +116,7 @@ def charge_monthly():
         email = email_input,
         source=token,
     )
+
 
     #change to actual email later
     if email_input == "rl@excelerationcapital.com":
@@ -104,14 +150,12 @@ def cancel_subscription():
 
     return jsonify({'date': subscription.ended_at})
 
-
 @app.route('/post_twitter_influencer', methods=['POST'])
 def post_twitter_influencer():
     json_input = json.loads(request.data)
     influencer.Influencer.create(json_input.item, json_input.screen_name)
 
-app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=True, ssl_context=context)
-context = ("./host.cert","./host.key")
+app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=5000, debug=False, ssl_context=context)
 
 # FOR LOCAL HOST - Uncomment app.run(host=...
 # app.run(host='localhost', port=5000, debug=True)

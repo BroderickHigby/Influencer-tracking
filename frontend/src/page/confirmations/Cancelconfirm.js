@@ -16,7 +16,7 @@ class Cancelconfirm extends Component {
   }
 
   handleClick() {
-    window.location = "./home"
+    window.location = "https://app.sapie.space/app/home"
   }
   render() {
     return (

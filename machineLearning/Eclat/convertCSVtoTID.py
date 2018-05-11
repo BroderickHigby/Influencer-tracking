@@ -1,6 +1,6 @@
 import csv
 eclatInput = open('eclatInputv2.txt','w')
-categories = ['ChannelID:', 'ChannelTitle', 'Industry:', 'Subscribers:', 'VideoCount:', 'ViewCount:', 'HasEmail:', 'HasInstagram:', 'HasFacebook:', 'HasTwitter:', 'HasWebsite:', 'HasTwitch:', 'HasGooglePlus:', 'TwitterFavorites:', 'TwitterFollowers:', 'InstaPosts:', 'InstaFollowers:', 'InstaFollowing:', 'Awwtits', 'DamnwhatHappened', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+categories = ['ChannelID:', 'ChannelTitle', 'Industry:', 'Subscribers:', 'VideoCount:', 'ViewCount:', 'HasEmail:', 'HasInstagram:', 'HasFacebook:', 'HasTwitter:', 'HasWebsite:', 'HasTwitch:', 'HasGooglePlus:', 'TwitterFavorites:', 'TwitterFollowers:', 'InstaPosts:', 'InstaFollowers:', 'InstaFollowing:', 'Aww', 'DamnwhatHappened', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 def convert_base(n):
     base = 10
     while True:

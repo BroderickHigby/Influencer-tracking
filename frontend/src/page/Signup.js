@@ -13,6 +13,9 @@ import {
   CognitoUserPool,
   CognitoUserAttribute
 } from "amazon-cognito-identity-js";
+import { updateCustomAttributes } from '../libs/awsLib';
+
+
 import config from "../config";
 import Flexbox from 'flexbox-react';
 
@@ -69,7 +72,8 @@ export default class Signup extends Component {
       password: "",
       confirmPassword: "",
       confirmationCode: "",
-      newUser: null
+      newUser: null,
+      promoCode: ""
     };
   }
 
@@ -263,6 +267,7 @@ renderForm() {
     </div>
 
     <form onSubmit={this.handleSubmit} style={{}}>
+    <br />
     <FormGroup controlId="username" bsSize="large">
     <FormControl
     autoFocus
@@ -290,13 +295,25 @@ renderForm() {
     />
     </FormGroup>
     <FormGroup controlId="confirmPassword" bsSize="large">
-    <FormControl
-    value={this.state.confirmPassword}
-    onChange={this.handleChange}
-    type="password"
-    placeholder= "Confirm password"
-    />
+      <FormControl
+        value={this.state.confirmPassword}
+        onChange={this.handleChange}
+        type="password"
+        placeholder= "Confirm password"
+      />
     </FormGroup>
+
+    {/*
+    <FormGroup controlId="promoCode" bsSize="large">
+      <FormControl
+        value={this.state.promoCode}
+        onChange={this.handleChange}
+        type="promo"
+        placeholder= "Promotion Code"
+      />
+    </FormGroup>
+    */}
+
     <p style={{color: 'rgba(0,0,0,.5)', fontSize: '.9em', marginBottom: '30px'}}>Password must be 8 characters long, with one special character, and one number *</p>
     <LoaderButton
     block

@@ -35,10 +35,24 @@ class Pattern:
         temp_tid_list = self.intersec_tid_list(n)
         # if support for new candidate is >= minsup then only generate ID for that candidate
         if len(temp_tid_list) >= minsup:
+<<<<<<< HEAD
+            temp_id = self.union_id(n);
+            return (temp_id,temp_tid_list);
+        else:
+            return ([],[]);
+    def    pattern_print(self):
+        pattern_ID = str("");
+        for i in self.item_id:
+            pattern_ID = pattern_ID + str(i) + ' ';
+        string = '{:150}'.format(pattern_ID.rstrip()) +  '{:10}'.format(':'+str(len(self.tid_list))) #+ '{:30}'.format(str(self.tid_list));
+        return (string);
+
+=======
             temp_id = self.union_id(n)            return (temp_id,temp_tid_list)        else:
             return ([],[])    def    pattern_print(self):
         pattern_ID = str("")        for i in self.item_id:
             pattern_ID = pattern_ID + str(i) + ' '        string = '{:80}'.format(pattern_ID.rstrip()) +  '{:10}'.format(':'+str(len(self.tid_list)))+ '{:30}'.format(str(self.tid_list))        return (string)
+>>>>>>> 475d9cae2448e36f922e5d7738d3b637628fa3f8
 #End of Pattern class
 ###########################################################################################################
 

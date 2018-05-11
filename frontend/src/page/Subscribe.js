@@ -14,6 +14,33 @@ import Popup from "reactjs-popup";
 import {Elements} from 'react-stripe-elements';
 import InjectedCheckoutForm from './components/CheckoutForm';
 
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import PromoArea from './components/PromoArea';
+
+
+const tabStyle = {
+  width: '15%',
+  display: 'inline-block',
+  fontSize: '1.1em',
+  backgroundColor: '#66b2b2',
+  borderRadius: '20px',
+  color: 'white',
+  padding: '10px 10px',
+  margin: '10px',
+  marginBottom: '-10px'
+}
+
+const submitButtonStyle = {
+  backgroundColor: '#66b2b2',
+  borderRadius: '10px',
+  color: 'white',
+  padding: '10px 10px',
+  border: '0',
+  fontSize: '1em',
+  width: '25%'
+}
+
+
 const demoButtonStyle = {
   backgroundColor: '#FFFFFF',
   color:'#4379b3',
@@ -34,6 +61,42 @@ const trialButtonStyle = {
 class Subscribe extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      promoCode: ""
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePromoChange = this.handlePromoChange.bind(this);
+  }
+
+  handlePromoChange(e) {
+    this.setState({ promoCode: e.target.value });
+  }
+
+  async grantAccess() {
+    const attributeList= [
+         new CognitoUserAttribute({
+           Name: 'custom:subs_id',
+           Value: "promo"
+         }),
+         new CognitoUserAttribute({
+           Name: 'custom:subs_type',
+           Value: "promo"
+         }),
+         new CognitoUserAttribute({
+           Name: 'custom:subs_active',
+           Value: "true"
+         })
+       ]
+    await updateCustomAttributes(attributeList);
+  }
+
+  handleSubmit() {
+    console.log("submitting");
+    console.log(this.state.promoCode);
+    if (this.state.promoCode.toLowerCase() === "goviral") {
+      this.grantAccess();
+    }
+    window.location = "https://app.sapie.space/app/promo"
   }
 
   async handleClick() {
@@ -108,46 +171,108 @@ class Subscribe extends Component {
             </Popup>
               </div>
 
-            <div id='webpage' style={{width: '100%', height: '100%', display: 'fixed', alignItems: 'center', justifyContent: 'center', padding: '0px'}}>
+              <div id='webpage' style={{width: '100%', height: '100%', display: 'fixed', alignItems: 'center', justifyContent: 'center', padding: '0px'}}>
 
-              <div id='monthly' style={{display : 'inline-block', width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
-                  <h3>Monthly Subscription</h3>
-                  {
-                    (getCurrentUser().username === "bob") ? (
-                      <div>
-                      <h2><b>$450.00</b><br></br> per month</h2>
-                      <h4>The Monthly Plan</h4>
-                      </div>
+              <br />
+              <Tabs>
+                <TabList>
+                  <Tab style={tabStyle}> Pay Now</Tab>
+                  <Tab style={tabStyle}>Access Code</Tab>
+                  <Tab style={tabStyle}>Free Trial</Tab>
+                </TabList>
 
-                    ) : (
-                      <div>
-                      <h2><b>$99.00</b><br></br> per year</h2>
-                      <h4>The Yearly Plan</h4>
-                      </div>
-                    )
-                  }
+                <TabPanel>
+                  <div id="arrow" style={{display: 'inline-block', width: '10%', marginTop: '-55px', marginRight: '33.3%'}}>
+                    <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.50)", borderRadius: '1px'}}></div>
+                  </div>
+                  <div id='monthly' style={{display : 'inline-block', width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
+                      {
+                        (getCurrentUser().username === "bob") ? (
+                          <div>
+                          <h1>Monthly Subscription</h1>
+                          <br/>
+                          <h2><b>$450.00</b><br></br> per month</h2>
+                          <h4>The Monthly Plan</h4>
+                          </div>
+
+                        ) : (
+                          <div>
+                          <h1>Yearly Subscription</h1>
+                          <br/>
+                          <h2><b>$99.00</b><br></br> per year</h2>
+                          </div>
+                        )
+                      }
+
+                  <br />
+                  {/*
+                  <StripeCheckout
+                    token={this.onToken}
+                    stripeKey="pk_live_AEuriPJROzqDhDu5Y73oTUR4"
+                  />
+                  */ }
+
+                  <Elements>
+                    <InjectedCheckoutForm />
+                  </Elements>
+
+                  </div>
+                </TabPanel>
+
+                <TabPanel>
+                <div id="arrow" style={{display: 'inline-block', width: '10%', marginTop: '-55px'}}>
+                  <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.50)", borderRadius: '1px'}}></div>
+                </div>
+                <div id='monthly' style={{width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
+
+                <h3>Enter an Access Code</h3>
+                <br/>
+                <form onSubmit>
+                <PromoArea
+                  rows={1}
+                  resize={false}
+                  content={this.state.promoCode}
+                  name={'access code'}
+                  controlFunc={this.handlePromoChange}
+                  placeholder={'code'} />
+                  <br />
+                </form>
+                <button onClick={this.handleSubmit} style={submitButtonStyle}>Get Access</button>
+
+                </div>
+                </TabPanel>
+
+                <TabPanel>
+                <div id="arrow" style={{display: 'inline-block', width: '10%', marginTop: '-55px', marginLeft: '33.3%'}}>
+                  <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.50)", borderRadius: '1px'}}></div>
+                </div>
+                <div id='monthly' style={{display : 'inline-block', width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
+                  <h3>Start a free 7 day trial </h3><br />
+                  <button onClick={this.handleClick} style={trialButtonStyle}>Begin Trial</button>
+                </div>
+                </TabPanel>
+              </Tabs>
+
+
+          </div>
+          </div>
 
           <br />
           {/*
-          <StripeCheckout
-            token={this.onToken}
-            stripeKey="pk_live_AEuriPJROzqDhDu5Y73oTUR4"
-          />
-          */ }
-
-
-          <Elements>
-            <InjectedCheckoutForm />
-          </Elements>
-
-
-          </div>
-          </div>
-          </div>
-
+          <Popup
+            trigger={<button style={trialButtonStyle}>Have a Promo code?</button>}
+            position="right center"
+            modal
+            closeOnDocumentClick
+          >
+          <div style={{minWidth: '100px'}}>
           <br />
-          <h3>Or... Start a free 7 day trial </h3><br />
-          <button onClick={this.handleClick} style={trialButtonStyle}>Begin Trial</button>
+          </div>
+
+          </Popup>
+          <br />
+          */}
+
 
         </center>
       </div>

@@ -29,6 +29,8 @@
     "react-scripts": "1.0.17",
     "react-stripe-checkout": "^2.6.3",
     "react-stripe-elements": "^1.6.0",
+    "react-tabs": "^2.2.2",
+    "react-tabs-navigation": "^0.4.4",
     "reactjs-popup": "^1.1.1",
     "stripe": "^5.4.0",
     "webfontloader": "^1.6.28"

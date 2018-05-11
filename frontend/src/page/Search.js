@@ -46,6 +46,7 @@ import neutralarrow from '../icons/neutralarrow.svg';
 import sapielogo from "../logos/sapielogo90.png";
 
 import Popup from "reactjs-popup";
+import CheckboxOrRadioGroup from './components/CheckboxOrRadioGroup';
 
 
 var Loader = require('react-loader');
@@ -211,6 +212,14 @@ const iconStyleAccounts = {
   marginLeft: '15px'
 }
 
+const iconStyleContact = {
+  height: '30px',
+  margin: '2px',
+  padding: '2px',
+  marginRight: '3px',
+  marginLeft: '7px'
+}
+
 const iconStyleTrends = {
   height: '25px',
   margin: '5px',
@@ -230,7 +239,7 @@ const iconStyleCountry = {
 
 const leftStyle = {
   height: '150px',
-  overflow: 'hidden',
+  overflow: 'auto',
   padding: '0',
   display: 'inline-block'
 }
@@ -241,6 +250,8 @@ const descriptionStyle = {
   display: 'inline',
   lineHeight: 'normal',
   fontSize: '.75em',
+  overflow:"auto",
+  maxHeight: '180px',
 }
 
 const accountsStyle = {
@@ -259,6 +270,14 @@ const styleHandles = {
   marginLeft: '2px'
 }
 
+const styleContact = {
+  //width:'12%',
+  display: 'inline-block',
+  color: darkColor,
+  fontSize: '.75em',
+  marginLeft: '2px'
+}
+
 const backButtonStyle = {
   backgroundColor: lightColor,
   borderRadius: '20px',
@@ -268,6 +287,8 @@ const backButtonStyle = {
   fontSize: '1em',
   display: 'none'
 }
+
+
 
 const compactButtonStyle = {
   backgroundColor: lightColor,
@@ -503,17 +524,17 @@ const getFollowers = (map) => {
      else
         IGposts = 0;
 
-     if (map[key].youtube.statistics.subscriberCount !== "")
+     if (map[key].youtube.statistics.subscriberCount)
         followersYT = getNumber(map[key].youtube.statistics.subscriberCount);
      else
         followersYT = 0;
 
-     if (map[key].youtube.statistics.viewCount !== "")
+     if (map[key].youtube.statistics.viewCount)
         YTvid = getNumber(map[key].youtube.statistics.viewCount);
      else
         YTvid = 0;
 
-     if (map[key].youtube.statistics.videoCount !== "")
+     if (map[key].youtube.statistics.videoCount)
         YTview = getNumber(map[key].youtube.statistics.videoCount);
      else
         YTview = 0;
@@ -613,11 +634,31 @@ class Search extends Component {
     window.location = "./home";
   }
 
+  handleSubmit() {
+    var passyt = ""
+    var passtw = ""
+    var passin = ""
+    var i = 0
+    console.log(this.state.selectedPlatforms)
+    for (i = 0; i < this.state.selectedPlatforms.length; i++) {
+      if (this.state.selectedPlatforms[i] === "Youtube") passyt = "yes";
+      else if (this.state.selectedPlatforms[i] === "Twitter") passtw = "yes";
+      else if (this.state.selectedPlatforms[i] === "Instagram") passin = "yes";
+    }
+    this.getQuery(passyt, passin, passtw)
+  }
+
   constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePlatSelection = this.handlePlatSelection.bind(this);
     var strD = " ";
 
-    this.state = {IL: [], loading: true};
+    this.state = {IL: [],
+                  loading: true,
+                  platforms: ["Youtube", "Instagram", "Twitter"],
+                  selectedPlatforms: [""]
+                  };
 
     // Add your tracking ID created from https://analytics.google.com/analytics/web/#home/
     ReactGA.initialize('UA-116399864-1');
@@ -626,10 +667,10 @@ class Search extends Component {
 
     console.log('In CONSTRUCTOR');
 
-    this.getQuery();
+    this.getQuery("yes", "yes", "yes");
   };
 
-  async getQuery() {
+  async getQuery(yt, insta, twitt) {
     var emailUser = "";
 
     var attributes = await getAttributes();
@@ -650,7 +691,10 @@ class Search extends Component {
 
     var postData = {
       queryString: this.props.location.search.split("=")[1],
-      user_email: emailUser
+      user_email: emailUser,
+      youtube: yt,
+      twitter: twitt,
+      instagram: insta
       //queryString: this.props.location.search.split("=")[1]
     };
 
@@ -699,6 +743,17 @@ class Search extends Component {
     this.setState({loading: false})
   }
 
+  handlePlatSelection(e) {
+    const platSelection = e.target.value;
+    let platSelectionArray;
+    if(this.state.selectedPlatforms.indexOf(platSelection) > -1) {
+      platSelectionArray = this.state.selectedPlatforms.filter(s => s !== platSelection)
+    } else {
+      platSelectionArray = [...this.state.selectedPlatforms, platSelection];
+    }
+    this.setState({ selectedPlatforms: platSelectionArray });
+  }
+
   render() {
 
     return (
@@ -717,7 +772,25 @@ class Search extends Component {
           <br />
           </center>
           <br />
+          {/*
 
+          <div style = {{fontColor: darkColor, margin: '2px'}}>
+          <center>
+          <form>
+          <CheckboxOrRadioGroup
+            title={'Narrow by Platform'}
+            setName={'platforms'}
+            controlFunc={this.handlePlatSelection}
+            type={'checkbox'}
+            options={this.state.platforms}
+            selectedOptions={this.state.selectedPlatforms} />
+          </form>
+          <button onClick={this.handleSubmit} style={compactButtonStyle}>Filter Results</button>
+          </center>
+          </div>
+          <br />
+
+          */}
 
             <p style={{color: darkColor, paddingLeft: '10px'}}> We found... </p>
             <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
@@ -753,8 +826,6 @@ class Search extends Component {
           <div key={idx} style={styleBlock}>
 
           <div>
-          {d.keywords}
-
 
           <div style={rightStyle}>
           <div style={topRightStyle}>
@@ -764,7 +835,11 @@ class Search extends Component {
             (d.platform_base === "youtube") ? (
               <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={imgStyle}/>
             ) : (
-              ""
+              (d.platform_base == "twitter") ? (
+                <img src={d.twitter.profile_pic_url} alt="profile pic" style={imgStyle}/>
+              ) : (
+                <img src={d.instagram.profile_pic_url} alt="profile pic" style={imgStyle}/>
+              )
             )
           }
           </div>
@@ -776,7 +851,11 @@ class Search extends Component {
                   (d.platform_base === "youtube") ? (
                     truncation(d.youtube.snippet.title, 15)
                   ) : (
-                    ""
+                    (d.platform_base === "twitter") ? (
+                      truncation(d.twitter.screen_name, 15)
+                    ) : (
+                      truncation(d.instagram.screen_name, 15)
+                    )
                   )
                 }
               </div>
@@ -842,9 +921,86 @@ class Search extends Component {
 
 
               <div style={{marginTop: '2px'}}>
-                <p style={{fontSize: "1.4em", width: '60%', display: 'inline-block'}}>{String(overHundred(d.influencer_score)).substr(0,4)}&#37;</p>
-                <div style={{width:'40%', display: 'inline-block', verticalAlign: 'bottom', marginBottom: '16px'}}>
+                <div style={{width: '60%', display: 'inline-block'}}>
+                  <p style={{fontSize: "1.4em", marginBottom: '-4px'}}>{String(overHundred(d.influencer_score)).substr(0,4)}&#37;</p>
+                  <p style={{fontSize: ".7em"}}>influence</p>
+                </div>
+                <div style={{width:'40%', display: 'inline-block', verticalAlign: 'bottom', marginBottom: '11px'}}>
+                <Popup
+                    trigger={<button style={popButtonStyle}><u>Contact</u></button>}
+                    position="right center"
+                    closeOnDocumentClick
+                >
 
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                   {
+                    d.youtube.statistics.subscriberCount ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={"https://www.youtube.com/channel/" + d.youtube.id} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={youtube} style={iconStyleContact} /> </a>
+                      <p style={styleHandles}><a href={"https://www.youtube.com/channel/" + d.youtube.id} target="_blank">Youtube Channel</a></p>
+                      </div>
+                    ) : (  ""  )
+                  }
+                  </div>
+
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                  {
+                    d.instagram.followers_count ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.instagram.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={insta} style={iconStyleContact} /> </a>
+                      <p style={styleContact}><a href={d.instagram.url} target="_blank">Instagram Page</a></p>
+                      </div>
+                    ) : ("")
+                  }
+                  </div>
+
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                  {
+                    d.twitter.followers_count ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.twitter.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={twitter} style={iconStyleContact} /> </a>
+                      <p style={styleContact}><a href={d.twitter.url} target="_blank">Twitter Page</a></p>
+                      </div>
+                    ) : (  ""  )
+                  }
+                  </div>
+
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                  {
+                    d.google_plus_url ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.google_plus_url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={googlePlus} style={iconStyleContact} /> </a>
+                      <p style={styleContact}><a href={d.google_plus_url} target="_blank">Google Profile</a></p>
+                      </div>
+                    ) : ( "" )
+                  }
+                  </div>
+
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                  {
+                    d.facebook.url ? (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={d.facebook.url} style={{display: 'inline-block', width: '27%'}} target="_blank"><img src={face} style={iconStyleContact} /> </a>
+                      <p style={styleContact}><a href={d.facebook.url} target="_blank">Facebook Page</a></p>
+                      </div>
+                    ) : ( "" )
+                  }
+                  </div>
+
+                  <div style={{justifyContent: 'center', border: lightColor, borderRadius: '5px', backgroundColor: lightGray}}>
+                  {
+                    d.email ?  (
+                      <div style={{marginTop: '10px', verticalAlign: 'center'}}>
+                      <a href={"mailto:" + d.email} style={{display: 'inline-block', width: '27%'}} target="_top"><img src={email} style={iconStyleContact} /> </a>
+                      <p style={styleContact}><a href={"mailto:" + d.email} target="_blank">Draft Email</a></p>
+                      </div>
+                    ) : (
+                      ""
+                    )
+                  }
+                  </div>
+
+                </Popup>
                 <Popup
                     trigger={<button style={popButtonStyle}> <u>More Info</u></button>}
                     position="right center"
@@ -852,33 +1008,51 @@ class Search extends Component {
                     closeOnDocumentClick
                 >
 
-                <div style={{maxHeight: '500px', overflow:"auto"}}>
+                <div style={{maxHeight: '500px', minWidth: '300px', overflow:"auto"}}>
 
                 <div className="col-sm-3" style={leftStyle}>
-                {
-                  (d.platform_base === "youtube") ? (
-                    <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
-                  ) : (
-                    ""
-                  )
-                }
+                  <div>
+                  {
+                    (d.platform_base === "youtube") ? (
+                      <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
+                    ) : (
+                      (d.platform_base == "twitter") ? (
+                        <img src={d.twitter.profile_pic_url} alt="profile pic" style={styleImage}/>
+                      ) : (
+                        <img src={d.instagram.profile_pic_url} alt="profile pic" style={styleImage}/>
+                      )
+                    )
+                  }
+                  </div>
+                  <center>
+
+                  </center>
+
                 </div>
                 <div className="col-sm-8" style={{padding: '7px', margin: '5px', marginLeft:'20px'}}>
                   {
                     (d.platform_base === "youtube") ? (
                       <p style={styleTitlePopup}> <b>{truncation(d.youtube.snippet.title, 30)} </b> <br />  </p>
                     ) : (
-                      ""
+                      (d.platform_base === "twitter") ? (
+                        <p style={styleTitlePopup}> <b>{truncation(d.twitter.screen_name, 30)} </b> <br />  </p>
+                      ) : (
+                        <p style={styleTitlePopup}> <b>{truncation(d.instagram.screen_name, 30)} </b> <br />  </p>
+                      )
                     )
                   }
                   <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.35)", borderRadius: '1px'}}>
                   </div>
-                  <div style={{marginTop:'0px'}}>
+                  <div style={{marginTop:'0px', maxHeight: '200px', overflow: 'auto'}}>
                   {
                     (d.platform_base === "youtube") ? (
                       <p style={descriptionStyle}> {d.youtube.brandingSettings.channel.description} </p>
                     ) : (
-                      ""
+                      (d.platform_base === "twitter") ? (
+                        <p style={descriptionStyle}> {d.twitter.description} </p>
+                      ) : (
+                        <p style={descriptionStyle}> {d.instagram.bio} </p>
+                      )
                     )
                   }
                   </div>
@@ -1062,8 +1236,10 @@ class Search extends Component {
                     ) : ( "" )
                   }
                   {
-                    (d.youtube.brandingSettings.channel.keywords) ? (
-                      <p style={accountsStyle}>Keywords: {addCommas(truncation(d.youtube.brandingSettings.channel.keywords,65))} </p>
+                    (d.youtube.brandingSettings.channel) ? (
+                      (d.youtube.brandingSettings.channel.keywords) ? (
+                        <p style={accountsStyle}>Keywords: {addCommas(truncation(d.youtube.brandingSettings.channel.keywords,65))} </p>
+                      ) : ( "" )
                     ) : ( "" )
                   }
                   </div>
