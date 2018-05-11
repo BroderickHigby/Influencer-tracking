@@ -646,8 +646,8 @@ class Search extends Component {
       else if (this.state.selectedPlatforms[i] === "Instagram") passin = "y";
     }
     var adder = passyt + passtw+ passin
-
-    return <Redirect push={true} to={`/app/search?query=${this.state.search}=${adder}`} />;
+    var addy = "https://app.sapie.space/app/search?query=" + this.state.search + "=" + adder;
+    window.location = addy;
   }
 
   constructor(props) {
