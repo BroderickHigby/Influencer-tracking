@@ -83,21 +83,28 @@ def run_query():
         print("returning query")
         query_copy = query_result
 
-        if json_input['youtube'] != "y":
+        if json_input['youtube'] != 'y':
             #Return YT query
+            print ("Youtube: no")
             for ii, idx in enumerate(query_result):
                 if idx['youtube']['id'] != '':
+                    print "Poping in youtube"
                     query_copy.pop(ii)
 
-        if json_input['instagram'] != "y":
+        if json_input['instagram'] != 'y':
             #Return Insta query
+            print ("Instagram: no")
             for ii, idx in enumerate(query_result):
                 if idx['instagram']['url'] != '':
+                    print "Poping in instagram"
                     query_copy.pop(ii)
-        if json_input['twitter'] != "y":
+
+        if json_input['twitter'] != 'y':
             #return twitter query
+            print ("Twitter: no")
             for ii, idx in enumerate(query_result):
                 if idx['twitter']['url'] != '':
+                    print "popping in twitter"
                     query_copy.pop(ii)
 
         return jsonify({'query_results': query_copy})
