@@ -63,7 +63,7 @@ class Influencer:
         es.delete(index=cls.index, doc_type=cls.doc_type, id=id_to_delete)
 
     @classmethod
-    def query(cls, query, search_location='', limit=100):
+    def query(cls, query, limit=100):
         """Query for a list of influencers"""
         if isinstance(query, str):
             #actual_query = dict(
@@ -172,7 +172,7 @@ class Influencer:
                 actual_query5 = {
                     "size": 200,
                     "query": {
-                        "match": {
+                        "match_phrase": {
                             "instagram.bio": query,
                         }
                     }
@@ -181,7 +181,7 @@ class Influencer:
                 actual_query6 = {
                     "size": 200,
                     "query": {
-                        "match": {
+                        "match_phrase": {
                             "instagram.photo_captions": query,
                         }
                     }
@@ -190,7 +190,7 @@ class Influencer:
                 actual_query7 = {
                     "size": 200,
                     "query": {
-                        "match": {
+                        "match_phrase": {
                             "twitter.tweets_made": query,
                         }
                     }
@@ -312,7 +312,7 @@ class Influencer:
                 if 'influencer_score' not in gg:
                     gg['influencer_score'] = 95.0
                 if gg['platform_base'] == 'instagram':
-                    gg['instagram']['screen_name'] = gg['instagram']['url'].split('/')[len(gg['instagram']['url'].split('/')) - 1]
+                    gg['instagram']['screen_name'] = gg['instagram']['url'].split('/')[3]
             #newlist = sorted(results, key=lambda k: k['influencer_score'], reverse=True)
             return results
 
