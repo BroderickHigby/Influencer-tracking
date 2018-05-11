@@ -88,31 +88,35 @@ def run_query():
         print json_input['instagram']
         print json_input['twitter']
 
-        if json_input['youtube'] != 'y':
-            #Return YT query
-            print ("Youtube: no")
-            for ii, idx in enumerate(query_result):
-                if idx['youtube']['id'] != '':
-                    print "Poping in youtube"
-                    query_copy.remove(query_result[ii])
+        filtered_results = []
 
-        if json_input['instagram'] != 'y':
-            #Return Insta query
-            print ("Instagram: no")
-            for ii, idx in enumerate(query_result):
-                if idx['instagram']['url'] != '':
-                    print "Poping in instagram"
-                    query_copy.remove(query_result[ii])
+        for qr in query_result:
+            yt_good = False
+            ig_good = False
+            twt_good = False
+            if json_input['youtube'] == 'y':
+                if qr['youtube']['id'] != "":
+                    yt_good = True
+            else:
+                yt_good = True
 
-        if json_input['twitter'] != 'y':
-            #return twitter query
-            print ("Twitter: no")
-            for ii, idx in enumerate(query_result):
-                if idx['twitter']['url'] != '':
-                    print "popping in twitter"
-                    query_copy.remove(query_result[ii])
+            if json_input['instagram'] == 'y':
+                if qr['instagram']['url'] != "":
+                    ig_good = True
+            else:
+                ig_good = True
 
-        return jsonify({'query_results': query_copy})
+            if json_input['twitter'] == 'y':
+                if qr['twitter']['url'] != "":
+                    twt_good = True
+            else:
+                twt_good = True
+
+            if yt_good == True and ig_good == True and twt_good == True:
+                filtered_results.append(qr)
+
+
+        return jsonify({'query_results': filtered_results})
 
 @app.route('/charge_monthly', methods=['POST'])
 def charge_monthly():
