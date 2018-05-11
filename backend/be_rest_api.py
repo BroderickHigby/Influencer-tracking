@@ -81,25 +81,26 @@ def run_query():
             search_list_by_keyword(part='snippet', maxResults=25, q=lem_split)
             query_result = Influencer.query(str(lem_split))
         print("returning query")
+        query_copy = query_result
 
         if json_input['youtube'] != "y":
             #Return YT query
             for ii, idx in enumerate(query_result):
                 if idx['youtube']['id'] != '':
-                    query_result.remove(ii)
+                    query_copy.remove(ii)
 
         if json_input['instagram'] != "y":
             #Return Insta query
             for ii, idx in enumerate(query_result):
                 if idx['instagram']['url'] != '':
-                    query_result.remove(ii)
+                    query_copy.remove(ii)
         if json_input['twitter'] != "y":
             #return twitter query
             for ii, idx in enumerate(query_result):
                 if idx['twitter']['url'] != '':
-                    query_result.remove(ii)
+                    query_copy.remove(ii)
 
-        return jsonify({'query_results': query_result})
+        return jsonify({'query_results': query_copy})
 
 @app.route('/charge_monthly', methods=['POST'])
 def charge_monthly():
