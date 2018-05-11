@@ -13,18 +13,13 @@ import Popup from "reactjs-popup";
 
 import {Elements} from 'react-stripe-elements';
 import InjectedCheckoutForm from './components/CheckoutForm';
-import {
-  HelpBlock,
-  FormGroup,
-  FormControl,
-  ControlLabel
-} from "react-bootstrap";
-import LoaderButton from "./components/LoaderButton";
+
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import PromoArea from './components/PromoArea';
 
 
 const tabStyle = {
-  width: '10%',
+  width: '15%',
   display: 'inline-block',
   fontSize: '1.1em',
   backgroundColor: '#66b2b2',
@@ -32,6 +27,7 @@ const tabStyle = {
   color: 'white',
   padding: '10px 10px',
   margin: '10px',
+  marginBottom: '-10px'
 }
 
 const submitButtonStyle = {
@@ -68,34 +64,39 @@ class Subscribe extends Component {
     this.state = {
       promoCode: ""
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlePromoChange = this.handlePromoChange.bind(this);
   }
 
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
+  handlePromoChange(e) {
+    this.setState({ promoCode: e.target.value });
   }
 
-  async handleSubmit() {
+  async grantAccess() {
+    const attributeList= [
+         new CognitoUserAttribute({
+           Name: 'custom:subs_id',
+           Value: "promo"
+         }),
+         new CognitoUserAttribute({
+           Name: 'custom:subs_type',
+           Value: "promo"
+         }),
+         new CognitoUserAttribute({
+           Name: 'custom:subs_active',
+           Value: "true"
+         })
+       ]
+    await updateCustomAttributes(attributeList);
+  }
+
+  handleSubmit() {
     console.log("submitting");
-    console.log(this.state);
+    console.log(this.state.promoCode);
     if (this.state.promoCode.toLowerCase() === "goviral") {
-      const attributeList= [
-           new CognitoUserAttribute({
-             Name: 'custom:subs_id',
-             Value: "promo"
-           }),
-           new CognitoUserAttribute({
-             Name: 'custom:subs_type',
-             Value: "promo"
-           }),
-           new CognitoUserAttribute({
-             Name: 'custom:subs_active',
-             Value: "true"
-           })
-         ]
-      await updateCustomAttributes(attributeList);
+      this.grantAccess();
     }
+    window.location = "https://app.sapie.space/app/promo"
   }
 
   async handleClick() {
@@ -181,11 +182,14 @@ class Subscribe extends Component {
                 </TabList>
 
                 <TabPanel>
+                  <div id="arrow" style={{display: 'inline-block', width: '10%', marginTop: '-55px', marginRight: '33.3%'}}>
+                    <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.50)", borderRadius: '1px'}}></div>
+                  </div>
                   <div id='monthly' style={{display : 'inline-block', width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
                       {
                         (getCurrentUser().username === "bob") ? (
                           <div>
-                          <h3>Monthly Subscription</h3>
+                          <h1>Monthly Subscription</h1>
                           <br/>
                           <h2><b>$450.00</b><br></br> per month</h2>
                           <h4>The Monthly Plan</h4>
@@ -193,7 +197,7 @@ class Subscribe extends Component {
 
                         ) : (
                           <div>
-                          <h3>Yearly Subscription</h3>
+                          <h1>Yearly Subscription</h1>
                           <br/>
                           <h2><b>$99.00</b><br></br> per year</h2>
                           </div>
@@ -214,31 +218,34 @@ class Subscribe extends Component {
 
                   </div>
                 </TabPanel>
+
                 <TabPanel>
-                <div id='monthly' style={{display : 'inline-block', width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
-                <h3>Currently not supported</h3>
-                {/*
+                <div id="arrow" style={{display: 'inline-block', width: '10%', marginTop: '-55px'}}>
+                  <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.50)", borderRadius: '1px'}}></div>
+                </div>
+                <div id='monthly' style={{width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
+
                 <h3>Enter an Access Code</h3>
                 <br/>
-
-
-                <form>
-
-                  <FormGroup controlId="promoCode" bsSize="large" style={{borderRadius: '20px'}}>
-                    <FormControl
-                      value={this.state.promoCode}
-                      onChange={this.handleChange}
-                      type="promo"
-                      placeholder= "Promotion Code"
-                    />
-                  </FormGroup>
+                <form onSubmit>
+                <PromoArea
+                  rows={1}
+                  resize={false}
+                  content={this.state.promoCode}
+                  name={'access code'}
+                  controlFunc={this.handlePromoChange}
+                  placeholder={'code'} />
+                  <br />
                 </form>
                 <button onClick={this.handleSubmit} style={submitButtonStyle}>Get Access</button>
-                */}
 
                 </div>
                 </TabPanel>
+
                 <TabPanel>
+                <div id="arrow" style={{display: 'inline-block', width: '10%', marginTop: '-55px', marginLeft: '33.3%'}}>
+                  <div className="strike-through" style={{border: "solid 1px rgb(0,0,0,.50)", borderRadius: '1px'}}></div>
+                </div>
                 <div id='monthly' style={{display : 'inline-block', width: '60%', borderRadius: '12px', backgroundColor: "#f9f9fa", padding: '30px', margin: '15px',  marginLeft: '40px'}}>
                   <h3>Start a free 7 day trial </h3><br />
                   <button onClick={this.handleClick} style={trialButtonStyle}>Begin Trial</button>
