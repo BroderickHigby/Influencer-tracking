@@ -87,18 +87,18 @@ def run_query():
             #Return YT query
             for ii, idx in enumerate(query_result):
                 if idx['youtube']['id'] != '':
-                    query_copy.remove(ii)
+                    query_copy.pop(ii)
 
         if json_input['instagram'] != "y":
             #Return Insta query
             for ii, idx in enumerate(query_result):
                 if idx['instagram']['url'] != '':
-                    query_copy.remove(ii)
+                    query_copy.pop(ii)
         if json_input['twitter'] != "y":
             #return twitter query
             for ii, idx in enumerate(query_result):
                 if idx['twitter']['url'] != '':
-                    query_copy.remove(ii)
+                    query_copy.pop(ii)
 
         return jsonify({'query_results': query_copy})
 
