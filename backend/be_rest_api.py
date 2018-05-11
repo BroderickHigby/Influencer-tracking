@@ -38,28 +38,50 @@ def run_query():
     print("in query")
     json_input = json.loads(request.data)
     lmtzr = WordNetLemmatizer()
-    print("Running query")
-    print(json_input['queryString'])
-    lem_split = ""
-    lemming = lmtzr.lemmatize(str(json_input['queryString']))
-    for word in lemming.split():
-	lem_split = str(lem_split)
-        lem_split += lmtzr.lemmatize(word) + " "
+    if '|||' in json_input['queryString']:
+	searches = json_input['queryString'].split('|||')
+	search_term = searches[0]
+	search_location = searches[1]
+	lem_split = ""
+        lemming = lmtzr.lemmatize(str(json_input['queryString']))
+	for word in lemming.split():
+	    lem_split = str(lem_split)
+            lem_split += lmtzr.lemmatize(word) + " "
+        fields = [lem_split, time.strftime("%Y-%m-%d %H:%M"), str(json_input['user_email'])]
+        with open(r'query_logs', 'a') as f:
+            writer = csv.writer(f)
+            writer.writerow(fields)
+	query_result = Influencer.query(str(lem_split), search_location)
+        print(query_result)
+        print(type(query_result))
+        if len(query_result) <= 5:
+            search_list_by_keyword(part='snippet', maxResults=25, q=lem_split)
+            query_result = Influencer.query(str(lem_split))
+        print("returning query")
+        return jsonify({'query_results': query_result})
+    else:
+        print("Running query")
+        print(json_input['queryString'])
+        lem_split = ""
+        lemming = lmtzr.lemmatize(str(json_input['queryString']))
+        for word in lemming.split():
+	    lem_split = str(lem_split)
+            lem_split += lmtzr.lemmatize(word) + " "
 
-    print(lem_split)
-    fields = [lem_split, time.strftime("%Y-%m-%d %H:%M"), str(json_input['user_email'])]
-    with open(r'query_logs', 'a') as f:
-      writer = csv.writer(f)
-      writer.writerow(fields)
+        print(lem_split)
+        fields = [lem_split, time.strftime("%Y-%m-%d %H:%M"), str(json_input['user_email'])]
+        with open(r'query_logs', 'a') as f:
+            writer = csv.writer(f)
+            writer.writerow(fields)
 
-    query_result = Influencer.query(str(lem_split))
-    print(query_result)
-    print(type(query_result))
-    if len(query_result) <= 5:
-        search_list_by_keyword(part='snippet', maxResults=25, q=lem_split)
         query_result = Influencer.query(str(lem_split))
-    print("returning query")
-    return jsonify({'query_results': query_result})
+        print(query_result)
+        print(type(query_result))
+        if len(query_result) <= 5:
+            search_list_by_keyword(part='snippet', maxResults=25, q=lem_split)
+            query_result = Influencer.query(str(lem_split))
+        print("returning query")
+        return jsonify({'query_results': query_result})
 
 @app.route('/charge_monthly', methods=['POST'])
 def charge_monthly():
