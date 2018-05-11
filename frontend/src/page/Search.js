@@ -645,7 +645,7 @@ class Search extends Component {
       else if (this.state.platforms[i] == "Twitter") passtw = "yes";
       else if (this.state.platforms[i] == "Instagram") passin = "yes";
     }
-    getQuery(passyt, passin, passtw)
+    this.getQuery(passyt, passin, passtw)
   }
 
   constructor(props) {
