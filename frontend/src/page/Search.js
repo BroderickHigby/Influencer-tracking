@@ -288,15 +288,7 @@ const backButtonStyle = {
   display: 'none'
 }
 
-const submitButtonStyle = {
-  backgroundColor: '#66b2b2',
-  borderRadius: '10px',
-  color: 'white',
-  padding: '10px 10px',
-  border: '0',
-  fontSize: '1em',
-  width: '25%'
-}
+
 
 const compactButtonStyle = {
   backgroundColor: lightColor,
@@ -648,10 +640,12 @@ class Search extends Component {
     var passin = ""
     var i = 0
     console.log(this.state.selectedPlatforms)
-    /*for (i = 0; i < this.state.platforms; i++) {
-      if (this.state.platforms[i])
+    for (i = 0; i < this.state.platforms; i++) {
+      if (this.state.platforms[i] == "Youtube") passyt = "yes";
+      else if (this.state.platforms[i] == "Twitter") passtw = "yes";
+      else if (this.state.platforms[i] == "Instagram") passin = "yes";
     }
-    window.location = "https://app.sapie.space/app/promo" */
+    getQuery(passyt, passin, passtw)
   }
 
   constructor(props) {
@@ -789,7 +783,7 @@ class Search extends Component {
             selectedOptions={this.state.selectedPlatforms} />
             <br />
           </form>
-          <button onClick={this.handleSubmit} style={submitButtonStyle}>Filter Results</button>
+          <button onClick={this.handleSubmit} style={compactButtonStyle}>Filter Results</button>
 
 
 
