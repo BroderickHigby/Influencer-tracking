@@ -641,9 +641,9 @@ class Search extends Component {
     var i = 0
     console.log(this.state.selectedPlatforms)
     for (i = 0; i < this.state.selectedPlatforms; i++) {
-      if (this.state.selectedPlatforms[i] == "Youtube") passyt = "yes";
-      else if (this.state.selectedPlatforms[i] == "Twitter") passtw = "yes";
-      else if (this.state.selectedPlatforms[i] == "Instagram") passin = "yes";
+      if (this.state.selectedPlatforms[i] === "Youtube") passyt = "yes";
+      else if (this.state.selectedPlatforms[i] === "Twitter") passtw = "yes";
+      else if (this.state.selectedPlatforms[i] === "Instagram") passin = "yes";
     }
     this.getQuery(passyt, passin, passtw)
   }
