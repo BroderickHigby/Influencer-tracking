@@ -663,7 +663,7 @@ class Search extends Component {
     this.state = {IL: [],
                   loading: true,
                   platforms: ["Youtube", "Instagram", "Twitter"],
-                  selectedPlatforms: ""
+                  selectedPlatforms: [""]
                   };
 
     // Add your tracking ID created from https://analytics.google.com/analytics/web/#home/
@@ -752,7 +752,7 @@ class Search extends Component {
   handlePlatSelection(e) {
     const platSelection = e.target.value;
     let platSelectionArray;
-    if(this.state.selectedFeel.indexOf(platSelection) > -1) {
+    if(this.state.selectedPlatforms.indexOf(platSelection) > -1) {
       platSelectionArray = this.state.selectedPlatforms.filter(s => s !== platSelection)
     } else {
       platSelectionArray = [...this.state.selectedPlatforms, platSelection];
