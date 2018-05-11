@@ -38,7 +38,6 @@ import ytbutton from '../icons/youtubebutton.svg';
 import igcam from '../icons/instagramcamera.svg';
 import twbird from '../icons/twitterbird.svg';
 
-import { Redirect } from 'react-router-dom';
 import ReactLoading from 'react-loading';
 import LoadingIcon from '../icons/loading.gif';
 import uparrow from '../icons/uparrow.svg';
@@ -647,9 +646,8 @@ class Search extends Component {
       else if (this.state.selectedPlatforms[i] === "Instagram") passin = "y";
     }
     var adder = passyt + passtw+ passin
-    var url = "https://app.sapie.space/app/search?query=" + this.state.search + "=" + adder;
 
-    window.location = url;
+    return <Redirect push={true} to={`/app/search?query=${this.state.search}=${adder}`} />;
   }
 
   constructor(props) {
@@ -776,8 +774,7 @@ class Search extends Component {
           <br />
           </center>
           <br />
-
-
+          {/*
           <div style = {{fontColor: darkColor, margin: '2px'}}>
           <center>
           <form>
@@ -793,8 +790,7 @@ class Search extends Component {
           </center>
           </div>
           <br />
-
-
+          */}
 
             <p style={{color: darkColor, paddingLeft: '10px'}}> We found... </p>
             <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
@@ -1367,19 +1363,19 @@ class Search extends Component {
             <div style={{fontSize: '1.5em', marginBottom: '10px'}}>Some tips from our experts...</div>
 
             <div style={tipTitle}>Make sure you are providing value.</div>
-            <div style={tipDescription}>Most influencers get a ton of cold emails. To stand out from the crowd, make sure to offer some value. This will help get their attention and build a strong relationship.  </div>
+            <div style={tipDescription}>Most influencers get a ton of cold emails. To stand out from the crowd, make sure to offer some value. This will help get their attention and build a strong relationship.  </div>
 
             <div style={tipTitle}>Give them creative control.</div>
             <div style={tipDescription}>There is a reason the person you are reaching out to is influential. People love their personality! So let them be them. </div>
 
             <div style={tipTitle}>Make sure to set a goal to measure against.</div>
-            <div style={tipDescription}>It is important to set a goal (whether that is revenue, sign ups, pageviews...) to measure against. That way you can prove you were successful! </div>
+            <div style={tipDescription}>It is important to set a goal (whether that is revenue, sign ups, pageviews...) to measure against. That way you can prove you were successful! </div>
 
             <div style={tipTitle}>Set up a way to measure that goal.</div>
-            <div style={tipDescription}>The easiest way we have found is to use a url shortener like Bit.ly. If you create a unique url for each influencer you work with, then you will know who the real winners are </div>
+            <div style={tipDescription}>The easiest way we have found is to use a url shortener like Bit.ly. If you create a unique url for each influencer you work with, then you will know who the real winners are </div>
 
             <div style={tipTitle}>Remember the gold rule.</div>
-            <div style={tipDescription}>Influencers are people too, so let us just make sure we always ask "would I like this if I was in their position?"  </div>
+            <div style={tipDescription}>Influencers are people too, so let us just make sure we always ask "would I like this if I was in their position?"  </div>
             </div>
             </div>
             </div>
