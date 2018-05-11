@@ -671,10 +671,10 @@ class Search extends Component {
 
     console.log('In CONSTRUCTOR');
 
-    this.getQuery("y", "y", "y");
+    this.getQuery();
   };
 
-  async getQuery(yt, insta, twitt) {
+  async getQuery() {
     var emailUser = "";
 
     var attributes = await getAttributes();
@@ -692,6 +692,10 @@ class Search extends Component {
       alert("Searches must contain more than empty space");
       window.location = "./app/home";
     }
+    console.log(this.props.location.search.split("=")[2])
+    console.log(this.props.location.search.split("=")[2].charAt(0))
+    console.log(this.props.location.search.split("=")[2].charAt(1))
+    console.log(this.props.location.search.split("=")[2].charAt(2))
 
     var postData = {
       queryString: this.props.location.search.split("=")[1],

@@ -82,6 +82,9 @@ def run_query():
             query_result = Influencer.query(str(lem_split))
         print("returning query")
         query_copy = query_result
+        print (json_input['youtube'])
+        print json_input['instagram']
+        print json_input['twitter']
 
         if json_input['youtube'] != 'y':
             #Return YT query
