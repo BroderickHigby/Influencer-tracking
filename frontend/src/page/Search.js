@@ -647,8 +647,9 @@ class Search extends Component {
       else if (this.state.selectedPlatforms[i] === "Instagram") passin = "y";
     }
     var adder = passyt + passtw+ passin
+    var url = "https://app.sapie.space/app/search?query=" + this.state.search + "=" + adder;
 
-    return <Redirect push={true} to={`/app/search?query=${this.state.search}=${adder}`} />;
+    window.location = url;
   }
 
   constructor(props) {
@@ -793,7 +794,7 @@ class Search extends Component {
           </div>
           <br />
 
-          
+
 
             <p style={{color: darkColor, paddingLeft: '10px'}}> We found... </p>
             <div style={{color: 'rgba(0,0,0,0.5)', fontSize: '1em', padding: '3px', marginLeft: '20px'}}>
