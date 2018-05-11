@@ -640,10 +640,10 @@ class Search extends Component {
     var passin = ""
     var i = 0
     console.log(this.state.selectedPlatforms)
-    for (i = 0; i < this.state.platforms; i++) {
-      if (this.state.platforms[i] == "Youtube") passyt = "yes";
-      else if (this.state.platforms[i] == "Twitter") passtw = "yes";
-      else if (this.state.platforms[i] == "Instagram") passin = "yes";
+    for (i = 0; i < this.state.selectedPlatforms; i++) {
+      if (this.state.selectedPlatforms[i] == "Youtube") passyt = "yes";
+      else if (this.state.selectedPlatforms[i] == "Twitter") passtw = "yes";
+      else if (this.state.selectedPlatforms[i] == "Instagram") passin = "yes";
     }
     this.getQuery(passyt, passin, passtw)
   }
