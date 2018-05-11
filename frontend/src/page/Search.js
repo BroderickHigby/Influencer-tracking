@@ -773,9 +773,10 @@ class Search extends Component {
           </center>
           <br />
           <div style = {{fontColor: darkColor, margin: '2px'}}>
+          <center>
           <form>
           <CheckboxOrRadioGroup
-            title={'Which platforms would you like to see?'}
+            title={'Narrow by Platform'}
             setName={'platforms'}
             controlFunc={this.handlePlatSelection}
             type={'checkbox'}
@@ -783,6 +784,7 @@ class Search extends Component {
             selectedOptions={this.state.selectedPlatforms} />
           </form>
           <button onClick={this.handleSubmit} style={compactButtonStyle}>Filter Results</button>
+          </center>
           </div>
           <br />
 

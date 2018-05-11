@@ -15,6 +15,7 @@ const CheckboxOrRadioGroup = (props) => (
               value={opt}
               checked={ props.selectedOptions.indexOf(opt) > -1 }
               type={props.type} /> {opt}
+              <br/>
           </label>
         );
       })}
