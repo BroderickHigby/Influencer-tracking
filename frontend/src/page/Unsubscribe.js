@@ -27,10 +27,11 @@ class Unsubscribe extends Component {
 
     var i =0;
     var trial = false;
+    console.log(attributes);
 
     for( i = 0; i< attributes.length; i++){
       if(attributes[i].Name === "custom:subs_type"){
-        if(attributes[i].Value === "trial") {
+        if(attributes[i].Value === "trial" || attributes[i].Value === "promo" ) {
           trial = true;
         }
       }
