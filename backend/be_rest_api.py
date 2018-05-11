@@ -82,7 +82,7 @@ def run_query():
             query_result = Influencer.query(str(lem_split))
         print("returning query")
 
-        if json_input['youtube'] != "yes":
+        if json_input['youtube'] != "y":
             #Return YT query
             for idx in query_result:
                 try: (idx['youtube']['snippet']['thumbnails'])
@@ -90,12 +90,12 @@ def run_query():
                         query_result.remove(idx)
                     else:
                         pass
-        if json_input['instagram'] != "yes":
+        if json_input['instagram'] != "y":
             for idx in query_result:
                 if (idx['instagram']['url'] == ""):
                     query_result.remove(idx)
             #Return insta query
-        if json_input['twitter'] != "yes":
+        if json_input['twitter'] != "y":
             #return twitter query
             for idx in query_result:
                 if (idx['twitter']['description'] == ""):

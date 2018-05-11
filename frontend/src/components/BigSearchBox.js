@@ -63,7 +63,7 @@ class BigSearchBox extends Component {
 
     render() {
         if (this.state.goSearch) {
-            const url = `/app/search?query=${this.state.search}`;
+            const url = `/app/search?query=${this.state.search}=yyy`;
             return <Redirect push={true} to={url} />;
         }
         return (

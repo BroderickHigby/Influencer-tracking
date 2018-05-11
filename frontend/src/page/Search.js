@@ -635,17 +635,19 @@ class Search extends Component {
   }
 
   handleSubmit() {
-    var passyt = ""
-    var passtw = ""
-    var passin = ""
+    var passyt = "n"
+    var passtw = "n"
+    var passin = "n"
     var i = 0
     console.log(this.state.selectedPlatforms)
     for (i = 0; i < this.state.selectedPlatforms.length; i++) {
-      if (this.state.selectedPlatforms[i] === "Youtube") passyt = "yes";
-      else if (this.state.selectedPlatforms[i] === "Twitter") passtw = "yes";
-      else if (this.state.selectedPlatforms[i] === "Instagram") passin = "yes";
+      if (this.state.selectedPlatforms[i] === "Youtube") passyt = "y";
+      else if (this.state.selectedPlatforms[i] === "Twitter") passtw = "y";
+      else if (this.state.selectedPlatforms[i] === "Instagram") passin = "y";
     }
-    this.getQuery(passyt, passin, passtw)
+    var adder = passyt + passtw+ passin
+
+    return <Redirect push={true} to={`/app/search?query=${this.state.search}=${adder}`} />;
   }
 
   constructor(props) {
@@ -667,7 +669,7 @@ class Search extends Component {
 
     console.log('In CONSTRUCTOR');
 
-    this.getQuery("yes", "yes", "yes");
+    this.getQuery("y", "y", "y");
   };
 
   async getQuery(yt, insta, twitt) {
@@ -692,9 +694,9 @@ class Search extends Component {
     var postData = {
       queryString: this.props.location.search.split("=")[1],
       user_email: emailUser,
-      youtube: yt,
-      twitter: twitt,
-      instagram: insta
+      youtube: this.props.location.search.split("=")[2].charAt(0),
+      twitter: this.props.location.search.split("=")[2].charAt(1),
+      instagram: this.props.location.search.split("=")[2].charAt(2)
       //queryString: this.props.location.search.split("=")[1]
     };
 
