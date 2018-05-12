@@ -33,7 +33,7 @@ for entry in res['hits']['hits']:
             influencer.Influencer.remove(entry['_id'])
             continue
     desc = ""
-    if 'snippet' in entry_source['youtube']:
+    if 'snippet' in entry_source['youtube'] and 'description' in entry_source['youtube']['snippet']:
         desc += str(entry_source['youtube']['snippet']['description'].encode('utf-8')).lower()
     desc += entry_source['instagram']['bio']
     desc += entry_source['twitter']['description']
