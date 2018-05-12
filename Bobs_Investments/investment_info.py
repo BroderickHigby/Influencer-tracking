@@ -1,56 +1,95 @@
 import requests
 import json
+import csv
+
+#my own API key for mattermark's API
+matter_key = '7eadde60a0f5d2ff84cffcef9e470e5437923532f9f5fcd254a4b9cba957df50'
 
 def return_investors(investors):
     investors = investors.replace(', ',',')
-    print (investors)
     return investors.split(',')
 
 
+def get_company_data(company_id):
+    response1=requests.get('https://api.mattermark.com/companies/'+str(company_id)+'?key='+matter_key)
+    data1 = response1.json()
 
-#my own API key for mattermark's API
-matter_key = '4b542b0e2d26cb603bc2560a0ca0f3222b8b7d893d3b8dd0cde0b3af95adb7f3'
+    # company info
+    company_information = {}
+    company_information['name'] = data1['name']
+    company_information['mattermarkid'] = data1['id']
+    company_information['stage'] = data1['stage']
+    company_information['location'] = data1['location']
+    company_information['city'] = data1['city']
+    company_information['country'] = data1['country']
+    company_information['total_funding'] = data1['total_funding']
 
+    # find each company's investors
+    company_funding = data1['funding']
+    investors = []
+    string_investors = ''
+    first = True
+    
+    for funding_record in company_funding:
+        for investor in return_investors(funding_record['investors']):
+            if investor not in investors and investor != '':
+                investors.append(investor)
+                if not first:
+                    string_investors += ', ' + investor
+                else:
+                    string_investors = investor
+                    first = False
+    
+    company_information['investors'] = string_investors
+    return company_information
+ 
 
 #Enter our own search term and pull data from there
-search_term= input('What company would you like to search for: ')
+search_term= input('What company would you like to search for: ') # search_ term is the company used
 response=requests.get('https://api.mattermark.com/companies/?key='+matter_key+'&company_name='+search_term)
 data = response.json()
 company_data = data['companies']
 
-#get their Ids
+# get their Ids
 company_ids = []
 for data_entry in company_data:
     company_ids.append([str(data_entry['id'])])
 
 
-#Gather data on each company
-for id in company_ids:
-    response1=requests.get('https://api.mattermark.com/companies/'+str(id[0])+'?key='+matter_key)
-    data1 = response1.json()
+# Gather data on the company we want
+max_company = None
+max_funding = 0
+for company_id in company_ids:
+    company = get_company_data( str(company_id[0]) )    
 
-    #company info
-    company_information = {}
-    company_information['id'] = data1['id']
-    company_information['Website'] = data1['website']
-    company_information['location'] = data1['location']
-    company_information['city'] = data1['city']
-    company_information['state'] = data1['state']
-    company_information['country'] = data1['country']
-    company_information['name'] = data1['name']
-    company_information['total_funding'] = data1['total_funding']
+    if company['total_funding'] != None:
+        if int(company['total_funding']) > max_funding:
+            max_funding = company['total_funding']
+            max_company = company
 
-    #find each company's investors
-    data1_funding = data1['funding']
-    all_investors = []
-    for i in range(0,len(data1_funding)):
-        series_investors = data1_funding[i]['investors']
-        series_investors = return_investors(series_investors)
-        
-        for entry in series_investors:
-            if entry not in all_investors:
-                all_investors.append(entry)
-        
-    company_information['all_investors'] = all_investors                
-    
+data_to_write = []
+data_to_write.append(['Name','Stage','Location','City','Country','Total Funding','Investors'])
+data_to_write.append([ v for k,v in max_company.items() if k != 'mattermarkid'])
 
+
+# find similar companies to the one with the max funding
+company_ids = []
+response=requests.get('https://api.mattermark.com/companies/'+max_company['mattermarkid'] + '/similar?key='+matter_key)
+data = response.json()
+
+for data_entry in data:
+    if len(company_ids) < 10:
+        company_ids.append(data_entry['id'])
+    else:
+        break
+
+for company_id in company_ids:
+    company=get_company_data(company_id)
+    data_to_write.append([v for k,v in company.items() if k!='mattermarkid'])
+
+
+file_name = search_term + '.csv'
+
+with open(file_name,'w') as f:
+    wtr = csv.writer(f,delimiter=',')
+    wtr.writerows(data_to_write)
