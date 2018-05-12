@@ -779,6 +779,7 @@ class Search extends Component {
           <button onClick={this.handleClick} style={compactButtonStyle}>Back to Search</button>
           <br />
           </center>
+          {/*
           <br />
 
           <div style = {{fontColor: darkColor, margin: '2px'}}>
@@ -796,6 +797,7 @@ class Search extends Component {
           </center>
           </div>
           <br />
+          */}
 
 
             <p style={{color: darkColor, paddingLeft: '10px'}}> We found... </p>
