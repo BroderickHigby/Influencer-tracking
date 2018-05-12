@@ -135,6 +135,15 @@ class Influencer:
                         }
                     }
                 }
+                
+                actual_query8 = {
+                    "size": 200,
+                    "query": {
+                        "match": {
+                            "locations": query,
+                        }
+                    }
+                }
             else:
                 actual_query = {
                     "size" : 200,
@@ -195,6 +204,15 @@ class Influencer:
                         }
                     }
                 }
+                
+                actual_query8 = {
+                    "size": 200,
+                    "query": {
+                        "match": {
+                            "locations": query,
+                        }
+                    }
+                }
         elif query is None:
             actual_query = MATCH_ALL
         else:
@@ -243,6 +261,13 @@ class Influencer:
                 doc_type=cls.doc_type,
                 body=dict(actual_query7),
             )
+            
+            res8 = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query8),
+            )
+            
         except NotFoundError:
             results = []
         else:
@@ -306,7 +331,15 @@ class Influencer:
                         break
                 if is_in == False:
                     results.append(doc['_source'])
-
+            
+            for doc in res8['hits']['hits']:
+                is_in = False
+                for already_added in results:
+                    if already_added['id'] == doc['_source']['id']:
+                        is_in = True
+                        break
+                if is_in == False:
+                    results.append(doc['_source'])
 
             for gg in results:
                 if 'influencer_score' not in gg:
