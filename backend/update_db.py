@@ -27,7 +27,7 @@ current_date = datetime.date.today().strftime("%B %d, %Y")
 
 for entry in res['hits']['hits']:
     entry_source = entry['_source']
-    if 'statistics' in entry_source['youtube']:
+    if 'statistics' in entry_source['youtube'] and 'subscriberCount' in entry_source['youtube']['statistics']:
         stored_sub_count = int(entry_source['youtube']['statistics']['subscriberCount'])
         if stored_sub_count > 100000:
             influencer.Influencer.remove(entry['_id'])
