@@ -59,7 +59,7 @@ def run_query():
     if len(query_result) <= 5:
         search_list_by_keyword(part='snippet', maxResults=25, q=lem_split)
         query_result = Influencer.query(str(lem_split))
-     print("returning query")
+    print("returning query")
 
     return jsonify({'query_results': query_result})
 
