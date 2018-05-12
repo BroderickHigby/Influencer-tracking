@@ -35,8 +35,10 @@ for entry in res['hits']['hits']:
     desc = ""
     if 'snippet' in entry_source['youtube'] and 'description' in entry_source['youtube']['snippet']:
         desc += str(entry_source['youtube']['snippet']['description'].encode('utf-8')).lower()
-    desc += entry_source['instagram']['bio']
-    desc += entry_source['twitter']['description']
+    if 'bio' in entry_source['instagram']:
+        desc += entry_source['instagram']['bio']
+    if 'description' in entry_source['twitter']:
+        desc += entry_source['twitter']['description']
     print("MEOOFFFF")
     dp = description_parser.DescriptionParser(desc)
     entity_json = dp.comprehend_entities()
