@@ -1,10 +1,10 @@
 import boto3
-
+comprehend = boto3.client(service_name='comprehend', region_name='us-west-2')
 class DescriptionParser:
     def __init__(self, description):
         self.description = description
     def comprehend_entities(self):
-        comprehend = boto3.client(service_name='comprehend', region_name='us-west-2')
+        #comprehend = boto3.client(service_name='comprehend', region_name='us-west-2')
         if len(self.description) > 0:
             print('Calling DetectEntities')
             entity_json = comprehend.detect_entities(Text=self.description, LanguageCode='en')
