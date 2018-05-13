@@ -144,6 +144,16 @@ class Influencer:
                         }
                     }
                 }
+                
+                actual_query9 = {
+                    "size": 200,
+                    "query": {
+                        "match": {
+                            "organizations": query,
+                        }
+                    }
+                }
+             
             else:
                 actual_query = {
                     "size" : 200,
@@ -213,6 +223,15 @@ class Influencer:
                         }
                     }
                 }
+                
+                actual_query9 = {
+                    "size": 200,
+                    "query": {
+                        "match": {
+                            "organizations": query,
+                        }
+                    }
+                }
         elif query is None:
             actual_query = MATCH_ALL
         else:
@@ -266,6 +285,12 @@ class Influencer:
                 index=cls.index,
                 doc_type=cls.doc_type,
                 body=dict(actual_query8),
+            )
+            
+            res9 = es.search(
+                index=cls.index,
+                doc_type=cls.doc_type,
+                body=dict(actual_query9),
             )
             
         except NotFoundError:
@@ -333,6 +358,15 @@ class Influencer:
                     results.append(doc['_source'])
             
             for doc in res8['hits']['hits']:
+                is_in = False
+                for already_added in results:
+                    if already_added['id'] == doc['_source']['id']:
+                        is_in = True
+                        break
+                if is_in == False:
+                    results.append(doc['_source'])
+                    
+            for doc in res9['hits']['hits']:
                 is_in = False
                 for already_added in results:
                     if already_added['id'] == doc['_source']['id']:
