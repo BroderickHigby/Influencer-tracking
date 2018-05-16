@@ -3,7 +3,7 @@ import json
 import csv
 
 #my own API key for mattermark's API
-matter_key = '7eadde60a0f5d2ff84cffcef9e470e5437923532f9f5fcd254a4b9cba957df50'
+matter_key = '4bc198ec453598173f5e44df81d45adc30f1c106d43907fa7b53998ec7c9cbef'
 
 def return_investors(investors):
     investors = investors.replace(', ',',')
@@ -18,7 +18,11 @@ def get_company_data(company_id):
     company_information = {}
     company_information['name'] = data1['name']
     company_information['mattermarkid'] = data1['id']
-    company_information['stage'] = data1['stage']
+
+    if len(data1['stage']) == 1:
+        company_information['stage'] = 'Series: ' + data1['stage']
+    else:
+        company_information['stage'] = data1['stage']
     company_information['location'] = data1['location']
     company_information['city'] = data1['city']
     company_information['country'] = data1['country']
@@ -63,10 +67,11 @@ for company_id in company_ids:
     company = get_company_data( str(company_id[0]) )    
 
     if company['total_funding'] != None:
-        if int(company['total_funding']) > max_funding:
+        if int(company['total_funding']) >= max_funding:
             max_funding = company['total_funding']
             max_company = company
 
+print (max_company)
 data_to_write = []
 data_to_write.append(['Name','Stage','Location','City','Country','Total Funding','Investors'])
 data_to_write.append([ v for k,v in max_company.items() if k != 'mattermarkid'])
@@ -78,7 +83,7 @@ response=requests.get('https://api.mattermark.com/companies/'+max_company['matte
 data = response.json()
 
 for data_entry in data:
-    if len(company_ids) < 10:
+    if len(company_ids) < 15:
         company_ids.append(data_entry['id'])
     else:
         break
@@ -88,7 +93,7 @@ for company_id in company_ids:
     data_to_write.append([v for k,v in company.items() if k!='mattermarkid'])
 
 
-file_name = search_term + '.csv'
+file_name = search_term + '&similar_companies.csv'
 
 with open(file_name,'w') as f:
     wtr = csv.writer(f,delimiter=',')
