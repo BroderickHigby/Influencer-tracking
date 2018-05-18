@@ -936,7 +936,7 @@ class Search extends Component {
                 <div style={{width:'40%', display: 'inline-block', verticalAlign: 'bottom', marginBottom: '11px'}}>
                 <Popup
                     trigger={<button style={popButtonStyle}><u>Contact</u></button>}
-                    position="right center"
+                    position="right"
                     closeOnDocumentClick
                 >
 
@@ -1273,11 +1273,11 @@ class Search extends Component {
             {
               d.youtube.statistics.subscriberCount ? (
                 <div style={{fontColor: "#FAFAFA", marginTop: '10px', verticalAlign: 'center'}}>
-                <p style = {statsTextStyle}>
+                <div style = {statsTextStyle}>
                 <a href={"https://www.youtube.com/channel/" + d.youtube.id} style={{display: 'inline-block', width: '16%'}} target="_blank"><img src={youtube} style={iconStyleStats} /> </a>
                 <p style={{width:'12%', display: 'inline-block'}}> {truncateNumbers2(d.youtube.statistics.subscriberCount)} </p>
                 <div className="strike-through" style={{width: '65%', display: 'inline-block', width: (150 * getlengths(d)[0]), border: "solid 6px #ff3333", borderRadius: '2px', marginLeft: '10px'}}></div>
-                </p>
+                </div>
 
                 </div>
               ) : (
@@ -1362,12 +1362,12 @@ class Search extends Component {
             <div style={{marginTop: '20px', position: 'absolute', margin: '0 auto', width: '90%'}}>
 
             {/*<button onClick={this.handleClick} style={backButtonStyle}>Back to Search</button>*/}
-            <div class="row">
-            <div class="col-md-5" style={{textAlign: 'center'}}>
+            <div className="row">
+            <div className="col-md-5" style={{textAlign: 'center'}}>
             <div style={{fontSize: '1.5em', fontWeight: '400', marginBottom: '70px'}}> Finding influencers hang tight!</div>
             <img src={LoadingIcon}/>
             </div>
-            <div class="col-md-7">
+            <div className="col-md-7">
             <div style={{fontSize: '1.5em', marginBottom: '10px'}}>Some tips from our experts...</div>
 
             <div style={tipTitle}>Make sure you are providing value.</div>
