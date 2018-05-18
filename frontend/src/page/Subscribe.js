@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import StripeCheckout from 'react-stripe-checkout';
-import axios from 'axios';
 import { updateCustomAttributes, getAttributes, getCurrentUser } from '../libs/awsLib';
-import {
-  AuthenticationDetails,
-  CognitoUserPool,
-  CognitoUserAttribute
-} from "amazon-cognito-identity-js";
+import {  CognitoUserAttribute } from "amazon-cognito-identity-js";
 import ReactPlayer from 'react-player'
 
 import Popup from "reactjs-popup";
@@ -115,7 +109,7 @@ class Subscribe extends Component {
     }
     console.log(allowtrial);
 
-    if (allowtrial == true) {
+    if (allowtrial === true) {
       const attributeList= [
         new CognitoUserAttribute({
           Name: 'custom:subs_id',

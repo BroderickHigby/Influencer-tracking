@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardElement, CardNumberElement, CardExpiryElement, CardCVCElement} from 'react-stripe-elements';
+import {CardElement} from 'react-stripe-elements';
 
 var style = {
   base: {

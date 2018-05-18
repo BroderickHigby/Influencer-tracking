@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { updateCustomAttributes, getAttributes } from '../libs/awsLib';
-import {
-  AuthenticationDetails,
-  CognitoUserPool,
-  CognitoUserAttribute
-} from "amazon-cognito-identity-js";
+import {  CognitoUserAttribute } from "amazon-cognito-identity-js";
 
 
 const ButtonStyle = {
@@ -18,9 +14,6 @@ const ButtonStyle = {
 }
 
 class Unsubscribe extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   async handleClick() {
     var attributes = await getAttributes();
@@ -131,8 +124,6 @@ class Unsubscribe extends Component {
     var attributes = await getAttributes();
 
     var i =0;
-    var trial = false;
-    var daysLeft = 0;
 
     for( i = 0; i < attributes.length; i++){
       if(attributes[i].Name === "custom:subs_type"){

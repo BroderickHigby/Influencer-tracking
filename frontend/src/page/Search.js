@@ -607,31 +607,11 @@ const truncateNumbers = (num) => {
   }
 }
 
-var assoc = "";
-var twitt = "";
-var instag = "";
-var locate = "";
-var events = "";
-var brands = "";
-
-var count = 0;
-var countIG = 0;
-var countTW = 0;
-var countYTFoll = 0;
-var countYTVid = 0;
-var countYTView = 0;
-var countFB =0;
-var count = 0;
-
-var followingCounts = [0, 0, 0];
-
-//var checked = false;
-
 var influencerList = [];
 class Search extends Component {
 
   handleClick() {
-    console.log("CLICKED");
+    //console.log("CLICKED");
     window.location = "./home";
   }
 
@@ -640,7 +620,7 @@ class Search extends Component {
     var passtw = "n"
     var passin = "n"
     var i = 0
-    console.log(this.state.selectedPlatforms)
+    //console.log(this.state.selectedPlatforms)
     for (i = 0; i < this.state.selectedPlatforms.length; i++) {
       if (this.state.selectedPlatforms[i] === "Youtube") passyt = "y";
       else if (this.state.selectedPlatforms[i] === "Twitter") passtw = "y";
@@ -669,7 +649,7 @@ class Search extends Component {
     // This just needs to be called once since we have no routes in this case.
     ReactGA.pageview(window.location.pathname);
 
-    console.log('In CONSTRUCTOR');
+    //console.log('In CONSTRUCTOR');
 
     this.getQuery();
   };
@@ -678,7 +658,7 @@ class Search extends Component {
     var emailUser = "";
 
     var attributes = await getAttributes();
-    console.log(attributes);
+    //console.log(attributes);
     var i =0;
 
     for( i = 0; i< attributes.length; i++){
@@ -692,10 +672,10 @@ class Search extends Component {
       alert("Searches must contain more than empty space");
       window.location = "./app/home";
     }
-    console.log(this.props.location.search.split("=")[2])
-    console.log(this.props.location.search.split("=")[2].charAt(0))
-    console.log(this.props.location.search.split("=")[2].charAt(1))
-    console.log(this.props.location.search.split("=")[2].charAt(2))
+    //console.log(this.props.location.search.split("=")[2])
+    //console.log(this.props.location.search.split("=")[2].charAt(0))
+    //console.log(this.props.location.search.split("=")[2].charAt(1))
+    //console.log(this.props.location.search.split("=")[2].charAt(2))
 
     var postData = {
       queryString: this.props.location.search.split("=")[1],
@@ -707,31 +687,31 @@ class Search extends Component {
     };
 
 
-    console.log("GRGRGRGRGRGR!!!");
-    console.log(postData.queryString);
-    console.log("$$$$$$$$$$$$$$$$");
+    //console.log("GRGRGRGRGRGR!!!");
+    //console.log(postData.queryString);
+    //console.log("$$$$$$$$$$$$$$$$");
     let axiosConfig = {
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
         "Access-Control-Allow-Origin": "*"
       }
     };
-    console.log('DOING AXIOS');
-    console.log(postData);
-    console.log(axiosConfig);
+    //console.log('DOING AXIOS');
+    //console.log(postData);
+    //console.log(axiosConfig);
 
     let currentComponent = this;
 
     axios.post("https://app.sapie.space/xapi/run_query", postData, axiosConfig)
     .then(function (response) {
-      console.log("Successful search");
-      console.log(response.data);
+      //console.log("Successful search");
+      //console.log(response.data);
       influencerList = response.data.query_results;
-      console.log(influencerList);
+      //console.log(influencerList);
       currentComponent.setState({IL: influencerList});
     })
     .catch(function (error) {
-      console.log(error);
+      //console.log(error);
     });
   }
 
@@ -741,13 +721,13 @@ class Search extends Component {
 
 
   componentWillMount(){
-    console.log("Will mount");
+    //console.log("Will mount");
     influencerList = [];
     this.setState({loading: true}); //optional
   }
 
   componentDidMount(){
-    console.log("Did mount")
+    //console.log("Did mount")
     this.setState({loading: false})
   }
 
@@ -843,7 +823,7 @@ class Search extends Component {
             (d.platform_base === "youtube") ? (
               <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={imgStyle}/>
             ) : (
-              (d.platform_base == "twitter") ? (
+              (d.platform_base === "twitter") ? (
                 <img src={d.twitter.profile_pic_url} alt="profile pic" style={imgStyle}/>
               ) : (
                 <img src={d.instagram.profile_pic_url} alt="profile pic" style={imgStyle}/>
@@ -1024,7 +1004,7 @@ class Search extends Component {
                     (d.platform_base === "youtube") ? (
                       <img src={d.youtube.snippet.thumbnails.high.url} alt="profile pic" style={styleImage}/>
                     ) : (
-                      (d.platform_base == "twitter") ? (
+                      (d.platform_base === "twitter") ? (
                         <img src={d.twitter.profile_pic_url} alt="profile pic" style={styleImage}/>
                       ) : (
                         <img src={d.instagram.profile_pic_url} alt="profile pic" style={styleImage}/>
@@ -1087,7 +1067,7 @@ class Search extends Component {
 
                   <div style={{width: '8%', display: 'inline-block'}}>
                   {
-                    ( (d.yt_growth.length != 0) || (d.ig_growth.length != 0) || d.twitter_growth ) ? (
+                    ( (d.yt_growth.length !==0) || (d.ig_growth.length !==0) || d.twitter_growth ) ? (
                       <p style={accountsStyle}> <center> <b>Trends</b> </center> </p>
                     ) : ( "" )
                   }

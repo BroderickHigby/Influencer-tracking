@@ -1,10 +1,6 @@
 import React from 'react';
 import {injectStripe} from 'react-stripe-elements';
-import {
-  AuthenticationDetails,
-  CognitoUserPool,
-  CognitoUserAttribute
-} from "amazon-cognito-identity-js";
+import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 import { getCurrentUser, updateCustomAttributes, getAttributes } from '../../libs/awsLib.js';
 import CardSection from './CardElement.js';
 import axios from 'axios';
@@ -84,7 +80,6 @@ class CheckoutForm extends React.Component {
       .then(async function (response) {
 
         var subs = response.data.subscription;
-        var subscription_id = subs.id;
 
         const attributeList= [
           new CognitoUserAttribute({

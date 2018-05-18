@@ -115,7 +115,7 @@ class Home extends Component {
                 <MainContent>
                   <center><img src={sapielogo} style={{height: '20%', width: '26%'}} /></center>
 
-                  <div style={{textAlign: 'center', color: '#5F5F5F', fontSize: '1em', fontWeight: '700', textAlign: "center"}}>
+                  <div style={{textAlign: 'center', color: '#5F5F5F', fontSize: '1em', fontWeight: '700'}}>
 
                     <BigSearchBox />
                     <TopSearches />
