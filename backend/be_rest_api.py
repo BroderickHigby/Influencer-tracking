@@ -82,7 +82,7 @@ def charge_monthly():
     if email_input == "rl@excelerationcapital.com":
         subscription = stripe.Subscription.create(
             customer=customer.id,
-            items=[{'plan': 'plan_CgyQc5NjADEVfY'}],
+            items=[{'plan': 'plan_CtMlshVGDNUU92'}],
         )
     else:
         #plan_CSVM2aXa9UW6NF
