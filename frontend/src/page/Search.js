@@ -404,7 +404,6 @@ const findGrowth = (arr, num) => {
   firstNum = getNumber(firstNum);
   return rounder(((lastNum - firstNum) * 1.0/ (firstNum * 1.0)) * 100, 4);
 
-
 }
 
 const getFBHandle = (str) => {
@@ -707,7 +706,7 @@ class Search extends Component {
       //console.log("Successful search");
       //console.log(response.data);
       influencerList = response.data.query_results;
-      //console.log(influencerList);
+      console.log(influencerList);
       currentComponent.setState({IL: influencerList});
     })
     .catch(function (error) {
@@ -916,7 +915,7 @@ class Search extends Component {
                 <div style={{width:'40%', display: 'inline-block', verticalAlign: 'bottom', marginBottom: '11px'}}>
                 <Popup
                     trigger={<button style={popButtonStyle}><u>Contact</u></button>}
-                    position="right"
+                    position="right center"
                     closeOnDocumentClick
                 >
 
