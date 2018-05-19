@@ -66,172 +66,16 @@ class Influencer:
     def query(cls, query, limit=100):
         """Query for a list of influencers"""
         if isinstance(query, str):
-            #actual_query = dict(
-            #    size=10000,
-            #    sort=["influencer_score"],
-            #    query=dict(
-            #        query_string=dict(
-            #            query=query,
-            #        ),
-            #    ),
-            #)
-            if " " not in query:
-                actual_query = {
-                    "size" : 200,
-                    "query":{
-                        "match":{
-                            "youtube.snippet.description":query,
-                        }
+            actual_query = {
+                "size": 200,
+                "query": {
+                    "multi_match": {
+                        "query": query,
+                        "type": "match_phrase",
+                        "fields": ["youtube.snippet.description", "youtube.brandingSettings.channel.keywords", "youtube.brandingSettings.channel.title", "twitter.description", "instagram.bio", "instagram.photo_captions", "twitter.tweets_made", "locations", "organizations"]
                     }
                 }
-                actual_query2 = {
-                    "size" : 200,
-                    "query":{
-                        "match":{
-                            "youtube.brandingSettings.channel.keywords":query,
-                        }
-                    }
-                }
-                actual_query3 = {
-                    "size" : 200,
-                    "query":{
-                        "match":{
-                            "youtube.brandingSettings.channel.title":query,
-                        }
-                    }
-                }
-                actual_query4 = {
-                    "size" : 200,
-                    "query":{
-                        "match":{
-                            "twitter.description":query,
-                        }
-                    }
-                }
-
-                actual_query5 = {
-                    "size": 200,
-                    "query": {
-                        "match": {
-                            "instagram.bio": query,
-                        }
-                    }
-                }
-
-                actual_query6 = {
-                    "size": 200,
-                    "query": {
-                        "match": {
-                            "instagram.photo_captions": query,
-                        }
-                    }
-                }
-
-                actual_query7 = {
-                    "size": 200,
-                    "query": {
-                        "match": {
-                            "twitter.tweets_made": query,
-                        }
-                    }
-                }
-                
-                actual_query8 = {
-                    "size": 200,
-                    "query": {
-                        "match": {
-                            "locations": query,
-                        }
-                    }
-                }
-                
-                actual_query9 = {
-                    "size": 200,
-                    "query": {
-                        "match": {
-                            "organizations": query,
-                        }
-                    }
-                }
-             
-            else:
-                actual_query = {
-                    "size" : 200,
-                    "query":{
-                        "match_phrase":{
-                            "youtube.snippet.description":query,
-                        }
-                    }
-                }
-                actual_query2 = {
-                    "size" : 200,
-                    "query":{
-                        "match_phrase":{
-                            "youtube.brandingSettings.channel.keywords":query,
-                        }
-                    }
-                }
-                actual_query3 = {
-                    "size" : 200,
-                    "query":{
-                        "match_phrase":{
-                            "youtube.brandingSettings.channel.title":query,
-                        }
-                    }
-                }
-                actual_query4 = {
-                    "size" : 200,
-                    "query":{
-                        "match_phrase":{
-                            "twitter.description":query,
-                        }
-                    }
-                }
-
-                actual_query5 = {
-                    "size": 200,
-                    "query": {
-                        "match_phrase": {
-                            "instagram.bio": query,
-                        }
-                    }
-                }
-
-                actual_query6 = {
-                    "size": 200,
-                    "query": {
-                        "match_phrase": {
-                            "instagram.photo_captions": query,
-                        }
-                    }
-                }
-
-                actual_query7 = {
-                    "size": 200,
-                    "query": {
-                        "match_phrase": {
-                            "twitter.tweets_made": query,
-                        }
-                    }
-                }
-                
-                actual_query8 = {
-                    "size": 200,
-                    "query": {
-                        "match": {
-                            "locations": query,
-                        }
-                    }
-                }
-                
-                actual_query9 = {
-                    "size": 200,
-                    "query": {
-                        "match": {
-                            "organizations": query,
-                        }
-                    }
-                }
+            }
         elif query is None:
             actual_query = MATCH_ALL
         else:
@@ -244,136 +88,14 @@ class Influencer:
                 doc_type=cls.doc_type,
                 body=dict(actual_query),
             )
-
-            res2 = es.search(
-                index=cls.index,
-                doc_type=cls.doc_type,
-                body=dict(actual_query2),
-            )
-
-            res3 = es.search(
-                index=cls.index,
-                doc_type=cls.doc_type,
-                body=dict(actual_query3),
-            )
-
-            res4 = es.search(
-                index=cls.index,
-                doc_type=cls.doc_type,
-                body=dict(actual_query4),
-            )
-
-            res5 = es.search(
-                index=cls.index,
-                doc_type=cls.doc_type,
-                body=dict(actual_query5),
-            )
-
-            res6 = es.search(
-                index=cls.index,
-                doc_type=cls.doc_type,
-                body=dict(actual_query6),
-            )
-
-            res7 = es.search(
-                index=cls.index,
-                doc_type=cls.doc_type,
-                body=dict(actual_query7),
-            )
-            
-            res8 = es.search(
-                index=cls.index,
-                doc_type=cls.doc_type,
-                body=dict(actual_query8),
-            )
-            
-            res9 = es.search(
-                index=cls.index,
-                doc_type=cls.doc_type,
-                body=dict(actual_query9),
-            )
             
         except NotFoundError:
             results = []
         else:
             results = []
-
-
             # Search Scoring based on the result
             for doc in res['hits']['hits']:
                 results.append(doc['_source'])
-            for doc in res2['hits']['hits']:
-                is_in = False
-                for already_added in results:
-                    if already_added['id'] == doc['_source']['id']:
-                        is_in = True
-                        break
-                if is_in == False:
-                    results.append(doc['_source'])
-
-            for doc in res3['hits']['hits']:
-                is_in = False
-                for already_added in results:
-                    if already_added['id'] == doc['_source']['id']:
-                        is_in = True
-                        break
-                if is_in == False:
-                    results.append(doc['_source'])
-            
-            for doc in res4['hits']['hits']:
-                is_in = False
-                for already_added in results:
-                    if already_added['id'] == doc['_source']['id']:
-                        is_in = True
-                        break
-                if is_in == False:
-                    results.append(doc['_source'])
-
-
-            for doc in res5['hits']['hits']:
-                is_in = False
-                for already_added in results:
-                    if already_added['id'] == doc['_source']['id']:
-                        is_in = True
-                        break
-                if is_in == False:
-                    results.append(doc['_source'])
-
-            for doc in res6['hits']['hits']:
-                is_in = False
-                for already_added in results:
-                    if already_added['id'] == doc['_source']['id']:
-                        is_in = True
-                        break
-                if is_in == False:
-                    results.append(doc['_source'])
-
-            for doc in res7['hits']['hits']:
-                is_in = False
-                for already_added in results:
-                    if already_added['id'] == doc['_source']['id']:
-                        is_in = True
-                        break
-                if is_in == False:
-                    results.append(doc['_source'])
-            
-            for doc in res8['hits']['hits']:
-                is_in = False
-                for already_added in results:
-                    if already_added['id'] == doc['_source']['id']:
-                        is_in = True
-                        break
-                if is_in == False:
-                    results.append(doc['_source'])
-                    
-            for doc in res9['hits']['hits']:
-                is_in = False
-                for already_added in results:
-                    if already_added['id'] == doc['_source']['id']:
-                        is_in = True
-                        break
-                if is_in == False:
-                    results.append(doc['_source'])
 
             for gg in results:
                 if 'influencer_score' not in gg:
