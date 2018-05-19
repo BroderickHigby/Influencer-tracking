@@ -2,7 +2,8 @@
 Sapie Space's mission is to connect businesses to social media influencers using machine learning.*
 
 ## Quick Start
-
+### Please create a branch of the repo
+#### Make sure you have the latest version of python 3 downloaded
 ```console
 # First, clone the repo to a desired folder
 $ git clone https://github.com/sapie-space/sapie.git
