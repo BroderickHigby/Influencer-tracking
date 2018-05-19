@@ -71,7 +71,7 @@ class Influencer:
                 "query": {
                     "multi_match": {
                         "query": query,
-                        "type": "match_phrase",
+                        "type": "phrase_prefix",
                         "fields": ["youtube.snippet.description", "youtube.brandingSettings.channel.keywords", "youtube.brandingSettings.channel.title", "twitter.description", "instagram.bio", "instagram.photo_captions", "twitter.tweets_made", "locations", "organizations"]
                     }
                 }
