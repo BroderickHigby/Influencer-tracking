@@ -1,13 +1,22 @@
 import requests
 import json
 import csv
+from selenium import webdriver
 
 #my own API key for mattermark's API
-matter_key = '4bc198ec453598173f5e44df81d45adc30f1c106d43907fa7b53998ec7c9cbef'
+matter_key = '6e5f5f2c9722021f2857f5b2d7a3564e00e209fc3455c7c20334c91e2447d7a7'
+cbinsights_username = 'mmehtani@ucsd.edu'
+cbinsights_password = 'Glock25!'
 
 def return_investors(investors):
     investors = investors.replace(', ',',')
     return investors.split(',')
+
+def get_investor_phone_number (investor_name):
+    driver = webdriver.Chrome('/Users/mayankmehtani/Downloads/chromedriver')
+    driver.get('https://app.cbinsights.com/login')
+    driver.find_element_by_xpath("//input@[name='username']")
+    driver.find_element_by_xpath("//input[@name='password']")
 
 
 def get_company_data(company_id):
@@ -33,7 +42,7 @@ def get_company_data(company_id):
     investors = []
     string_investors = ''
     first = True
-    
+
     for funding_record in company_funding:
         for investor in return_investors(funding_record['investors']):
             if investor not in investors and investor != '':
@@ -43,11 +52,11 @@ def get_company_data(company_id):
                 else:
                     string_investors = investor
                     first = False
-    
+
     company_information['investors'] = string_investors
     return company_information
- 
 
+'''
 #Enter our own search term and pull data from there
 search_term= input('What company would you like to search for: ') # search_ term is the company used
 response=requests.get('https://api.mattermark.com/companies/?key='+matter_key+'&company_name='+search_term)
@@ -64,7 +73,7 @@ for data_entry in company_data:
 max_company = None
 max_funding = 0
 for company_id in company_ids:
-    company = get_company_data( str(company_id[0]) )    
+    company = get_company_data( str(company_id[0]) )
 
     if company['total_funding'] != None:
         if int(company['total_funding']) >= max_funding:
@@ -98,3 +107,5 @@ file_name = search_term + '&similar_companies.csv'
 with open(file_name,'w') as f:
     wtr = csv.writer(f,delimiter=',')
     wtr.writerows(data_to_write)
+'''
+get_investor_phone_number('boss')
