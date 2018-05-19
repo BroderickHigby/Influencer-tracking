@@ -7,17 +7,20 @@ from selenium import webdriver
 matter_key = '6e5f5f2c9722021f2857f5b2d7a3564e00e209fc3455c7c20334c91e2447d7a7'
 cbinsights_username = 'mmehtani@ucsd.edu'
 cbinsights_password = 'Glock25!'
+driver = webdriver.Chrome('/Users/mayankmehtani/Downloads/chromedriver')
+
+def login_to_cbinsights():
+    driver.get('https://app.cbinsights.com/login')
+    email = driver.find_element_by_xpath("//input[@name='email']")
+    password = driver.find_element_by_xpath("//input[@name='password']")
+    email.send_keys(cbinsights_username)
+    password.send_keys(cbinsights_password)
+    login_button = driver.find_element_by_xpath("//button[contains(text(),'Login')]")
+    login_button.click()
 
 def return_investors(investors):
     investors = investors.replace(', ',',')
     return investors.split(',')
-
-def get_investor_phone_number (investor_name):
-    driver = webdriver.Chrome('/Users/mayankmehtani/Downloads/chromedriver')
-    driver.get('https://app.cbinsights.com/login')
-    driver.find_element_by_xpath("//input[@name='email']")
-    driver.find_element_by_xpath("//input[@name='password']")
-
 
 def get_company_data(company_id):
     response1=requests.get('https://api.mattermark.com/companies/'+str(company_id)+'?key='+matter_key)
@@ -56,7 +59,7 @@ def get_company_data(company_id):
     company_information['investors'] = string_investors
     return company_information
 
-'''
+
 #Enter our own search term and pull data from there
 search_term= input('What company would you like to search for: ') # search_ term is the company used
 response=requests.get('https://api.mattermark.com/companies/?key='+matter_key+'&company_name='+search_term)
@@ -107,5 +110,3 @@ file_name = search_term + '&similar_companies.csv'
 with open(file_name,'w') as f:
     wtr = csv.writer(f,delimiter=',')
     wtr.writerows(data_to_write)
-'''
-get_investor_phone_number('boss')
