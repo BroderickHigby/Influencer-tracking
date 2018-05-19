@@ -15,7 +15,7 @@ def return_investors(investors):
 def get_investor_phone_number (investor_name):
     driver = webdriver.Chrome('/Users/mayankmehtani/Downloads/chromedriver')
     driver.get('https://app.cbinsights.com/login')
-    driver.find_element_by_xpath("//input@[name='username']")
+    driver.find_element_by_xpath("//input[@name='email']")
     driver.find_element_by_xpath("//input[@name='password']")
 
 
