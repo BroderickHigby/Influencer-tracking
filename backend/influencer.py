@@ -67,7 +67,7 @@ class Influencer:
         """Query for a list of influencers"""
         if isinstance(query, str):
             actual_query = {
-                "size": 200,
+                "size": 1000,
                 "query": {
                     "multi_match": {
                         "query": query,
