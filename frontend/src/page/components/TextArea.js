@@ -63,7 +63,7 @@ class TextArea extends Component {
   render() {
     return (
       <form>
-        <label className="form-label">{this.props.title}</label>
+        <label className="form-label" style={{fontWeight: 'bold', fontSize: '1.7em'}}>{this.props.title}</label>
         <br />
         <textarea
           className="form-input"

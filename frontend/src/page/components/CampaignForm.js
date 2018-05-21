@@ -94,7 +94,6 @@ class CampaignForm extends Component {
     //fetch('./campaign_options.json')
       //.then(res => res.json())
       //.then(data => {
-      console.log(data.MPAAOptions);
         this.setState({
           step: 1,
 
@@ -381,7 +380,7 @@ class CampaignForm extends Component {
         return <div> <center>
           <a href={"_blank"} target="_blank"><img src={file} style={iconStyle} /> </a>
           <br />
-          <h4> Review the Form </h4>
+          <p style={{fontWeight: 'bold', fontSize: '1.7em'}}> Review the Form </p>
           <br />
           </center>
 
