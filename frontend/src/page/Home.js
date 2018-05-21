@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Content from '../layout/Content';
+import HomeContent from '../layout/HomeContent';
 import MainContent from '../layout/MainContent';
 import Filler from '../layout/Filler';
 
@@ -110,9 +110,10 @@ class Home extends Component {
 
         return (
             <React.Fragment>
-              <Content>
+              <HomeContent>
                 <Filler />
                 <MainContent>
+                  <br />
                   <center><img src={sapielogo} style={{height: '20%', width: '26%'}} /></center>
 
                   <div style={{textAlign: 'center', color: '#5F5F5F', fontSize: '1em', fontWeight: '700'}}>
@@ -125,7 +126,7 @@ class Home extends Component {
 
                 </MainContent>
                 <Filler />
-              </Content>
+              </HomeContent>
             </React.Fragment>
         );
     }

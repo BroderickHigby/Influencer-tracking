@@ -89,7 +89,7 @@ class CheckoutForm extends React.Component {
           new CognitoUserAttribute({
             Name: 'custom:subs_type',
             // Value: strUser
-            Value: "Monthly"
+            Value: "Yearly"
           }),
           new CognitoUserAttribute({
             Name: 'custom:subs_active',

@@ -31,11 +31,13 @@ class Header extends Component {
                 <Navbar.Collapse>
                   {this.props.isAuthenticated
                     ? <Navbar.Text  key={1}>
-                        <Link to="/app/settings"><font color="#66b2b2">Settings</font></Link>
+                        <Link to="/app/settings" style={{margin: '13px'}}><font color="#66b2b2">User Profile</font></Link>
+                        <Link to="/app/home" style={{margin: '13px'}}><font color="#66b2b2">Search Engine</font></Link>
+                        <Link to="/app/campaign" style={{margin: '13px'}}><font color="#66b2b2">Influencer Campaigns</font></Link>
+
                       </Navbar.Text>
                     : [
                         <Navbar.Text key={1}>
-
                        </Navbar.Text>
                     ]}
                   <Nav pullRight>

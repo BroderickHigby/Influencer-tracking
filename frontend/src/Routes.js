@@ -21,6 +21,7 @@ import SignupConfirmation from "./page/confirmations/SignupConfirmation";
 import Cancelconfirm from "./page/confirmations/Cancelconfirm";
 import PromoConfirm from "./page/confirmations/PromoConfirm";
 
+import DigitalCampaign from "./page/DigitalCampaign.js"
 import Campaign from "./page/Campaign.js"
 
 export default ({ childProps }) =>
@@ -37,6 +38,8 @@ export default ({ childProps }) =>
     <AuthenticatedRoute path="/app/signupconfirm" component={SignupConfirmation} props={childProps}/>
     <AuthenticatedRoute path="/app/cancelconfirm" component={Cancelconfirm} props={childProps}/>
     <AuthenticatedRoute path="/app/campaign" component={Campaign} props={childProps}/>
+    <AuthenticatedRoute path="/app/digitalcampaign" component={DigitalCampaign} props={childProps}/>
+
     <AuthenticatedRoute path="/app/promo" component={PromoConfirm} props={childProps}/>
 
 
