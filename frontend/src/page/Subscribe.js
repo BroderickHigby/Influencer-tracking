@@ -185,10 +185,9 @@ class Subscribe extends Component {
                           <div>
                           <h1>Monthly Subscription</h1>
                           <br/>
-                          <h2><b>$450.00</b><br></br> per month</h2>
+                          <h2><b>$1800.00</b><br></br> per month</h2>
                           <h4>The Monthly Plan</h4>
                           </div>
-
                         ) : (
                           <div>
                           <h1>Yearly Subscription</h1>

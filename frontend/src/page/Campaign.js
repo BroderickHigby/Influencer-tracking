@@ -11,14 +11,11 @@ class Campaign extends Component {
 
     render() {
       return (
-        <div className="container">
-            <div className="columns">
-              <div className="col-md-9 centered">
-                <h3>Launch a Campaign!</h3>
-                <CampaignForm />
-              </div>
-            </div>
-          </div>
+
+        <div stlye={{justifyContent: 'center'}}>
+          <h3 style={{marginLeft: '30px'}}>Launch a Campaign!</h3>
+          <CampaignForm />
+        </div>
         )
     }
   }
