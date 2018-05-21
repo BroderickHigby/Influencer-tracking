@@ -62,11 +62,11 @@ class Campaign extends Component {
 
             <a href={"_blank"} target="_blank"><img src={digit} style={iconStyle} /> </a>
             <h3> Digital Campaigns </h3>
-            <p style={{fontSize: '1em', textAlign: 'Left', fontColor: 'grey'}}> &emsp; Starting a digital campaign allows you to specify your exact needs for digital marketting to us through a simple form.
-                                          You will be able to specify the age demographic you would like you target, the brand feel, MPAA rating
+            <p style={{fontSize: '1em', textAlign: 'Left', fontColor: 'grey'}}> &emsp; Starting a digital campaign allows you to specify your exact needs for digital marketing to us through a simple form.
+                                          You will be able to specify the age demographic you would like to target, brand feel, MPAA rating,
                                           budget, location, industry, and any other specific needs. We will then personally match you with the best
                                           possible influencer for your brand! </p>
-            <button onClick={this.handleClickD} style={buttonStyle}>Lauch Campaign</button>
+            <button onClick={this.handleClickD} style={buttonStyle}>Launch Campaign</button>
 
           </div>
           </center>
