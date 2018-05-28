@@ -5,7 +5,7 @@ import TextArea from './TextArea';
 import Select from './Select';
 import './campaignStyles.css';
 import PropTypes from 'prop-types';
-import data from './campaign_options.json'
+import data from './physical_campaign_options.json'
 import pin from './icons/pin.svg'
 import couple from './icons/couple.svg'
 import kids from './icons/children.svg'
@@ -16,8 +16,6 @@ import coin from './icons/coins.svg'
 import industry from './icons/industry.svg'
 import rate from './icons/rate.svg'
 import file from './icons/file.svg'
-
-import axios from 'axios';
 
 
 var lightColor = '#66b2b2';
@@ -63,6 +61,7 @@ class CampaignForm extends Component {
     this.state = {
       step: 1,
       location: '',
+      eventType: '',
       goalSelections: [],
       selectedGoals: [],
       ageOptions: [],
@@ -79,6 +78,8 @@ class CampaignForm extends Component {
     //this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
+    this.handleEventChange = this.handleEventChange.bind(this);
+
     this.handleBudgetChange = this.handleBudgetChange.bind(this);
     this.handleAgeRangeSelect = this.handleAgeRangeSelect.bind(this);
     this.handleGoalSelection = this.handleGoalSelection.bind(this);
@@ -100,6 +101,7 @@ class CampaignForm extends Component {
           step: 1,
 
           location: data.location,
+          eventType: data.eventType,
           goalSelections: data.goalSelections,
           selectedGoals: data.selectedGoals,
           ageOptions: data.ageOptions,
@@ -117,6 +119,8 @@ class CampaignForm extends Component {
   }
 
   handleLocationChange(e) { this.setState({ location: e.target.value }); }
+  handleEventChange(e) { this.setState({ eventType: e.target.value }); }
+
   handleBudgetChange(e) {  this.setState({ currentBudget: e.target.value }); }
   handleAgeRangeSelect(e) { this.setState({ ownerAgeRangeSelection: e.target.value }); }
   handleDescriptionChange(e) { this.setState({ description: e.target.value }); }
@@ -167,6 +171,7 @@ class CampaignForm extends Component {
   handleClearForm() {
     this.setState({
       location: data.location,
+      eventType: data.eventType,
       goalSelections: data.goalSelections,
       selectedGoals: data.selectedGoals,
       ageOptions: data.ageOptions,
@@ -206,42 +211,23 @@ class CampaignForm extends Component {
 
   goToNext() {
     const { step } = this.state;
-    if (step !== 9) {
+    if (step !== 10) {
       this.setState({ step: step + 1 });
     } else {
 
-      const postData = {
+      const formPayload = {
         location: this.state.location,
-        age_demographic: this.state.ownerAgeRangeSelection,
-        industries: this.state.selectedIndustry,
-        goals: this.state.selectedGoals,
-        mpaa_rating: this.state.mpaaSelection,
-        brand_feel: this.state.selectedFeel,
-        budget: this.state.currentBudget,
-        other_info: this.state.description
+        selectedGoals: this.state.selectedGoals,
+        ownerAgeRangeSelection: this.state.ownerAgeRangeSelection,
+        mpaaSelection: this.state.mpaaSelection,
+        currentBudget: this.state.currentBudget,
+        description: this.state.description,
+        selectedIndustry: this.state.selectedIndustry,
+        selectedFeel: this.state.selectedFeel
       };
 
-      let axiosConfig = {
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8",
-          "Access-Control-Allow-Origin": "*"
-        }
-      };
-
-      let currentComponent = this;
-      
-      // TODO: MARK FIX ENDPOINT
-
-      axios.post("http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:6963", postData, axiosConfig)
-      .then(function (response) {
-        this.handleClearForm();
-        this.setState({ step: step + 1 });
-      })
-      .catch(function (error) {
-        //Catch Error
-      });
-
-      // console.log('Send this in a POST request:', postData)
+      console.log('Send this in a POST request:', formPayload)
+      this.handleClearForm();
     }
   }
 
@@ -266,11 +252,29 @@ class CampaignForm extends Component {
           controlFunc={this.handleLocationChange}
           content={this.state.location}
           level={1.0}
-          total={9.0}
+          total={10.0}
           placeholder={'Ex: Germany, San Diego, Worldwide...'} />
         </center>
         </div>;
       case 2:
+        return <div>
+        <center>
+          <a href={"_blank"} target="_blank"><img src={pin} style={iconStyle} /> </a>
+          <br />
+        <SingleInput
+          inputType={'text'}
+          onSubmit={this.goToNext}
+          onBack={this.goToPrevious}
+          title={'Tell us the region that you would like to reach out to'}
+          name={'location'}
+          controlFunc={this.handleEventChange}
+          content={this.state.eventType}
+          level={2.0}
+          total={10.0}
+          placeholder={'Ex: Farmers Market, Concert, etc...'} />
+        </center>
+        </div>;
+      case 3:
         return <div>
           <center>
             <a href={"_blank"} target="_blank"><img src={couple} style={iconStyle} /> </a>
@@ -283,12 +287,12 @@ class CampaignForm extends Component {
           placeholder={'Choose your age demographic'}
           controlFunc={this.handleAgeRangeSelect}
           options={data.ageOptions}
-          level={2.0}
-          total={9.0}
+          level={3.0}
+          total={10.0}
           selectedOption={this.state.ownerAgeRangeSelection} />
           </center>
           </div>;
-      case 3:
+      case 4:
         return <div>
         <center>
           <a href={"_blank"} target="_blank"><img src={industry} style={iconStyle} /> </a>
@@ -299,14 +303,14 @@ class CampaignForm extends Component {
           onBack={this.goToPrevious}
           setName={'industry'}
           type={'checkbox'}
-          level={3.0}
-          total={9.0}
+          level={4.0}
+          total={10.0}
           controlFunc={this.handleIndustrySelection}
           options={this.state.industrySelections}
           selectedOptions={this.state.selectedIndustry} />
           </center>
           </div>;
-      case 4:
+      case 5:
         return <div>
         <center>
           <a href={"_blank"} target="_blank"><img src={goal} style={iconStyle} /> </a>
@@ -317,14 +321,14 @@ class CampaignForm extends Component {
           onBack={this.goToPrevious}
           setName={'goals'}
           type={'checkbox'}
-          level={4.0}
-          total={9.0}
+          level={5.0}
+          total={10.0}
           controlFunc={this.handleGoalSelection}
           options={this.state.goalSelections}
           selectedOptions={this.state.selectedGoals} />
           </center>
           </div>;
-      case 5:
+      case 6:
         return <div>
         <center>
           <a href={"_blank"} target="_blank"><img src={review} style={iconStyle} /> </a>
@@ -334,15 +338,15 @@ class CampaignForm extends Component {
           onSubmit={this.goToNext}
           onBack={this.goToPrevious}
           setName={'MPAA'}
-          level={5.0}
-          total={9.0}
+          level={6.0}
+          total={10.0}
           controlFunc={this.handleMPAASelection}
           type={'checkbox'}
           options={this.state.MPAAOptions}
           selectedOptions={this.state.mpaaSelection} />
           </center>
           </div>;
-      case 6:
+      case 7:
         return <div>
         <center>
           <a href={"_blank"} target="_blank"><img src={rate} style={iconStyle} /> </a>
@@ -352,15 +356,15 @@ class CampaignForm extends Component {
           onSubmit={this.goToNext}
           onBack={this.goToPrevious}
           setName={'feel'}
-          level={6.0}
-          total={9.0}
+          level={7.0}
+          total={10.0}
           controlFunc={this.handleFeelSelection}
           type={'checkbox'}
           options={this.state.feelOptions}
           selectedOptions={this.state.selectedFeel} />
           </center>
           </div>;
-      case 7:
+      case 8:
         return <div>
         <center>
           <a href={"_blank"} target="_blank"><img src={coin} style={iconStyle} /> </a>
@@ -371,14 +375,14 @@ class CampaignForm extends Component {
           onBack={this.goToPrevious}
           title={'What is your budget?'}
           name={'budget'}
-          level={7.0}
-          total={9.0}
+          level={8.0}
+          total={10.0}
           controlFunc={this.handleBudgetChange}
           content={this.state.currentBudget}
           placeholder={'Enter value in $'} />
           </center>
           </div>;
-      case 8:
+      case 9:
         return <div>
         <center>
           <a href={"_blank"} target="_blank"><img src={chat} style={iconStyle} /> </a>
@@ -388,8 +392,8 @@ class CampaignForm extends Component {
           onSubmit={this.goToNext}
           onBack={this.goToPrevious}
           rows={5}
-          level={8.0}
-          total={9.0}
+          level={9.0}
+          total={10.0}
           resize={false}
           content={this.state.description}
           name={'currentPetInfo'}
@@ -397,7 +401,7 @@ class CampaignForm extends Component {
           placeholder={'If you have anything else you would like to tell our team, let us know here.'} />
           </center>
           </div>;
-      case 9:
+      case 10:
         return <div> <center>
           <a href={"_blank"} target="_blank"><img src={file} style={iconStyle} /> </a>
           <br />
@@ -425,13 +429,6 @@ class CampaignForm extends Component {
           </div>
           </center>
 
-        </div>;
-      case 10:
-        return <div> <center>
-          <br /> <br />
-            <h3> Your form has been successfully sent! <br/> We will get back to you shortly.</h3>
-
-        </center>
         </div>;
     }
   }
