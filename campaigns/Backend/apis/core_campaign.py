@@ -9,7 +9,7 @@ import uuid
 app = Flask(__name__)
 
 
-@app.route('/process_new_goals', methods=['POST'])
+'''@app.route('/process_new_goals', methods=['POST'])
 def api_process_new_goals():
     input = request.get_json()
     print("meow")
@@ -22,7 +22,7 @@ def api_process_new_goals():
     print('meow4')
     DatabaseInterface.write_campaign_to_db(input, optimal_influencers, campaign_id)
     print('hiss')
-    return optimal_influencers
+    return optimal_influencers'''
 
 
     #if 'name' in request.args:
@@ -51,7 +51,20 @@ def api_get_clientid_results():
     input = request.get_json()
     return DatabaseInterface.get_campaign_results_for_client_id(input['client_id'])
 
+@app.route('/create_campaign', methods=['POST'])
+def create_campaign():
+    campaign_id = str(uuid.uuid4())
+    input = request.get_json()
+    location = input['location']
+    age_demographic = input['age_demographic']
+    industries = input['industries']
+    goals = input['goals']
+    mpaa_rating = input['mpaa_rating']
+    brand_feel = input['brand_feel']
+    budget = input['budget']
+    other_info = input['other_info']
+    DatabaseInterface.write_digital_campaign_to_db(campaign_id, location, age_demographic, industries, goals, mpaa_rating, brand_feel, budget, other_info)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=6963)

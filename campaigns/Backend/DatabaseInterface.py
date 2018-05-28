@@ -22,21 +22,18 @@ class DatabaseInterface:
         db.close()
 
     @staticmethod
-    def write_campaign_to_db(goal, optimal_influencers, campaign_id):
+    def write_digital_campaign_to_db(campaign_id, location, age_demographic, industries, goals, mpaa_rating, brand_feel, budget, other_info):
         campaign_doc  = {}
-        campaign_doc['goal'] = goal
-        campaign_doc['influencers'] = optimal_influencers
-        print(type(campaign_doc['influencers']))
-        print('fuck u')
+        campaign_doc['location'] = location
+        campaign_doc['age_demographic'] = age_demographic
+        campaign_doc['industries'] = industries
+        campaign_doc['goals'] = goals
+        campaign_doc['mpaa_rating'] = mpaa_rating
+        campaign_doc['brand_feel'] = brand_feel
+        campaign_doc['budget'] = budget
+        campaign_doc['other_info'] = other_info
         campaign_doc['conversions'] = []
-        #print(campaign_doc)
-        #for influencer in campaign_doc['influencers']:
-        #    print(influencer)
-        #    print('DOGGGGG')
-        #    if influencer['twitter']['favourites_count'] == '':
-        #        influencer['twitter']['favourites_count'] = 0
-        #    else:
-        #        influencer['twitter']['favourites_count'] = int(influencer['twitter']['favourites_count'] )
+
         res = es.index(
             index=es_campaign_index,
             doc_type=es_campaign_doc_type,
