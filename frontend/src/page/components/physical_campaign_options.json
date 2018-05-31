@@ -1,12 +1,11 @@
 {
-  "location": "",
   "eventType": "",
+  "startDate": "",
+  "endDate": "",
+  "location": "",
 
-  "ageOptions": ["13 - 18", "18 - 25", "26 - 59", "60 or older"],
-  "ownerAgeRangeSelection": "",
-
-  "goalSelections": ["link clicks", "traffic"],
-  "selectedGoals": [""],
+  "hardwareOptions": ["Yes", "No"],
+  "ownerhardwareRangeSelection": "",
 
   "industrySelections": ["Accountants",
                           "Advertising/Public Relations",
@@ -191,11 +190,8 @@
                           "Women's Issues "],
   "selectedIndustry": [""],
 
-  "feelOptions": ["Relaxed", "Upbeat", "Informative", "Adventerous", "Silly"],
-  "selectedFeel": [""],
-
-  "MPAAOptions": ["G", "PG", "PG-13", "R", "NR"],
-  "mpaaSelection": [""],
+  "influencerOptions": ["This, is, a, placeholder"],
+  "selectedinfluencer": [""],
 
   "currentBudget": 0,
   "description": ""

@@ -6,17 +6,28 @@ import Select from './Select';
 import './campaignStyles.css';
 import PropTypes from 'prop-types';
 import data from './physical_campaign_options.json'
+import { getAttributes } from '../../libs/awsLib';
+
+
 import pin from './icons/pin.svg'
-import couple from './icons/couple.svg'
-import kids from './icons/children.svg'
+import cal from './icons/date.svg'
+import party from './icons/event.svg'
 import review from './icons/review.svg'
+import industry from './icons/industry.svg'
+import coin from './icons/coins.svg'
+import device from './icons/computer.svg'
+
 import goal from './icons/goal.svg'
 import chat from './icons/chat.svg'
-import coin from './icons/coins.svg'
-import industry from './icons/industry.svg'
 import rate from './icons/rate.svg'
 import file from './icons/file.svg'
 
+import 'react-dates/initialize';
+import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+
+
+import axios from 'axios';
 
 var lightColor = '#66b2b2';
 var darkColor = '#008080';
@@ -55,41 +66,59 @@ const iconStyle = {
   display: 'inline-block'
 }
 
-class CampaignForm extends Component {
+const fixTime = (str) => {
+  var toReturn = ""
+  var i = 0
+  var spaces = 0;
+  for (i = 0; i < str.length; i++) {
+    if (str.charAt(i) === ' ') {
+      spaces++;
+      if (spaces === 1 || spaces === 3) {
+        toReturn += ','
+      }
+    }
+
+    if (spaces < 4) {
+      toReturn += str.charAt(i);
+    }
+  }
+  return toReturn;
+}
+
+
+class PhysicalCampaignForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       step: 1,
-      location: '',
       eventType: '',
-      goalSelections: [],
-      selectedGoals: [],
-      ageOptions: [],
-      ownerAgeRangeSelection: '',
-      MPAAOptions: [],
-      mpaaSelection: [],
+      location: '',
+      startDate: '',
+      endDate: '',
+      focusedInput: null,
+      hardwareOptions: [],
+      ownerhardwareRangeSelection: '',
       currentBudget: 0,
       description: '',
       industrySelections: [],
       selectedIndustry: [],
-      feelOptions: []
+      influencerOptions: []
     };
 
-    //this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
+    this.handleeventTypeChange = this.handleeventTypeChange.bind(this);
     this.handleLocationChange = this.handleLocationChange.bind(this);
-    this.handleEventChange = this.handleEventChange.bind(this);
 
-    this.handleBudgetChange = this.handleBudgetChange.bind(this);
-    this.handleAgeRangeSelect = this.handleAgeRangeSelect.bind(this);
-    this.handleGoalSelection = this.handleGoalSelection.bind(this);
-    this.handleIndustrySelection = this.handleIndustrySelection.bind(this);
-    this.handleMPAASelection = this.handleMPAASelection.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
-    this.handleFeelSelection = this.handleFeelSelection.bind(this);
     this.goToNext = this.goToNext.bind(this);
     this.getPrettyArray = this.getPrettyArray.bind(this);
     this.goToPrevious = this.goToPrevious.bind(this);
+
+    this.handleBudgetChange = this.handleBudgetChange.bind(this);
+    this.handlehardwareRangeSelect = this.handlehardwareRangeSelect.bind(this);
+    this.handleIndustrySelection = this.handleIndustrySelection.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.handleinfluencerSelection = this.handleinfluencerSelection.bind(this);
+
 
   }
   componentDidMount() {
@@ -97,44 +126,35 @@ class CampaignForm extends Component {
     //fetch('./campaign_options.json')
       //.then(res => res.json())
       //.then(data => {
+      console.log(data.hardwareOptions);
         this.setState({
           step: 1,
-
-          location: data.location,
+          focusedInput: null,
           eventType: data.eventType,
-          goalSelections: data.goalSelections,
-          selectedGoals: data.selectedGoals,
-          ageOptions: data.ageOptions,
-          ownerAgeRangeSelection: data.ownerAgeRangeSelection,
-          MPAAOptions: data.MPAAOptions,
-          mpaaSelection: data.mpaaSelection,
+          location: data.location,
+          startDate: data.startDate,
+          endDate: data.endDate,
+          industrySelections: data.industrySelections,
+          influencerOptions: data.influencerOptions,
+
+          hardwareOptions: data.hardwareOptions,
+          ownerhardwareRangeSelection: data.ownerhardwareRangeSelection,
+
           currentBudget: data.currentBudget,
           description: data.description,
-          industrySelections: data.industrySelections,
           selectedIndustry: data.selectedIndustry,
-          feelOptions: data.feelOptions,
-          selectedFeel: data.selectedFeel
+          selectedinfluencer: data.selectedinfluencer
         });
       //});
   }
 
+  handleeventTypeChange(e) { this.setState({ eventType: e.target.value }); }
   handleLocationChange(e) { this.setState({ location: e.target.value }); }
-  handleEventChange(e) { this.setState({ eventType: e.target.value }); }
+  handleStartDateChange(e) { this.setState({ date: e.target.value }); }
 
   handleBudgetChange(e) {  this.setState({ currentBudget: e.target.value }); }
-  handleAgeRangeSelect(e) { this.setState({ ownerAgeRangeSelection: e.target.value }); }
+  handlehardwareRangeSelect(e) { this.setState({ ownerhardwareRangeSelection: e.target.value }); }
   handleDescriptionChange(e) { this.setState({ description: e.target.value }); }
-
-  handleGoalSelection(e) {
-    const goalSelection = e.target.value;
-    let goalSelectionArray;
-    if(this.state.selectedGoals.indexOf(goalSelection) > -1) {
-      goalSelectionArray = this.state.selectedGoals.filter(s => s !== goalSelection)
-    } else {
-      goalSelectionArray = [...this.state.selectedGoals, goalSelection];
-    }
-    this.setState({ selectedGoals: goalSelectionArray });
-  }
 
   handleIndustrySelection(e) {
     const indusSelection = e.target.value;
@@ -147,43 +167,35 @@ class CampaignForm extends Component {
     this.setState({ selectedIndustry: indusSelectionArray });
   }
 
-  handleFeelSelection(e) {
-    const feelSelection = e.target.value;
-    let feelSelectionArray;
-    if(this.state.selectedFeel.indexOf(feelSelection) > -1) {
-      feelSelectionArray = this.state.selectedFeel.filter(s => s !== feelSelection)
+  handleinfluencerSelection(e) {
+    const influencerSelection = e.target.value;
+    let influencerSelectionArray;
+    if(this.state.selectedinfluencer.indexOf(influencerSelection) > -1) {
+      influencerSelectionArray = this.state.selectedinfluencer.filter(s => s !== influencerSelection)
     } else {
-      feelSelectionArray = [...this.state.selectedFeel, feelSelection];
+      influencerSelectionArray = [...this.state.selectedinfluencer, influencerSelection];
     }
-    this.setState({ selectedFeel: feelSelectionArray });
+    this.setState({ selectedinfluencer: influencerSelectionArray });
   }
 
-  handleMPAASelection(e) {
-    const mpaaSelection = e.target.value;
-    let mpaaSelectionArray;
-    if(this.state.mpaaSelection.indexOf(mpaaSelection) > -1) {
-      mpaaSelectionArray = this.state.mpaaSelection.filter(s => s !== mpaaSelection)
-    } else {
-      mpaaSelectionArray = [...this.state.mpaaSelection, mpaaSelection];
-    }
-    this.setState({ mpaaSelection: mpaaSelectionArray });  }
 
   handleClearForm() {
     this.setState({
-      location: data.location,
+      focusedInput: null,
       eventType: data.eventType,
-      goalSelections: data.goalSelections,
-      selectedGoals: data.selectedGoals,
-      ageOptions: data.ageOptions,
-      ownerAgeRangeSelection: data.ownerAgeRangeSelection,
-      MPAAOptions: data.MPAAOptions,
-      mpaaSelection: data.mpaaSelection,
+      location: data.location,
+      startDate: data.startDate,
+      endDate: data.endDate,
+      industrySelections: data.industrySelections,
+      influencerOptions: data.influencerOptions,
+
+      hardwareOptions: data.hardwareOptions,
+      ownerhardwareRangeSelection: data.ownerhardwareRangeSelection,
+
       currentBudget: data.currentBudget,
       description: data.description,
-      industrySelections: data.industrySelections,
       selectedIndustry: data.selectedIndustry,
-      feelOptions: data.feelOptions,
-      selectedFeel: data.selectedFeel
+      selectedinfluencer: data.selectedinfluencer
     });
   }
 
@@ -209,25 +221,58 @@ class CampaignForm extends Component {
     return toReturn;
   }
 
-  goToNext() {
+  async goToNext() {
     const { step } = this.state;
-    if (step !== 10) {
+    if (step !== 9) {
       this.setState({ step: step + 1 });
+      console.log(this.state.startDate._d);
     } else {
+      var emailUser = "";
 
-      const formPayload = {
+      var attributes = await getAttributes();
+      var i =0;
+
+      for( i = 0; i< attributes.length; i++){
+        if(attributes[i].Name === "email") {
+          emailUser = attributes[i].Value;
+        }
+      }
+
+      const postData = {
+        user_email: emailUser,
+        eventType: this.state.eventType,
         location: this.state.location,
-        selectedGoals: this.state.selectedGoals,
-        ownerAgeRangeSelection: this.state.ownerAgeRangeSelection,
-        mpaaSelection: this.state.mpaaSelection,
-        currentBudget: this.state.currentBudget,
-        description: this.state.description,
-        selectedIndustry: this.state.selectedIndustry,
-        selectedFeel: this.state.selectedFeel
+        hardware_req: this.state.ownerhardwareRangeSelection,
+        industries: this.state.selectedIndustry,
+        brand_influencer: this.state.selectedinfluencer,
+        budget: this.state.currentBudget,
+        other_info: this.state.description,
+        startDate: fixTime(this.state.startDate._d.toString()),
+        endDate: fixTime(this.state.endDate._d.toString()),
+
       };
 
-      console.log('Send this in a POST request:', formPayload)
-      this.handleClearForm();
+      let axiosConfig = {
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+          "Access-Control-Allow-Origin": "*"
+        }
+      };
+
+      let currentComponent = this;
+
+      // TODO: MARK FIX ENDPOINT
+
+      axios.post(" ", postData, axiosConfig)
+      .then(function (response) {
+        this.handleClearForm();
+        this.setState({ step: step + 1 });
+      })
+      .catch(function (error) {
+        //Catch Error
+      });
+
+      // console.log('Send this in a POST request:', postData)
     }
   }
 
@@ -241,58 +286,44 @@ class CampaignForm extends Component {
       case 1:
         return <div>
         <center>
-          <a href={"_blank"} target="_blank"><img src={pin} style={iconStyle} /> </a>
+          <a href={"_blank"} target="_blank"><img src={party} style={iconStyle} /> </a>
           <br />
         <SingleInput
           inputType={'text'}
           onSubmit={this.goToNext}
           onBack={this.goToPrevious}
-          title={'Tell us the region that you would like to reach out to'}
-          name={'location'}
-          controlFunc={this.handleLocationChange}
-          content={this.state.location}
+          title={'Tell us the type of event being hosted'}
+          name={'eventType'}
+          controlFunc={this.handleeventTypeChange}
+          content={this.state.eventType}
           level={1.0}
-          total={10.0}
-          placeholder={'Ex: Germany, San Diego, Worldwide...'} />
+          total={9.0}
+          placeholder={'Ex: Farmer\'s Market, Concert...'} />
         </center>
         </div>;
       case 2:
         return <div>
         <center>
-          <a href={"_blank"} target="_blank"><img src={pin} style={iconStyle} /> </a>
+          <a href={"_blank"} target="_blank"><img src={cal} style={iconStyle} /> </a>
           <br />
-        <SingleInput
-          inputType={'text'}
-          onSubmit={this.goToNext}
-          onBack={this.goToPrevious}
-          title={'Tell us the region that you would like to reach out to'}
-          name={'location'}
-          controlFunc={this.handleEventChange}
-          content={this.state.eventType}
-          level={2.0}
-          total={10.0}
-          placeholder={'Ex: Farmers Market, Concert, etc...'} />
+          <DateRangePicker
+            startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+            startDateId="starting" // PropTypes.string.isRequired,
+            endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+            endDateId="ending" // PropTypes.string.isRequired,
+            onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+            focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+            onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+          />
+          <br />
+          <div className="strike-through" style={{display: 'inline-block', width: "13.2%", border: "solid 5px #008080", borderRadius: '4px', marginTop: '5px', marginBottom: "1px", marginleft: '10px', marginRight: '-4px'}}></div>
+          <div className="strike-through" style={{display: 'inline-block', width: "46.8%", border: "solid 5px #E8E8E8", borderRadius: '4px', marginTop: '5px', marginBottom: "1px", marginRight: '10px', zIndex: '-1'}}></div>
+          <div style={{display: 'inline-block'}}> <p style={{marginRight: '5px'}}> 22% </p> </div>
+          <button onClick={this.goToPrevious} style={prevbuttonStyle}> Prev </button>
+          <button onClick={this.goToNext} style={buttonStyle}> Next </button>
         </center>
         </div>;
       case 3:
-        return <div>
-          <center>
-            <a href={"_blank"} target="_blank"><img src={couple} style={iconStyle} /> </a>
-            <a href={"_blank"} target="_blank"><img src={kids} style={iconStyle} /> </a>
-            <br />
-          <Select
-          name={'ageRange'}
-          onSubmit={this.goToNext}
-          onBack={this.goToPrevious}
-          placeholder={'Choose your age demographic'}
-          controlFunc={this.handleAgeRangeSelect}
-          options={data.ageOptions}
-          level={3.0}
-          total={10.0}
-          selectedOption={this.state.ownerAgeRangeSelection} />
-          </center>
-          </div>;
-      case 4:
         return <div>
         <center>
           <a href={"_blank"} target="_blank"><img src={industry} style={iconStyle} /> </a>
@@ -303,68 +334,49 @@ class CampaignForm extends Component {
           onBack={this.goToPrevious}
           setName={'industry'}
           type={'checkbox'}
-          level={4.0}
-          total={10.0}
+          level={3.0}
+          total={9.0}
           controlFunc={this.handleIndustrySelection}
           options={this.state.industrySelections}
           selectedOptions={this.state.selectedIndustry} />
           </center>
           </div>;
+      case 4:
+        return <div>
+        <center>
+          <a href={"_blank"} target="_blank"><img src={pin} style={iconStyle} /> </a>
+          <br />
+        <SingleInput
+          inputType={'text'}
+          onSubmit={this.goToNext}
+          onBack={this.goToPrevious}
+          title={'Tell us the region that the event is occurring in'}
+          name={'location'}
+          controlFunc={this.handleLocationChange}
+          content={this.state.location}
+          level={4.0}
+          total={9.0}
+          placeholder={'Ex: Germany, San Diego, Worldwide...'} />
+        </center>
+        </div>;
       case 5:
-        return <div>
+      return <div>
         <center>
-          <a href={"_blank"} target="_blank"><img src={goal} style={iconStyle} /> </a>
+          <a href={"_blank"} target="_blank"><img src={device} style={iconStyle} /> </a>
           <br />
-        <CheckboxOrRadioGroup
-          title={'What are your goals?'}
-          onSubmit={this.goToNext}
-          onBack={this.goToPrevious}
-          setName={'goals'}
-          type={'checkbox'}
-          level={5.0}
-          total={10.0}
-          controlFunc={this.handleGoalSelection}
-          options={this.state.goalSelections}
-          selectedOptions={this.state.selectedGoals} />
-          </center>
-          </div>;
+        <Select
+        name={'hardwareRange'}
+        onSubmit={this.goToNext}
+        onBack={this.goToPrevious}
+        placeholder={'Do you require hardware for physical traffic measurements?'}
+        controlFunc={this.handlehardwareRangeSelect}
+        options={data.hardwareOptions}
+        level={5.0}
+        total={9.0}
+        selectedOption={this.state.ownerhardwareRangeSelection} />
+        </center>
+        </div>;
       case 6:
-        return <div>
-        <center>
-          <a href={"_blank"} target="_blank"><img src={review} style={iconStyle} /> </a>
-          <br />
-        <CheckboxOrRadioGroup
-          title={'What MPAA Ratings are you targetting?'}
-          onSubmit={this.goToNext}
-          onBack={this.goToPrevious}
-          setName={'MPAA'}
-          level={6.0}
-          total={10.0}
-          controlFunc={this.handleMPAASelection}
-          type={'checkbox'}
-          options={this.state.MPAAOptions}
-          selectedOptions={this.state.mpaaSelection} />
-          </center>
-          </div>;
-      case 7:
-        return <div>
-        <center>
-          <a href={"_blank"} target="_blank"><img src={rate} style={iconStyle} /> </a>
-          <br />
-        <CheckboxOrRadioGroup
-          title={'What brand "feel" are you trying to advertise?'}
-          onSubmit={this.goToNext}
-          onBack={this.goToPrevious}
-          setName={'feel'}
-          level={7.0}
-          total={10.0}
-          controlFunc={this.handleFeelSelection}
-          type={'checkbox'}
-          options={this.state.feelOptions}
-          selectedOptions={this.state.selectedFeel} />
-          </center>
-          </div>;
-      case 8:
         return <div>
         <center>
           <a href={"_blank"} target="_blank"><img src={coin} style={iconStyle} /> </a>
@@ -373,16 +385,34 @@ class CampaignForm extends Component {
           inputType={'number'}
           onSubmit={this.goToNext}
           onBack={this.goToPrevious}
-          title={'What is your budget?'}
+          title={'What is your influencer budget?'}
           name={'budget'}
-          level={8.0}
-          total={10.0}
+          level={6.0}
+          total={9.0}
           controlFunc={this.handleBudgetChange}
           content={this.state.currentBudget}
           placeholder={'Enter value in $'} />
           </center>
           </div>;
-      case 9:
+      case 7:
+        return <div>
+        <center>
+          <a href={"_blank"} target="_blank"><img src={rate} style={iconStyle} /> </a>
+          <br />
+        <CheckboxOrRadioGroup
+          title={'What brand "influencer" would you like?'}
+          onSubmit={this.goToNext}
+          onBack={this.goToPrevious}
+          setName={'influencer'}
+          level={7.0}
+          total={9.0}
+          controlFunc={this.handleinfluencerSelection}
+          type={'checkbox'}
+          options={this.state.influencerOptions}
+          selectedOptions={this.state.selectedinfluencer} />
+          </center>
+          </div>;
+      case 8:
         return <div>
         <center>
           <a href={"_blank"} target="_blank"><img src={chat} style={iconStyle} /> </a>
@@ -392,16 +422,16 @@ class CampaignForm extends Component {
           onSubmit={this.goToNext}
           onBack={this.goToPrevious}
           rows={5}
-          level={9.0}
-          total={10.0}
+          level={8.0}
+          total={9.0}
           resize={false}
           content={this.state.description}
           name={'currentPetInfo'}
           controlFunc={this.handleDescriptionChange}
-          placeholder={'If you have anything else you would like to tell our team, let us know here.'} />
+          placeholder={"If you have anything else you would like to tell our team, let us know here. \nThis includes the best way to contact you!"} />
           </center>
           </div>;
-      case 10:
+      case 9:
         return <div> <center>
           <a href={"_blank"} target="_blank"><img src={file} style={iconStyle} /> </a>
           <br />
@@ -410,13 +440,13 @@ class CampaignForm extends Component {
           </center>
 
           <div style={{width: '50%', minWidth: '250px', marginLeft: '25%'}}>
+          <p style={{fontSize: '1.2em', padding: '5px'}}> <b>Event Type: </b>{this.state.eventType} </p>
+          <p style={{fontSize: '1.2em', padding: '5px'}}> <b>Needs Hardware: </b>{this.state.ownerhardwareRangeSelection} </p>
+          <p style={{fontSize: '1.2em', padding: '5px'}}> <b>Start Date: </b>{fixTime(this.state.startDate._d.toString())} until {fixTime(this.state.endDate._d.toString())} </p>
           <p style={{fontSize: '1.2em', padding: '5px'}}> <b>Location: </b>{this.state.location} </p>
-          <p style={{fontSize: '1.2em', padding: '5px'}}> <b>Ages: </b>{this.state.ownerAgeRangeSelection} </p>
-          <p style={{fontSize: '1.2em', padding: '5px'}}> <b>Goals: </b>{this.getPrettyArray(this.state.selectedGoals)} </p>
-          <p style={{fontSize: '1.2em', padding: '5px'}}> <b>MPAA Ratings: </b>{this.getPrettyArray(this.state.mpaaSelection)} </p>
           <p style={{fontSize: '1.2em', padding: '5px'}}> <b>Industry: </b>{this.getPrettyArray(this.state.selectedIndustry)} </p>
-          <p style={{fontSize: '1.2em', padding: '5px'}}> <b>Brand Feel: </b>{this.getPrettyArray(this.state.selectedFeel)} </p>
           <p style={{fontSize: '1.2em', padding: '5px'}}> <b>Budget: </b>${this.state.currentBudget} </p>
+          <p style={{fontSize: '1.2em', padding: '5px'}}> <b>Brand influencer: </b>{this.getPrettyArray(this.state.selectedinfluencer)} </p>
           <p style={{fontSize: '1.2em', padding: '5px'}}> <b>Other Information: </b>{this.state.description} </p>
           </div>
 
@@ -430,8 +460,14 @@ class CampaignForm extends Component {
           </center>
 
         </div>;
+      case 10:
+        return <div> <center>
+          <br /> <br />
+            <h3> Your form has been successfully sent! <br/> We will get back to you shortly.</h3>
+        </center>
+        </div>;
     }
   }
 }
 
-export default CampaignForm;
+export default PhysicalCampaignForm;

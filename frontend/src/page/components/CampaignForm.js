@@ -16,6 +16,8 @@ import coin from './icons/coins.svg'
 import industry from './icons/industry.svg'
 import rate from './icons/rate.svg'
 import file from './icons/file.svg'
+import { getAttributes } from '../../libs/awsLib';
+
 
 import axios from 'axios';
 
@@ -204,13 +206,24 @@ class CampaignForm extends Component {
     return toReturn;
   }
 
-  goToNext() {
+  async goToNext() {
     const { step } = this.state;
     if (step !== 9) {
       this.setState({ step: step + 1 });
     } else {
+      var emailUser = "";
+
+      var attributes = await getAttributes();
+      var i =0;
+
+      for( i = 0; i< attributes.length; i++){
+        if(attributes[i].Name === "email") {
+          emailUser = attributes[i].Value;
+        }
+      }
 
       const postData = {
+        user_email: emailUser,
         location: this.state.location,
         age_demographic: this.state.ownerAgeRangeSelection,
         industries: this.state.selectedIndustry,
@@ -229,7 +242,7 @@ class CampaignForm extends Component {
       };
 
       let currentComponent = this;
-      
+
       // TODO: MARK FIX ENDPOINT
 
       axios.post("http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:6963", postData, axiosConfig)
@@ -240,15 +253,8 @@ class CampaignForm extends Component {
       .catch(function (error) {
         //Catch Error
       });
-
-      // console.log('Send this in a POST request:', postData)
     }
   }
-
-
-
-  /*  <form className="container" onSubmit={this.handleFormSubmit}>
-    <br /> */
 
   render() {
     switch (this.state.step) {

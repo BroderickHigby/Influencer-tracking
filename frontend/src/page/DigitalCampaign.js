@@ -13,7 +13,7 @@ class DigitalCampaign extends Component {
       return (
 
         <div stlye={{justifyContent: 'center'}}>
-          <h3 style={{marginLeft: '30px'}}>Launch a Campaign!</h3>
+          <h3 style={{marginLeft: '30px'}}>Launch a Digital Campaign!</h3>
           <CampaignForm />
         </div>
         )
