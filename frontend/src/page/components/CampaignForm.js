@@ -245,7 +245,7 @@ class CampaignForm extends Component {
 
       // TODO: MARK FIX ENDPOINT
 
-      axios.post("http://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:6963", postData, axiosConfig)
+      axios.post("https://ec2-34-209-86-220.us-west-2.compute.amazonaws.com:6963", postData, axiosConfig)
       .then(function (response) {
         this.handleClearForm();
         this.setState({ step: step + 1 });

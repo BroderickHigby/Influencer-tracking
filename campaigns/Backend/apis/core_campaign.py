@@ -1,10 +1,14 @@
 from flask import request, redirect, Flask
 import sys
 sys.path.append('..')
-from ML.CalculateOptimalInfluencers import *
+#from ML.CalculateOptimalInfluencers import *
 from UrlGenerator import *
 from DatabaseInterface import *
 import uuid
+import ssl
+
+context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+context.load_cert_chain('/etc/letsencrypt/live/app.sapie.space/cert.pem','/etc/letsencrypt/live/app.sapie.space/privkey.pem')
 
 app = Flask(__name__)
 
@@ -67,4 +71,4 @@ def create_campaign():
     return "OK"
 
 if __name__ == '__main__':
-    app.run(port=6963)
+    app.run(host='ec2-34-209-86-220.us-west-2.compute.amazonaws.com', port=6963, ssl_context=context)
