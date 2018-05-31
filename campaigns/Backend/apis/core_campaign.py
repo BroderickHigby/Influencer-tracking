@@ -64,7 +64,7 @@ def create_campaign():
     budget = input['budget']
     other_info = input['other_info']
     DatabaseInterface.write_digital_campaign_to_db(campaign_id, location, age_demographic, industries, goals, mpaa_rating, brand_feel, budget, other_info)
-
+    return "OK"
 
 if __name__ == '__main__':
     app.run(port=6963)
