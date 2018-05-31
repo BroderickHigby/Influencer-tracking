@@ -1,0 +1,27 @@
+# Add Google public key to apt
+wget -q -O - "https://dl-ssl.google.com/linux/linux_signing_key.pub" | sudo apt-key add -
+
+# Add Google to the apt-get source list
+# echo 'deb http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list
+#   -- didn't have permission for this, even w/ sudo; but could do it w/ vim
+sudo vim /etc/apt/sources.list
+# Add in the echo line above to bottom of file
+
+# Update apt-get
+sudo apt-get update
+
+# Get stable chrome
+sudo apt-get -y install google-chrome-stable
+
+# get xvfb
+sudo apt-get -y install xvfb
+
+# get unzip
+sudo apt-get -y install unzip
+
+# Get the CORRECT version of chromedriver
+#   -- as stupid as it might be, I kept trying to figure out bugs that had to do w/
+#      using the OS X build that I copied from my laptop to my EC2 instance
+wget https://chromedriver.storage.googleapis.com/2.38/chromedriver_linux64.zip
+unzip chromedriver_linux64.zip
+mv chromedriver to/where/ever/you/want

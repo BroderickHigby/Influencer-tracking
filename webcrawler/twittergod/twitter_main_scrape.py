@@ -2,15 +2,27 @@ from selenium import webdriver
 import json
 import sys
 #sys.path.insert(0, '/home/ec2-user/sapie/backend/')
-sys.path.insert(0, '/Users/markkeane/Desktop/sapie/backend/')
+
+sys.path.insert(0, '/Users/brody/workspace/sapie-github/sapie/backend')
 import influencer
 
-sys.path.insert(0, '/Users/markkeane/Desktop/sapie/webcrawler')
+sys.path.insert(0, '/Users/brody/workspace/sapie-github/sapie/webcrawler')
 from nlp_description_parser import *
 import uuid
 import requests
 
-search_terms = ['nba',
+search_terms = ['business intelligence',
+                'investment',
+                'business',
+                'UCSD',
+                'UC San Diego',
+                'San Diego',
+                'Health Foods',
+                'Vegan',
+                'San Diego Health Food',
+                'San Diego vegan',
+                'UCSD greek',
+                'nba',
                 'mma',
                 'marketing',
                 'seo',
@@ -42,8 +54,8 @@ search_terms = ['nba',
             ]
 
 for search_term in search_terms:
-    driver = webdriver.Chrome('/Users/markkeane/Desktop/sapie/webcrawler/twittergod/chromedriver')  # Optional argument, if not specified will search path.
-    driver2 = webdriver.Chrome('/Users/markkeane/Desktop/sapie/webcrawler/twittergod/chromedriver')
+    driver = webdriver.Chrome('/Users/brody/workspace/sapie-github/sapie/webcrawler/twittergod/chromedriver')  # Optional argument, if not specified will search path.
+    driver2 = webdriver.Chrome('/Users/brody/workspace/sapie-github/sapie/webcrawler/twittergod/chromedriver')
     base_url = 'https://twitter.com/search?q=' + search_term + '&src=typd&lang=en'
     print(search_term)
     print(base_url)

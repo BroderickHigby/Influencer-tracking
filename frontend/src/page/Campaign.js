@@ -48,12 +48,16 @@ class Campaign extends Component {
         <div stlye={{justifyContent: 'center'}}>
           <center>
           <br/>
-          <div style={{display: 'inline-block', padding: '20px', margin: '20px', marginRight: '60px'}}>
+          <div style={{display: 'inline-block', padding: '20px', margin: '20px', marginRight: '60px', width: '40%'}}>
 
             <a href={"_blank"} target="_blank"><img src={phys} style={iconStyle} /> </a>
             <h3> Physical Campaigns </h3>
-            {/*<button onClick={this.handleClickP} style={buttonStyle}>Lauch Campaign</button> */}
-            <h4> Coming soon to Sapie.Space </h4>
+             <p style={{fontSize: '1em', textAlign: 'Left', fontColor: 'grey'}}> &emsp; Starting a physical campaign transcendes the mere act
+                                            of marketing. No longer will one need to hire unknown felons to wear obtuse costumes and hand out
+                                            bizzare promotions to drive traffic to an event. You will complete an online form desgined to 
+                                            let us know the details we need to promote the event. We will take care of it from here and contact
+                                            you!</p>
+            <button onClick={this.handleClickP} style={buttonStyle}>Launch Campaign</button>
 
 
           </div>

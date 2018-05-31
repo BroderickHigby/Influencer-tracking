@@ -1,18 +1,49 @@
 from selenium import webdriver
 import json
-import sys
-#sys.path.insert(0, '/home/ec2-user/sapie/backend/')
-sys.path.insert(0, '/Users/mark/Desktop/sapie/backend/')
+import sys,os
+
+#sys.path.append(os.path.join(sys.path[0], 'sapie-github','sapie','backend'))
+#sys.path.append(os.path.join(sys.path[0], 'sapie-github','sapie','webcrawler'))
+sys.path.insert(0, '/Users/brody/workspace/sapie-github/sapie/backend/')
 import influencer
-sys.path.insert(0, '/Users/mark/Desktop/sapie/webcrawler')
+sys.path.insert(0, '/Users/brody/workspace/sapie-github/sapie/webcrawler')
 from nlp_description_parser import *
 import re
 from sys import getsizeof
 import uuid
 import requests
 
-search_terms = [
+search_terms = ['dubnation',
+		'warriors',
+		'pbbar',
+                'pacificbeach',
+                'ucsdpiphi',
+                'ucsdalphachiomega',
+                'ucsdchiomega',
+                'ucsdepsilonphi',
+                'ucsdalphaomicronpi',
+                'sandiegoventurecapital',
+                'sandiegoventurecapitalists',
+                'ucsantabarbra',
+                'blackbusinessowner',
+                'blackbusiness',
+                'blackentrepreneur',
+                'ucsddeltadeltadelta',
+                'ucsdpike',
+                'ucsdsigmaepsilon',
+                'sandiegogreek',
+                'ucsddance',
+                'toneitup',
+                'UCSB',
+                'UCSBSoccer',
+                'UCSDSoccer',
+                'lajolla',
                 'ucsd',
+                'UCSanDiego',
+                'HealthFoods',
+                'SanDiegoHealthFood',
+                'SanDiegovegan',
+                'UCSDgreek',
                 'Motorcycles'
                 'Cars',
                 'Trucks',
@@ -57,8 +88,8 @@ search_terms = [
             ]
 
 for search_term in search_terms:
-    driver = webdriver.Chrome('/Users/mark/Desktop/sapie/webcrawler/twittergod/chromedriver')  # Optional argument, if not specified will search path.
-    driver2 = webdriver.Chrome('/Users/mark/Desktop/sapie/webcrawler/twittergod/chromedriver')
+    driver = webdriver.Chrome('/Users/brody/workspace/sapie-github/sapie/webcrawler/twittergod/chromedriver')  # Optional argument, if not specified will search path.
+    driver2 = webdriver.Chrome('/Users/brody/workspace/sapie-github/sapie/webcrawler/twittergod/chromedriver')
     base_url = 'https://www.instagram.com/explore/tags/' + search_term +'/'
     print(search_term)
     print(base_url)
