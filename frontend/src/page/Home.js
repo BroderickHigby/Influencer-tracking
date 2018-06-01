@@ -13,9 +13,28 @@ import {
 
 import sapielogo from "../logos/sapielogo90.png";
 
+var lightGray = '#C3C3C3';
 
+
+const backButtonStyle = {
+  backgroundColor: lightGray,
+  borderRadius: '20px',
+  color: 'white',
+  padding: '5px 10px',
+  fontWeight: '100px',
+  border: '0',
+}
 
 class Home extends Component {
+    constructor(props) {
+      super(props);
+      this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick() {
+      window.location = "./Campaign"
+    }
+
     async checkTrial() {
       var attributes = await getAttributes();
 
@@ -115,10 +134,11 @@ class Home extends Component {
                 <MainContent>
                   <br />
                   <center><img src={sapielogo} style={{height: '20%', width: '26%'}} /></center>
-
-                  <div style={{textAlign: 'center', color: '#5F5F5F', fontSize: '1em', fontWeight: '700'}}>
-
+                  <br />
+                  <div style={{textAlign: 'center', color: '#5F5F5F'}}>
                     <BigSearchBox />
+                                      <button style={backButtonStyle} onClick={this.handleClick}> Or Launch a Campaign! </button>
+
                     <TopSearches />
 
                   </div>
