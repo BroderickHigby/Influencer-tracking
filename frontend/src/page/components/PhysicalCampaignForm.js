@@ -17,7 +17,6 @@ import industry from './icons/industry.svg'
 import coin from './icons/coins.svg'
 import device from './icons/computer.svg'
 
-import goal from './icons/goal.svg'
 import chat from './icons/chat.svg'
 import rate from './icons/rate.svg'
 import file from './icons/file.svg'
@@ -85,7 +84,6 @@ const fixTime = (str) => {
   return toReturn;
 }
 
-
 class PhysicalCampaignForm extends Component {
   constructor(props) {
     super(props);
@@ -102,7 +100,8 @@ class PhysicalCampaignForm extends Component {
       description: '',
       industrySelections: [],
       selectedIndustry: [],
-      influencerOptions: []
+      influencerOptions: [],
+      influencers: "",
     };
 
     this.handleClearForm = this.handleClearForm.bind(this);
@@ -118,6 +117,7 @@ class PhysicalCampaignForm extends Component {
     this.handleIndustrySelection = this.handleIndustrySelection.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleinfluencerSelection = this.handleinfluencerSelection.bind(this);
+    this.getInfluencers = this.getInfluencers.bind(this);
 
 
   }
@@ -221,12 +221,52 @@ class PhysicalCampaignForm extends Component {
     return toReturn;
   }
 
+  getInfluencers() {
+    console.log("Pulling influencers");
+    const postData = {
+      eventType: this.state.eventType,
+      location: this.state.location,
+      industries: this.state.selectedIndustry,
+      startDate: fixTime(this.state.startDate._d.toString()),
+      endDate: fixTime(this.state.endDate._d.toString()),
+    };
+
+    let axiosConfig = {
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*"
+      }
+    };
+    var funcResponse = "";
+
+    let currentComponent = this;
+
+    // TODO: MARK FIX ENDPOINT
+
+    axios.post("http://ec2.com", postData, axiosConfig)
+    .then(function (response) {
+      currentComponent.setState({influencers: response.data.influencers})
+      //TODO: FIX response data
+    })
+    .catch(function (error) {
+      console.log("Return with error");
+      currentComponent.setState({influencers: "Error"})
+
+    });
+    this.setState({ loading: false });
+  }
+
   async goToNext() {
     const { step } = this.state;
+
+    if (step === 6) {
+      this.getInfluencers();
+    }
+
     if (step !== 9) {
       this.setState({ step: step + 1 });
-      console.log(this.state.startDate._d);
-    } else {
+    }
+    else {
       var emailUser = "";
 
       var attributes = await getAttributes();
@@ -266,6 +306,7 @@ class PhysicalCampaignForm extends Component {
       axios.post(" ", postData, axiosConfig)
       .then(function (response) {
         this.handleClearForm();
+        this.setState({ step: step - 1})
         this.setState({ step: step + 1 });
       })
       .catch(function (error) {
@@ -399,17 +440,49 @@ class PhysicalCampaignForm extends Component {
         <center>
           <a href={"_blank"} target="_blank"><img src={rate} style={iconStyle} /> </a>
           <br />
-        <CheckboxOrRadioGroup
-          title={'What brand "influencer" would you like?'}
-          onSubmit={this.goToNext}
-          onBack={this.goToPrevious}
-          setName={'influencer'}
-          level={7.0}
-          total={9.0}
-          controlFunc={this.handleinfluencerSelection}
-          type={'checkbox'}
-          options={this.state.influencerOptions}
-          selectedOptions={this.state.selectedinfluencer} />
+          {
+            this.state.influencers ? (
+                (this.state.influencers === "Error") ? (
+                  <div>
+                  <h3> An error has occurred finding influencers, please contact us </h3>
+                  <center>
+                  <div style={{width: '100%'}}>
+                  <div className="strike-through" style={{display: 'inline-block', width: '43%', border: "solid 5px #008080", borderRadius: '4px', marginTop: '5px', marginBottom: "1px", marginleft: '10px', marginRight: '-4px'}}></div>
+                  <div className="strike-through" style={{display: 'inline-block', width: '12%', border: "solid 5px #E8E8E8", borderRadius: '4px', marginTop: '5px', marginBottom: "1px", marginRight: '10px', zIndex: '-1'}}></div>
+                  <div style={{display: 'inline-block'}}> <p style={{marginRight: '5px'}}> 78% </p> </div>
+                  <button onClick={this.goToPrevious} style={prevbuttonStyle}> Prev </button>
+                  <button onClick={this.goToNext} style={buttonStyle}> Next </button>
+                  </div>
+                  </center>
+                  </div>
+                ) : (
+                  <CheckboxOrRadioGroup
+                    title={'What brand influencer would you like?'}
+                    onSubmit={this.goToNext}
+                    onBack={this.goToPrevious}
+                    setName={'influencer'}
+                    level={7.0}
+                    total={9.0}
+                    controlFunc={this.handleinfluencerSelection}
+                    type={'checkbox'}
+                    options={this.influencers}
+                    selectedOptions={this.state.selectedinfluencer} />
+                )
+            ) : (
+              <div>
+              <h3> Loading influencers... please wait </h3>
+              <center>
+              <div style={{width: '100%'}}>
+              <div className="strike-through" style={{display: 'inline-block', width: '43%', border: "solid 5px #008080", borderRadius: '4px', marginTop: '5px', marginBottom: "1px", marginleft: '10px', marginRight: '-4px'}}></div>
+              <div className="strike-through" style={{display: 'inline-block', width: '12%', border: "solid 5px #E8E8E8", borderRadius: '4px', marginTop: '5px', marginBottom: "1px", marginRight: '10px', zIndex: '-1'}}></div>
+              <div style={{display: 'inline-block'}}> <p style={{marginRight: '5px'}}> 78% </p> </div>
+              <button onClick={this.goToPrevious} style={prevbuttonStyle}> Prev </button>
+              <button onClick={this.goToNext} style={buttonStyle}> Next </button>
+              </div>
+              </center>
+              </div>
+            )
+          }
           </center>
           </div>;
       case 8:
