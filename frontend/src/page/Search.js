@@ -606,6 +606,12 @@ const truncateNumbers = (num) => {
   }
 }
 
+var uniqueArray = function(arrArg) {
+  return arrArg.filter(function(elem, pos,arr) {
+    return arr.indexOf(elem) == pos;
+  });
+};
+
 var influencerList = [];
 class Search extends Component {
 
@@ -649,7 +655,6 @@ class Search extends Component {
     ReactGA.pageview(window.location.pathname);
 
     //console.log('In CONSTRUCTOR');
-
     this.getQuery();
   };
 
@@ -705,7 +710,7 @@ class Search extends Component {
     .then(function (response) {
       //console.log("Successful search");
       //console.log(response.data);
-      influencerList = response.data.query_results;
+      influencerList = uniqueArray(response.data.query_results);
       console.log(influencerList);
       currentComponent.setState({IL: influencerList});
     })
