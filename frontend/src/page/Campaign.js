@@ -22,7 +22,7 @@ const buttonStyle = {
 const iconStyle = {
   height: '250px',
   marginBottom: '5px',
-  maringTop: '5px',
+  marginTop: '5px',
   paddingBottom: '25px',
   display: 'inline-block'
 }
@@ -45,7 +45,7 @@ class Campaign extends Component {
     render() {
       return (
 
-        <div stlye={{justifyContent: 'center'}}>
+        <div style={{justifyContent: 'center'}}>
           <center>
           <br/>
           <div style={{display: 'inline-block', padding: '20px', margin: '20px', marginRight: '60px', width: '40%'}}>
