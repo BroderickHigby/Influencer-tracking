@@ -1,4 +1,4 @@
-#Sapie Space
+# Sapie Space
 Sapie Space's mission is to connect businesses to social media influencers using machine learning.*
 
 ## Quick Start
