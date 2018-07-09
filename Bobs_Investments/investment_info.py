@@ -7,12 +7,10 @@ from selenium import webdriver
 #my own API key for mattermark's API
 matter_key = '2dfbebc0ef9b2e21fe824c68755216065cbd16e2b77d530da8cff93f9ad9461b'
 
-
-# to implement later - get contact information of investors
-'''
-cbinsights_username = 'mmehtani@ucsd.edu'
-cbinsights_password = 'Glock25!'
+cbinsights_username = 'nemehtan@ucsd.edu'
+cbinsights_password = '12!Portable'
 driver = webdriver.Chrome('/Users/mayankmehtani/Downloads/chromedriver')
+keyboard = PyKeyboard()
 
 def login_to_cbinsights():
     driver.get('https://app.cbinsights.com/login')
@@ -22,7 +20,15 @@ def login_to_cbinsights():
     password.send_keys(cbinsights_password)
     login_button = driver.find_element_by_xpath("//button[contains(text(),'Login')]")
     login_button.click()
-'''
+
+def search_cbinsights(search):
+    sleep(3)
+    search_bar = driver.find_element_by_id("top-search-wrapper")
+    search_bar.click()
+    sleep(2)
+    keyboard.type_string(search)
+    sleep(2)
+    keyboard.press_key('return')
 
 def return_investors(investors):
     investors = investors.replace(', ',',')
