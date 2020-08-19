@@ -1,4 +1,4 @@
-flask==0.12.2
+flask==1.0
 falcon==1.4.1
 nltk==3.2.5
 langdetect==1.0.7
