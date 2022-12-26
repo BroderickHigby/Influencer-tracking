@@ -8,6 +8,6 @@ monkeylearn==0.3.7
 python-dateutil==2.6.0
 twitter==1.17.1
 tweepy==3.5.0
-wheel==0.30.0a0
+wheel==0.38.1
 pgmagick==0.6.5 
 autoload==0.0.1
